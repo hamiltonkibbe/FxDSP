@@ -1,387 +1,0 @@
-TTest
-v7
-r0
-t388861739.204665
-cCheck dependencies
-cCompileC build/Test.build/Debug/Test.build/Objects-normal/i386/main.o "/Users/Ham/Desktop/FutureTech Audio/Test/main.c" normal i386 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioBiquadFilter.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c" normal i386 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioCircularBuffer.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c" normal i386 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioFIRFilter.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c" normal i386 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioRBJFilter.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c" normal i386 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioUpsampler.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c" normal i386 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioUtilities.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c" normal i386 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioWaveshaper.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c" normal i386 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioWindowFunction.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c" normal i386 c com.apple.compilers.gcc.4_2
-cLd "/Users/Ham/Desktop/FutureTech Audio/Test/build/Debug/Test" normal i386
-
-N/Developer/SDKs/MacOSX10.6.sdk
-c000000004D5A274300000000000000EE
-t1297753923
-s238
-
-N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Accelerate.framework/Headers/Accelerate.h
-c000000004CC3F97E000000000000022A
-t1287911806
-s554
-
-N/Developer/SDKs/MacOSX10.6.sdk/usr/include/math.h
-c000000004A5C14A000000000000004F1
-t1247548576
-s1265
-
-N/Developer/SDKs/MacOSX10.6.sdk/usr/include/stdio.h
-c000000004BBD2CE90000000000004174
-t1270689001
-s16756
-
-N/Developer/SDKs/MacOSX10.6.sdk/usr/include/string.h
-c000000004BBD2CE90000000000001731
-t1270689001
-s5937
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c
-c00000000517D538500000000000007B5
-t1367167877
-s1973
-i"FtAudioBiquadFilter.h"
-i"FtAudioError.h"
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c
-c00000000517D4DDF0000000000000354
-t1367166431
-s852
-i"FtAudioCircularBuffer.h"
-i"FtAudioUtilities.h"
-i<string.h>
-i<Accelerate/Accelerate.h>
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c
-c00000000517D53F3000000000000090C
-t1367167987
-s2316
-i"FtAudioFIRFilter.h"
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioPolyphaseCoeffs.c
-c00000000000000000000000000000000
-t2
-s0
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c
-c00000000517D56F8000000000000107C
-t1367168760
-s4220
-i"FtAudioRBJFilter.h"
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c
-c00000000517D56180000000000000747
-t1367168536
-s1863
-i"FtAudioUpsampler.h"
-i"FtAudioPolyphaseCoeffs.h"
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c
-c000000004FD95670000000000000020A
-t1339643504
-s522
-i"FtAudioUtilities.h"
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c
-c000000004FF861A00000000000000DDA
-t1341677984
-s3546
-i"FtAudioWaveshaper.h"
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c
-c000000004FD6A2D40000000000001A93
-t1339466452
-s6803
-i"FtAudioWindowFunction.h"
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Debug/Test
-t2
-s0
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioBiquadFilter.o
-t1367168937
-s5988
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioCircularBuffer.o
-t1367168938
-s2868
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioFIRFilter.o
-t1367168938
-s6064
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioPolyphaseCoeffs.o
-t2
-s0
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioRBJFilter.o
-t1367168938
-s7796
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioUpsampler.o
-t1367168938
-s9648
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioUtilities.o
-t1367168938
-s3724
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioWaveshaper.o
-t1367168939
-s6584
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioWindowFunction.o
-t1367168939
-s16168
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/Test.LinkFileList
-c00000000517D57A90000000000000404
-t1367168937
-s1028
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/main.o
-t1367168937
-s2588
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/main.c
-c00000000517D52840000000000000121
-t1367167620
-s289
-i<stdio.h>
-i"FtAudioFIRFilter.h"
-
-N/Users/Ham/Desktop/FutureTech Audio/include/FtAudioBiquadFilter.h
-c000000004FD9EED00000000000000947
-t1339682512
-s2375
-i<string.h>
-i"FtAudioError.h"
-i<Accelerate/Accelerate.h>
-
-N/Users/Ham/Desktop/FutureTech Audio/include/FtAudioCircularBuffer.h
-c00000000517D4E3D00000000000002F5
-t1367166525
-s757
-
-N/Users/Ham/Desktop/FutureTech Audio/include/FtAudioError.h
-c000000004FE7DFF200000000000001A9
-t1340596210
-s425
-
-N/Users/Ham/Desktop/FutureTech Audio/include/FtAudioFIRFilter.h
-c000000004FD9EF760000000000000A9F
-t1339682678
-s2719
-i<string.h>
-i"FtAudioError.h"
-i<Accelerate/Accelerate.h>
-
-N/Users/Ham/Desktop/FutureTech Audio/include/FtAudioPolyphaseCoeffs.h
-c00000000517D566F00000000000055C4
-t1367168623
-s21956
-
-N/Users/Ham/Desktop/FutureTech Audio/include/FtAudioRBJFilter.h
-c000000004FD9EF4E0000000000000E0D
-t1339682638
-s3597
-i"FtAudioError.h"
-i"FtAudioUtilities.h"
-i"FtAudioBiquadFilter.h"
-
-N/Users/Ham/Desktop/FutureTech Audio/include/FtAudioUpsampler.h
-c000000004FDA3DBC0000000000000839
-t1339702716
-s2105
-i"FtAudioError.h"
-i"FtAudioFIRFilter.h"
-
-N/Users/Ham/Desktop/FutureTech Audio/include/FtAudioUtilities.h
-c00000000517D579C00000000000005AF
-t1367168924
-s1455
-i<math.h>
-
-N/Users/Ham/Desktop/FutureTech Audio/include/FtAudioWaveshaper.h
-c0000000050157FBE0000000000000806
-t1343586238
-s2054
-i<math.h>
-i"FtAudioError.h"
-i"FtAudioFIRFilter.h"
-i"FtAudioUpsampler.h"
-
-N/Users/Ham/Desktop/FutureTech Audio/include/FtAudioWindowFunction.h
-c00000000517D517E0000000000002A41
-t1367167358
-s10817
-i<math.h>
-i"FtAudioError.h"
-i<Accelerate/Accelerate.h>
-
-N/Users/Ham/Desktop/FutureTech Audio/src/FtAudioPolyphaseCoeffs.c
-c00000000000000000000000000000000
-t2
-s0
-i"FtAudioUpsampler.h"
-
-CCheck dependencies
-r0
-lSLF07#2@18"Check dependencies388861737#388861737#0(0"0(0#1#0"2513068528#0"0#
-
-CCompileC build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioBiquadFilter.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c" normal i386 c com.apple.compilers.gcc.4_2
-s388861737.240458
-e388861737.725508
-r1
-xCompileC
-xbuild/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioBiquadFilter.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c
-xnormal
-xi386
-xc
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@77"Compile /Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c388861737#388861737#0(0"0(0#0#69"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c2513068528#1304"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Debug" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Debug/include" -I../include "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/DerivedSources/i386" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioBiquadFilter.o"0#
-
-CCompileC build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioCircularBuffer.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c" normal i386 c com.apple.compilers.gcc.4_2
-s388861737.725745
-e388861738.156789
-r1
-xCompileC
-xbuild/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioCircularBuffer.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c
-xnormal
-xi386
-xc
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@79"Compile /Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c388861737#388861738#0(0"0(0#0#71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c2513068528#1308"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Debug" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Debug/include" -I../include "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/DerivedSources/i386" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioCircularBuffer.o"0#
-
-CCompileC build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioFIRFilter.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c" normal i386 c com.apple.compilers.gcc.4_2
-s388861737.736393
-e388861738.186990
-r1
-xCompileC
-xbuild/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioFIRFilter.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c
-xnormal
-xi386
-xc
-xcom.apple.compilers.gcc.4_2
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c: In function 'FtAudioFIRFilterInit':
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:44: warning: assignment discards qualifiers from pointer target type
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c: In function 'FtAudioFIRFilterProcess':
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:87: warning: control reaches end of non-void function
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c: In function 'FtAudioFIRFilterUpdateKernel':
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:94: warning: control reaches end of non-void function
-lSLF07#2@74"Compile /Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c388861737#388861738#0(701"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c: In function 'FtAudioFIRFilterInit':/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:44: warning: assignment discards qualifiers from pointer target type/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c: In function 'FtAudioFIRFilterProcess':/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:87: warning: control reaches end of non-void function/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c: In function 'FtAudioFIRFilterUpdateKernel':/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:94: warning: control reaches end of non-void function3(22@55"Assignment discards qualifiers from pointer target type388861738#104#136#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c388860787#44#0#44#0#55"assignment discards qualifiers from pointer target type0(22@40"Control reaches end of non-void function388861738#347#121#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c388860787#87#0#87#0#40"control reaches end of non-void function0(22@40"Control reaches end of non-void function388861738#580#121#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c388860787#94#0#94#0#40"control reaches end of non-void function0(0#0#66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c2513068528#1298"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Debug" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Debug/include" -I../include "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/DerivedSources/i386" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioFIRFilter.o"0#
-
-CCompileC build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioPolyphaseCoeffs.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioPolyphaseCoeffs.c" normal i386 c com.apple.compilers.gcc.4_2
-s388861455.690553
-e388861455.708041
-r0
-xCompileC
-xbuild/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioPolyphaseCoeffs.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioPolyphaseCoeffs.c
-xnormal
-xi386
-xc
-xcom.apple.compilers.gcc.4_2
-oi686-apple-darwin10-gcc-4.2.1: /Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioPolyphaseCoeffs.c: No such file or directory
-oi686-apple-darwin10-gcc-4.2.1: warning: '-x c' after last input file has no effect
-oi686-apple-darwin10-gcc-4.2.1: no input files
-lSLF07#2@80"Compile /Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioPolyphaseCoeffs.c388861455#388861455#0(319"i686-apple-darwin10-gcc-4.2.1: /Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioPolyphaseCoeffs.c: No such file or directoryi686-apple-darwin10-gcc-4.2.1: warning: '-x c' after last input file has no effecti686-apple-darwin10-gcc-4.2.1: no input filesCommand /Developer/usr/bin/gcc-4.2 failed with exit code 11(4@58"Command /Developer/usr/bin/gcc-4.2 failed with exit code 1388861455#4294967295#0#0(1@0"0(0#0#72"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioPolyphaseCoeffs.c2513068528#1310"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Debug" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Debug/include" -I../include "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/DerivedSources/i386" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioPolyphaseCoeffs.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioPolyphaseCoeffs.o"1#
-
-CCompileC build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioRBJFilter.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c" normal i386 c com.apple.compilers.gcc.4_2
-s388861738.157019
-e388861738.556106
-r1
-xCompileC
-xbuild/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioRBJFilter.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c
-xnormal
-xi386
-xc
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@74"Compile /Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c388861738#388861738#0(0"0(0#0#66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c2513068528#1298"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Debug" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Debug/include" -I../include "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/DerivedSources/i386" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioRBJFilter.o"0#
-
-CCompileC build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioUpsampler.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c" normal i386 c com.apple.compilers.gcc.4_2
-s388861738.187218
-e388861738.650643
-r1
-xCompileC
-xbuild/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioUpsampler.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c
-xnormal
-xi386
-xc
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@74"Compile /Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c388861738#388861738#0(0"0(0#0#66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c2513068528#1298"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Debug" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Debug/include" -I../include "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/DerivedSources/i386" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioUpsampler.o"0#
-
-CCompileC build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioUtilities.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c" normal i386 c com.apple.compilers.gcc.4_2
-s388861738.556332
-e388861738.642431
-r1
-xCompileC
-xbuild/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioUtilities.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c
-xnormal
-xi386
-xc
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@74"Compile /Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c388861738#388861738#0(0"0(0#0#66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c2513068528#1298"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Debug" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Debug/include" -I../include "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/DerivedSources/i386" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioUtilities.o"0#
-
-CCompileC build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioWaveshaper.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c" normal i386 c com.apple.compilers.gcc.4_2
-s388861738.642798
-e388861739.076983
-r1
-xCompileC
-xbuild/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioWaveshaper.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c
-xnormal
-xi386
-xc
-xcom.apple.compilers.gcc.4_2
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c: In function 'FtAudioWaveshaperProcess':
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:145: warning: passing argument 2 of 'FtAudioUpsamplerProcess' discards qualifiers from pointer target type
-lSLF07#2@75"Compile /Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c388861738#388861739#0(284"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c: In function 'FtAudioWaveshaperProcess':/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:145: warning: passing argument 2 of 'FtAudioUpsamplerProcess' discards qualifiers from pointer target type1(22@92"Passing argument 2 of 'FtAudioUpsamplerProcess' discards qualifiers from pointer target type388861739#109#175#0(6@67"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c363370784#145#0#145#0#70"passing argument * of '*' discards qualifiers from pointer target type0(0#0#67"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c2513068528#1300"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Debug" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Debug/include" -I../include "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/DerivedSources/i386" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioWaveshaper.o"0#
-
-CCompileC build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioWindowFunction.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c" normal i386 c com.apple.compilers.gcc.4_2
-s388861738.650873
-e388861739.162054
-r1
-xCompileC
-xbuild/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioWindowFunction.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c
-xnormal
-xi386
-xc
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@79"Compile /Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c388861738#388861739#0(0"0(0#0#71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c2513068528#1308"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Debug" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Debug/include" -I../include "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/DerivedSources/i386" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioWindowFunction.o"0#
-
-CCompileC build/Test.build/Debug/Test.build/Objects-normal/i386/main.o "/Users/Ham/Desktop/FutureTech Audio/Test/main.c" normal i386 c com.apple.compilers.gcc.4_2
-s388861737.238055
-e388861737.736174
-r1
-xCompileC
-xbuild/Test.build/Debug/Test.build/Objects-normal/i386/main.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/main.c
-xnormal
-xi386
-xc
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@55"Compile /Users/Ham/Desktop/FutureTech Audio/Test/main.c388861737#388861737#0(0"0(0#0#47"/Users/Ham/Desktop/FutureTech Audio/Test/main.c2513068528#1267"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Debug" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Debug/include" -I../include "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/DerivedSources/i386" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/main.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/main.o"0#
-
-CLd "/Users/Ham/Desktop/FutureTech Audio/Test/build/Debug/Test" normal i386
-s388861739.162263
-e388861739.204576
-r0
-xLd
-x/Users/Ham/Desktop/FutureTech Audio/Test/build/Debug/Test
-xnormal
-xi386
-old: duplicate symbol _INT16_TO_FLOAT_SCALAR in /Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioRBJFilter.o and /Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioCircularBuffer.o
-ocollect2: ld returned 1 exit status
-lSLF07#2@62"Link /Users/Ham/Desktop/FutureTech Audio/Test/build/Debug/Test388861739#388861739#0(379"ld: duplicate symbol _INT16_TO_FLOAT_SCALAR in /Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioRBJFilter.o and /Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioCircularBuffer.ocollect2: ld returned 1 exit statusCommand /Developer/usr/bin/gcc-4.2 failed with exit code 12(13@279"Duplicate symbol _INT16_TO_FLOAT_SCALAR in /Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioRBJFilter.o and /Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/FtAudioCircularBuffer.o388861739#0#284#0(6@0"388861739#0#0#0#0#0"0(4@58"Command /Developer/usr/bin/gcc-4.2 failed with exit code 1388861739#4294967295#0#0(1@0"0(0#0#0"2513068528#502"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv MACOSX_DEPLOYMENT_TARGET 10.6    /Developer/usr/bin/gcc-4.2 -arch i386 -isysroot /Developer/SDKs/MacOSX10.6.sdk "-L/Users/Ham/Desktop/FutureTech Audio/Test/build/Debug" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Debug" -filelist "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Debug/Test.build/Objects-normal/i386/Test.LinkFileList" -mmacosx-version-min=10.6 -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Debug/Test"1#
-

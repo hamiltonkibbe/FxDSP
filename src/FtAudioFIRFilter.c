@@ -5,7 +5,12 @@
  */
 
 #include "FtAudioFIRFilter.h"
+#include "FtAudio_Utilities.h"
 #include <stdio.h>
+
+#ifdef __APPLE__
+#include <Accelerate/Accelerate.h>
+#endif
 
 struct FtAudioFIRFilter
 {
@@ -22,12 +27,11 @@ FtAudioFIRFilter*
 FtAudioFIRFilterInit(const float*	filter_kernel,
 					 unsigned length)
 {
-	float zero = 0.0;
 
 	// Array lengths and sizes
-	unsigned kernel_length = length;						// IN SAMPLES!
-	unsigned overlap_length = kernel_length - 1;			// IN SAMPLES!
-	size_t kernel_size = kernel_length * sizeof(float);		//IN BYTES!
+	unsigned kernel_length = length;			// IN SAMPLES!
+	unsigned overlap_length = kernel_length - 1;		// IN SAMPLES!
+	size_t kernel_size = kernel_length * sizeof(float);	//IN BYTES!
 	size_t overlap_size = overlap_length * sizeof(float);	//IN BYTES!
 
 	// Allocate Memory
@@ -35,11 +39,14 @@ FtAudioFIRFilterInit(const float*	filter_kernel,
 	float* kernel = (float*)malloc(kernel_size);
 	float* overlap = (float*)malloc(overlap_size);
 
-
 	// Initialize Buffers
 	memcpy(kernel, filter_kernel, kernel_size);
-    vDSP_vfill(&zero, overlap, 1, overlap_length);
+	
+	//float zero = 0.0
+	//vDSP_vfill(&zero, overlap, 1, overlap_length);
+        FtAudioFillBuffer(overlap, overlap_length, 0.0);
 
+	// Set up the struct
 	filter->kernel = kernel;
 	filter->kernel_end = filter_kernel + (kernel_length - 1);
 	filter->overlap = overlap;
@@ -62,8 +69,11 @@ FtAudioFIRFilterFree(FtAudioFIRFilter * filter)
 FtAudioError_t
 FtAudioFIRFilterFlush(FtAudioFIRFilter* filter)
 {
-	float zero = 0.0;
-	vDSP_vfill(&zero, filter->overlap, 1, filter->overlap_length);
+	// The only stateful part of this is the overlap buffer, so this just 
+	//zeros it out
+	//float zero = 0.0;
+	//vDSP_vfill(&zero, filter->overlap, 1, filter->overlap_length);
+	FtAudioFillBuffer(0.0, filter->overlap, filter->overlap_length);
 	return FT_NOERR;
 }
 
@@ -73,18 +83,23 @@ FtAudioFIRFilterProcess(FtAudioFIRFilter* filter,
 						const float* inBuffer, 
 						unsigned n_samples)
 {
-	float zero = 0.0;
+
 	unsigned resultLength = n_samples + (filter->kernel_length - 1);
 	unsigned signalLength = (filter->kernel_length + resultLength);
 	
 	// Temporary buffer to store full result of filtering..
 	float buffer[resultLength];
 	
-	// So there's some hella weird requirement that the signal input to vDSP_conv has to be
-	// larger than (result_length + filter_length - 1)_, and it has to be zero-padded. What. The. Fuck!
-	// Pad the input signal with (filter_length - 1) zeros.
+	// So there's some hella weird requirement that the signal input to 
+	//vDSP_conv has to be larger than (result_length + filter_length - 1),
+	// and it has to be zero-padded. What. The. Fuck!
 	float padded[signalLength];
-	vDSP_vfill(&zero, padded, 1, signalLength);
+	
+	//float zero = 0.0;
+	//vDSP_vfill(&zero, padded, 1, signalLength);
+	FtAudioFillBuffer(padded, signalLength, 0.0);
+	
+	// Pad the input signal with (filter_length - 1) zeros.
 	memcpy(padded  + (filter->kernel_length - 1), inBuffer, n_samples * sizeof(float));
 	
 	// Filter the samples
@@ -105,6 +120,7 @@ FtAudioFIRFilterProcess(FtAudioFIRFilter* filter,
 FtAudioError_t
 FtAudioFIRFilterUpdateKernel(FtAudioFIRFilter*	filter, const float* filter_kernel)
 {
+	// Copy the new kernel into the filter
 	memcpy(filter->kernel, filter_kernel, filter->kernel_length * sizeof(float));
 	return FT_NOERR;
 }

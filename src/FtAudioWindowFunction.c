@@ -9,6 +9,9 @@
 
 #include "FtAudioWindowFunction.h"
 
+#ifdef __APPLE__
+#include <Accelerate/Accelerate.h>
+#endif
 
 struct FtAudioWindowFunction
 {
@@ -30,11 +33,20 @@ boxcar(unsigned n, float* dest)
 static FtAudioError_t 
 hann(unsigned n, float* dest)
 {
+
+#ifdef __APPLE__
+	// Use the accelerate version if we have it
+	vDSP_hann_window(dest, n, vDSP_HANN_NORM);
+
+#else
+	// Otherwise do it manually
 	unsigned buf_idx;
 	for (buf_idx = 0; buf_idx < n; ++buf_idx)
 	{
 		*dest++ = 0.5 * (1 - cosf((2 * M_PI * buf_idx) / (n - 1)));
 	}
+
+#endif // __APPLE__
 	return FT_NOERR;
 }
 
@@ -42,18 +54,37 @@ hann(unsigned n, float* dest)
 static FtAudioError_t 
 hamming(unsigned n, float* dest)
 {
+
+#ifdef __APPLE__
+	// Use the accelerate version if we have it
+	vDSP_hamm_window(dest, n);
+
+#else
+	// Otherwise do it manually
 	unsigned buf_idx;
 	for (buf_idx = 0; buf_idx < n; ++buf_idx)
 	{
 		*dest++ = 0.54 - 0.46 * cosf((2 * M_PI * buf_idx) / (n - 1));
 	}
-	return 0;
+
+#endif // __APPLE__
+	return FT_NOERR;
 }
 
 /* Blackman window  */
 static FtAudioError_t 
 blackman(unsigned n, float a, float* dest)
 {
+#ifdef __APPLE__
+	// Use the builtin version for the specific case it implements, if it is
+	// available.
+	if (a == 0.16)
+	{
+		vDSP_blkman_window(dest, n);
+	}
+
+#else
+	// Otherwise do it manually
 	float a0 = (1 - a) / 2;
 	float a1 = 0.5;
 	float a2 = a / 2;
@@ -63,6 +94,7 @@ blackman(unsigned n, float a, float* dest)
 	{
 		*dest++ = a0 - a1 * cosf((2 * M_PI * buf_idx) / (n - 1)) + a2 * cosf((4 * M_PI * buf_idx) / (n - 1));
 	}
+#endif // __APPLE__
 	return FT_NOERR;
 }
 
@@ -158,14 +190,21 @@ bartlett_hann(unsigned n, float* dest)
 	return FT_NOERR;
 }
 
-// TODO:
+/* Kaiser Window */
 static FtAudioError_t 
 kaiser(unsigned n, float a, float* dest)
 {
+	// Pre-calc
+	float beta = M_PI * a;
+	float m_2 = (float)(n-1) / 2.0;
+	float denom = modZeroBessel(beta);
+	
 	unsigned buf_idx;
 	for (buf_idx = 0; buf_idx < n; ++buf_idx)
 	{
-		*dest++ = 0.0;
+		float val = ((buf_idx) - m_2) / m_2;
+		val = 1 - (val * val);
+		*dest++ = modZeroBessel(beta * sqrt(val)) / denom;
 	}
 	return FT_NOERR;
 }
@@ -182,7 +221,7 @@ nuttall(unsigned n, float* dest)
 		term = (2 * M_PI * buf_idx) / (n - 1);
 		*dest++ = 0.355768 - 0.487396 * cosf(term)+ 0.144232 * cosf(2 * term) - 0.012604 * cosf(3 * term);
 	}
-	return FT_NOERR;	
+	return FT_NOERR;
 }
 
 
@@ -244,9 +283,29 @@ poisson(unsigned n, float D, float* dest)
 	return FT_NOERR;	
 }
 
+/* Bessel Function */
+static float
+modZeroBessel(float x)
+{
+	float x_2 = x/2;
+	float num = 1;
+	float fact = 1;
+	float result = 1;
+	
+	unsigned i;
+	for (i=1 ; i<20 ; i++) 
+	{
+		num *= x_2 * x_2;
+		fact *= i;
+		result += num / (fact * fact);
+	}
+	return result;
+}
 
 
-FtAudioWindowFunction* FtAudioWindowFunctionInit(unsigned n, FtWindow_t type)
+
+FtAudioWindowFunction*
+FtAudioWindowFunctionInit(unsigned n, FtWindow_t type)
 {
 	FtAudioWindowFunction* window = (FtAudioWindowFunction*)malloc(sizeof(FtAudioWindowFunction));
 	
@@ -313,20 +372,20 @@ FtAudioWindowFunction* FtAudioWindowFunctionInit(unsigned n, FtWindow_t type)
 }
 
 
-FtAudioError_t FtAudioWindowFunctionFree(FtAudioWindowFunction* window)
+FtAudioError_t
+FtAudioWindowFunctionFree(FtAudioWindowFunction* window)
 {
 	free(window->window);
 	free(window);
 	return FT_NOERR;
 }
 
-FtAudioError_t FtAudioWindowFunctionProcess(FtAudioWindowFunction* window, float* outBuffer, float* inBuffer,unsigned n_samples)
+FtAudioError_t
+FtAudioWindowFunctionProcess(FtAudioWindowFunction* window, float* outBuffer, float* inBuffer,unsigned n_samples)
 {
 	vDSP_vmul(inBuffer, 1, window->window, 1, outBuffer,1, n_samples);
 	return FT_NOERR;
 }
-
-
 
 
 

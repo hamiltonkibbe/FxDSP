@@ -10,10 +10,6 @@
 #include <math.h>
 #include "FtAudioError.h"
 
-#ifdef __APPLE__
-#include <Accelerate/Accelerate.h>
-#endif
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -341,7 +337,10 @@ poisson(unsigned	n,
 		float		D, 
 		float*		dest);
 
-
+/** Modified Bessel function of the first kind
+ */
+static float
+modZeroBessel(float x);
 
 /** Create a new FtAudioWindowFunction
  *

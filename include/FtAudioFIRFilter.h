@@ -10,10 +10,6 @@
 #include <string.h>
 #include "FtAudioError.h"
 
-#ifdef __APPLE__
-#include <Accelerate/Accelerate.h>
-#endif
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -65,7 +61,6 @@ FtAudioFIRFilterFlush(FtAudioFIRFilter* filter);
  * @details Uses direct form convolution to filter the samples. This is not the
  *			best method to use for filters with kernels longer than oh, say, 
  *			128 coefficients or so
- * @TODO:	Make Sure vDSP_vadd can operate in place!
  * @TODO:	Add FFT convolution implementation for longer filters
  *
  * @param filter	The FtAudioFIRFilter to use

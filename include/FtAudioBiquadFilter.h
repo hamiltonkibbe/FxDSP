@@ -11,10 +11,6 @@
 #include <string.h>
 #include "FtAudioError.h"
 
-#ifdef __APPLE__
-#include <Accelerate/Accelerate.h>
-#endif
-
 #ifdef __cplusplus
 extern "C" {
 #endif

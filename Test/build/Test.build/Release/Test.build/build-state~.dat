@@ -1,798 +1,0 @@
-TTest
-v7
-r0
-t388895914.022095
-cCheck dependencies
-cCompileC build/Test.build/Release/Test.build/Objects-normal/x86_64/main.o "/Users/Ham/Desktop/FutureTech Audio/Test/main.c" normal x86_64 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioBiquadFilter.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c" normal x86_64 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioCircularBuffer.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c" normal x86_64 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioFIRFilter.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c" normal x86_64 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioRBJFilter.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c" normal x86_64 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioUpsampler.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c" normal x86_64 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioUtilities.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c" normal x86_64 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioWaveshaper.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c" normal x86_64 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioWindowFunction.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c" normal x86_64 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Release/Test.build/Objects-normal/x86_64/signals.o "/Users/Ham/Desktop/FutureTech Audio/Test/signals.c" normal x86_64 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Release/Test.build/Objects-normal/x86_64/coefficients.o "/Users/Ham/Desktop/FutureTech Audio/Test/coefficients.c" normal x86_64 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Release/Test.build/Objects-normal/x86_64/testFIR.o "/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c" normal x86_64 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Release/Test.build/Objects-normal/i386/main.o "/Users/Ham/Desktop/FutureTech Audio/Test/main.c" normal i386 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioBiquadFilter.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c" normal i386 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioCircularBuffer.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c" normal i386 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioFIRFilter.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c" normal i386 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioRBJFilter.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c" normal i386 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioUpsampler.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c" normal i386 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioUtilities.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c" normal i386 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioWaveshaper.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c" normal i386 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioWindowFunction.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c" normal i386 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Release/Test.build/Objects-normal/i386/signals.o "/Users/Ham/Desktop/FutureTech Audio/Test/signals.c" normal i386 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Release/Test.build/Objects-normal/i386/coefficients.o "/Users/Ham/Desktop/FutureTech Audio/Test/coefficients.c" normal i386 c com.apple.compilers.gcc.4_2
-cCompileC build/Test.build/Release/Test.build/Objects-normal/i386/testFIR.o "/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c" normal i386 c com.apple.compilers.gcc.4_2
-
-N/Developer/SDKs/MacOSX10.6.sdk
-c000000004D5A274300000000000000EE
-t1297753923
-s238
-
-N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Accelerate.framework/Accelerate
-c000000004D5A278F0000000000006500
-t1297753999
-s25856
-
-N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Accelerate.framework/Headers/Accelerate.h
-c000000004CC3F97E000000000000022A
-t1287911806
-s554
-
-N/Developer/SDKs/MacOSX10.6.sdk/usr/include/math.h
-c000000004A5C14A000000000000004F1
-t1247548576
-s1265
-
-N/Developer/SDKs/MacOSX10.6.sdk/usr/include/stdio.h
-c000000004BBD2CE90000000000004174
-t1270689001
-s16756
-
-N/Developer/SDKs/MacOSX10.6.sdk/usr/include/string.h
-c000000004BBD2CE90000000000001731
-t1270689001
-s5937
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c
-c00000000517D538500000000000007B5
-t1367167877
-s1973
-i"FtAudioBiquadFilter.h"
-i"FtAudioError.h"
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c
-c00000000517D4DDF0000000000000354
-t1367166431
-s852
-i"FtAudioCircularBuffer.h"
-i"FtAudioUtilities.h"
-i<string.h>
-i<Accelerate/Accelerate.h>
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c
-c00000000517D9FA90000000000000C65
-t1367187369
-s3173
-i"FtAudioFIRFilter.h"
-i<stdio.h>
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c
-c00000000517D56F8000000000000107C
-t1367168760
-s4220
-i"FtAudioRBJFilter.h"
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c
-c00000000517D56180000000000000747
-t1367168536
-s1863
-i"FtAudioUpsampler.h"
-i"FtAudioPolyphaseCoeffs.h"
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c
-c00000000517D5D5D0000000000000530
-t1367170397
-s1328
-i"FtAudioUtilities.h"
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c
-c000000004FF861A00000000000000DDA
-t1341677984
-s3546
-i"FtAudioWaveshaper.h"
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c
-c000000004FD6A2D40000000000001A93
-t1339466452
-s6803
-i"FtAudioWindowFunction.h"
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/Test
-t2
-s0
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/Test.dSYM
-t2
-s0
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioBiquadFilter.o
-t2
-s0
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioCircularBuffer.o
-t2
-s0
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioFIRFilter.o
-t2
-s0
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioRBJFilter.o
-t2
-s0
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioUpsampler.o
-t2
-s0
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioUtilities.o
-t2
-s0
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioWaveshaper.o
-t2
-s0
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioWindowFunction.o
-t2
-s0
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/i386/Test
-t2
-s0
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/i386/Test.LinkFileList
-c00000000517DDD28000000000000055C
-t1367203112
-s1372
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/i386/coefficients.o
-t1367203113
-s1448
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/i386/main.o
-t1367203113
-s3256
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/i386/signals.o
-t1367203113
-s2616
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/i386/testFIR.o
-t2
-s0
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioBiquadFilter.o
-t2
-s0
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioCircularBuffer.o
-t2
-s0
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioFIRFilter.o
-t2
-s0
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioRBJFilter.o
-t2
-s0
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioUpsampler.o
-t2
-s0
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioUtilities.o
-t2
-s0
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioWaveshaper.o
-t2
-s0
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioWindowFunction.o
-t2
-s0
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/x86_64/Test
-t2
-s0
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/x86_64/Test.LinkFileList
-c00000000517DDD280000000000000574
-t1367203112
-s1396
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/x86_64/coefficients.o
-t1367203113
-s1636
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/x86_64/main.o
-t1367203112
-s3904
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/x86_64/signals.o
-t1367203113
-s3152
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/x86_64/testFIR.o
-t2
-s0
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/coefficients.c
-c00000000517D840900000000000000A2
-t1367180297
-s162
-i"coefficients.h"
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/coefficients.h
-c00000000517D91F90000000000000441
-t1367183865
-s1089
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/main.c
-c00000000517DDD16000000000000040C
-t1367203094
-s1036
-i<stdio.h>
-i<Accelerate/Accelerate.h>
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/signals.c
-c00000000517D94350000000000000164
-t1367184437
-s356
-i"signals.h"
-i<stdio.h>
-i<math.h>
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/signals.h
-c00000000517D85A400000000000000EE
-t1367180708
-s238
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c
-c00000000517D8F64000000000000025A
-t1367183204
-s602
-i<stdio.h>
-i"testFIR.h"
-i"FtAudioFIRFilter.h"
-i"coefficients.h"
-i"signals.h"
-
-N/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.h
-c00000000517D873F00000000000000C9
-t1367181119
-s201
-
-CCheck dependencies
-r0
-lSLF07#2@18"Check dependencies388895912#388895912#0(0"0(0#1#0"2513068528#0"0#
-
-CCompileC build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioBiquadFilter.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c" normal i386 c com.apple.compilers.gcc.4_2
-s388895913.140972
-e388895913.207557
-r0
-xCompileC
-xbuild/Test.build/Release/Test.build/Objects-normal/i386/FtAudioBiquadFilter.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c
-xnormal
-xi386
-xc
-xcom.apple.compilers.gcc.4_2
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:7:33: error: FtAudioBiquadFilter.h: No such file or directory
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:8:26: error: FtAudioError.h: No such file or directory
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:19: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:38: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioBiquadFilterFree'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:45: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioBiquadFilterFlush'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:54: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioBiquadFilterProcess'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:82: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioBiquadFilterUpdateKernel'
-lSLF07#2@77"Compile /Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c388895913#388895913#0(1068"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:7:33: error: FtAudioBiquadFilter.h: No such file or directory/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:8:26: error: FtAudioError.h: No such file or directory/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:19: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:38: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioBiquadFilterFree'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:45: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioBiquadFilterFlush'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:54: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioBiquadFilterProcess'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:82: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioBiquadFilterUpdateKernel'7(4@48"FtAudioBiquadFilter.h: No such file or directory388895913#0#132#0(6@69"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c388860677#7#0#7#0#28"*: No such file or directory0(4@41"FtAudioError.h: No such file or directory388895913#132#125#0(6@69"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c388860677#8#0#8#0#28"*: No such file or directory0(4@65"Expected '=', ',', ';', 'asm' or '__attribute__' before '*' token388895913#257#147#0(6@69"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c388860677#19#0#19#0#19"expected * before *0(4@81"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioBiquadFilterFree'388895913#404#163#0(6@69"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c388860677#38#0#38#0#19"expected * before *0(4@82"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioBiquadFilterFlush'388895913#567#164#0(6@69"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c388860677#45#0#45#0#19"expected * before *0(4@84"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioBiquadFilterProcess'388895913#731#166#0(6@69"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c388860677#54#0#54#0#19"expected * before *0(4@89"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioBiquadFilterUpdateKernel'388895913#897#171#0(6@69"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c388860677#82#0#82#0#19"expected * before *0(0#0#69"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c2513068528#1327"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Release" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/include" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources/i386" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioBiquadFilter.o"1#
-
-CCompileC build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioCircularBuffer.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c" normal i386 c com.apple.compilers.gcc.4_2
-s388895913.207772
-e388895913.586825
-r0
-xCompileC
-xbuild/Test.build/Release/Test.build/Objects-normal/i386/FtAudioCircularBuffer.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c
-xnormal
-xi386
-xc
-xcom.apple.compilers.gcc.4_2
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c:10:35: error: FtAudioCircularBuffer.h: No such file or directory
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c:11:30: error: FtAudioUtilities.h: No such file or directory
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c:27: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token
-lSLF07#2@79"Compile /Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c388895913#388895913#0(418"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c:10:35: error: FtAudioCircularBuffer.h: No such file or directory/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c:11:30: error: FtAudioUtilities.h: No such file or directory/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c:27: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token3(4@50"FtAudioCircularBuffer.h: No such file or directory388895913#0#137#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c388859231#10#0#10#0#28"*: No such file or directory0(4@45"FtAudioUtilities.h: No such file or directory388895913#137#132#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c388859231#11#0#11#0#28"*: No such file or directory0(4@65"Expected '=', ',', ';', 'asm' or '__attribute__' before '*' token388895913#269#149#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c388859231#27#0#27#0#19"expected * before *0(0#0#71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c2513068528#1331"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Release" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/include" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources/i386" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioCircularBuffer.o"1#
-
-CCompileC build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioFIRFilter.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c" normal i386 c com.apple.compilers.gcc.4_2
-s388895913.587042
-e388895913.652188
-r0
-xCompileC
-xbuild/Test.build/Release/Test.build/Objects-normal/i386/FtAudioFIRFilter.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c
-xnormal
-xi386
-xc
-xcom.apple.compilers.gcc.4_2
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:7:30: error: FtAudioFIRFilter.h: No such file or directory
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:21: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:58: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioFIRFilterFree'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:67: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioFIRFilterFlush'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:75: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioFIRFilterProcess'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:118: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioFIRFilterUpdateKernel'
-lSLF07#2@74"Compile /Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c388895913#388895913#0(911"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:7:30: error: FtAudioFIRFilter.h: No such file or directory/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:21: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:58: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioFIRFilterFree'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:67: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioFIRFilterFlush'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:75: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioFIRFilterProcess'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:118: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioFIRFilterUpdateKernel'6(4@45"FtAudioFIRFilter.h: No such file or directory388895913#0#126#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c388880169#7#0#7#0#28"*: No such file or directory0(4@65"Expected '=', ',', ';', 'asm' or '__attribute__' before '*' token388895913#126#144#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c388880169#21#0#21#0#19"expected * before *0(4@78"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioFIRFilterFree'388895913#270#157#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c388880169#58#0#58#0#19"expected * before *0(4@79"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioFIRFilterFlush'388895913#427#158#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c388880169#67#0#67#0#19"expected * before *0(4@81"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioFIRFilterProcess'388895913#585#160#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c388880169#75#0#75#0#19"expected * before *0(4@86"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioFIRFilterUpdateKernel'388895913#745#166#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c388880169#118#0#118#0#19"expected * before *0(0#0#66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c2513068528#1321"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Release" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/include" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources/i386" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioFIRFilter.o"1#
-
-CCompileC build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioRBJFilter.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c" normal i386 c com.apple.compilers.gcc.4_2
-s388895913.645993
-e388895913.721011
-r0
-xCompileC
-xbuild/Test.build/Release/Test.build/Objects-normal/i386/FtAudioRBJFilter.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c
-xnormal
-xi386
-xc
-xcom.apple.compilers.gcc.4_2
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:7:30: error: FtAudioRBJFilter.h: No such file or directory
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:11: error: expected specifier-qualifier-list before 'FtAudioBiquadFilter'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:32: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterUpdate'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:104: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:163: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterFree'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:171: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterSetType'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:180: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterSetCutoff'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:189: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterSetQ'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:198: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterProcess'
-lSLF07#2@74"Compile /Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c388895913#388895913#0(1372"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:7:30: error: FtAudioRBJFilter.h: No such file or directory/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:11: error: expected specifier-qualifier-list before 'FtAudioBiquadFilter'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:32: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterUpdate'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:104: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:163: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterFree'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:171: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterSetType'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:180: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterSetCutoff'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:189: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterSetQ'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:198: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterProcess'9(4@45"FtAudioRBJFilter.h: No such file or directory388895913#0#126#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c388861560#7#0#7#0#28"*: No such file or directory0(4@62"Expected specifier-qualifier-list before 'FtAudioBiquadFilter'388895913#126#141#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c388861560#11#0#11#0#19"expected * before *0(4@80"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterUpdate'388895913#267#159#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c388861560#32#0#32#0#19"expected * before *0(4@65"Expected '=', ',', ';', 'asm' or '__attribute__' before '*' token388895913#426#145#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c388861560#104#0#104#0#19"expected * before *0(4@78"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterFree'388895913#571#158#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c388861560#163#0#163#0#19"expected * before *0(4@81"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterSetType'388895913#729#161#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c388861560#171#0#171#0#19"expected * before *0(4@83"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterSetCutoff'388895913#890#163#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c388861560#180#0#180#0#19"expected * before *0(4@78"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterSetQ'388895913#1053#158#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c388861560#189#0#189#0#19"expected * before *0(4@81"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterProcess'388895913#1211#161#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c388861560#198#0#198#0#19"expected * before *0(0#0#66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c2513068528#1321"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Release" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/include" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources/i386" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioRBJFilter.o"1#
-
-CCompileC build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioUpsampler.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c" normal i386 c com.apple.compilers.gcc.4_2
-s388895913.652402
-e388895913.714347
-r0
-xCompileC
-xbuild/Test.build/Release/Test.build/Objects-normal/i386/FtAudioUpsampler.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c
-xnormal
-xi386
-xc
-xcom.apple.compilers.gcc.4_2
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:7:30: error: FtAudioUpsampler.h: No such file or directory
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:8:36: error: FtAudioPolyphaseCoeffs.h: No such file or directory
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:14: error: expected specifier-qualifier-list before 'FtAudioFIRFilter'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:19: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:46: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioUpsamplerFree'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:54: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioUpsamplerFlush'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:66: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioUpsamplerProcess'
-lSLF07#2@74"Compile /Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c388895913#388895913#0(1015"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:7:30: error: FtAudioUpsampler.h: No such file or directory/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:8:36: error: FtAudioPolyphaseCoeffs.h: No such file or directory/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:14: error: expected specifier-qualifier-list before 'FtAudioFIRFilter'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:19: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:46: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioUpsamplerFree'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:54: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioUpsamplerFlush'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:66: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioUpsamplerProcess'7(4@45"FtAudioUpsampler.h: No such file or directory388895913#0#126#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c388861336#7#0#7#0#28"*: No such file or directory0(4@51"FtAudioPolyphaseCoeffs.h: No such file or directory388895913#126#132#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c388861336#8#0#8#0#28"*: No such file or directory0(4@59"Expected specifier-qualifier-list before 'FtAudioFIRFilter'388895913#258#138#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c388861336#14#0#14#0#19"expected * before *0(4@65"Expected '=', ',', ';', 'asm' or '__attribute__' before '*' token388895913#396#144#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c388861336#19#0#19#0#19"expected * before *0(4@78"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioUpsamplerFree'388895913#540#157#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c388861336#46#0#46#0#19"expected * before *0(4@79"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioUpsamplerFlush'388895913#697#158#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c388861336#54#0#54#0#19"expected * before *0(4@81"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioUpsamplerProcess'388895913#855#160#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c388861336#66#0#66#0#19"expected * before *0(0#0#66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c2513068528#1321"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Release" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/include" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources/i386" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioUpsampler.o"1#
-
-CCompileC build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioUtilities.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c" normal i386 c com.apple.compilers.gcc.4_2
-s388895913.714563
-e388895913.799381
-r0
-xCompileC
-xbuild/Test.build/Release/Test.build/Objects-normal/i386/FtAudioUtilities.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c
-xnormal
-xi386
-xc
-xcom.apple.compilers.gcc.4_2
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:10:30: error: FtAudioUtilities.h: No such file or directory
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c: In function 'int16ToFloat':
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:16: error: 'INT16_TO_FLOAT_SCALAR' undeclared (first use in this function)
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:16: error: (Each undeclared identifier is reported only once
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:16: error: for each function it appears in.)
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c: In function 'to_dB':
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:58: warning: implicit declaration of function 'log10'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:58: warning: incompatible implicit declaration of built-in function 'log10'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c: In function 'to_ratio':
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:63: warning: implicit declaration of function 'pow'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:63: warning: incompatible implicit declaration of built-in function 'pow'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c: In function 'radians_to_Hz':
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:69: error: 'M_PI' undeclared (first use in this function)
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c: In function 'Hz_to_radians':
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:75: error: 'M_PI' undeclared (first use in this function)
-lSLF07#2@74"Compile /Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c388895913#388895913#0(1754"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:10:30: error: FtAudioUtilities.h: No such file or directory/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c: In function 'int16ToFloat':/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:16: error: 'INT16_TO_FLOAT_SCALAR' undeclared (first use in this function)/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:16: error: (Each undeclared identifier is reported only once/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:16: error: for each function it appears in.)/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c: In function 'to_dB':/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:58: warning: implicit declaration of function 'log10'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:58: warning: incompatible implicit declaration of built-in function 'log10'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c: In function 'to_ratio':/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:63: warning: implicit declaration of function 'pow'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:63: warning: incompatible implicit declaration of built-in function 'pow'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c: In function 'radians_to_Hz':/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:69: error: 'M_PI' undeclared (first use in this function)/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c: In function 'Hz_to_radians':/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:75: error: 'M_PI' undeclared (first use in this function)8(4@45"FtAudioUtilities.h: No such file or directory388895913#0#127#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c388863197#10#0#10#0#28"*: No such file or directory0(4@63"'INT16_TO_FLOAT_SCALAR' undeclared (first use in this function)388895913#223#142#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c388863197#16#0#16#0#43"'*' undeclared (first use in this function)0(22@40"Implicit declaration of function 'log10'388895913#694#121#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c388863197#58#0#58#0#36"implicit declaration of function '*'0(22@62"Incompatible implicit declaration of built-in function 'log10'388895913#815#143#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c388863197#58#0#58#0#0"0(22@38"Implicit declaration of function 'pow'388895913#1050#119#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c388863197#63#0#63#0#36"implicit declaration of function '*'0(22@60"Incompatible implicit declaration of built-in function 'pow'388895913#1169#141#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c388863197#63#0#63#0#0"0(4@46"'M_PI' undeclared (first use in this function)388895913#1407#125#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c388863197#69#0#69#0#43"'*' undeclared (first use in this function)0(4@46"'M_PI' undeclared (first use in this function)388895913#1629#125#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c388863197#75#0#75#0#43"'*' undeclared (first use in this function)0(0#0#66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c2513068528#1321"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Release" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/include" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources/i386" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioUtilities.o"1#
-
-CCompileC build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioWaveshaper.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c" normal i386 c com.apple.compilers.gcc.4_2
-s388895913.721232
-e388895913.807025
-r0
-xCompileC
-xbuild/Test.build/Release/Test.build/Objects-normal/i386/FtAudioWaveshaper.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c
-xnormal
-xi386
-xc
-xcom.apple.compilers.gcc.4_2
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:8:31: error: FtAudioWaveshaper.h: No such file or directory
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:13: error: expected specifier-qualifier-list before 'FtAudioUpsampler'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c: In function 'hard_clip':
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:47: warning: implicit declaration of function 'vDSP_vclip'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c: In function 'arctan':
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:68: error: 'M_PI' undeclared (first use in this function)
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:68: error: (Each undeclared identifier is reported only once
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:68: error: for each function it appears in.)
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:69: warning: implicit declaration of function 'vvatanf'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:70: warning: implicit declaration of function 'vDSP_vsmul'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c: At top level:
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:84: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:112: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:128: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioWaveshaperFree'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:137: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioWaveshaperProcess'
-lSLF07#2@75"Compile /Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c388895913#388895913#0(1895"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:8:31: error: FtAudioWaveshaper.h: No such file or directory/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:13: error: expected specifier-qualifier-list before 'FtAudioUpsampler'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c: In function 'hard_clip':/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:47: warning: implicit declaration of function 'vDSP_vclip'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c: In function 'arctan':/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:68: error: 'M_PI' undeclared (first use in this function)/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:68: error: (Each undeclared identifier is reported only once/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:68: error: for each function it appears in.)/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:69: warning: implicit declaration of function 'vvatanf'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:70: warning: implicit declaration of function 'vDSP_vsmul'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c: At top level:/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:84: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:112: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:128: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioWaveshaperFree'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:137: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioWaveshaperProcess'11(4@46"FtAudioWaveshaper.h: No such file or directory388895913#0#128#0(6@67"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c363370784#8#0#8#0#28"*: No such file or directory0(4@59"Expected specifier-qualifier-list before 'FtAudioUpsampler'388895913#128#139#0(6@67"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c363370784#13#0#13#0#19"expected * before *0(22@45"Implicit declaration of function 'vDSP_vclip'388895913#361#127#0(6@67"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c363370784#47#0#47#0#36"implicit declaration of function '*'0(4@46"'M_PI' undeclared (first use in this function)388895913#579#126#0(6@67"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c363370784#68#0#68#0#43"'*' undeclared (first use in this function)0(22@42"Implicit declaration of function 'vvatanf'388895913#947#124#0(6@67"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c363370784#69#0#69#0#36"implicit declaration of function '*'0(22@45"Implicit declaration of function 'vDSP_vsmul'388895913#1071#127#0(6@67"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c363370784#70#0#70#0#36"implicit declaration of function '*'0(23@13"At top level:388895913#1198#83#0(6@67"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c363370784#0#0#0#0#0"0(4@65"Expected '=', ',', ';', 'asm' or '__attribute__' before '*' token388895913#1281#145#0(6@67"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c363370784#84#0#84#0#19"expected * before *0(4@65"Expected '=', ',', ';', 'asm' or '__attribute__' before '*' token388895913#1426#146#0(6@67"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c363370784#112#0#112#0#19"expected * before *0(4@79"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioWaveshaperFree'388895913#1572#160#0(6@67"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c363370784#128#0#128#0#19"expected * before *0(4@82"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioWaveshaperProcess'388895913#1732#163#0(6@67"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c363370784#137#0#137#0#19"expected * before *0(0#0#67"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c2513068528#1323"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Release" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/include" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources/i386" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioWaveshaper.o"1#
-
-CCompileC build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioWindowFunction.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c" normal i386 c com.apple.compilers.gcc.4_2
-s388895913.799862
-e388895913.879496
-r0
-xCompileC
-xbuild/Test.build/Release/Test.build/Objects-normal/i386/FtAudioWindowFunction.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c
-xnormal
-xi386
-xc
-xcom.apple.compilers.gcc.4_2
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:10:35: error: FtAudioWindowFunction.h: No such file or directory
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:17: error: expected specifier-qualifier-list before 'FtWindow_t'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:22: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'boxcar'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:31: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'hann'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:43: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'hamming'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:55: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'blackman'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:71: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'tukey'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:96: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'cosine'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:108: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'lanczos'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:120: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'bartlett'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:139: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'gaussian'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:151: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'bartlett_hann'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:163: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'kaiser'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:176: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'nuttall'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:191: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'blackman_harris'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:205: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'blackman_nuttall'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:219: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'flat_top'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:233: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'poisson'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:249: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:316: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioWindowFunctionFree'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:323: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioWindowFunctionProcess'
-lSLF07#2@79"Compile /Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c388895913#388895914#0(3176"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:10:35: error: FtAudioWindowFunction.h: No such file or directory/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:17: error: expected specifier-qualifier-list before 'FtWindow_t'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:22: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'boxcar'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:31: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'hann'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:43: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'hamming'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:55: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'blackman'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:71: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'tukey'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:96: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'cosine'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:108: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'lanczos'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:120: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'bartlett'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:139: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'gaussian'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:151: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'bartlett_hann'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:163: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'kaiser'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:176: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'nuttall'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:191: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'blackman_harris'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:205: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'blackman_nuttall'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:219: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'flat_top'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:233: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'poisson'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:249: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:316: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioWindowFunctionFree'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:323: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioWindowFunctionProcess'21(4@50"FtAudioWindowFunction.h: No such file or directory388895913#0#137#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#10#0#10#0#28"*: No such file or directory0(4@53"Expected specifier-qualifier-list before 'FtWindow_t'388895913#137#137#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#17#0#17#0#19"expected * before *0(4@64"Expected '=', ',', ';', 'asm' or '__attribute__' before 'boxcar'388895913#274#148#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#22#0#22#0#19"expected * before *0(4@62"Expected '=', ',', ';', 'asm' or '__attribute__' before 'hann'388895913#422#146#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#31#0#31#0#19"expected * before *0(4@65"Expected '=', ',', ';', 'asm' or '__attribute__' before 'hamming'388895913#568#149#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#43#0#43#0#19"expected * before *0(4@66"Expected '=', ',', ';', 'asm' or '__attribute__' before 'blackman'388895913#717#150#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#55#0#55#0#19"expected * before *0(4@63"Expected '=', ',', ';', 'asm' or '__attribute__' before 'tukey'388895913#867#147#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#71#0#71#0#19"expected * before *0(4@64"Expected '=', ',', ';', 'asm' or '__attribute__' before 'cosine'388895913#1014#148#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#96#0#96#0#19"expected * before *0(4@65"Expected '=', ',', ';', 'asm' or '__attribute__' before 'lanczos'388895913#1162#150#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#108#0#108#0#19"expected * before *0(4@66"Expected '=', ',', ';', 'asm' or '__attribute__' before 'bartlett'388895913#1312#151#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#120#0#120#0#19"expected * before *0(4@66"Expected '=', ',', ';', 'asm' or '__attribute__' before 'gaussian'388895913#1463#151#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#139#0#139#0#19"expected * before *0(4@71"Expected '=', ',', ';', 'asm' or '__attribute__' before 'bartlett_hann'388895913#1614#156#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#151#0#151#0#19"expected * before *0(4@64"Expected '=', ',', ';', 'asm' or '__attribute__' before 'kaiser'388895913#1770#149#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#163#0#163#0#19"expected * before *0(4@65"Expected '=', ',', ';', 'asm' or '__attribute__' before 'nuttall'388895913#1919#150#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#176#0#176#0#19"expected * before *0(4@73"Expected '=', ',', ';', 'asm' or '__attribute__' before 'blackman_harris'388895913#2069#158#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#191#0#191#0#19"expected * before *0(4@74"Expected '=', ',', ';', 'asm' or '__attribute__' before 'blackman_nuttall'388895913#2227#159#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#205#0#205#0#19"expected * before *0(4@66"Expected '=', ',', ';', 'asm' or '__attribute__' before 'flat_top'388895913#2386#151#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#219#0#219#0#19"expected * before *0(4@65"Expected '=', ',', ';', 'asm' or '__attribute__' before 'poisson'388895913#2537#150#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#233#0#233#0#19"expected * before *0(4@65"Expected '=', ',', ';', 'asm' or '__attribute__' before '*' token388895913#2687#150#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#249#0#249#0#19"expected * before *0(4@83"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioWindowFunctionFree'388895913#2837#168#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#316#0#316#0#19"expected * before *0(4@86"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioWindowFunctionProcess'388895913#3005#171#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#323#0#323#0#19"expected * before *0(0#0#71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c2513068528#1331"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Release" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/include" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources/i386" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/i386/FtAudioWindowFunction.o"1#
-
-CCompileC build/Test.build/Release/Test.build/Objects-normal/i386/coefficients.o "/Users/Ham/Desktop/FutureTech Audio/Test/coefficients.c" normal i386 c com.apple.compilers.gcc.4_2
-s388895913.879721
-e388895913.953053
-r1
-xCompileC
-xbuild/Test.build/Release/Test.build/Objects-normal/i386/coefficients.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/coefficients.c
-xnormal
-xi386
-xc
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@63"Compile /Users/Ham/Desktop/FutureTech Audio/Test/coefficients.c388895913#388895914#0(0"0(0#0#55"/Users/Ham/Desktop/FutureTech Audio/Test/coefficients.c2513068528#1306"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Release" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/include" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources/i386" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/coefficients.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/i386/coefficients.o"0#
-
-CCompileC build/Test.build/Release/Test.build/Objects-normal/i386/main.o "/Users/Ham/Desktop/FutureTech Audio/Test/main.c" normal i386 c com.apple.compilers.gcc.4_2
-s388895913.122240
-e388895913.645383
-r1
-xCompileC
-xbuild/Test.build/Release/Test.build/Objects-normal/i386/main.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/main.c
-xnormal
-xi386
-xc
-xcom.apple.compilers.gcc.4_2
-o/Users/Ham/Desktop/FutureTech Audio/Test/main.c: In function 'main':
-o/Users/Ham/Desktop/FutureTech Audio/Test/main.c:18: warning: comparison between pointer and integer
-lSLF07#2@55"Compile /Users/Ham/Desktop/FutureTech Audio/Test/main.c388895913#388895913#0(169"/Users/Ham/Desktop/FutureTech Audio/Test/main.c: In function 'main':/Users/Ham/Desktop/FutureTech Audio/Test/main.c:18: warning: comparison between pointer and integer1(22@38"Comparison between pointer and integer388895913#69#100#0(6@47"/Users/Ham/Desktop/FutureTech Audio/Test/main.c388895894#18#0#18#0#0"0(0#0#47"/Users/Ham/Desktop/FutureTech Audio/Test/main.c2513068528#1290"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Release" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/include" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources/i386" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/main.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/i386/main.o"0#
-
-CCompileC build/Test.build/Release/Test.build/Objects-normal/i386/signals.o "/Users/Ham/Desktop/FutureTech Audio/Test/signals.c" normal i386 c com.apple.compilers.gcc.4_2
-s388895913.807238
-e388895913.988111
-r1
-xCompileC
-xbuild/Test.build/Release/Test.build/Objects-normal/i386/signals.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/signals.c
-xnormal
-xi386
-xc
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@58"Compile /Users/Ham/Desktop/FutureTech Audio/Test/signals.c388895913#388895914#0(0"0(0#0#50"/Users/Ham/Desktop/FutureTech Audio/Test/signals.c2513068528#1296"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Release" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/include" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources/i386" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/signals.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/i386/signals.o"0#
-
-CCompileC build/Test.build/Release/Test.build/Objects-normal/i386/testFIR.o "/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c" normal i386 c com.apple.compilers.gcc.4_2
-s388895913.953302
-e388895914.021931
-r0
-xCompileC
-xbuild/Test.build/Release/Test.build/Objects-normal/i386/testFIR.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c
-xnormal
-xi386
-xc
-xcom.apple.compilers.gcc.4_2
-o/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:11:30: error: FtAudioFIRFilter.h: No such file or directory
-o/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c: In function 'test_fir':
-o/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:21: error: 'FtAudioFIRFilter' undeclared (first use in this function)
-o/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:21: error: (Each undeclared identifier is reported only once
-o/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:21: error: for each function it appears in.)
-o/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:21: error: 'theFilter' undeclared (first use in this function)
-o/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:21: warning: implicit declaration of function 'FtAudioFIRFilterInit'
-o/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:22: warning: implicit declaration of function 'FtAudioFIRFilterProcess'
-o/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:23: warning: implicit declaration of function 'FtAudioFIRFilterFree'
-lSLF07#2@58"Compile /Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c388895913#388895914#0(993"/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:11:30: error: FtAudioFIRFilter.h: No such file or directory/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c: In function 'test_fir':/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:21: error: 'FtAudioFIRFilter' undeclared (first use in this function)/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:21: error: (Each undeclared identifier is reported only once/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:21: error: for each function it appears in.)/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:21: error: 'theFilter' undeclared (first use in this function)/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:21: warning: implicit declaration of function 'FtAudioFIRFilterInit'/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:22: warning: implicit declaration of function 'FtAudioFIRFilterProcess'/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:23: warning: implicit declaration of function 'FtAudioFIRFilterFree'6(4@45"FtAudioFIRFilter.h: No such file or directory388895914#0#111#0(6@50"/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c388876004#11#0#11#0#28"*: No such file or directory0(4@58"'FtAudioFIRFilter' undeclared (first use in this function)388895914#187#121#0(6@50"/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c388876004#21#0#21#0#43"'*' undeclared (first use in this function)0(4@51"'theFilter' undeclared (first use in this function)388895914#516#114#0(6@50"/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c388876004#21#0#21#0#43"'*' undeclared (first use in this function)0(22@55"Implicit declaration of function 'FtAudioFIRFilterInit'388895914#630#120#0(6@50"/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c388876004#21#0#21#0#36"implicit declaration of function '*'0(22@58"Implicit declaration of function 'FtAudioFIRFilterProcess'388895914#750#123#0(6@50"/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c388876004#22#0#22#0#36"implicit declaration of function '*'0(22@55"Implicit declaration of function 'FtAudioFIRFilterFree'388895914#873#120#0(6@50"/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c388876004#23#0#23#0#36"implicit declaration of function '*'0(0#0#50"/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c2513068528#1296"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Release" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/include" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources/i386" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/i386/testFIR.o"1#
-
-CCompileC build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioBiquadFilter.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c" normal x86_64 c com.apple.compilers.gcc.4_2
-s388895912.118898
-e388895912.221034
-r0
-xCompileC
-xbuild/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioBiquadFilter.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c
-xnormal
-xx86_64
-xc
-xcom.apple.compilers.gcc.4_2
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:7:33: error: FtAudioBiquadFilter.h: No such file or directory
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:8:26: error: FtAudioError.h: No such file or directory
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:19: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:38: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioBiquadFilterFree'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:45: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioBiquadFilterFlush'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:54: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioBiquadFilterProcess'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:82: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioBiquadFilterUpdateKernel'
-lSLF07#2@77"Compile /Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c388895912#388895912#0(1068"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:7:33: error: FtAudioBiquadFilter.h: No such file or directory/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:8:26: error: FtAudioError.h: No such file or directory/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:19: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:38: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioBiquadFilterFree'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:45: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioBiquadFilterFlush'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:54: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioBiquadFilterProcess'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c:82: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioBiquadFilterUpdateKernel'7(4@48"FtAudioBiquadFilter.h: No such file or directory388895912#0#132#0(6@69"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c388860677#7#0#7#0#28"*: No such file or directory0(4@41"FtAudioError.h: No such file or directory388895912#132#125#0(6@69"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c388860677#8#0#8#0#28"*: No such file or directory0(4@65"Expected '=', ',', ';', 'asm' or '__attribute__' before '*' token388895912#257#147#0(6@69"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c388860677#19#0#19#0#19"expected * before *0(4@81"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioBiquadFilterFree'388895912#404#163#0(6@69"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c388860677#38#0#38#0#19"expected * before *0(4@82"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioBiquadFilterFlush'388895912#567#164#0(6@69"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c388860677#45#0#45#0#19"expected * before *0(4@84"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioBiquadFilterProcess'388895912#731#166#0(6@69"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c388860677#54#0#54#0#19"expected * before *0(4@89"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioBiquadFilterUpdateKernel'388895912#897#171#0(6@69"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c388860677#82#0#82#0#19"expected * before *0(0#0#69"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c2513068528#1333"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Release" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/include" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources/x86_64" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioBiquadFilter.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioBiquadFilter.o"1#
-
-CCompileC build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioCircularBuffer.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c" normal x86_64 c com.apple.compilers.gcc.4_2
-s388895912.221257
-e388895912.730330
-r0
-xCompileC
-xbuild/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioCircularBuffer.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c
-xnormal
-xx86_64
-xc
-xcom.apple.compilers.gcc.4_2
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c:10:35: error: FtAudioCircularBuffer.h: No such file or directory
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c:11:30: error: FtAudioUtilities.h: No such file or directory
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c:27: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token
-lSLF07#2@79"Compile /Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c388895912#388895912#0(418"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c:10:35: error: FtAudioCircularBuffer.h: No such file or directory/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c:11:30: error: FtAudioUtilities.h: No such file or directory/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c:27: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token3(4@50"FtAudioCircularBuffer.h: No such file or directory388895912#0#137#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c388859231#10#0#10#0#28"*: No such file or directory0(4@45"FtAudioUtilities.h: No such file or directory388895912#137#132#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c388859231#11#0#11#0#28"*: No such file or directory0(4@65"Expected '=', ',', ';', 'asm' or '__attribute__' before '*' token388895912#269#149#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c388859231#27#0#27#0#19"expected * before *0(0#0#71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c2513068528#1337"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Release" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/include" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources/x86_64" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioCircularBuffer.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioCircularBuffer.o"1#
-
-CCompileC build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioFIRFilter.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c" normal x86_64 c com.apple.compilers.gcc.4_2
-s388895912.570237
-e388895912.671727
-r0
-xCompileC
-xbuild/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioFIRFilter.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c
-xnormal
-xx86_64
-xc
-xcom.apple.compilers.gcc.4_2
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:7:30: error: FtAudioFIRFilter.h: No such file or directory
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:21: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:58: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioFIRFilterFree'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:67: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioFIRFilterFlush'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:75: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioFIRFilterProcess'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:118: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioFIRFilterUpdateKernel'
-lSLF07#2@74"Compile /Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c388895912#388895912#0(911"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:7:30: error: FtAudioFIRFilter.h: No such file or directory/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:21: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:58: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioFIRFilterFree'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:67: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioFIRFilterFlush'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:75: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioFIRFilterProcess'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c:118: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioFIRFilterUpdateKernel'6(4@45"FtAudioFIRFilter.h: No such file or directory388895912#0#126#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c388880169#7#0#7#0#28"*: No such file or directory0(4@65"Expected '=', ',', ';', 'asm' or '__attribute__' before '*' token388895912#126#144#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c388880169#21#0#21#0#19"expected * before *0(4@78"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioFIRFilterFree'388895912#270#157#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c388880169#58#0#58#0#19"expected * before *0(4@79"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioFIRFilterFlush'388895912#427#158#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c388880169#67#0#67#0#19"expected * before *0(4@81"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioFIRFilterProcess'388895912#585#160#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c388880169#75#0#75#0#19"expected * before *0(4@86"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioFIRFilterUpdateKernel'388895912#745#166#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c388880169#118#0#118#0#19"expected * before *0(0#0#66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c2513068528#1327"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Release" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/include" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources/x86_64" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioFIRFilter.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioFIRFilter.o"1#
-
-CCompileC build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioRBJFilter.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c" normal x86_64 c com.apple.compilers.gcc.4_2
-s388895912.671969
-e388895912.800830
-r0
-xCompileC
-xbuild/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioRBJFilter.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c
-xnormal
-xx86_64
-xc
-xcom.apple.compilers.gcc.4_2
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:7:30: error: FtAudioRBJFilter.h: No such file or directory
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:11: error: expected specifier-qualifier-list before 'FtAudioBiquadFilter'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:32: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterUpdate'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:104: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:163: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterFree'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:171: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterSetType'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:180: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterSetCutoff'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:189: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterSetQ'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:198: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterProcess'
-lSLF07#2@74"Compile /Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c388895912#388895912#0(1372"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:7:30: error: FtAudioRBJFilter.h: No such file or directory/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:11: error: expected specifier-qualifier-list before 'FtAudioBiquadFilter'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:32: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterUpdate'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:104: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:163: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterFree'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:171: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterSetType'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:180: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterSetCutoff'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:189: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterSetQ'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c:198: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterProcess'9(4@45"FtAudioRBJFilter.h: No such file or directory388895912#0#126#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c388861560#7#0#7#0#28"*: No such file or directory0(4@62"Expected specifier-qualifier-list before 'FtAudioBiquadFilter'388895912#126#141#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c388861560#11#0#11#0#19"expected * before *0(4@80"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterUpdate'388895912#267#159#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c388861560#32#0#32#0#19"expected * before *0(4@65"Expected '=', ',', ';', 'asm' or '__attribute__' before '*' token388895912#426#145#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c388861560#104#0#104#0#19"expected * before *0(4@78"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterFree'388895912#571#158#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c388861560#163#0#163#0#19"expected * before *0(4@81"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterSetType'388895912#729#161#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c388861560#171#0#171#0#19"expected * before *0(4@83"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterSetCutoff'388895912#890#163#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c388861560#180#0#180#0#19"expected * before *0(4@78"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterSetQ'388895912#1053#158#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c388861560#189#0#189#0#19"expected * before *0(4@81"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioRBJFilterProcess'388895912#1211#161#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c388861560#198#0#198#0#19"expected * before *0(0#0#66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c2513068528#1327"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Release" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/include" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources/x86_64" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioRBJFilter.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioRBJFilter.o"1#
-
-CCompileC build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioUpsampler.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c" normal x86_64 c com.apple.compilers.gcc.4_2
-s388895912.730583
-e388895912.834523
-r0
-xCompileC
-xbuild/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioUpsampler.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c
-xnormal
-xx86_64
-xc
-xcom.apple.compilers.gcc.4_2
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:7:30: error: FtAudioUpsampler.h: No such file or directory
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:8:36: error: FtAudioPolyphaseCoeffs.h: No such file or directory
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:14: error: expected specifier-qualifier-list before 'FtAudioFIRFilter'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:19: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:46: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioUpsamplerFree'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:54: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioUpsamplerFlush'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:66: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioUpsamplerProcess'
-lSLF07#2@74"Compile /Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c388895912#388895912#0(1015"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:7:30: error: FtAudioUpsampler.h: No such file or directory/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:8:36: error: FtAudioPolyphaseCoeffs.h: No such file or directory/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:14: error: expected specifier-qualifier-list before 'FtAudioFIRFilter'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:19: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:46: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioUpsamplerFree'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:54: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioUpsamplerFlush'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c:66: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioUpsamplerProcess'7(4@45"FtAudioUpsampler.h: No such file or directory388895912#0#126#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c388861336#7#0#7#0#28"*: No such file or directory0(4@51"FtAudioPolyphaseCoeffs.h: No such file or directory388895912#126#132#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c388861336#8#0#8#0#28"*: No such file or directory0(4@59"Expected specifier-qualifier-list before 'FtAudioFIRFilter'388895912#258#138#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c388861336#14#0#14#0#19"expected * before *0(4@65"Expected '=', ',', ';', 'asm' or '__attribute__' before '*' token388895912#396#144#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c388861336#19#0#19#0#19"expected * before *0(4@78"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioUpsamplerFree'388895912#540#157#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c388861336#46#0#46#0#19"expected * before *0(4@79"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioUpsamplerFlush'388895912#697#158#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c388861336#54#0#54#0#19"expected * before *0(4@81"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioUpsamplerProcess'388895912#855#160#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c388861336#66#0#66#0#19"expected * before *0(0#0#66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c2513068528#1327"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Release" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/include" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources/x86_64" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUpsampler.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioUpsampler.o"1#
-
-CCompileC build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioUtilities.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c" normal x86_64 c com.apple.compilers.gcc.4_2
-s388895912.801294
-e388895912.913996
-r0
-xCompileC
-xbuild/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioUtilities.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c
-xnormal
-xx86_64
-xc
-xcom.apple.compilers.gcc.4_2
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:10:30: error: FtAudioUtilities.h: No such file or directory
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c: In function 'int16ToFloat':
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:16: error: 'INT16_TO_FLOAT_SCALAR' undeclared (first use in this function)
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:16: error: (Each undeclared identifier is reported only once
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:16: error: for each function it appears in.)
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c: In function 'to_dB':
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:58: warning: implicit declaration of function 'log10'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:58: warning: incompatible implicit declaration of built-in function 'log10'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c: In function 'to_ratio':
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:63: warning: implicit declaration of function 'pow'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:63: warning: incompatible implicit declaration of built-in function 'pow'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c: In function 'radians_to_Hz':
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:69: error: 'M_PI' undeclared (first use in this function)
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c: In function 'Hz_to_radians':
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:75: error: 'M_PI' undeclared (first use in this function)
-lSLF07#2@74"Compile /Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c388895912#388895913#0(1754"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:10:30: error: FtAudioUtilities.h: No such file or directory/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c: In function 'int16ToFloat':/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:16: error: 'INT16_TO_FLOAT_SCALAR' undeclared (first use in this function)/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:16: error: (Each undeclared identifier is reported only once/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:16: error: for each function it appears in.)/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c: In function 'to_dB':/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:58: warning: implicit declaration of function 'log10'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:58: warning: incompatible implicit declaration of built-in function 'log10'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c: In function 'to_ratio':/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:63: warning: implicit declaration of function 'pow'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:63: warning: incompatible implicit declaration of built-in function 'pow'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c: In function 'radians_to_Hz':/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:69: error: 'M_PI' undeclared (first use in this function)/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c: In function 'Hz_to_radians':/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c:75: error: 'M_PI' undeclared (first use in this function)8(4@45"FtAudioUtilities.h: No such file or directory388895912#0#127#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c388863197#10#0#10#0#28"*: No such file or directory0(4@63"'INT16_TO_FLOAT_SCALAR' undeclared (first use in this function)388895912#223#142#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c388863197#16#0#16#0#43"'*' undeclared (first use in this function)0(22@40"Implicit declaration of function 'log10'388895912#694#121#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c388863197#58#0#58#0#36"implicit declaration of function '*'0(22@62"Incompatible implicit declaration of built-in function 'log10'388895912#815#143#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c388863197#58#0#58#0#0"0(22@38"Implicit declaration of function 'pow'388895912#1050#119#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c388863197#63#0#63#0#36"implicit declaration of function '*'0(22@60"Incompatible implicit declaration of built-in function 'pow'388895912#1169#141#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c388863197#63#0#63#0#0"0(4@46"'M_PI' undeclared (first use in this function)388895912#1407#125#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c388863197#69#0#69#0#43"'*' undeclared (first use in this function)0(4@46"'M_PI' undeclared (first use in this function)388895912#1629#125#0(6@66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c388863197#75#0#75#0#43"'*' undeclared (first use in this function)0(0#0#66"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c2513068528#1327"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Release" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/include" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources/x86_64" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioUtilities.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioUtilities.o"1#
-
-CCompileC build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioWaveshaper.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c" normal x86_64 c com.apple.compilers.gcc.4_2
-s388895912.834744
-e388895912.919383
-r0
-xCompileC
-xbuild/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioWaveshaper.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c
-xnormal
-xx86_64
-xc
-xcom.apple.compilers.gcc.4_2
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:8:31: error: FtAudioWaveshaper.h: No such file or directory
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:13: error: expected specifier-qualifier-list before 'FtAudioUpsampler'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c: In function 'hard_clip':
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:47: warning: implicit declaration of function 'vDSP_vclip'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c: In function 'arctan':
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:68: error: 'M_PI' undeclared (first use in this function)
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:68: error: (Each undeclared identifier is reported only once
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:68: error: for each function it appears in.)
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:69: warning: implicit declaration of function 'vvatanf'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:70: warning: implicit declaration of function 'vDSP_vsmul'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c: At top level:
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:84: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:112: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:128: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioWaveshaperFree'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:137: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioWaveshaperProcess'
-lSLF07#2@75"Compile /Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c388895912#388895913#0(1895"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:8:31: error: FtAudioWaveshaper.h: No such file or directory/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:13: error: expected specifier-qualifier-list before 'FtAudioUpsampler'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c: In function 'hard_clip':/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:47: warning: implicit declaration of function 'vDSP_vclip'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c: In function 'arctan':/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:68: error: 'M_PI' undeclared (first use in this function)/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:68: error: (Each undeclared identifier is reported only once/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:68: error: for each function it appears in.)/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:69: warning: implicit declaration of function 'vvatanf'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:70: warning: implicit declaration of function 'vDSP_vsmul'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c: At top level:/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:84: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:112: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:128: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioWaveshaperFree'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c:137: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioWaveshaperProcess'11(4@46"FtAudioWaveshaper.h: No such file or directory388895912#0#128#0(6@67"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c363370784#8#0#8#0#28"*: No such file or directory0(4@59"Expected specifier-qualifier-list before 'FtAudioUpsampler'388895912#128#139#0(6@67"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c363370784#13#0#13#0#19"expected * before *0(22@45"Implicit declaration of function 'vDSP_vclip'388895912#361#127#0(6@67"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c363370784#47#0#47#0#36"implicit declaration of function '*'0(4@46"'M_PI' undeclared (first use in this function)388895912#579#126#0(6@67"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c363370784#68#0#68#0#43"'*' undeclared (first use in this function)0(22@42"Implicit declaration of function 'vvatanf'388895912#947#124#0(6@67"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c363370784#69#0#69#0#36"implicit declaration of function '*'0(22@45"Implicit declaration of function 'vDSP_vsmul'388895912#1071#127#0(6@67"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c363370784#70#0#70#0#36"implicit declaration of function '*'0(23@13"At top level:388895912#1198#83#0(6@67"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c363370784#0#0#0#0#0"0(4@65"Expected '=', ',', ';', 'asm' or '__attribute__' before '*' token388895912#1281#145#0(6@67"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c363370784#84#0#84#0#19"expected * before *0(4@65"Expected '=', ',', ';', 'asm' or '__attribute__' before '*' token388895912#1426#146#0(6@67"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c363370784#112#0#112#0#19"expected * before *0(4@79"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioWaveshaperFree'388895912#1572#160#0(6@67"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c363370784#128#0#128#0#19"expected * before *0(4@82"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioWaveshaperProcess'388895912#1732#163#0(6@67"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c363370784#137#0#137#0#19"expected * before *0(0#0#67"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c2513068528#1329"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Release" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/include" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources/x86_64" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWaveshaper.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioWaveshaper.o"1#
-
-CCompileC build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioWindowFunction.o "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c" normal x86_64 c com.apple.compilers.gcc.4_2
-s388895912.914213
-e388895913.002038
-r0
-xCompileC
-xbuild/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioWindowFunction.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c
-xnormal
-xx86_64
-xc
-xcom.apple.compilers.gcc.4_2
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:10:35: error: FtAudioWindowFunction.h: No such file or directory
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:17: error: expected specifier-qualifier-list before 'FtWindow_t'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:22: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'boxcar'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:31: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'hann'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:43: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'hamming'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:55: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'blackman'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:71: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'tukey'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:96: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'cosine'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:108: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'lanczos'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:120: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'bartlett'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:139: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'gaussian'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:151: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'bartlett_hann'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:163: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'kaiser'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:176: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'nuttall'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:191: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'blackman_harris'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:205: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'blackman_nuttall'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:219: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'flat_top'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:233: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'poisson'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:249: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:316: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioWindowFunctionFree'
-o/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:323: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioWindowFunctionProcess'
-lSLF07#2@79"Compile /Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c388895912#388895913#0(3176"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:10:35: error: FtAudioWindowFunction.h: No such file or directory/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:17: error: expected specifier-qualifier-list before 'FtWindow_t'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:22: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'boxcar'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:31: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'hann'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:43: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'hamming'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:55: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'blackman'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:71: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'tukey'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:96: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'cosine'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:108: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'lanczos'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:120: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'bartlett'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:139: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'gaussian'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:151: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'bartlett_hann'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:163: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'kaiser'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:176: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'nuttall'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:191: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'blackman_harris'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:205: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'blackman_nuttall'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:219: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'flat_top'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:233: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'poisson'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:249: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:316: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioWindowFunctionFree'/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c:323: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioWindowFunctionProcess'21(4@50"FtAudioWindowFunction.h: No such file or directory388895912#0#137#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#10#0#10#0#28"*: No such file or directory0(4@53"Expected specifier-qualifier-list before 'FtWindow_t'388895912#137#137#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#17#0#17#0#19"expected * before *0(4@64"Expected '=', ',', ';', 'asm' or '__attribute__' before 'boxcar'388895912#274#148#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#22#0#22#0#19"expected * before *0(4@62"Expected '=', ',', ';', 'asm' or '__attribute__' before 'hann'388895912#422#146#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#31#0#31#0#19"expected * before *0(4@65"Expected '=', ',', ';', 'asm' or '__attribute__' before 'hamming'388895912#568#149#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#43#0#43#0#19"expected * before *0(4@66"Expected '=', ',', ';', 'asm' or '__attribute__' before 'blackman'388895912#717#150#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#55#0#55#0#19"expected * before *0(4@63"Expected '=', ',', ';', 'asm' or '__attribute__' before 'tukey'388895912#867#147#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#71#0#71#0#19"expected * before *0(4@64"Expected '=', ',', ';', 'asm' or '__attribute__' before 'cosine'388895912#1014#148#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#96#0#96#0#19"expected * before *0(4@65"Expected '=', ',', ';', 'asm' or '__attribute__' before 'lanczos'388895912#1162#150#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#108#0#108#0#19"expected * before *0(4@66"Expected '=', ',', ';', 'asm' or '__attribute__' before 'bartlett'388895912#1312#151#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#120#0#120#0#19"expected * before *0(4@66"Expected '=', ',', ';', 'asm' or '__attribute__' before 'gaussian'388895912#1463#151#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#139#0#139#0#19"expected * before *0(4@71"Expected '=', ',', ';', 'asm' or '__attribute__' before 'bartlett_hann'388895912#1614#156#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#151#0#151#0#19"expected * before *0(4@64"Expected '=', ',', ';', 'asm' or '__attribute__' before 'kaiser'388895912#1770#149#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#163#0#163#0#19"expected * before *0(4@65"Expected '=', ',', ';', 'asm' or '__attribute__' before 'nuttall'388895912#1919#150#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#176#0#176#0#19"expected * before *0(4@73"Expected '=', ',', ';', 'asm' or '__attribute__' before 'blackman_harris'388895912#2069#158#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#191#0#191#0#19"expected * before *0(4@74"Expected '=', ',', ';', 'asm' or '__attribute__' before 'blackman_nuttall'388895912#2227#159#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#205#0#205#0#19"expected * before *0(4@66"Expected '=', ',', ';', 'asm' or '__attribute__' before 'flat_top'388895912#2386#151#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#219#0#219#0#19"expected * before *0(4@65"Expected '=', ',', ';', 'asm' or '__attribute__' before 'poisson'388895912#2537#150#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#233#0#233#0#19"expected * before *0(4@65"Expected '=', ',', ';', 'asm' or '__attribute__' before '*' token388895912#2687#150#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#249#0#249#0#19"expected * before *0(4@83"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioWindowFunctionFree'388895912#2837#168#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#316#0#316#0#19"expected * before *0(4@86"Expected '=', ',', ';', 'asm' or '__attribute__' before 'FtAudioWindowFunctionProcess'388895912#3005#171#0(6@71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c361159252#323#0#323#0#19"expected * before *0(0#0#71"/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c2513068528#1337"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Release" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/include" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources/x86_64" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/../src/FtAudioWindowFunction.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/x86_64/FtAudioWindowFunction.o"1#
-
-CCompileC build/Test.build/Release/Test.build/Objects-normal/x86_64/coefficients.o "/Users/Ham/Desktop/FutureTech Audio/Test/coefficients.c" normal x86_64 c com.apple.compilers.gcc.4_2
-s388895913.002269
-e388895913.122015
-r1
-xCompileC
-xbuild/Test.build/Release/Test.build/Objects-normal/x86_64/coefficients.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/coefficients.c
-xnormal
-xx86_64
-xc
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@63"Compile /Users/Ham/Desktop/FutureTech Audio/Test/coefficients.c388895913#388895913#0(0"0(0#0#55"/Users/Ham/Desktop/FutureTech Audio/Test/coefficients.c2513068528#1312"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Release" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/include" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources/x86_64" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/coefficients.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/x86_64/coefficients.o"0#
-
-CCompileC build/Test.build/Release/Test.build/Objects-normal/x86_64/main.o "/Users/Ham/Desktop/FutureTech Audio/Test/main.c" normal x86_64 c com.apple.compilers.gcc.4_2
-s388895912.115593
-e388895912.570009
-r1
-xCompileC
-xbuild/Test.build/Release/Test.build/Objects-normal/x86_64/main.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/main.c
-xnormal
-xx86_64
-xc
-xcom.apple.compilers.gcc.4_2
-o/Users/Ham/Desktop/FutureTech Audio/Test/main.c: In function 'main':
-o/Users/Ham/Desktop/FutureTech Audio/Test/main.c:18: warning: comparison between pointer and integer
-lSLF07#2@55"Compile /Users/Ham/Desktop/FutureTech Audio/Test/main.c388895912#388895912#0(169"/Users/Ham/Desktop/FutureTech Audio/Test/main.c: In function 'main':/Users/Ham/Desktop/FutureTech Audio/Test/main.c:18: warning: comparison between pointer and integer1(22@38"Comparison between pointer and integer388895912#69#100#0(6@47"/Users/Ham/Desktop/FutureTech Audio/Test/main.c388895894#18#0#18#0#0"0(0#0#47"/Users/Ham/Desktop/FutureTech Audio/Test/main.c2513068528#1296"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Release" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/include" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources/x86_64" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/main.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/x86_64/main.o"0#
-
-CCompileC build/Test.build/Release/Test.build/Objects-normal/x86_64/signals.o "/Users/Ham/Desktop/FutureTech Audio/Test/signals.c" normal x86_64 c com.apple.compilers.gcc.4_2
-s388895912.919595
-e388895913.052523
-r1
-xCompileC
-xbuild/Test.build/Release/Test.build/Objects-normal/x86_64/signals.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/signals.c
-xnormal
-xx86_64
-xc
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@58"Compile /Users/Ham/Desktop/FutureTech Audio/Test/signals.c388895912#388895913#0(0"0(0#0#50"/Users/Ham/Desktop/FutureTech Audio/Test/signals.c2513068528#1302"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Release" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/include" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources/x86_64" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/signals.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/x86_64/signals.o"0#
-
-CCompileC build/Test.build/Release/Test.build/Objects-normal/x86_64/testFIR.o "/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c" normal x86_64 c com.apple.compilers.gcc.4_2
-s388895913.052757
-e388895913.140472
-r0
-xCompileC
-xbuild/Test.build/Release/Test.build/Objects-normal/x86_64/testFIR.o
-x/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c
-xnormal
-xx86_64
-xc
-xcom.apple.compilers.gcc.4_2
-o/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:11:30: error: FtAudioFIRFilter.h: No such file or directory
-o/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c: In function 'test_fir':
-o/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:21: error: 'FtAudioFIRFilter' undeclared (first use in this function)
-o/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:21: error: (Each undeclared identifier is reported only once
-o/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:21: error: for each function it appears in.)
-o/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:21: error: 'theFilter' undeclared (first use in this function)
-o/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:21: warning: implicit declaration of function 'FtAudioFIRFilterInit'
-o/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:22: warning: implicit declaration of function 'FtAudioFIRFilterProcess'
-o/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:23: warning: implicit declaration of function 'FtAudioFIRFilterFree'
-lSLF07#2@58"Compile /Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c388895913#388895913#0(993"/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:11:30: error: FtAudioFIRFilter.h: No such file or directory/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c: In function 'test_fir':/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:21: error: 'FtAudioFIRFilter' undeclared (first use in this function)/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:21: error: (Each undeclared identifier is reported only once/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:21: error: for each function it appears in.)/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:21: error: 'theFilter' undeclared (first use in this function)/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:21: warning: implicit declaration of function 'FtAudioFIRFilterInit'/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:22: warning: implicit declaration of function 'FtAudioFIRFilterProcess'/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c:23: warning: implicit declaration of function 'FtAudioFIRFilterFree'6(4@45"FtAudioFIRFilter.h: No such file or directory388895913#0#111#0(6@50"/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c388876004#11#0#11#0#28"*: No such file or directory0(4@58"'FtAudioFIRFilter' undeclared (first use in this function)388895913#187#121#0(6@50"/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c388876004#21#0#21#0#43"'*' undeclared (first use in this function)0(4@51"'theFilter' undeclared (first use in this function)388895913#516#114#0(6@50"/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c388876004#21#0#21#0#43"'*' undeclared (first use in this function)0(22@55"Implicit declaration of function 'FtAudioFIRFilterInit'388895913#630#120#0(6@50"/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c388876004#21#0#21#0#36"implicit declaration of function '*'0(22@58"Implicit declaration of function 'FtAudioFIRFilterProcess'388895913#750#123#0(6@50"/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c388876004#22#0#22#0#36"implicit declaration of function '*'0(22@55"Implicit declaration of function 'FtAudioFIRFilterFree'388895913#873#120#0(6@50"/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c388876004#23#0#23#0#36"implicit declaration of function '*'0(0#0#50"/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c2513068528#1302"    cd "/Users/Ham/Desktop/FutureTech Audio/Test"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -Os -mdynamic-no-pic -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-generated-files.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-own-target-headers.hmap" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-all-target-headers.hmap" -iquote "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Test-project-headers.hmap" "-F/Users/Ham/Desktop/FutureTech Audio/Test/build/Release" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/include" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources/x86_64" "-I/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/DerivedSources" -c "/Users/Ham/Desktop/FutureTech Audio/Test/testFIR.c" -o "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/x86_64/testFIR.o"1#
-
-CCreateUniversalBinary "/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/Test" normal "x86_64 i386"
-r0
-
-CGenerateDSYMFile "/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/Test.dSYM" "/Users/Ham/Desktop/FutureTech Audio/Test/build/Release/Test"
-r0
-
-CLd "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/i386/Test" normal i386
-r0
-
-CLd "/Users/Ham/Desktop/FutureTech Audio/Test/build/Test.build/Release/Test.build/Objects-normal/x86_64/Test" normal x86_64
-r0
-
