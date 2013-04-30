@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "testFIR.h"
+#include "test.h"
 #include "FtAudioFIRFilter.h"
 #include "coefficients.h"
 #include "signals.h"
@@ -18,10 +19,11 @@ testFIRFilterAgainstMatlab(void)
 {
     printf("Testing filter results against matlab...");
     float output[100] = {};
-    unsigned passed = 1;
     FtAudioFIRFilter *theFilter = FtAudioFIRFilterInit(MatlabFilter, 21);
     FtAudioFIRFilterProcess(theFilter, output, MatlabSignal, 100);
     FtAudioFilterFree(theFilter);
+    /*
+    unsigned passed = 1;
     for (unsigned i = 0; i < 100; ++i)
     {
         if(fabs(fabs(output[i]) - fabs(MatlabLowpassOutput[i])) > 0.000001)
@@ -32,13 +34,14 @@ testFIRFilterAgainstMatlab(void)
             
     }
     return passed;
+    */
+    return CompareFloatBuffers(output, MatlabLowpassOutput, 0.000001);
 }
 
 unsigned
 testFIRFilterBlockSize(void)
 {
     printf("Testing variable block size...");
-    unsigned passed = 1;
     unsigned inputLength = 100;
     float input[inputLength];
     float outfull[inputLength];
@@ -51,9 +54,10 @@ testFIRFilterBlockSize(void)
     FtAudioFIRFilterFlush(theFilter);
     FtAudioFIRFilterProcess(theFilter, outchunk, input, (inputLength / 2));
     FtAudioFIRFilterProcess(theFilter, outchunk+(inputLength / 2), input+(inputLength / 2), (inputLength / 2));
-        FtAudioFIRFilterFree(theFilter);
-    
+    FtAudioFIRFilterFree(theFilter);
+    /*
     // Check 
+    unsigned passed = 1;
     for (unsigned i = 0; i < inputLength; ++i)
     {
         if(fabs(fabs(outfull[i]) - fabs(outchunk[i])) > 0.000001)
@@ -63,6 +67,8 @@ testFIRFilterBlockSize(void)
         }
     }
     return passed;
+    */
+    return CompareFloatBuffers(outfull, outchunk, 0.000001);
 };
 
 
