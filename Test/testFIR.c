@@ -16,42 +16,55 @@
 unsigned
 testFIRFilterAgainstMatlab(void)
 {
-	printf("Testing filter results against matlab...");
-	return 1;
+    printf("Testing filter results against matlab...");
+    float output[100] = {};
+    unsigned passed = 1;
+    FtAudioFIRFilter *theFilter = FtAudioFIRFilterInit(MatlabFilter, 21);
+    FtAudioFIRFilterProcess(theFilter, output, MatlabSignal, 100);
+    FtAudioFilterFree(theFilter);
+    for (unsigned i = 0; i < 100; ++i)
+    {
+        if(fabs(fabs(output[i]) - fabs(MatlabLowpassOutput[i])) > 0.000001)
+        {
+            passed = 0;
+            break;
+        }
+            
+    }
+    return passed;
 }
 
 unsigned
 testFIRFilterBlockSize(void)
 {
-	printf("Testing variable block size...");
-	unsigned passed = 1;
-	unsigned inputLength = 100;
-	float input[inputLength];
-	float outfull[inputLength];
-	float outchunk[inputLength];
-	generate_signal(input, inputLength);
+    printf("Testing variable block size...");
+    unsigned passed = 1;
+    unsigned inputLength = 100;
+    float input[inputLength];
+    float outfull[inputLength];
+    float outchunk[inputLength];
+    generate_signal(input, inputLength);
 
-	FtAudioFIRFilter *theFilter = FtAudioFIRFilterInit(taps, 21);
-	FtAudioFIRFilterProcess(theFilter, outfull, input, inputLength);
-	
-	FtAudioFIRFilterFlush(theFilter);
-	FtAudioFIRFilterProcess(theFilter, outchunk, input, (inputLength / 2));
-	FtAudioFIRFilterProcess(theFilter, outchunk+(inputLength / 2), input+(inputLength / 2), (inputLength / 2));
-	
-	// Check 
-	for (unsigned i = 0; i < inputLength; ++i)
-	{
-		if(fabs(fabs(outfull[i]) - fabs(outchunk[i])) > 0.000001)
-		{
-			passed = 0;
-			break;
-		}
-
-	}
-	
-	FtAudioFIRFilterFree(theFilter);
-	return passed;
+    FtAudioFIRFilter *theFilter = FtAudioFIRFilterInit(taps, 21);
+    FtAudioFIRFilterProcess(theFilter, outfull, input, inputLength);
+    
+    FtAudioFIRFilterFlush(theFilter);
+    FtAudioFIRFilterProcess(theFilter, outchunk, input, (inputLength / 2));
+    FtAudioFIRFilterProcess(theFilter, outchunk+(inputLength / 2), input+(inputLength / 2), (inputLength / 2));
+        FtAudioFIRFilterFree(theFilter);
+    
+    // Check 
+    for (unsigned i = 0; i < inputLength; ++i)
+    {
+        if(fabs(fabs(outfull[i]) - fabs(outchunk[i])) > 0.000001)
+        {
+            passed = 0;
+            break;
+        }
+    }
+    return passed;
 };
+
 
 unsigned
 runFIRFilterTests(void)
