@@ -3,7 +3,7 @@
 #include <Accelerate/Accelerate.h>
 int main (int argc, const char * argv[]) {
     // insert code here...
-	test_fir();
+	runFIRFilterTests();
 	/*
 	unsigned filterLength = 4;
 	unsigned inputLength = 15;

@@ -5,7 +5,8 @@
  */
 
 #include "FtAudioFIRFilter.h"
-#include "FtAudio_Utilities.h"
+#include "FtAudioConvolution.h"
+#include "FtAudioUtilities.h"
 #include <stdio.h>
 
 #ifdef __APPLE__
@@ -44,7 +45,7 @@ FtAudioFIRFilterInit(const float*	filter_kernel,
 	
 	//float zero = 0.0
 	//vDSP_vfill(&zero, overlap, 1, overlap_length);
-        FtAudioFillBuffer(overlap, overlap_length, 0.0);
+	FtAudioFillBuffer(overlap, overlap_length, 0.0);
 
 	// Set up the struct
 	filter->kernel = kernel;
@@ -73,7 +74,7 @@ FtAudioFIRFilterFlush(FtAudioFIRFilter* filter)
 	//zeros it out
 	//float zero = 0.0;
 	//vDSP_vfill(&zero, filter->overlap, 1, filter->overlap_length);
-	FtAudioFillBuffer(0.0, filter->overlap, filter->overlap_length);
+	FtAudioFillBuffer(filter->overlap, filter->overlap_length, 0.0);
 	return FT_NOERR;
 }
 
@@ -85,26 +86,11 @@ FtAudioFIRFilterProcess(FtAudioFIRFilter* filter,
 {
 
 	unsigned resultLength = n_samples + (filter->kernel_length - 1);
-	unsigned signalLength = (filter->kernel_length + resultLength);
 	
 	// Temporary buffer to store full result of filtering..
 	float buffer[resultLength];
 	
-	// So there's some hella weird requirement that the signal input to 
-	//vDSP_conv has to be larger than (result_length + filter_length - 1),
-	// and it has to be zero-padded. What. The. Fuck!
-	float padded[signalLength];
-	
-	//float zero = 0.0;
-	//vDSP_vfill(&zero, padded, 1, signalLength);
-	FtAudioFillBuffer(padded, signalLength, 0.0);
-	
-	// Pad the input signal with (filter_length - 1) zeros.
-	memcpy(padded  + (filter->kernel_length - 1), inBuffer, n_samples * sizeof(float));
-	
-	// Filter the samples
-	vDSP_conv(padded, 1, filter->kernel_end, -1, buffer, 1, resultLength, filter->kernel_length);
-	 
+	FtAudioConvolve(inBuffer, n_samples, filter->kernel, filter->kernel_length, buffer);
 	// Add in the overlap from the last block
 	vDSP_vadd(buffer, 1, filter->overlap, 1, buffer, 1, filter->overlap_length);
 	

@@ -3,7 +3,7 @@
  * Hamilton Kibbe
  * Copyright 2013 Hamilton Kibbe
  */
- 
+#include <string.h>
 #include "FtAudioConvolution.h"
 #include "FtAudioUtilities.h"
 
@@ -40,5 +40,6 @@ FtAudioConvolve(float       *in1,
     // Use (boring, slow) canonical implementation
     // TODO...
 #endif
+	return FT_NOERR;
 
 }

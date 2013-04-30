@@ -57,7 +57,7 @@ hamming(unsigned n, float* dest)
 
 #ifdef __APPLE__
 	// Use the accelerate version if we have it
-	vDSP_hamm_window(dest, n);
+	vDSP_hamm_window(dest, n, 0);
 
 #else
 	// Otherwise do it manually
@@ -80,7 +80,7 @@ blackman(unsigned n, float a, float* dest)
 	// available.
 	if (a == 0.16)
 	{
-		vDSP_blkman_window(dest, n);
+		vDSP_blkman_window(dest, n, 0);
 	}
 
 #else

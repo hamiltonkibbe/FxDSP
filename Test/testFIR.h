@@ -10,14 +10,14 @@
 #ifndef TESTFIR_H
 #define TESTFIR_H
 
-bool
+unsigned
 testFIRFilterAgainstMatlab(void);
 
-bool
+unsigned
 testFIRFilterBlockSize(void);
 
-bool
-runFIRFilterTests(void)
+unsigned 
+runFIRFilterTests(void);
 
 
 #endif

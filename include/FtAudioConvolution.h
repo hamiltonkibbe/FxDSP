@@ -7,6 +7,7 @@
 #ifndef FTAUDIOCONVOLUTION_H
 #define FTAUDIOCONVOLUTION_H
 
+#include "FtAudioError.h"
 
 #ifdef __cplusplus
 extern "C" {

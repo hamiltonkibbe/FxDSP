@@ -7,23 +7,24 @@
  *
  */
 #include <stdio.h>
+#include <math.h>
 #include "testFIR.h"
 #include "FtAudioFIRFilter.h"
 #include "coefficients.h"
 #include "signals.h"
 
-bool
+unsigned
 testFIRFilterAgainstMatlab(void)
 {
 	printf("Testing filter results against matlab...");
 	return 1;
 }
 
-bool
+unsigned
 testFIRFilterBlockSize(void)
 {
 	printf("Testing variable block size...");
-	bool passed = 1;
+	unsigned passed = 1;
 	unsigned inputLength = 100;
 	float input[inputLength];
 	float outfull[inputLength];
@@ -52,7 +53,7 @@ testFIRFilterBlockSize(void)
 	return passed;
 };
 
-bool
+unsigned
 runFIRFilterTests(void)
 {
 	printf("[FtAudioFIRFilter] RUNNING TESTS\n");
