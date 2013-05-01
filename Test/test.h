@@ -12,11 +12,11 @@
 
 
 unsigned
-CompareFloat(float val1, float val2, precision);
+CompareFloat(float val1, float val2, float precision);
 
 
 unsigned
-CompareFloatBuffers(float *buf1, float *buf2, unsigned len, float precision);
+CompareFloatBuffers(const float *buf1, const float *buf2, unsigned len, float precision);
 
 
 

@@ -14,7 +14,7 @@ void
 generate_signal(float* buffer, int length);
 
 
-const float MatlabSignal[] = 
+static const float MatlabSignal[] = 
 {
     0, 0.1873813145857246, 0.36812455268467792, 0.53582679497899655,
     0.68454710592868862, 0.80901699437494745, 0.90482705246601947,

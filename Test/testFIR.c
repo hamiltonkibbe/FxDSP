@@ -19,23 +19,18 @@ testFIRFilterAgainstMatlab(void)
 {
     printf("Testing filter results against matlab...");
     float output[100] = {};
+	
+	// Set up
     FtAudioFIRFilter *theFilter = FtAudioFIRFilterInit(MatlabFilter, 21);
+	
+	// Process
     FtAudioFIRFilterProcess(theFilter, output, MatlabSignal, 100);
-    FtAudioFilterFree(theFilter);
-    /*
-    unsigned passed = 1;
-    for (unsigned i = 0; i < 100; ++i)
-    {
-        if(fabs(fabs(output[i]) - fabs(MatlabLowpassOutput[i])) > 0.000001)
-        {
-            passed = 0;
-            break;
-        }
-            
-    }
-    return passed;
-    */
-    return CompareFloatBuffers(output, MatlabLowpassOutput, 0.000001);
+	
+	// Tear down
+    FtAudioFIRFilterFree(theFilter);
+
+	// Check results
+    return CompareFloatBuffers(output, MatlabLowpassOutput, 100, 0.01);
 }
 
 unsigned
@@ -47,28 +42,23 @@ testFIRFilterBlockSize(void)
     float outfull[inputLength];
     float outchunk[inputLength];
     generate_signal(input, inputLength);
-
-    FtAudioFIRFilter *theFilter = FtAudioFIRFilterInit(taps, 21);
+    
+	// Set up
+	FtAudioFIRFilter *theFilter = FtAudioFIRFilterInit(taps, 21);
+	
+	// Process in one block
     FtAudioFIRFilterProcess(theFilter, outfull, input, inputLength);
     
+	// Process in two blocks
     FtAudioFIRFilterFlush(theFilter);
     FtAudioFIRFilterProcess(theFilter, outchunk, input, (inputLength / 2));
     FtAudioFIRFilterProcess(theFilter, outchunk+(inputLength / 2), input+(inputLength / 2), (inputLength / 2));
-    FtAudioFIRFilterFree(theFilter);
-    /*
-    // Check 
-    unsigned passed = 1;
-    for (unsigned i = 0; i < inputLength; ++i)
-    {
-        if(fabs(fabs(outfull[i]) - fabs(outchunk[i])) > 0.000001)
-        {
-            passed = 0;
-            break;
-        }
-    }
-    return passed;
-    */
-    return CompareFloatBuffers(outfull, outchunk, 0.000001);
+    
+	// Tear down
+	FtAudioFIRFilterFree(theFilter);
+
+	// Check results
+    return CompareFloatBuffers(outfull, outchunk, inputLength, 0.000001);
 };
 
 
