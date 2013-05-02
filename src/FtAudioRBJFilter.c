@@ -8,7 +8,7 @@
 #include <math.h>
 #include <stdlib.h>
 
-/* FtAudioRBJFilter *************************************************/
+/* FtAudioRBJFilter ***********************************************************/
 struct FtAudioRBJFilter
 {
 	FtAudioBiquadFilter* biquad;
@@ -30,7 +30,7 @@ struct FtAudioRBJFilter
 
 
 
-/* FtAudioRBJFilterUpdate ********************************************/
+/* FtAudioRBJFilterUpdate *****************************************************/
 static FtAudioError_t
 FtAudioRBJFilterUpdate(FtAudioRBJFilter* filter)
 {
@@ -104,7 +104,7 @@ FtAudioRBJFilterUpdate(FtAudioRBJFilter* filter)
 }
 
 
-/* FtAudioRBJFilterInit *********************************************/
+/* FtAudioRBJFilterInit *******************************************************/
 FtAudioRBJFilter* 
 FtAudioRBJFilterInit(RBJFilter_t type, float cutoff,long long sampleRate)
 {	
@@ -162,7 +162,7 @@ FtAudioRBJFilterInit(RBJFilter_t type, float cutoff,long long sampleRate)
 }
 
 
-/* FtAudioRBJFilterFree **********************************************/
+/* FtAudioRBJFilterFree *******************************************************/
 FtAudioError_t 
 FtAudioRBJFilterFree(FtAudioRBJFilter* 	filter)
 {
@@ -171,7 +171,7 @@ FtAudioRBJFilterFree(FtAudioRBJFilter* 	filter)
 	return FT_NOERR;
 }
 
-/* FtAudioRBJFilterSetType ******************************************/
+/* FtAudioRBJFilterSetType ****************************************************/
 FtAudioError_t 
 FtAudioRBJFilterSetType(FtAudioRBJFilter*	filter,
 						  RBJFilter_t 		type)
@@ -182,7 +182,7 @@ FtAudioRBJFilterSetType(FtAudioRBJFilter*	filter,
 }
 
 
-/* FtAudioRBJFilterSetCutoff ****************************************/
+/* FtAudioRBJFilterSetCutoff **************************************************/
 FtAudioError_t 
 FtAudioRBJFilterSetCutoff(FtAudioRBJFilter* filter,
 						  float 			cutoff)
@@ -193,7 +193,7 @@ FtAudioRBJFilterSetCutoff(FtAudioRBJFilter* filter,
 }
 
 
-/* FtAudioRBJFilterSetQ *********************************************/
+/* FtAudioRBJFilterSetQ *******************************************************/
 FtAudioError_t 
 FtAudioRBJFilterSetQ(FtAudioRBJFilter* 	filter, 
 					 float 				Q)
@@ -204,7 +204,7 @@ FtAudioRBJFilterSetQ(FtAudioRBJFilter* 	filter,
 }
 
 
-/* FtAudioRBJFilterProcess ******************************************/
+/* FtAudioRBJFilterProcess ****************************************************/
 FtAudioError_t
 FtAudioRBJFilterProcess(FtAudioRBJFilter* 	filter,
 						float* 				outBuffer,

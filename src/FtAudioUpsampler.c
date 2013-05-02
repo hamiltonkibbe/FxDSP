@@ -9,7 +9,7 @@
 #include <math.h>
 #include <stdlib.h>
 
-/* FtAudioUpsampler *************************************************/
+/* FtAudioUpsampler **********************************************************/
 struct FtAudioUpsampler
 {
 	unsigned factor;
@@ -17,7 +17,7 @@ struct FtAudioUpsampler
 };
 
 
-/* FtAudioUpsamplerInit *********************************************/
+/* FtAudioUpsamplerInit *******************************************************/
 FtAudioUpsampler*
 FtAudioUpsamplerInit(FtAudioUpsampleFactor_t factor)
 {
@@ -44,7 +44,7 @@ FtAudioUpsamplerInit(FtAudioUpsampleFactor_t factor)
 }
 
 
-/* FtAudioUpsamplerFree *********************************************/
+/* FtAudioUpsamplerFree *******************************************************/
 FtAudioError_t
 FtAudioUpsamplerFree(FtAudioUpsampler* upsampler)
 {
@@ -65,7 +65,7 @@ FtAudioUpsamplerFlush(FtAudioUpsampler* upsampler)
 }
 
 
-/* FtAudioUpsamplerProcess ******************************************/
+/* FtAudioUpsamplerProcess ****************************************************/
 FtAudioError_t
 FtAudioUpsamplerProcess(FtAudioUpsampler	*upsampler, 
 						float				*outBuffer, 

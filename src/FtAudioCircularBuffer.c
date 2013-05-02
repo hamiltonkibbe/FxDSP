@@ -13,27 +13,27 @@
 #include <string.h>
 
 
-/* FtAudioCircularBuffer ***********************************************/
+/* FtAudioCircularBuffer ******************************************************/
 struct FtAudioCircularBuffer
 {
-	float* buffer;
-	float* read_index;
-	float* write_index;
+    float* buffer;
+    float* read_index;
+    float* write_index;
 };
 
-/* FtAudioCircularBufferInit *******************************************/
+/* FtAudioCircularBufferInit **************************************************/
 FtAudioCircularBuffer* 
 FtAudioCircularBufferInit(unsigned length)
 {
-	FtAudioCircularBuffer* cb = (FtAudioCircularBuffer*)malloc(sizeof(FtAudioCircularBuffer));
-	float* buffer = (float*)malloc(length * sizeof(float));
+    FtAudioCircularBuffer* cb = (FtAudioCircularBuffer*)malloc(sizeof(FtAudioCircularBuffer));
+    float* buffer = (float*)malloc(length * sizeof(float));
 
-	FtAudioFillBuffer(buffer, length, 0.0);
-	
-	cb->buffer = buffer;
-	cb->read_index = buffer;
-	cb->write_index = buffer;
-	return cb;
-	
+    FtAudioFillBuffer(buffer, length, 0.0);
+    
+    cb->buffer = buffer;
+    cb->read_index = buffer;
+    cb->write_index = buffer;
+    return cb;
+    
 }
 

@@ -14,14 +14,14 @@
 #include <Accelerate/Accelerate.h>
 #endif
 
-/* int16ToFloat *******************************************************/
+/* int16ToFloat ***************************************************************/
 inline float 
 int16ToFloat(signed short sample)
 {
     return (float)(sample * INT16_TO_FLOAT_SCALAR);
 }
 
-/* floatToInt16 *******************************************************/
+/* floatToInt16 ***************************************************************/
 inline signed short
 floatToInt16(float sample)
 {
@@ -29,7 +29,7 @@ floatToInt16(float sample)
 }
 
 
-/* intBufferToFloat ***************************************************/
+/* intBufferToFloat ***********************************************************/
 void
 intBufferToFloat(const signed short* inBuffer, float* outBuffer, unsigned nSamples)
 {
@@ -44,7 +44,7 @@ intBufferToFloat(const signed short* inBuffer, float* outBuffer, unsigned nSampl
     }
 }
 
-/* floatBufferToInt ***************************************************/
+/* floatBufferToInt ***********************************************************/
 void
 floatBufferToInt(const float* inBuffer, signed short* outBuffer, unsigned nSamples)
 {
@@ -60,7 +60,7 @@ floatBufferToInt(const float* inBuffer, signed short* outBuffer, unsigned nSampl
         
 }
 
-/* ratioToDb **********************************************************/
+/* ratioToDb ******************************************************************/
 inline float
 ratioToDb(float ratio)
 {
@@ -68,14 +68,14 @@ ratioToDb(float ratio)
 }
 
 
-/* dbToRatio **********************************************************/
+/* dbToRatio ******************************************************************/
 inline float
 dbToRatio(float dB)
 {
     return pow(10.0,(dB/20.0));
 }
 
-/* radiansToHz ********************************************************/
+/* radiansToHz ****************************************************************/
 inline float
 radiansToHz(float radians, long long sampleRate)
 {
@@ -83,7 +83,7 @@ radiansToHz(float radians, long long sampleRate)
 }
 
 
-/* hzToRadians ********************************************************/
+/* hzToRadians ****************************************************************/
 inline float
 hzToRadians(float Hz, long long sampleRate)
 {
@@ -91,7 +91,7 @@ hzToRadians(float Hz, long long sampleRate)
 }
 
 
-/* FtAudioFillBuffer **************************************************/
+/* FtAudioFillBuffer **********************************************************/
 void
 FtAudioFillBuffer(float* dest, unsigned length, float value)
 {
@@ -110,7 +110,7 @@ FtAudioFillBuffer(float* dest, unsigned length, float value)
 }
 	
 
-/* FtAudioBufferAdd ****************************************************/
+/* FtAudioBufferAdd ***********************************************************/
 void
 FtAudioBufferAdd(float *dest, float *buf1, float *buf2, unsigned length)
 {

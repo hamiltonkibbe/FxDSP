@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* FtAudioBiquadFilter ***********************************************/
+/* FtAudioBiquadFilter ********************************************************/
 struct FtAudioBiquadFilter
 {
     float b[3];
@@ -19,8 +19,9 @@ struct FtAudioBiquadFilter
     float y[2];
 };
 
-/* FtAudioBiquadFilterInit *******************************************/
-FtAudioBiquadFilter* FtAudioBiquadFilterInit(const float* bCoeff, const float* aCoeff)
+/* FtAudioBiquadFilterInit ****************************************************/
+FtAudioBiquadFilter* FtAudioBiquadFilterInit(const float    *bCoeff, 
+                                             const float    *aCoeff)
 {
 
     // Allocate Memory
@@ -37,7 +38,7 @@ FtAudioBiquadFilter* FtAudioBiquadFilterInit(const float* bCoeff, const float* a
 }
 
 
-/* FtAudioBiquadFilterFree *******************************************/
+/* FtAudioBiquadFilterFree ****************************************************/
 FtAudioError_t 
 FtAudioBiquadFilterFree(FtAudioBiquadFilter * filter)
 {
@@ -46,7 +47,7 @@ FtAudioBiquadFilterFree(FtAudioBiquadFilter * filter)
 }
 
 
-/* FtAudioBiquadFilterFlush ******************************************/
+/* FtAudioBiquadFilterFlush ***************************************************/
 FtAudioError_t 
 FtAudioBiquadFilterFlush(FtAudioBiquadFilter* filter)
 {
@@ -56,9 +57,12 @@ FtAudioBiquadFilterFlush(FtAudioBiquadFilter* filter)
 }
 
 
-/* FtAudioBiquadFilterProcess ****************************************/
+/* FtAudioBiquadFilterProcess *************************************************/
 FtAudioError_t
-FtAudioBiquadFilterProcess(FtAudioBiquadFilter* filter, float*  outBuffer, const float* inBuffer, unsigned n_samples)
+FtAudioBiquadFilterProcess(FtAudioBiquadFilter  *filter, 
+                           float                *outBuffer, 
+                           const float          *inBuffer, 
+                           unsigned             n_samples)
 {
     unsigned buffer_idx;
     float buffer[n_samples];
@@ -85,9 +89,11 @@ FtAudioBiquadFilterProcess(FtAudioBiquadFilter* filter, float*  outBuffer, const
 }
 
 
-/* FtAudioBiquadFilterUpdateKernel ***********************************/
+/* FtAudioBiquadFilterUpdateKernel ********************************************/
 FtAudioError_t
-FtAudioBiquadFilterUpdateKernel(FtAudioBiquadFilter* filter, const float* bCoeff, const float* aCoeff)
+FtAudioBiquadFilterUpdateKernel(FtAudioBiquadFilter *filter, 
+                                const float         *bCoeff, 
+                                const float         *aCoeff)
 {
     memcpy(filter->b, bCoeff, 3);
     memcpy(filter->a, aCoeff, 3);

@@ -11,7 +11,7 @@
 #include <Accelerate/Accelerate.h>
 #endif
 
-/* FtAudioConvolve ************************************************/
+/* FtAudioConvolve ************************************************************/
 FtAudioError_t
 FtAudioConvolve(float       *in1,
                 unsigned    in1_length,
@@ -19,9 +19,9 @@ FtAudioConvolve(float       *in1,
                 unsigned    in2_length, 
                 float       *dest)
 {
-	
-	 unsigned resultLength = in1_length + (in2_length - 1);
-	
+    
+     unsigned resultLength = in1_length + (in2_length - 1);
+    
 #ifdef __APPLE__
     //Use Native vectorized convolution function if available
     float    *in2_end = in2 + (in2_length - 1);
@@ -33,31 +33,30 @@ FtAudioConvolve(float       *in1,
     float padded[signalLength];
     
     //float zero = 0.0;
-    //vDSP_vfill(&zero, padded, 1, signalLength);
     FtAudioFillBuffer(padded, signalLength, 0.0);
     
     // Pad the input signal with (filter_length - 1) zeros.
     memcpy(padded  + (in2_length - 1), in1, in1_length * sizeof(float));
     vDSP_conv(padded, 1, in2_end, -1, dest, 1, resultLength, in2_length);
+    
 #else
     // Use (boring, slow) canonical implementation
-	unsigned i;
+    unsigned i;
+    for (i = 0; i <resultLength; ++i)
+    {
+        unsigned kmin, kmax, k;
+        dest[i] = 0;
+            
+        kmin = (i >= (in2_length - 1)) ? i - (in2_length - 1) : 0;
+        kmax = (i < in1_length - 1) ? i : in1_length - 1;
+        for (k = kmin; k <= kmax; k++)
+        {
+            dest[i] += in1[k] * in2[i - k];
+        }
+    }   
+    
 
-	for (i = 0; i <resultLength; ++i)
-	{
-		unsigned kmin, kmax, k;
-		dest[i] = 0;
-			
-		kmin = (i >= (in2_length - 1)) ? i - (in2_length - 1) : 0;
-		kmax = (i < in1_length - 1) ? i : in1_length - 1;
-		for (k = kmin; k <= kmax; k++)
-		{
-			dest[i] += in1[k] * in2[i - k];
-		}
-	}	
-	
-	
 #endif
-	return FT_NOERR;
+    return FT_NOERR;
 
 }

@@ -11,7 +11,7 @@
 #include <Accelerate/Accelerate.h>
 #endif
 
-/* FtAudioWaveshaper ***********************************************/
+/* FtAudioWaveshaper **********************************************************/
 struct FtAudioWaveshaper
 {
 	FtAudioUpsampler* upsampler;
@@ -24,7 +24,7 @@ struct FtAudioWaveshaper
 };
 
 
-/* identity ********************************************************/
+/* identity *******************************************************************/
 static void
 identity(float* outBuffer, 
 		const float* inBuffer, 
@@ -39,7 +39,7 @@ identity(float* outBuffer,
 	}
 }
 
-/* hard_clip *******************************************************/
+/* hard_clip ******************************************************************/
 static void
 hard_clip(float* outBuffer,
 		const float* inBuffer, 
@@ -64,7 +64,7 @@ hard_clip(float* outBuffer,
 	
 }
 
-/* arctan ********************************************************/
+/* arctan *********************************************************************/
 static void
 arctan(float* outBuffer,
 		const float* inBuffer,
@@ -87,7 +87,7 @@ arctan(float* outBuffer,
 }
 
 
-/* FtAudioWaveshaperInit *******************************************/
+/* FtAudioWaveshaperInit ******************************************************/
  FtAudioWaveshaper*
  FtAudioWaveshaperInit(Waveshaper_t type)
  {
@@ -117,7 +117,7 @@ arctan(float* outBuffer,
  }
 
 
-/* FtAudioWaveshaperInitFn *****************************************/
+/* FtAudioWaveshaperInitFn ****************************************************/
  FtAudioWaveshaper*
  FtAudioWaveshaperInitFn(WaveshaperFn shaper)
  {
@@ -134,7 +134,7 @@ arctan(float* outBuffer,
  }
  
 
-/* FtAudioWaveshaperFree *******************************************/
+/* FtAudioWaveshaperFree ******************************************************/
  FtAudioError_t
  FtAudioWaveshaperFree(FtAudioWaveshaper* waveshaper)
  {
@@ -145,7 +145,7 @@ arctan(float* outBuffer,
  }
 
 
-/* FtAudioWaveshaperProcess ****************************************/
+/* FtAudioWaveshaperProcess ***************************************************/
 FtAudioError_t
 FtAudioWaveshaperProcess(FtAudioWaveshaper	*waveshaper,
 						float				*outBuffer,
