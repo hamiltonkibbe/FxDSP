@@ -21,7 +21,7 @@ runFIRFilterTests(void);
 
 
 
-const float MatlabLowpassOutput[100] = 
+static const float MatlabLowpassOutput[100] = 
 {
     0, -0.00034560373410269393, -0.00191179222221557, -0.0059042052232581455,
     -0.013205422432704686, -0.023322334198098444, -0.033326747615700147,

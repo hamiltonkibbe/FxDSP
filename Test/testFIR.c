@@ -65,15 +65,23 @@ testFIRFilterBlockSize(void)
 unsigned
 runFIRFilterTests(void)
 {
+	unsigned passed = 1;
 	printf("[FtAudioFIRFilter] RUNNING TESTS\n");
 	
 	if (testFIRFilterAgainstMatlab())
 		printf("PASSED\n");
 	else
+	{
 		printf("FAILED\n");
+		passed = 0;
+	}
 	
 	if (testFIRFilterBlockSize())
 		printf("PASSED\n");
 	else
+	{
 		printf("FAILED\n");
+		passed = 0;
+	}
+	return passed;
 }

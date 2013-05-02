@@ -6,8 +6,12 @@
  */
 
 #include "FtAudioWaveshaper.h"
- 
+#include <stdlib.h>
+#ifdef __APPLE__
+#include <Accelerate/Accelerate.h>
+#endif
 
+/* FtAudioWaveshaper ***********************************************/
 struct FtAudioWaveshaper
 {
 	FtAudioUpsampler* upsampler;
@@ -20,6 +24,7 @@ struct FtAudioWaveshaper
 };
 
 
+/* identity ********************************************************/
 static void
 identity(float* outBuffer, 
 		const float* inBuffer, 
@@ -34,6 +39,7 @@ identity(float* outBuffer,
 	}
 }
 
+/* hard_clip *******************************************************/
 static void
 hard_clip(float* outBuffer,
 		const float* inBuffer, 
@@ -57,7 +63,8 @@ hard_clip(float* outBuffer,
 #endif
 	
 }
- 
+
+/* arctan ********************************************************/
 static void
 arctan(float* outBuffer,
 		const float* inBuffer,
@@ -80,7 +87,7 @@ arctan(float* outBuffer,
 }
 
 
-
+/* FtAudioWaveshaperInit *******************************************/
  FtAudioWaveshaper*
  FtAudioWaveshaperInit(Waveshaper_t type)
  {
@@ -109,6 +116,8 @@ arctan(float* outBuffer,
 
  }
 
+
+/* FtAudioWaveshaperInitFn *****************************************/
  FtAudioWaveshaper*
  FtAudioWaveshaperInitFn(WaveshaperFn shaper)
  {
@@ -124,6 +133,8 @@ arctan(float* outBuffer,
 	return waveshaper;
  }
  
+
+/* FtAudioWaveshaperFree *******************************************/
  FtAudioError_t
  FtAudioWaveshaperFree(FtAudioWaveshaper* waveshaper)
  {
@@ -133,16 +144,18 @@ arctan(float* outBuffer,
 	return FT_NOERR;
  }
 
+
+/* FtAudioWaveshaperProcess ****************************************/
 FtAudioError_t
-FtAudioWaveshaperProcess(FtAudioWaveshaper* waveshaper,
-						float* outBuffer,
-						const float* inBuffer,
-						unsigned n_samples)
+FtAudioWaveshaperProcess(FtAudioWaveshaper	*waveshaper,
+						float				*outBuffer,
+						const float			*inBuffer,
+						unsigned			n_samples)
 {
 	/* 16x oversampling */
 	float inUpsampled[16 * n_samples];
 	float outUpsampled[16 * n_samples];
-	FtAudioUpsamplerProcess(waveshaper->upsampler,inBuffer,(const float*)inUpsampled,n_samples);
+	FtAudioUpsamplerProcess(waveshaper->upsampler,(float*)inBuffer,(const float*)inUpsampled,n_samples);
 
 /* Apple Accelerate Framework implementation */
 #ifdef __APPLE__
@@ -166,3 +179,4 @@ FtAudioWaveshaperProcess(FtAudioWaveshaper* waveshaper,
 	//FtAudioDownsamplerProcess(waveshaper->downsampler,outUpsampled,outBuffer,16 * n_samples);
 	return FT_NOERR;
 }
+

@@ -6,8 +6,10 @@
 
 #include "FtAudioUpsampler.h"
 #include "FtAudioPolyphaseCoeffs.h"
+#include <math.h>
+#include <stdlib.h>
 
-
+/* FtAudioUpsampler *************************************************/
 struct FtAudioUpsampler
 {
 	unsigned factor;
@@ -15,7 +17,7 @@ struct FtAudioUpsampler
 };
 
 
-
+/* FtAudioUpsamplerInit *********************************************/
 FtAudioUpsampler*
 FtAudioUpsamplerInit(FtAudioUpsampleFactor_t factor)
 {
@@ -42,6 +44,7 @@ FtAudioUpsamplerInit(FtAudioUpsampleFactor_t factor)
 }
 
 
+/* FtAudioUpsamplerFree *********************************************/
 FtAudioError_t
 FtAudioUpsamplerFree(FtAudioUpsampler* upsampler)
 {
@@ -62,11 +65,12 @@ FtAudioUpsamplerFlush(FtAudioUpsampler* upsampler)
 }
 
 
+/* FtAudioUpsamplerProcess ******************************************/
 FtAudioError_t
-FtAudioUpsamplerProcess(FtAudioUpsampler* upsampler, 
-						float* outBuffer, 
-						const float* inBuffer, 
-						unsigned n_samples)
+FtAudioUpsamplerProcess(FtAudioUpsampler	*upsampler, 
+						float				*outBuffer, 
+						const float			*inBuffer, 
+						unsigned			n_samples)
 {
 	unsigned sampleIdx;
 	unsigned filterIdx;
@@ -77,15 +81,11 @@ FtAudioUpsamplerProcess(FtAudioUpsampler* upsampler,
 		offset = upsampler->factor * sampleIdx;
 		for(filterIdx = 0; filterIdx < upsampler->factor; ++ filterIdx)
 		{
-			FtAudioFIRFilterProcess(upsampler->polyphase[filterIdx], &outBuffer[filterIdx + offset], &inBuffer[sampleIdx], 1);
+			FtAudioFIRFilterProcess(upsampler->polyphase[filterIdx], 
+									&outBuffer[filterIdx + offset], 
+									&inBuffer[sampleIdx], 1);
 		}
 	}
 	return FT_NOERR;
 }
-
-
-
-
-
-
 

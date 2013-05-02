@@ -5,12 +5,12 @@
  */
 
 #include "FtAudioBiquadFilter.h"
+#include "FtAudioUtilities.h"
 #include "FtAudioError.h"
+#include <stdlib.h>
+#include <string.h>
 
-#ifdef __APPLE__
-#include <Accelerate/Accelerate.h>
-#endif
-
+/* FtAudioBiquadFilter ***********************************************/
 struct FtAudioBiquadFilter
 {
     float b[3];
@@ -19,24 +19,25 @@ struct FtAudioBiquadFilter
     float y[2];
 };
 
-
+/* FtAudioBiquadFilterInit *******************************************/
 FtAudioBiquadFilter* FtAudioBiquadFilterInit(const float* bCoeff, const float* aCoeff)
 {
 
-    float zero = 0.0;
     // Allocate Memory
     FtAudioBiquadFilter* filter = (FtAudioBiquadFilter*)malloc(sizeof(FtAudioBiquadFilter));
 
     // Initialize Buffers
     memcpy(filter->b, bCoeff, 3 * sizeof(float));
     memcpy(filter->a, aCoeff, 3 * sizeof(float));
-    vDSP_vfill(&zero, filter->x, 1, 2);
-    vDSP_vfill(&zero, filter->y, 1, 2);
+	FtAudioFillBuffer(filter->x, 2, 0.0);
+	FtAudioFillBuffer(filter->y, 2, 0.0);
+
         
     return filter;
 }
 
 
+/* FtAudioBiquadFilterFree *******************************************/
 FtAudioError_t 
 FtAudioBiquadFilterFree(FtAudioBiquadFilter * filter)
 {
@@ -44,15 +45,18 @@ FtAudioBiquadFilterFree(FtAudioBiquadFilter * filter)
     return FT_NOERR;
 }
 
+
+/* FtAudioBiquadFilterFlush ******************************************/
 FtAudioError_t 
 FtAudioBiquadFilterFlush(FtAudioBiquadFilter* filter)
 {
-    float zero = 0.0;
-    vDSP_vfill(&zero, filter->x, 1, 2);
-    vDSP_vfill(&zero, filter->y, 1, 2);
+    FtAudioFillBuffer(filter->x, 2, 0.0);
+	FtAudioFillBuffer(filter->y, 2, 0.0);
     return FT_NOERR;
 }
 
+
+/* FtAudioBiquadFilterProcess ****************************************/
 FtAudioError_t
 FtAudioBiquadFilterProcess(FtAudioBiquadFilter* filter, float*  outBuffer, const float* inBuffer, unsigned n_samples)
 {
@@ -81,6 +85,7 @@ FtAudioBiquadFilterProcess(FtAudioBiquadFilter* filter, float*  outBuffer, const
 }
 
 
+/* FtAudioBiquadFilterUpdateKernel ***********************************/
 FtAudioError_t
 FtAudioBiquadFilterUpdateKernel(FtAudioBiquadFilter* filter, const float* bCoeff, const float* aCoeff)
 {

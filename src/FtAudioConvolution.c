@@ -11,6 +11,7 @@
 #include <Accelerate/Accelerate.h>
 #endif
 
+/* FtAudioConvolve ************************************************/
 FtAudioError_t
 FtAudioConvolve(float       *in1,
                 unsigned    in1_length,
@@ -18,10 +19,12 @@ FtAudioConvolve(float       *in1,
                 unsigned    in2_length, 
                 float       *dest)
 {
+	
+	 unsigned resultLength = in1_length + (in2_length - 1);
+	
 #ifdef __APPLE__
     //Use Native vectorized convolution function if available
     float    *in2_end = in2 + (in2_length - 1);
-    unsigned resultLength = in1_length + (in2_length - 1);
     unsigned signalLength = (in2_length + resultLength);
     
     // So there's some hella weird requirement that the signal input to 
@@ -38,7 +41,22 @@ FtAudioConvolve(float       *in1,
     vDSP_conv(padded, 1, in2_end, -1, dest, 1, resultLength, in2_length);
 #else
     // Use (boring, slow) canonical implementation
-    // TODO...
+	unsigned i;
+
+	for (i = 0; i <resultLength; ++i)
+	{
+		unsigned kmin, kmax, k;
+		dest[i] = 0;
+			
+		kmin = (i >= (in2_length - 1)) ? i - (in2_length - 1) : 0;
+		kmax = (i < in1_length - 1) ? i : in1_length - 1;
+		for (k = kmin; k <= kmax; k++)
+		{
+			dest[i] += in1[k] * in2[i - k];
+		}
+	}	
+	
+	
 #endif
 	return FT_NOERR;
 

@@ -7,7 +7,6 @@
 #ifndef FTAUDIOUTILITIES_H
 #define FTAUDIOUTILITIES_H
 
-#include <math.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -39,6 +38,7 @@ int16ToFloat(signed short sample);
 signed short
 floatToInt16(float sample);
     
+	
 /** Convert a buffer of 16 bit audio to float
  * 
  * @param inBuffer  The buffer of 16-bit samples to convert
@@ -46,8 +46,9 @@ floatToInt16(float sample);
  * @param nSamples  The number of samples to convert.
  */
 void
-int_buffer_to_float(const signed short* inBuffer, float* outBuffer, unsigned nSamples);
+intBufferToFloat(const signed short* inBuffer, float* outBuffer, unsigned nSamples);
     
+	
 /** Convert a buffer floating point samples to 16-bit
 * 
 * @param inBuffer   The buffer of floating point samples to convert
@@ -55,8 +56,9 @@ int_buffer_to_float(const signed short* inBuffer, float* outBuffer, unsigned nSa
 * @param nSamples   The number of samples to convert.
 */
 void
-float_buffer_to_int(const float* inBuffer, signed short* outBuffer, unsigned nSamples); 
+floatBufferToInt(const float* inBuffer, signed short* outBuffer, unsigned nSamples); 
     
+	
 /** Convert a ratio to dB
  *
  * @details convert a voltage ratio to dB.
@@ -65,8 +67,9 @@ float_buffer_to_int(const float* inBuffer, signed short* outBuffer, unsigned nSa
  * @return          Ratio value in dB.  
  */
 float
-to_dB(float ratio);
+ratioToDb(float ratio);
 
+	
 /** Convert a value in dB to a ratio
  *
  * @details convert a dBFS value to a voltage ratio.
@@ -75,8 +78,9 @@ to_dB(float ratio);
  * @return          dB value as a voltage ratio.
  */
 float
-to_ratio(float dB);
+dbToRatio(float dB);
 
+	
 /** Convert from Rad/s to Hz
  *
  * @details Convert a frequency in Rad/s to Hz
@@ -86,8 +90,9 @@ to_ratio(float dB);
  * @return              Frequency value in Hz   
  */
 float
-radians_to_Hz(float radians, long long sampleRate);
+radiansToHz(float radians, long long sampleRate);
 
+	
 /** Convert from Gz to Rad/s
  *
  * @details Convert a frequency in Hz to Rad/s
@@ -97,8 +102,9 @@ radians_to_Hz(float radians, long long sampleRate);
  * @return              Frequency value in Rad/s    
  */
 float
-Hz_to_radians(float Hz, long long sampleRate);
+hzToRadians(float Hz, long long sampleRate);
 
+	
 /** Fill an array with a given value
  *
  * @details Fill the passed array with the value passed in as value. Uses
@@ -111,6 +117,10 @@ Hz_to_radians(float Hz, long long sampleRate);
 void
 FtAudioFillBuffer(float* dest, unsigned length, float value);
 
+	
+	
+void
+FtAudioBufferAdd(float *dest, float *buf1, float *buf2, unsigned length);
 
 #ifdef __cplusplus
 }

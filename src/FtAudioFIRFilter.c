@@ -7,12 +7,11 @@
 #include "FtAudioFIRFilter.h"
 #include "FtAudioConvolution.h"
 #include "FtAudioUtilities.h"
+#include <stdlib.h>
 #include <stdio.h>
 
-#ifdef __APPLE__
-#include <Accelerate/Accelerate.h>
-#endif
 
+/* FtAudioFIRFilter *********************************************************/
 struct FtAudioFIRFilter
 {
 	float * kernel;
@@ -23,7 +22,7 @@ struct FtAudioFIRFilter
 };
 
 
-
+/* FtAudioFIRFilterInit *****************************************************/
 FtAudioFIRFilter* 
 FtAudioFIRFilterInit(const float*	filter_kernel,
 					 unsigned length)
@@ -57,7 +56,7 @@ FtAudioFIRFilterInit(const float*	filter_kernel,
 }
 
 
-
+/* FtAudioFIRFilterFree *****************************************************/
 FtAudioError_t 
 FtAudioFIRFilterFree(FtAudioFIRFilter * filter)
 {
@@ -67,6 +66,7 @@ FtAudioFIRFilterFree(FtAudioFIRFilter * filter)
 	return FT_NOERR;
 }
 
+/* FtAudioFIRFilterFlush ****************************************************/
 FtAudioError_t
 FtAudioFIRFilterFlush(FtAudioFIRFilter* filter)
 {
@@ -78,6 +78,8 @@ FtAudioFIRFilterFlush(FtAudioFIRFilter* filter)
 	return FT_NOERR;
 }
 
+
+/* FtAudioFIRFilterProcess **************************************************/
 FtAudioError_t
 FtAudioFIRFilterProcess(FtAudioFIRFilter* filter,
 						float*	outBuffer, 
@@ -90,10 +92,12 @@ FtAudioFIRFilterProcess(FtAudioFIRFilter* filter,
 	// Temporary buffer to store full result of filtering..
 	float buffer[resultLength];
 	
-	FtAudioConvolve(inBuffer, n_samples, filter->kernel, filter->kernel_length, buffer);
-	// Add in the overlap from the last block
-	vDSP_vadd(buffer, 1, filter->overlap, 1, buffer, 1, filter->overlap_length);
+	FtAudioConvolve((float*)inBuffer, n_samples, filter->kernel, filter->kernel_length, buffer);
 	
+	// Add in the overlap from the last block
+	FtAudioBufferAdd(buffer, filter->overlap, buffer, filter->overlap_length);
+
+					 
 	// Save the overlap from this block
 	memcpy(filter->overlap, buffer + n_samples, filter->overlap_length * sizeof(float));
 	
@@ -103,6 +107,7 @@ FtAudioFIRFilterProcess(FtAudioFIRFilter* filter,
 }
 
 
+/* FtAudioFIRFilterUpdateKernel *********************************************/
 FtAudioError_t
 FtAudioFIRFilterUpdateKernel(FtAudioFIRFilter*	filter, const float* filter_kernel)
 {
@@ -110,3 +115,4 @@ FtAudioFIRFilterUpdateKernel(FtAudioFIRFilter*	filter, const float* filter_kerne
 	memcpy(filter->kernel, filter_kernel, filter->kernel_length * sizeof(float));
 	return FT_NOERR;
 }
+

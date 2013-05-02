@@ -1,6 +1,6 @@
 #include <stdio.h>
-//#include "testFIR.h"
-#include <Accelerate/Accelerate.h>
+#include "testFIR.h"
+
 int main (int argc, const char * argv[]) {
     // insert code here...
 	runFIRFilterTests();

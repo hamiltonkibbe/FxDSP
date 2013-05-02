@@ -8,25 +8,30 @@
  */
 
 #include "FtAudioUtilities.h"
+#include <math.h>
 
 #ifdef __APPLE__
 #include <Accelerate/Accelerate.h>
 #endif
 
+/* int16ToFloat *******************************************************/
 inline float 
 int16ToFloat(signed short sample)
 {
     return (float)(sample * INT16_TO_FLOAT_SCALAR);
 }
 
+/* floatToInt16 *******************************************************/
 inline signed short
 floatToInt16(float sample)
 {
     return (signed short)(sample * 32767.0);
 }
 
+
+/* intBufferToFloat ***************************************************/
 void
-int_buffer_to_float(const signed short* inBuffer, float* outBuffer, unsigned nSamples)
+intBufferToFloat(const signed short* inBuffer, float* outBuffer, unsigned nSamples)
 {
     const signed short *src = inBuffer;
     const signed short *end = inBuffer + nSamples;
@@ -39,8 +44,9 @@ int_buffer_to_float(const signed short* inBuffer, float* outBuffer, unsigned nSa
     }
 }
 
+/* floatBufferToInt ***************************************************/
 void
-float_buffer_to_int(const float* inBuffer, signed short* outBuffer, unsigned nSamples)
+floatBufferToInt(const float* inBuffer, signed short* outBuffer, unsigned nSamples)
 {
     const float *src = inBuffer;
     const float *end = inBuffer + nSamples;
@@ -54,29 +60,38 @@ float_buffer_to_int(const float* inBuffer, signed short* outBuffer, unsigned nSa
         
 }
 
-
-inline float to_dB(float ratio)
+/* ratioToDb **********************************************************/
+inline float
+ratioToDb(float ratio)
 {
     return 20.0*log10((double)ratio);
 }
 
-inline float to_ratio(float dB)
+
+/* dbToRatio **********************************************************/
+inline float
+dbToRatio(float dB)
 {
     return pow(10.0,(dB/20.0));
 }
 
-
-inline float radians_to_Hz(float radians, long long sampleRate)
+/* radiansToHz ********************************************************/
+inline float
+radiansToHz(float radians, long long sampleRate)
 {
     return radians * (sampleRate/(2.0 * M_PI));
 }
 
 
-inline float Hz_to_radians(float Hz, long long sampleRate)
+/* hzToRadians ********************************************************/
+inline float
+hzToRadians(float Hz, long long sampleRate)
 {
     return 2.0 * M_PI * Hz/sampleRate;
 }
 
+
+/* FtAudioFillBuffer **************************************************/
 void
 FtAudioFillBuffer(float* dest, unsigned length, float value)
 {
@@ -93,4 +108,25 @@ FtAudioFillBuffer(float* dest, unsigned length, float value)
     }
 #endif
 }
+	
+
+/* FtAudioBufferAdd ****************************************************/
+void
+FtAudioBufferAdd(float *dest, float *buf1, float *buf2, unsigned length)
+{
+#ifdef __APPLE__
+    // Use the Accelerate framework if we have it
+	vDSP_vadd((const float*)buf1, 1, (const float*)buf2, 1, dest, 1, length);
+	
+#else
+	// Otherwise do it manually
+	unsigned i;
+	for (i = 0; i < length; ++i)
+	{
+		*dest++ = (*buf1++) + (*buf2++);
+	}
+	
+#endif
+}
+
 

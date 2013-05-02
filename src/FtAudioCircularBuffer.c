@@ -9,13 +9,11 @@
 
 #include "FtAudioCircularBuffer.h"
 #include "FtAudioUtilities.h"
+#include <stdlib.h>
 #include <string.h>
 
 
-#ifdef __APPLE__
-#include <Accelerate/Accelerate.h>
-#endif
-
+/* FtAudioCircularBuffer ***********************************************/
 struct FtAudioCircularBuffer
 {
 	float* buffer;
@@ -23,23 +21,14 @@ struct FtAudioCircularBuffer
 	float* write_index;
 };
 
-
+/* FtAudioCircularBufferInit *******************************************/
 FtAudioCircularBuffer* 
 FtAudioCircularBufferInit(unsigned length)
 {
 	FtAudioCircularBuffer* cb = (FtAudioCircularBuffer*)malloc(sizeof(FtAudioCircularBuffer));
 	float* buffer = (float*)malloc(length * sizeof(float));
-	
-#ifdef __APPLE__
-	float zero = 0.0;
-	vDSP_vfill(&zero, buffer, 1, length);
-#else
-	float* it = buffer;
-	while(it != buffer+length)
-	{
-		*it++ = 0.0;
-	}
-#endif
+
+	FtAudioFillBuffer(buffer, length, 0.0);
 	
 	cb->buffer = buffer;
 	cb->read_index = buffer;

@@ -5,7 +5,10 @@
  */
 
 #include "FtAudioRBJFilter.h"
+#include <math.h>
+#include <stdlib.h>
 
+/* FtAudioRBJFilter *************************************************/
 struct FtAudioRBJFilter
 {
 	FtAudioBiquadFilter* biquad;
@@ -27,7 +30,7 @@ struct FtAudioRBJFilter
 
 
 
-
+/* FtAudioRBJFilterUpdate ********************************************/
 static FtAudioError_t
 FtAudioRBJFilterUpdate(FtAudioRBJFilter* filter)
 {
@@ -101,6 +104,7 @@ FtAudioRBJFilterUpdate(FtAudioRBJFilter* filter)
 }
 
 
+/* FtAudioRBJFilterInit *********************************************/
 FtAudioRBJFilter* 
 FtAudioRBJFilterInit(RBJFilter_t type, float cutoff,long long sampleRate)
 {	
@@ -109,7 +113,7 @@ FtAudioRBJFilterInit(RBJFilter_t type, float cutoff,long long sampleRate)
 
 	// Initialization
 	filter->type = type;
-	filter->omega = Hz_to_radians(cutoff, sampleRate);
+	filter->omega = hzToRadians(cutoff, sampleRate);
 	filter->cosOmega = cos(filter->omega);
 	filter->sinOmega = sin(filter->omega);
 	filter->Q = 1;
@@ -158,7 +162,7 @@ FtAudioRBJFilterInit(RBJFilter_t type, float cutoff,long long sampleRate)
 }
 
 
-
+/* FtAudioRBJFilterFree **********************************************/
 FtAudioError_t 
 FtAudioRBJFilterFree(FtAudioRBJFilter* 	filter)
 {
@@ -167,6 +171,7 @@ FtAudioRBJFilterFree(FtAudioRBJFilter* 	filter)
 	return FT_NOERR;
 }
 
+/* FtAudioRBJFilterSetType ******************************************/
 FtAudioError_t 
 FtAudioRBJFilterSetType(FtAudioRBJFilter*	filter,
 						  RBJFilter_t 		type)
@@ -176,15 +181,19 @@ FtAudioRBJFilterSetType(FtAudioRBJFilter*	filter,
 	return FT_NOERR;
 }
 
+
+/* FtAudioRBJFilterSetCutoff ****************************************/
 FtAudioError_t 
 FtAudioRBJFilterSetCutoff(FtAudioRBJFilter* filter,
 						  float 			cutoff)
 {
-	filter->omega = Hz_to_radians(cutoff, filter->sampleRate);
+	filter->omega = hzToRadians(cutoff, filter->sampleRate);
 	FtAudioRBJFilterUpdate(filter);
 	return FT_NOERR;
 }
 
+
+/* FtAudioRBJFilterSetQ *********************************************/
 FtAudioError_t 
 FtAudioRBJFilterSetQ(FtAudioRBJFilter* 	filter, 
 					 float 				Q)
@@ -194,6 +203,8 @@ FtAudioRBJFilterSetQ(FtAudioRBJFilter* 	filter,
 	return FT_NOERR;
 }
 
+
+/* FtAudioRBJFilterProcess ******************************************/
 FtAudioError_t
 FtAudioRBJFilterProcess(FtAudioRBJFilter* 	filter,
 						float* 				outBuffer,
