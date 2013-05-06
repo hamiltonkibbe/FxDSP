@@ -383,7 +383,7 @@ FtAudioWindowFunctionFree(FtAudioWindowFunction* window)
 FtAudioError_t
 FtAudioWindowFunctionProcess(FtAudioWindowFunction* window, float* outBuffer, float* inBuffer,unsigned n_samples)
 {
-    vDSP_vmul(inBuffer, 1, window->window, 1, outBuffer,1, n_samples);
+    FtAudioVectorVectorMultiply(outbuffer, inBuffer, window->window, n_samples);
     return FT_NOERR;
 }
 

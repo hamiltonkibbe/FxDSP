@@ -113,7 +113,7 @@ FtAudioRBJFilterInit(RBJFilter_t type, float cutoff,long long sampleRate)
 
 	// Initialization
 	filter->type = type;
-	filter->omega = hzToRadians(cutoff, sampleRate);
+	filter->omega =  HZ_TO_RAD(cutoff) / sampleRate; //hzToRadians(cutoff, sampleRate);
 	filter->cosOmega = cos(filter->omega);
 	filter->sinOmega = sin(filter->omega);
 	filter->Q = 1;
@@ -187,7 +187,7 @@ FtAudioError_t
 FtAudioRBJFilterSetCutoff(FtAudioRBJFilter* filter,
 						  float 			cutoff)
 {
-	filter->omega = hzToRadians(cutoff, filter->sampleRate);
+	filter->omega = HZ_TO_RAD(cutoff) / filter->sampleRate; //hzToRadians(cutoff, filter->sampleRate);
 	FtAudioRBJFilterUpdate(filter);
 	return FT_NOERR;
 }
