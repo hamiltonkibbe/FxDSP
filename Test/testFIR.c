@@ -11,7 +11,6 @@
 #include "testFIR.h"
 #include "test.h"
 #include "FtAudioFIRFilter.h"
-#include "coefficients.h"
 #include "signals.h"
 
 unsigned
@@ -30,7 +29,7 @@ testFIRFilterAgainstMatlab(void)
     FtAudioFIRFilterFree(theFilter);
 
 	// Check results
-    return CompareFloatBuffers(output, MatlabLowpassOutput, 100, 0.01);
+    return CompareFloatBuffers(output, MatlabLowpassOutput, 100, 0.000001);
 }
 
 unsigned
@@ -85,3 +84,5 @@ runFIRFilterTests(void)
 	}
 	return passed;
 }
+
+
