@@ -10,6 +10,7 @@
 		3781CA52172DBB290092417C /* signals.c in Sources */ = {isa = PBXBuildFile; fileRef = 3781CA51172DBB290092417C /* signals.c */; };
 		3781CA55172DBB890092417C /* coefficients.c in Sources */ = {isa = PBXBuildFile; fileRef = 3781CA54172DBB890092417C /* coefficients.c */; };
 		3781CA5A172DBD570092417C /* testFIR.c in Sources */ = {isa = PBXBuildFile; fileRef = 3781CA59172DBD570092417C /* testFIR.c */; };
+		378C59B2173C984C0037EC17 /* FtAudioDsp.c in Sources */ = {isa = PBXBuildFile; fileRef = 378C59B1173C984C0037EC17 /* FtAudioDsp.c */; };
 		37A1F494172D8A9200A2FDBE /* FtAudioBiquadFilter.c in Sources */ = {isa = PBXBuildFile; fileRef = 37A1F48B172D8A9200A2FDBE /* FtAudioBiquadFilter.c */; };
 		37A1F495172D8A9200A2FDBE /* FtAudioCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 37A1F48C172D8A9200A2FDBE /* FtAudioCircularBuffer.c */; };
 		37A1F496172D8A9200A2FDBE /* FtAudioFIRFilter.c in Sources */ = {isa = PBXBuildFile; fileRef = 37A1F48D172D8A9200A2FDBE /* FtAudioFIRFilter.c */; };
@@ -20,7 +21,6 @@
 		37A1F49C172D8A9200A2FDBE /* FtAudioWindowFunction.c in Sources */ = {isa = PBXBuildFile; fileRef = 37A1F493172D8A9200A2FDBE /* FtAudioWindowFunction.c */; };
 		37A1F50A172D905700A2FDBE /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A1F509172D905700A2FDBE /* Accelerate.framework */; };
 		37AC1BC01730C07800BF8388 /* test.c in Sources */ = {isa = PBXBuildFile; fileRef = 37AC1BBE1730C07800BF8388 /* test.c */; };
-		37B68F8B172F60490053A777 /* FtAudioConvolution.c in Sources */ = {isa = PBXBuildFile; fileRef = 37B68F8A172F60490053A777 /* FtAudioConvolution.c */; };
 		8DD76FAC0486AB0100D96B5E /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* main.c */; settings = {ATTRIBUTES = (); }; };
 		8DD76FB00486AB0100D96B5E /* Test.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6A0FF2C0290799A04C91782 /* Test.1 */; };
 /* End PBXBuildFile section */
@@ -46,6 +46,7 @@
 		3781CA54172DBB890092417C /* coefficients.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = coefficients.c; sourceTree = "<group>"; };
 		3781CA58172DBD570092417C /* testFIR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testFIR.h; sourceTree = "<group>"; };
 		3781CA59172DBD570092417C /* testFIR.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = testFIR.c; sourceTree = "<group>"; };
+		378C59B1173C984C0037EC17 /* FtAudioDsp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FtAudioDsp.c; sourceTree = "<group>"; };
 		37A1F48B172D8A9200A2FDBE /* FtAudioBiquadFilter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FtAudioBiquadFilter.c; sourceTree = "<group>"; };
 		37A1F48C172D8A9200A2FDBE /* FtAudioCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FtAudioCircularBuffer.c; sourceTree = "<group>"; };
 		37A1F48D172D8A9200A2FDBE /* FtAudioFIRFilter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FtAudioFIRFilter.c; sourceTree = "<group>"; };
@@ -57,7 +58,6 @@
 		37A1F509172D905700A2FDBE /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		37AC1BBE1730C07800BF8388 /* test.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test.c; sourceTree = "<group>"; };
 		37AC1BBF1730C07800BF8388 /* test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test.h; sourceTree = "<group>"; };
-		37B68F8A172F60490053A777 /* FtAudioConvolution.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FtAudioConvolution.c; sourceTree = "<group>"; };
 		8DD76FB20486AB0100D96B5E /* Test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Test; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6A0FF2C0290799A04C91782 /* Test.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Test.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,7 +113,7 @@
 		37A1F48A172D8A9200A2FDBE /* src */ = {
 			isa = PBXGroup;
 			children = (
-				37B68F8A172F60490053A777 /* FtAudioConvolution.c */,
+				378C59B1173C984C0037EC17 /* FtAudioDsp.c */,
 				37A1F48B172D8A9200A2FDBE /* FtAudioBiquadFilter.c */,
 				37A1F48C172D8A9200A2FDBE /* FtAudioCircularBuffer.c */,
 				37A1F48D172D8A9200A2FDBE /* FtAudioFIRFilter.c */,
@@ -197,8 +197,8 @@
 				3781CA52172DBB290092417C /* signals.c in Sources */,
 				3781CA55172DBB890092417C /* coefficients.c in Sources */,
 				3781CA5A172DBD570092417C /* testFIR.c in Sources */,
-				37B68F8B172F60490053A777 /* FtAudioConvolution.c in Sources */,
 				37AC1BC01730C07800BF8388 /* test.c in Sources */,
+				378C59B2173C984C0037EC17 /* FtAudioDsp.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

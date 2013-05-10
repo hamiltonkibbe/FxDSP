@@ -8,6 +8,8 @@
  */
 
 #include "FtAudioWindowFunction.h"
+#include "FtAudioDsp.h"
+
 
 #ifdef __APPLE__
 #include <Accelerate/Accelerate.h>
@@ -383,7 +385,7 @@ FtAudioWindowFunctionFree(FtAudioWindowFunction* window)
 FtAudioError_t
 FtAudioWindowFunctionProcess(FtAudioWindowFunction* window, float* outBuffer, float* inBuffer,unsigned n_samples)
 {
-    FtAudioVectorVectorMultiply(outbuffer, inBuffer, window->window, n_samples);
+    FtAudioVectorVectorMultiply(outBuffer, inBuffer, window->window, n_samples);
     return FT_NOERR;
 }
 

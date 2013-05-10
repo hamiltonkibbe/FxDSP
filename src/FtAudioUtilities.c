@@ -12,9 +12,10 @@
 
 
 /* 32 bit "pointer cast" union */
-typedef union {
-        float f;
-        int32_t i;
+typedef union 
+{
+	float f;
+	int i;
 } f_pcast32;
 
 
@@ -64,11 +65,11 @@ inline float
 f_pow2(float x)
 {
 	f_pcast32 *px;
-    f_pcast32 tx
+    f_pcast32 tx;
     f_pcast32 lx;
 	float dx;
 
-	px = (ls_pcast32 *)&x;          // store address of float as long pointer
+	px = (f_pcast32 *)&x;          // store address of float as long pointer
 	tx.f = (x-0.5f) + (3<<22);      // temporary value for truncation
 	lx.i = tx.i - 0x4b400000;       // integer power of 2
 	dx = x - (float)lx.i;           // float remainder of power of 2

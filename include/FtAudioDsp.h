@@ -98,9 +98,9 @@ FtAudioConvolve(float       *in1,
                 float       *dest);
 
 
-
 #ifdef __cplusplus
 }
 #endif
+
 
 #endif // FTAUDIODSP_H

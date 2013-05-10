@@ -6,6 +6,7 @@
 
 #include "FtAudioDsp.h"
 #include "FtAudioUtilities.h"
+#include "string.h"
 
 #ifdef __APPLE__
 #include <Accelerate/Accelerate.h>
@@ -14,10 +15,8 @@
 
 
 /* FtAudioFillBuffer **********************************************************/
-FtAudioError_t
-FtAudioFillBuffer(float     *dest, 
-                  unsigned  length, 
-                  float     value)
+FtAudioError_t 
+FtAudioFillBuffer(float     *dest, unsigned  length, float     value)
 {
 #ifdef __APPLE__
     // Use the Accelerate framework if we have it
@@ -97,7 +96,7 @@ FtAudioVectorScalarMultiply(float       *dest,
 {
 #ifdef __APPLE__
     // Use the Accelerate framework if we have it
-    vDSP_vsmul((const float*)in1, 1, (const float*)&scalar, 1, dest, 1, length);
+    vDSP_vsmul((const float*)in1, 1, (const float*)&scalar,dest, 1, length);
     
 #else
     // Otherwise do it manually

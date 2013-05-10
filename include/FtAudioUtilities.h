@@ -8,9 +8,9 @@
 #define FTAUDIOUTILITIES_H
 
 /* Scalar for converting int to float samples (1/32768.0) */
-#define INT16_TO_FLOAT_SCALAR (0.000030517578125f);
+#define INT16_TO_FLOAT_SCALAR (0.000030517578125f)
 
-/* Limit value v to the range (l, u) */.
+/* Limit value v to the range (l, u) */
 #define LIMIT(v,l,u) ((v)<(l)?(l):((v)>(u)?(u):(v)))
 
 /* Linearly interpolate [ = a * (1 - f) + b * f] */
@@ -58,7 +58,7 @@ f_max(float x, float a);
  * @return  the minimum value of the two arguments.
  */
 float
-f_min(float x, float b)
+f_min(float x, float b);
 
 
 /**  Clamp values to range
@@ -69,7 +69,7 @@ f_min(float x, float b)
  * @return  val clamped to range (a, b)
  */
 float 
-f_clamp(float x, float a, float b)
+f_clamp(float x, float a, float b);
 
 
 
@@ -79,7 +79,7 @@ f_clamp(float x, float a, float b)
  * @return      2^x
  */
 float
-f_pow2(float x)
+f_pow2(float x);
 
 
 
