@@ -20,28 +20,28 @@ typedef struct FtAudioUpsampler FtAudioUpsampler;
 /** Upsampling Factor constants */
 typedef enum factors
 {
-	/** 4x upsampling */
-	UP_4X,
-	
-	/** 8x upsampling */
-	UP_8X,
-	
-	/** 16x upsampling */
-	UP_16X,
-	
-	/** number of upsampling factors */
-	N_FACTORS
+    /** 4x upsampling */
+    UP_4X,
+    
+    /** 8x upsampling */
+    UP_8X,
+    
+    /** 16x upsampling */
+    UP_16X,
+    
+    /** number of upsampling factors */
+    N_FACTORS
 }FtAudioUpsampleFactor_t;
 
 
 /** Create a new FtAudioUpsampler
  *
  * @details Allocates memory and returns an initialized FtAudioUpsampler with
- *			a given upsampling factor. Play nice and call FtAudioUpsamplerFree
- *			on the filter whenyou're done with it.
+ *          a given upsampling factor. Play nice and call FtAudioUpsamplerFree
+ *          on the filter whenyou're done with it.
  *
- * @param factor	Upsampling factor
- * @return			An initialized FtAudioUpsampler
+ * @param factor    Upsampling factor
+ * @return          An initialized FtAudioUpsampler
  */
 FtAudioUpsampler*
 FtAudioUpsamplerInit(FtAudioUpsampleFactor_t factor);
@@ -50,9 +50,9 @@ FtAudioUpsamplerInit(FtAudioUpsampleFactor_t factor);
 /** Free memory associated with a FtAudioUpsampler
  *  
  * @details release all memory allocated by FtAudioUpsampler for the
- *			supplied filter.
- * @param upsampler	FtAudioUpsampler to free.
- * @return			Error code, 0 on success
+ *          supplied filter.
+ * @param upsampler FtAudioUpsampler to free.
+ * @return          Error code, 0 on success
  */
 FtAudioError_t
 FtAudioUpsamplerFree(FtAudioUpsampler* upsampler);
@@ -60,8 +60,8 @@ FtAudioUpsamplerFree(FtAudioUpsampler* upsampler);
 
 /** Flush upsampler state buffers
  *  
- * @param upsampler	FtAudioUpsampler to flush.
- * @return			Error code, 0 on success
+ * @param upsampler FtAudioUpsampler to flush.
+ * @return          Error code, 0 on success
  */
 FtAudioError_t
 FtAudioUpsamplerFlush(FtAudioUpsampler* upsampler);
@@ -71,18 +71,18 @@ FtAudioUpsamplerFlush(FtAudioUpsampler* upsampler);
  *
  * @details Upsamples given buffer using sinc interpolation
  *
- * @param upsampler	The FtAudioUpsampler to use
- * @param outBuffer	The buffer to write the output to
- * @param inBuffer	The buffer to filter
+ * @param upsampler The FtAudioUpsampler to use
+ * @param outBuffer The buffer to write the output to
+ * @param inBuffer  The buffer to filter
  * @param n_samples The number of samples to upsample
- * @return			Error code, 0 on success
+ * @return          Error code, 0 on success
  */
 FtAudioError_t
 FtAudioUpsamplerProcess(FtAudioUpsampler* upsampler, 
-						float* outBuffer, 
-						const float* inBuffer, 
-						unsigned n_samples);
-						
+                        float* outBuffer, 
+                        const float* inBuffer, 
+                        unsigned n_samples);
+                        
 #ifdef __cplusplus
 }
 #endif
