@@ -10,6 +10,12 @@
 #include <stdlib.h>
 #include <string.h>
 
+
+#ifdef __APPLE__
+#include <Accelerate/Accelerate.h>
+#endif
+
+
 /* FtAudioBiquadFilter ********************************************************/
 struct FtAudioBiquadFilter
 {
@@ -71,8 +77,8 @@ FtAudioBiquadFilterProcess(FtAudioBiquadFilter  *filter,
     
     // Put filter overlaps into beginning of input and output vectors
     memcpy(&temp_in, filter->x, 2 * sizeof(float));
-    memcpy(&temp_out filter->y, 2 * sizeof(float));
-    memcpy(inbuffer, &temp_in[2], n_samples * sizeof(float));
+    memcpy(&temp_out, filter->y, 2 * sizeof(float));
+    memcpy(&temp_in[2], inBuffer, n_samples * sizeof(float));
     
     // Process
     vDSP_deq22(temp_in, 1, coeffs, temp_out, 1, n_samples);
@@ -104,7 +110,7 @@ FtAudioBiquadFilterProcess(FtAudioBiquadFilter  *filter,
         filter->y[0] = buffer[buffer_idx];
     }
 #endif
-    memcpy(outBuffer, buffer, n_samples * sizeof(float));
+    memcpy(outBuffer, temp_out, n_samples * sizeof(float));
     return FT_NOERR;
 }
 
