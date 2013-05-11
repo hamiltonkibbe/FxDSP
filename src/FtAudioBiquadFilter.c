@@ -64,10 +64,30 @@ FtAudioBiquadFilterProcess(FtAudioBiquadFilter  *filter,
                            const float          *inBuffer, 
                            unsigned             n_samples)
 {
-    unsigned buffer_idx;
+#ifdef __APPLE__
+    float coeffs[5] = {filter->b[0], filter->b[1], filter->b[2], filter->a[0], filter->a[1]};
+    float temp_in[n_samples + 2];
+    float temp_out[n_samples + 2];
+    
+    // Put filter overlaps into beginning of input and output vectors
+    memcpy(&temp_in, filter->x, 2 * sizeof(float));
+    memcpy(&temp_out filter->y, 2 * sizeof(float));
+    memcpy(inbuffer, &temp_in[2], n_samples * sizeof(float));
+    
+    // Process
+    vDSP_deq22(temp_in, 1, coeffs, temp_out, 1, n_samples);
+    
+    // Write overlaps to filter x and y arrays
+    memcpy(filter->x, &temp_in[n_samples], 2 * sizeof(float));
+    memcpy(filter->y, &temp_out[n_samples], 2 * sizeof(float));
+    
+    // Write output
+    memcpy(outBuffer, temp_out, n_samples * sizeof(float));
+
+#else
     float buffer[n_samples];
 
-    for (buffer_idx = 0; buffer_idx < n_samples; ++buffer_idx)
+    for (unsigned buffer_idx = 0; buffer_idx < n_samples; ++buffer_idx)
     {
         buffer[buffer_idx] = filter->b[0] * inBuffer[buffer_idx] + 
                             filter->b[1] * filter->x[0] + 
@@ -83,7 +103,7 @@ FtAudioBiquadFilterProcess(FtAudioBiquadFilter  *filter,
         filter->y[1] = filter->y[0];
         filter->y[0] = buffer[buffer_idx];
     }
-
+#endif
     memcpy(outBuffer, buffer, n_samples * sizeof(float));
     return FT_NOERR;
 }
