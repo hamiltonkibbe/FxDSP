@@ -8,7 +8,7 @@
  */
 
 #include "FtAudioCircularBuffer.h"
-#include "FtAudioUtilities.h"
+#include "FtAudioDsp.h"
 #include <stdlib.h>
 #include <string.h>
 

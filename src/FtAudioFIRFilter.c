@@ -26,7 +26,7 @@ struct FtAudioFIRFilter
 /* FtAudioFIRFilterInit *******************************************************/
 FtAudioFIRFilter* 
 FtAudioFIRFilterInit(const float*   filter_kernel,
-                     unsigned length)
+                     unsigned		length)
 {
 
     // Array lengths and sizes

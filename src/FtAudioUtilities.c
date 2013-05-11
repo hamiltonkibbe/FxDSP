@@ -18,7 +18,13 @@ typedef union
 	int i;
 } f_pcast32;
 
-
+inline float
+f_abs(float f)
+{
+	// flip the sign bit...
+	int i = ((*(int*)&f) & 0x7fffffff);
+	return (*(float*)&i);
+}
 
 /* f_max **********************************************************************/
 inline float 
@@ -82,6 +88,19 @@ f_pow2(float x)
 	return (*px).f;
 }
 
+
+/* f_tanh *********************************************************************/
+inline float
+f_tanh(float x) 
+{ 
+	double xa = f_abs(x); 
+	double x2 = xa * xa; 
+	double x3 = xa * x2; 
+	double x4 = x2 * x2; 
+	double x7 = x3 * x4; 
+	double res = (1.0 - 1.0 / (1.0 + xa + x2 + 0.58576695 * x3 + 0.55442112 * x4 + 0.057481508 * x7)); 
+	return (x > 0 ? res : -res); 
+}
 
 
 /* int16ToFloat ***************************************************************/

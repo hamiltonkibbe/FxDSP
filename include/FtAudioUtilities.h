@@ -40,7 +40,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-    
+
+	
+	
+float
+f_abs(float f);
+	
 /**  Max of two floats
  * @details branchless max() implementation
  * @param   x first value to compare,
@@ -81,7 +86,13 @@ f_clamp(float x, float a, float b);
 float
 f_pow2(float x);
 
-
+/** Calculate tanh_x
+* @details fast tanh approximation
+* @param x     input
+* @return      ~tanh(x)
+*/
+float
+f_tanh(float x);
 
 /** Convert signed sample to float
  *
