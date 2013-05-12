@@ -9,6 +9,7 @@
 
 #ifndef TEST_H
 #define TEST_H
+#include "signals.h"
 
 
 unsigned
@@ -20,4 +21,4 @@ CompareFloatBuffers(const float *buf1, const float *buf2, unsigned len, float pr
 
 
 
-#endif TEST_H
+#endif //TEST_H

@@ -6,13 +6,13 @@
  *  Copyright 2013 HTK Audio. All rights reserved.
  *
  */
-#include <stdio.h>
-#include <math.h>
+
 #include "testFIR.h"
 #include "test.h"
 #include "FtAudioFIRFilter.h"
-#include "signals.h"
-#include "coefficients.h"
+
+#include <stdio.h>
+#include <math.h>
 
 unsigned
 testFIRFilterAgainstMatlab(void)
@@ -38,13 +38,14 @@ testFIRFilterBlockSize(void)
 {
     printf("Testing variable block size...");
     unsigned inputLength = 100;
-    float input[inputLength];
+    //float input[inputLength];
     float outfull[inputLength];
     float outchunk[inputLength];
-    generate_signal(input, inputLength);
+    //generate_signal(input, inputLength);
+    const float *input = MatlabSignal;
     
 	// Set up
-	FtAudioFIRFilter *theFilter = FtAudioFIRFilterInit(taps, 21);
+	FtAudioFIRFilter *theFilter = FtAudioFIRFilterInit(MatlabFilter, 21);
 	
 	// Process in one block
     FtAudioFIRFilterProcess(theFilter, outfull, input, inputLength);
