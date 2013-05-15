@@ -48,5 +48,8 @@ testBlackman()
 unsigned
 testKaiser()
 {
-    return 0;
+    printf("Testing Kaiser window...");
+    float window[10];
+    kaiser(10, 0.5, window);
+    return CompareFloatBuffers(window, matlabKaiser, 10, 0.000001);
 }

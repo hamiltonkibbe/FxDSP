@@ -245,7 +245,7 @@ bartlett_hann(unsigned  n,
  *          destination buffer can hold the entire window
  *
  * @param n     The length of the window
- * @param a     Alpha value
+ * @param a     Alpha value = (Beta / PI)
  * @param dest  Buffer where the window is written. Buffer size must be at
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
