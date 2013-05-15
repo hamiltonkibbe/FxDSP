@@ -67,7 +67,7 @@ unsigned
 runFIRFilterTests(void)
 {
 	unsigned passed = 1;
-	printf("[FtAudioFIRFilter] RUNNING TESTS\n");
+	printf("\n[FtAudioFIRFilter] RUNNING TESTS\n");
 	
 	if (testFIRFilterAgainstMatlab())
 		printf("PASSED\n");

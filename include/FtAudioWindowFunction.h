@@ -84,7 +84,7 @@ typedef enum _FtWindow_t
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-static FtAudioError_t 
+FtAudioError_t 
 boxcar(unsigned n, 
        float*   dest);
 
@@ -100,7 +100,7 @@ boxcar(unsigned n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-static FtAudioError_t 
+FtAudioError_t
 hann(unsigned   n, 
      float*     dest);
 
@@ -116,7 +116,7 @@ hann(unsigned   n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-static FtAudioError_t 
+FtAudioError_t 
 hamming(unsigned    n, 
         float*      dest);
 
@@ -133,7 +133,7 @@ hamming(unsigned    n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-static FtAudioError_t 
+FtAudioError_t 
 blackman(unsigned   n, 
          float      a, 
          float*     dest);
@@ -151,7 +151,7 @@ blackman(unsigned   n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-static FtAudioError_t 
+FtAudioError_t
 tukey(unsigned  n, 
       float     a, 
       float*    dest);
@@ -168,7 +168,7 @@ tukey(unsigned  n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-static FtAudioError_t 
+FtAudioError_t 
 cosine(unsigned n, 
        float*   dest);
 
@@ -184,7 +184,7 @@ cosine(unsigned n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-static FtAudioError_t 
+FtAudioError_t 
 lanczos(unsigned    n, 
         float*      dest);
 
@@ -200,7 +200,7 @@ lanczos(unsigned    n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-static FtAudioError_t 
+FtAudioError_t 
 bartlett(unsigned   n, 
          float*     dest);
 
@@ -216,7 +216,7 @@ bartlett(unsigned   n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-static FtAudioError_t 
+FtAudioError_t 
 gaussian(unsigned   n, 
          float      sigma, 
          float*     dest);
@@ -233,7 +233,7 @@ gaussian(unsigned   n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-static FtAudioError_t 
+FtAudioError_t 
 bartlett_hann(unsigned  n, 
               float*    dest);
 
@@ -250,7 +250,7 @@ bartlett_hann(unsigned  n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-static FtAudioError_t 
+FtAudioError_t 
 kaiser(unsigned n, 
        float    a, 
        float*   dest);
@@ -267,7 +267,7 @@ kaiser(unsigned n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-static FtAudioError_t 
+FtAudioError_t 
 nuttall(unsigned    n, 
         float*      dest);
 
@@ -283,7 +283,7 @@ nuttall(unsigned    n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-static FtAudioError_t 
+FtAudioError_t 
 blackman_harris(unsigned    n, 
                 float*      dest);
 
@@ -299,7 +299,7 @@ blackman_harris(unsigned    n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-static FtAudioError_t 
+FtAudioError_t 
 blackman_nuttall(unsigned   n, 
                  float*     dest);
 
@@ -315,7 +315,7 @@ blackman_nuttall(unsigned   n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-static FtAudioError_t 
+FtAudioError_t 
 flat_top(unsigned   n, 
          float*     dest);
 
@@ -332,7 +332,7 @@ flat_top(unsigned   n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-static FtAudioError_t 
+FtAudioError_t 
 poisson(unsigned    n, 
         float       D, 
         float*      dest);

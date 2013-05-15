@@ -1,10 +1,13 @@
 #include <stdio.h>
+#include "testBiquad.h"
 #include "testFIR.h"
+#include "testWindow.h"
 
 int main (int argc, const char * argv[]) {
     // insert code here...
+    runBiquadFilterTests();
+    runFIRFilterTests();
+    runWindowFunctionTests();
     
-    for (unsigned i = 0; i < 10000; ++i)
-        runFIRFilterTests();
     return 0;
 }

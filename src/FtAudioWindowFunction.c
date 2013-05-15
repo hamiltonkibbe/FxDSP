@@ -23,16 +23,15 @@ struct FtAudioWindowFunction
 };
 
 /* Boxcar window  */
-static FtAudioError_t 
+FtAudioError_t 
 boxcar(unsigned n, float* dest)
 {
-    float one = 1.0;
-    vDSP_vfill(&one, dest, 1, n);
+    FtAudioFillBuffer(dest, n, 1.0);
     return FT_NOERR;
 }
 
 /* Hann window  */
-static FtAudioError_t 
+FtAudioError_t 
 hann(unsigned n, float* dest)
 {
 
@@ -53,7 +52,7 @@ hann(unsigned n, float* dest)
 }
 
 /* Hamming window  */
-static FtAudioError_t 
+FtAudioError_t 
 hamming(unsigned n, float* dest)
 {
 
@@ -74,15 +73,15 @@ hamming(unsigned n, float* dest)
 }
 
 /* Blackman window  */
-static FtAudioError_t 
+FtAudioError_t 
 blackman(unsigned n, float a, float* dest)
 {
 #ifdef __APPLE__
     // Use the builtin version for the specific case it implements, if it is
     // available.
-    if (a == 0.16)
+    if (a > 0.15 && a < 0.17)
     {
-        vDSP_blkman_window(dest, n, 0);
+        vDSP_blkman_window(dest, (n - 1), 0);
     }
 
 #else
@@ -101,7 +100,7 @@ blackman(unsigned n, float a, float* dest)
 }
 
 /* Tukey window  */
-static FtAudioError_t 
+FtAudioError_t 
 tukey(unsigned n, float a, float* dest)
 {
     float term = a * (n - 1) / 2;
@@ -126,7 +125,7 @@ tukey(unsigned n, float a, float* dest)
 }
 
 /* Cosine window  */
-static FtAudioError_t 
+FtAudioError_t 
 cosine(unsigned n, float* dest)
 {
     unsigned buf_idx;
@@ -138,7 +137,7 @@ cosine(unsigned n, float* dest)
 }
 
 /* Lanczos window  */
-static FtAudioError_t 
+FtAudioError_t 
 lanczos(unsigned n, float* dest)
 {
     unsigned buf_idx;
@@ -150,7 +149,7 @@ lanczos(unsigned n, float* dest)
 }
 
 /* Bartlett window  */
-static FtAudioError_t 
+FtAudioError_t 
 bartlett(unsigned n, float* dest)
 {
     unsigned buf_idx;
@@ -169,7 +168,7 @@ bartlett(unsigned n, float* dest)
 }
 
 /* Gaussian window  */
-static FtAudioError_t 
+FtAudioError_t 
 gaussian(unsigned n, float sigma, float* dest)
 {
     unsigned buf_idx;
@@ -181,7 +180,7 @@ gaussian(unsigned n, float sigma, float* dest)
 }
 
 /* Bartlett-Hann window  */
-static FtAudioError_t 
+FtAudioError_t 
 bartlett_hann(unsigned n, float* dest)
 {
     unsigned buf_idx;
@@ -193,7 +192,7 @@ bartlett_hann(unsigned n, float* dest)
 }
 
 /* Kaiser Window */
-static FtAudioError_t 
+FtAudioError_t 
 kaiser(unsigned n, float a, float* dest)
 {
     // Pre-calc
@@ -213,7 +212,7 @@ kaiser(unsigned n, float a, float* dest)
 
 
 /* Nuttall window  */
-static FtAudioError_t 
+FtAudioError_t 
 nuttall(unsigned n, float* dest)
 {
     float term;
@@ -228,7 +227,7 @@ nuttall(unsigned n, float* dest)
 
 
 /* Blackman-Harris window  */
-static FtAudioError_t 
+FtAudioError_t 
 blackman_harris(unsigned n, float* dest)
 {
     float term;
@@ -242,7 +241,7 @@ blackman_harris(unsigned n, float* dest)
 }
 
 /* Blackman-Nuttall window  */
-static FtAudioError_t 
+FtAudioError_t
 blackman_nuttall(unsigned n, float* dest)
 {
     float term;
@@ -256,7 +255,7 @@ blackman_nuttall(unsigned n, float* dest)
 }
 
 /* Flat top window */
-static FtAudioError_t 
+FtAudioError_t
 flat_top(unsigned n, float* dest)
 {
     float term;
@@ -270,7 +269,7 @@ flat_top(unsigned n, float* dest)
 }
 
 /* Poisson window */
-static FtAudioError_t 
+FtAudioError_t 
 poisson(unsigned n, float D, float* dest)
 {
     float term = (n - 1) / 2;
