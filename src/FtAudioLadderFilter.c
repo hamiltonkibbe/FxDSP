@@ -19,7 +19,7 @@ struct FtAudioLadderFilter
 {
     float y[4];
     float w[4];
-	float Vt;
+	float Vt;           // transistor treshold voltage [V]
     float sample_rate;
     float cutoff;
 	float resonance;
@@ -33,6 +33,7 @@ FtAudioLadderFilterInit(float _sample_rate)
 	FtAudioLadderFilter *filter = (FtAudioLadderFilter*)malloc(sizeof(FtAudioLadderFilter));
 	FtAudioFillBuffer(filter->y, 4, 0.0);
 	FtAudioFillBuffer(filter->w, 4, 0.0);
+    filter->Vt = 0.026;
 	filter->cutoff = 0;
 	filter->resonance = 0;
 	filter->sample_rate = _sample_rate;
@@ -94,4 +95,12 @@ FtAudioLadderFilterProcess(FtAudioLadderFilter *filter, float *outBuffer, float 
 	}
 
 	return FT_NOERR;
+}
+
+FtAudioError_t
+FtAudioLadderFilterSetTemperature(FtAudioLadderFilter *filter, float tempC)
+{
+    float T = tempc + 273.15;
+    filter->Vt = BOLTZMANS_CONSTANT * T / Q;
+    return FT_NOERR;
 }
