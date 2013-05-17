@@ -21,13 +21,13 @@
 extern "C" {
 #endif
 
-inline float
+static inline float
 midiNoteToFrequency(unsigned note)
 {
-    return powf(2, ((note-69)/12)) x 440.0;
+    return powf(2.0, ((note - 69.0)/12.)) * 440.0;
 }
 
-inline unsigned
+static inline unsigned
 frequencyToMidiNote(float f)
 {
     return 69 + (12 * log2(f/440.));
