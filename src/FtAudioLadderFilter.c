@@ -100,7 +100,7 @@ FtAudioLadderFilterProcess(FtAudioLadderFilter *filter, float *outBuffer, float 
 FtAudioError_t
 FtAudioLadderFilterSetTemperature(FtAudioLadderFilter *filter, float tempC)
 {
-    float T = tempc + 273.15;
+    float T = tempC + 273.15;
     filter->Vt = BOLTZMANS_CONSTANT * T / Q;
     return FT_NOERR;
 }

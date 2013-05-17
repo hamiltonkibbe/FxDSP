@@ -39,7 +39,7 @@ FtAudioBiquadFilter* FtAudioBiquadFilterInit(const float    *bCoeff,
     memcpy(filter->a, aCoeff, 2 * sizeof(float));
 	FtAudioFillBuffer(filter->x, 2, 0.0);
 	FtAudioFillBuffer(filter->y, 2, 0.0);
-    FtAudioFillBuffer(filter->w, 2, 0.0
+    FtAudioFillBuffer(filter->w, 2, 0.0);
 
         
     return filter;
@@ -118,9 +118,9 @@ FtAudioBiquadFilterProcess(FtAudioBiquadFilter  *filter,
         */
         
         // DF-II Implementation
-        buffer[buffer_idx] = b[0] * inBuffer[buffer_idx] + w[0];
-        w[0] = b[1] * inBuffer[buffer_idx] - a[0] * buffer[buffer_idx] + w[1];
-        w[1] = b[2] * inBuffer[buffer_idx] - a[1] * buffer[buffer_idx];
+        buffer[buffer_idx] = filter->b[0] * inBuffer[buffer_idx] + filter->w[0];
+        filter->w[0] = filter->b[1] * inBuffer[buffer_idx] - filter->a[0] * buffer[buffer_idx] + filter->w[1];
+        filter->w[1] = filter->b[2] * inBuffer[buffer_idx] - filter->a[1] * buffer[buffer_idx];
         
     }
     
