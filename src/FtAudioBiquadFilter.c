@@ -19,10 +19,11 @@
 /* FtAudioBiquadFilter ********************************************************/
 struct FtAudioBiquadFilter
 {
-    float b[3];
-    float a[3];
-    float x[2];
+    float b[3];     // b0, b1, b2
+    float a[2];     // a1, a2
+    float x[2];     // 
     float y[2];
+    float w[2];
 };
 
 /* FtAudioBiquadFilterInit ****************************************************/
@@ -35,9 +36,10 @@ FtAudioBiquadFilter* FtAudioBiquadFilterInit(const float    *bCoeff,
 
     // Initialize Buffers
     memcpy(filter->b, bCoeff, 3 * sizeof(float));
-    memcpy(filter->a, aCoeff, 3 * sizeof(float));
+    memcpy(filter->a, aCoeff, 2 * sizeof(float));
 	FtAudioFillBuffer(filter->x, 2, 0.0);
 	FtAudioFillBuffer(filter->y, 2, 0.0);
+    FtAudioFillBuffer(filter->w, 2, 0.0
 
         
     return filter;
@@ -59,6 +61,7 @@ FtAudioBiquadFilterFlush(FtAudioBiquadFilter* filter)
 {
     FtAudioFillBuffer(filter->x, 2, 0.0);
 	FtAudioFillBuffer(filter->y, 2, 0.0);
+    FtAudioFillBuffer(filter->w, 2, 0.0);
     return FT_NOERR;
 }
 
@@ -97,24 +100,34 @@ FtAudioBiquadFilterProcess(FtAudioBiquadFilter  *filter,
     float buffer[n_samples];
     for (unsigned buffer_idx = 0; buffer_idx < n_samples; ++buffer_idx)
     {
+        /* 
+        //DF-I Implementation
         buffer[buffer_idx] = filter->b[0] * inBuffer[buffer_idx] +
                             filter->b[1] * filter->x[0] + 
                             filter->b[2] * filter->x[1] - 
                             filter->a[0] * filter->y[0] -
                             filter->a[1] * filter->y[1];
 
-        /* shift x1 to x2, sample to x1 */
+        // shift x1 to x2, sample to x1 
         filter->x[1] = filter->x[0];
         filter->x[0] = inBuffer[buffer_idx];
 
-        /* shift y1 to y2, result to y1 */
+        // shift y1 to y2, result to y1 
         filter->y[1] = filter->y[0];
         filter->y[0] = buffer[buffer_idx];
+        */
+        
+        // DF-II Implementation
+        buffer[buffer_idx] = b[0] * inBuffer[buffer_idx] + w[0];
+        w[0] = b[1] * inBuffer[buffer_idx] - a[0] * buffer[buffer_idx] + w[1];
+        w[1] = b[2] * inBuffer[buffer_idx] - a[1] * buffer[buffer_idx];
+        
     }
     
+    // Write output
     memcpy(outBuffer, buffer, n_samples * sizeof(float));
+    
 #endif
-
     return FT_NOERR;
 }
 
