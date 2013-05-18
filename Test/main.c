@@ -2,11 +2,11 @@
 #include "testBiquad.h"
 #include "testFIR.h"
 #include "testWindow.h"
-#include "FtAudioWavetableGenerator.h"
+#include "FtAudioWavetable.h"
 int main (int argc, const char * argv[]) {
-    float* destination[131];
-    generateSawTable(destination);
     
+    FtAudioWavetable* table = FtAudioWavetableInit(SQUARE, 48000);
+    FtAudioWavetableFree(table);
     
     // insert code here...
     runBiquadFilterTests();
