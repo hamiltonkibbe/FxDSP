@@ -18,21 +18,22 @@ FtAudioRBJFilter
 Biquad EQ stages, implements shelves, low/high-pass, bandpass, and notch filters with adjustable cutoff and Q.
 Ex.
 
-	FtAudioRbjFilter *filter = FtAudioRBJFilterInit(RBJ_LSHELF, 100, 44100);
+	FtAudioRBJFilter *filter = FtAudioRBJFilterInit(RBJ_LSHELF, 100, 44100);
 
 creates a low shelf filter with a cutoff at 100Hz, which you could use to process a 2048-sample audio buffer like:
 
 	FtAudioRBJFilterProcess(filter, output, input, 2048);
- 
+
+These stages can be chained together trivially to create an EQ. 
 
 FtAudioWindowFunction
 ---------------------
-Window functions, including Blackman, Kaiser, Hamming, Hann and many more windows
+Window functions, including Blackman, Kaiser, Hamming, Hann and many more windows.
 
 
 FtAudioLadderFilter
 -------------------
-Digital implementation of a MOOG Ladder filter.
+Digital implementation of a MOOG Ladder filter with adjustable cutoff and resonance, as well as temperature for hardcore analog modelling.
 
 
 
