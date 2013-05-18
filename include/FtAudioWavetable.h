@@ -17,7 +17,7 @@
 typedef struct FtAudioWavetable FtAudioWavetable;
 
 /** wavetable Generator function pointer */
-typedef float* (*WavetableGenerator)(float,float);
+typedef float* (*WavetableGenerator)(float,float,unsigned *);
 
 
 typedef enum _WaveType_t
@@ -44,12 +44,12 @@ FtAudioWavetableFree(FtAudioWavetable *table);
 
 
 float *
-generateSawTable(float frequency, float sampleRate);
+generateSawTable(float frequency, float sampleRate, unsigned *length);
 
 float *
-generateSquareTable(float frequency, float sampleRate);
+generateSquareTable(float frequency, float sampleRate, unsigned *length);
 
 float *
-generateTriangleTable(float frequency, float sampleRate);
+generateTriangleTable(float frequency, float sampleRate, unsigned *length);
 
 #endif

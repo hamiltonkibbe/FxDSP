@@ -19,8 +19,10 @@ float nyquist = 24000;
 /* FtAudioWavetable ***********************************************************/
 struct FtAudioWavetable
 {
-    char        wave_type[64];
-    WaveType_t  type;
+    char        wave_name[64];
+    WaveType_t  wave_type;
+    unsigned    table_sizes[NUMBER_OF_TABLES];
+    float       table_frequencies[NUMBER_OF_TABLES];
     float *     wavetables[NUMBER_OF_TABLES];
 };
 
@@ -40,33 +42,42 @@ FtAudioWavetableInit(WaveType_t type, float sampleRate)
     // Create a wavetable
     FtAudioWavetable* wavetable = malloc(sizeof(FtAudioWavetable));
     
+    // set type
+    wavetable->wave_type = type;
+    
     // Assign wavetable type
     switch (type)
     {
         case SQUARE:
-            strcpy(wavetable->wave_type, "Square");
+            strcpy(wavetable->wave_name, "Square");
             break;
             
         case SAWTOOTH:
-            strcpy(wavetable->wave_type, "Sawtooth");
+            strcpy(wavetable->wave_name, "Sawtooth");
             break;
         
         case TRIANGLE:
-            strcpy(wavetable->wave_type, "Triange");
+            strcpy(wavetable->wave_name, "Triange");
             break;
             
         case OTHER:
+            return NULL;
             break;
             
         case N_WAVE_TYPES:
+            return NULL;
             break;
     }
     
     // Loop through each midi note and create a table for it
     for (unsigned freq_idx = 0; freq_idx < NUMBER_OF_TABLES; ++freq_idx)
     {
+        // Get frequency from midi note
+        float frequency = midiNoteToFrequency(freq_idx);
+        wavetable->table_frequencies[freq_idx] = frequency;
+        
         // Generate the table
-        wavetable->wavetables[freq_idx] = wavetableGenerators[type](midiNoteToFrequency(freq_idx), sampleRate);
+        wavetable->wavetables[freq_idx] = wavetableGenerators[type](frequency, sampleRate, (wavetable->table_sizes + freq_idx));
     }
     return wavetable;
 }
@@ -80,15 +91,19 @@ FtAudioCustomWavetableInit(WavetableGenerator generator, const char* waveName, f
     FtAudioWavetable* wavetable = malloc(sizeof(FtAudioWavetable));
     
     // Assign wavetable type
-    wavetable->type = OTHER;
-    strcpy(wavetable->wave_type, waveName);
-
+    wavetable->wave_type = OTHER;
+    strcpy(wavetable->wave_name, waveName);
+    
     
     // Loop through each midi note and create a table for it
     for (unsigned freq_idx = 0; freq_idx < NUMBER_OF_TABLES; ++freq_idx)
     {
+        // Get frequency from midi note
+        float frequency = midiNoteToFrequency(freq_idx);
+        wavetable->table_frequencies[freq_idx] = frequency;
+        
         // Generate the table
-        wavetable->wavetables[freq_idx] = generator(midiNoteToFrequency(freq_idx), sampleRate);
+        wavetable->wavetables[freq_idx] = generator(frequency, sampleRate, (wavetable->table_sizes + freq_idx));
     }
     return wavetable;
 }
@@ -107,7 +122,7 @@ FtAudioWavetableFree(FtAudioWavetable *table)
 
 
 float *
-generateSquareTable(float frequency, float sampleRate)
+generateSquareTable(float frequency, float sampleRate, unsigned *length)
 {
     // Pre-calculate some shiz
     float fNyquist = sampleRate / 2;
@@ -133,13 +148,14 @@ generateSquareTable(float frequency, float sampleRate)
         // Scale the sample and store it in the table
         wave[phase_tick] = (sample * (M_2_PI + M_2_PI));
     }
+    length = (unsigned)(floor(cycle_length_s));
     return wave;
 }
 
 
 
 float *
-generateSawTable(float frequency, float sampleRate)
+generateSawTable(float frequency, float sampleRate,unsigned *length)
 {
     // Pre-calculate some shiz
     float fNyquist = sampleRate / 2;
@@ -165,12 +181,13 @@ generateSawTable(float frequency, float sampleRate)
         // Scale the sample and store it in the table
         wave[phase_tick] = (sample * M_2_PI);
     }
+    length = (unsigned)(floor(cycle_length_s));
     return wave;
 }
 
 
 float *
-generateTriangleTable(float frequency, float sampleRate)
+generateTriangleTable(float frequency, float sampleRate, unsigned *length)
 {
     // Pre-calculate some shiz
     float fNyquist = sampleRate / 2;
@@ -184,18 +201,19 @@ generateTriangleTable(float frequency, float sampleRate)
     {
         float sample = 0;
         float T = (phase_tick / sampleRate);    // Time in seconds
-        unsigned k = 1;                         // Harmonic counter
+        unsigned k = 0;                         // Harmonic counter
         
         // Calculate the sample from the fourier series up to nyquist
         while ((k * frequency) < fNyquist)
         {
-            sample += (powf(-1.0, (k - 1)) * (sin(2 * M_PI * frequency * (2* k + 1) * T)) / (powf((2 * k + 1), 2)));
+            sample += (powf(-1.0, (k)) * sin(2 * M_PI * frequency * (2 * k + 1)* T) / (powf((2 * k + 1), 2)));
             k++;
         }
         
         // Scale the sample and store it in the table
         wave[phase_tick] = (sample * (8/(M_PI * M_PI)));
     }
+    length = (unsigned)(floor(cycle_length_s));
     return wave;
 }
 

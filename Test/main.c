@@ -5,7 +5,7 @@
 #include "FtAudioWavetable.h"
 int main (int argc, const char * argv[]) {
     
-    FtAudioWavetable* table = FtAudioWavetableInit(SQUARE, 48000);
+    FtAudioWavetable* table = FtAudioWavetableInit(TRIANGLE, 48000);
     FtAudioWavetableFree(table);
     
     // insert code here...
