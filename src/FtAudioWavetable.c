@@ -132,8 +132,6 @@ generateSquareTable(float frequency, float sampleRate)
         
         // Scale the sample and store it in the table
         wave[phase_tick] = (sample * (M_2_PI + M_2_PI));
-        if (frequency == 440.0)
-            printf("%f,\n",wave[phase_tick]);
     }
     return wave;
 }
