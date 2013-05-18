@@ -17,9 +17,11 @@ FtAudioRBJFilter
 ----------------
 Biquad EQ stages, implements shelves, low/high-pass, bandpass, and notch filters with adjustable cutoff and Q.
 Ex.
+
 	FtAudioRbjFilter *filter = FtAudioRBJFilterInit(RBJ_LSHELF, 100, 44100);
 
 creates a low shelf filter with a cutoff at 100Hz, which you could use to process a 2048-sample audio buffer like:
+
 	FtAudioRBJFilterProcess(filter, output, input, 2048);
  
 
