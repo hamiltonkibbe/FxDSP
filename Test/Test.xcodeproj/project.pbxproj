@@ -44,7 +44,6 @@
 
 /* Begin PBXFileReference section */
 		08FB7796FE84155DC02AAC07 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		373809F91746C99600E35D9C /* FtAudioWavetable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FtAudioWavetable.h; path = ../Test/FtAudioWavetable.h; sourceTree = "<group>"; };
 		373809FA1746C9FF00E35D9C /* FtAudioWavetable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FtAudioWavetable.c; sourceTree = "<group>"; };
 		373809FC1746CA5A00E35D9C /* FtAudioMidiUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FtAudioMidiUtils.h; sourceTree = "<group>"; };
 		374683EC173DF95F0087752A /* FtAudioLadderFilter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FtAudioLadderFilter.c; sourceTree = "<group>"; };
@@ -82,6 +81,7 @@
 		37CD1B1A17430B5B00EFDCCC /* testBiquad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testBiquad.h; sourceTree = "<group>"; };
 		37CD1B1B174321FD00EFDCCC /* testWindow.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = testWindow.c; sourceTree = "<group>"; };
 		37CD1B1D1743221300EFDCCC /* testWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testWindow.h; sourceTree = "<group>"; };
+		37F44BE01747099B001E874B /* FtAudioWavetable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FtAudioWavetable.h; sourceTree = "<group>"; };
 		8DD76FB20486AB0100D96B5E /* Test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Test; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6A0FF2C0290799A04C91782 /* Test.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Test.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -161,7 +161,7 @@
 		37B3F044173FF743007FB721 /* include */ = {
 			isa = PBXGroup;
 			children = (
-				373809F91746C99600E35D9C /* FtAudioWavetable.h */,
+				37F44BE01747099B001E874B /* FtAudioWavetable.h */,
 				373809FC1746CA5A00E35D9C /* FtAudioMidiUtils.h */,
 				37B3F045173FF743007FB721 /* FtAudioBiquadFilter.h */,
 				37B3F046173FF743007FB721 /* FtAudioCircularBuffer.h */,
