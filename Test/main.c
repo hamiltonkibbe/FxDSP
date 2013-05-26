@@ -2,6 +2,7 @@
 #include "testBiquad.h"
 #include "testFIR.h"
 #include "testWindow.h"
+#include "FtAudioWindowFunction.h"
 
 int main (int argc, const char * argv[]) {
     

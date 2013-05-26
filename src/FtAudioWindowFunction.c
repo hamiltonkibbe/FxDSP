@@ -37,7 +37,8 @@ hann(unsigned n, float* dest)
 
 #ifdef __APPLE__
     // Use the accelerate version if we have it
-    vDSP_hann_window(dest, n, vDSP_HANN_NORM);
+    // TODO: FIX THIS!!!!!!
+    vDSP_hann_window(dest, n - 1, vDSP_HANN_DENORM);
 
 #else
     // Otherwise do it manually
@@ -58,7 +59,14 @@ hamming(unsigned n, float* dest)
 
 #ifdef __APPLE__
     // Use the accelerate version if we have it
-    vDSP_hamm_window(dest, n, 0);
+    // TODO: APPARENTLY THIS IS BROKEN
+    // vDSP_hamm_window(dest, n, 0);
+    
+    unsigned buf_idx;
+    for (buf_idx = 0; buf_idx < n; ++buf_idx)
+    {
+        *dest++ = 0.54 - 0.46 * cosf((2 * M_PI * buf_idx) / (n - 1));
+    }
 
 #else
     // Otherwise do it manually

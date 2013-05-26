@@ -55,7 +55,7 @@ FtAudioOnePoleFilterFree(FtAudioOnePoleFilter *filter)
 
 
 /* FtAudioOnePoleFilterProcess ************************************************/
-FtAudioError_t
+inline FtAudioError_t
 FtAudioOnePoleFilterProcess(FtAudioOnePoleFilter* filter,
                             float*               outBuffer,
                             const float*         inBuffer,
