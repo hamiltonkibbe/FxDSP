@@ -6,7 +6,6 @@
 
 #include "FtAudioBiquadFilter.h"
 #include "FtAudioDsp.h"
-#include "FtAudioError.h"
 #include <stdlib.h>
 #include <string.h>
 

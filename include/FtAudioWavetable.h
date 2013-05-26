@@ -13,6 +13,12 @@
 
 #define NUMBER_OF_TABLES (128)
 
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 /** Opaque FtAudioBiquadFilter structure */
 typedef struct FtAudioWavetable FtAudioWavetable;
 
@@ -52,4 +58,9 @@ generateSquareTable(float frequency, float sampleRate, unsigned *length);
 float *
 generateTriangleTable(float frequency, float sampleRate, unsigned *length);
 
+    
+#ifdef __cplusplus
+}
+#endif
+        
 #endif

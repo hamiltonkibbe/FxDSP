@@ -8,7 +8,6 @@
 #ifndef FTAUDIOBIQUADFILTER_H_
 #define FTAUDIOBIQUADFILTER_H_
 
-#include <string.h>
 #include "FtAudioError.h"
 
 #ifdef __cplusplus

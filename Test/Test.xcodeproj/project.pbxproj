@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3724820617524AD900609914 /* FtAudioOnePoleFilter.c in Sources */ = {isa = PBXBuildFile; fileRef = 3724820517524AD900609914 /* FtAudioOnePoleFilter.c */; };
 		373809FB1746C9FF00E35D9C /* FtAudioWavetable.c in Sources */ = {isa = PBXBuildFile; fileRef = 373809FA1746C9FF00E35D9C /* FtAudioWavetable.c */; };
 		374683ED173DF95F0087752A /* FtAudioLadderFilter.c in Sources */ = {isa = PBXBuildFile; fileRef = 374683EC173DF95F0087752A /* FtAudioLadderFilter.c */; };
 		3781CA52172DBB290092417C /* signals.c in Sources */ = {isa = PBXBuildFile; fileRef = 3781CA51172DBB290092417C /* signals.c */; };
@@ -44,6 +45,8 @@
 
 /* Begin PBXFileReference section */
 		08FB7796FE84155DC02AAC07 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		3724820517524AD900609914 /* FtAudioOnePoleFilter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FtAudioOnePoleFilter.c; sourceTree = "<group>"; };
+		3724820717524B4600609914 /* FtAudioOnePoleFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FtAudioOnePoleFilter.h; sourceTree = "<group>"; };
 		373809FA1746C9FF00E35D9C /* FtAudioWavetable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FtAudioWavetable.c; sourceTree = "<group>"; };
 		373809FC1746CA5A00E35D9C /* FtAudioMidiUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FtAudioMidiUtils.h; sourceTree = "<group>"; };
 		374683EC173DF95F0087752A /* FtAudioLadderFilter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FtAudioLadderFilter.c; sourceTree = "<group>"; };
@@ -143,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				373809FA1746C9FF00E35D9C /* FtAudioWavetable.c */,
+				3724820517524AD900609914 /* FtAudioOnePoleFilter.c */,
 				378C59B1173C984C0037EC17 /* FtAudioDsp.c */,
 				37A1F48B172D8A9200A2FDBE /* FtAudioBiquadFilter.c */,
 				374683EC173DF95F0087752A /* FtAudioLadderFilter.c */,
@@ -161,6 +165,7 @@
 		37B3F044173FF743007FB721 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				3724820717524B4600609914 /* FtAudioOnePoleFilter.h */,
 				37F44BE01747099B001E874B /* FtAudioWavetable.h */,
 				373809FC1746CA5A00E35D9C /* FtAudioMidiUtils.h */,
 				37B3F045173FF743007FB721 /* FtAudioBiquadFilter.h */,
@@ -259,6 +264,7 @@
 				37CD1B1917430B3D00EFDCCC /* testBiquad.c in Sources */,
 				37CD1B1C174321FD00EFDCCC /* testWindow.c in Sources */,
 				373809FB1746C9FF00E35D9C /* FtAudioWavetable.c in Sources */,
+				3724820617524AD900609914 /* FtAudioOnePoleFilter.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
