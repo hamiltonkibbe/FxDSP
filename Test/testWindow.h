@@ -25,10 +25,16 @@ unsigned
 testTukey();
 
 unsigned
+testBartlett();
+
+unsigned
+testGaussian();
+
+unsigned
 testKaiser();
 
 
-// >hann(10, 'symmetric')
+// >>hann(10, 'symmetric')
 static const float matlabHann[10] =
 {
     
@@ -45,7 +51,7 @@ static const float matlabHann[10] =
 };
 
 
-// >hamming(10)
+// >>hamming(10)
 static const float matlabHamming[10] =
 {
     0.0800000,
@@ -61,7 +67,7 @@ static const float matlabHamming[10] =
 };
 
 
-// >blackman(10)
+// >>blackman(10)
 static const float matlabBlackman[10] =
 {
     -1.38777878e-17,
@@ -76,7 +82,7 @@ static const float matlabBlackman[10] =
     -1.38777878e-17
 };
 
-// >tukeywin(10)
+// >>tukeywin(10)
 static const float matlabTukey[10] =
 {
     0,
@@ -91,8 +97,36 @@ static const float matlabTukey[10] =
     0
 };
 
+// >>bartlett(10)
+static const float matlabBartlett[10] =
+{
+    0,
+    0.2222222,
+    0.4444444,
+    0.6666667,
+    0.8888889,
+    0.8888889,
+    0.6666667,
+    0.4444444,
+    0.2222222,
+    0
+};
 
-// >kaiser(10,0.5 * pi)
+// >>gausswin(9)
+static const float matlabGaussian[9] =
+{
+    0.0439369,
+    0.1724216,
+    0.4578333,
+    0.8225775,
+    1.0000000,
+    0.8225775,
+    0.4578333,
+    0.1724216,
+    0.0439369
+};
+
+// >>kaiser(10,0.5 * pi)
 static const float matlabKaiser[10] =
 {
     0.58181688,

@@ -52,6 +52,22 @@ runWindowFunctionTests()
 		passed = 0;
 	}
     
+    if (testBartlett())
+		printf("PASSED\n");
+	else
+	{
+		printf("FAILED\n");
+		passed = 0;
+	}
+    
+    if (testGaussian())
+		printf("PASSED\n");
+	else
+	{
+		printf("FAILED\n");
+		passed = 0;
+	}
+    
 	if (testKaiser())
 		printf("PASSED\n");
 	else
@@ -98,6 +114,25 @@ testTukey()
     tukey(10, 0.5, window);
     return CompareFloatBuffers(window, matlabTukey, 10, 0.000001);
 }
+
+unsigned
+testBartlett()
+{
+    printf("Testing Bartlett window...");
+    float window[10];
+    bartlett(10, window);
+    return CompareFloatBuffers(window, matlabBartlett, 10, 0.000001);
+}
+
+unsigned
+testGaussian()
+{
+    printf("Testing Gaussian window...");
+    float window[9];
+    gaussian(9, 0.4, window);
+    return CompareFloatBuffers(window, matlabGaussian, 9, 0.000001);
+}
+
 
 
 unsigned

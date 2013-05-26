@@ -165,11 +165,11 @@ bartlett(unsigned n, float* dest)
     {
         if (buf_idx <= (n - 1) / 2)
         {
-            *dest++ = (2 * buf_idx)/(n - 1);
+            *dest++ = (float)(2 * buf_idx)/(n - 1);
         }
         else
         {
-            *dest ++ = 2 - (2 * buf_idx) / (n - 1);
+            *dest ++ = 2.0 - (float)(2 * buf_idx) / (n - 1);
         }
     }
     return FT_NOERR;
@@ -179,10 +179,12 @@ bartlett(unsigned n, float* dest)
 FtAudioError_t 
 gaussian(unsigned n, float sigma, float* dest)
 {
+    float L = (n-1)/2;
     unsigned buf_idx;
     for (buf_idx = 0; buf_idx < n; ++buf_idx)
-    {
-        *dest++ = expf(-0.5 * powf((buf_idx - ((n - 1) / 2)) / (sigma * ((n - 1) / 2)),2));
+    {   // TODO FIX THIS
+        //*dest++ = expf(-0.5 * powf( (1/sigma) * ((buf_idx - N) / N), 2));
+        *dest++ = expf(-0.5 * powf((buf_idx - L)/(sigma * L),2));
     }
     return FT_NOERR;
 }
