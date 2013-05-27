@@ -270,12 +270,13 @@ blackman_nuttall(unsigned n, float* dest)
 FtAudioError_t
 flat_top(unsigned n, float* dest)
 {
+    float N = n - 1.0;
     float term;
     unsigned buf_idx;
     for (buf_idx = 0; buf_idx < n; ++buf_idx)
     {
-        term = (2 * M_PI * buf_idx) / (n - 1);
-        *dest++ = 1 - 1.93 * cosf(term)+ 1.29 * cosf(2 * term) - 0.388 * cosf(3 * term) + 0.032 * cosf(4 * term);
+        term = (2 * M_PI * buf_idx) / N;
+        *dest++ = 0.21557895 - 0.41663158 * cosf(term)+ 0.277263158 * cosf(2 * term) - 0.083578947 * cosf(3 * term) + 0.006947368 * cosf(4 * term);
     }
     return FT_NOERR;    
 }

@@ -9,6 +9,9 @@
 #ifndef TESTWINDOW_H
 #define TESTWINDOW_H
 
+/* test function pointer */
+typedef unsigned(*windowTest)();
+
 unsigned
 runWindowFunctionTests();
 
@@ -41,6 +44,25 @@ testNuttall();
 
 unsigned
 testBlackmanHarris();
+
+unsigned
+testFlatTop();
+
+static const windowTest tests[11] =
+{
+    &testHann,
+    &testHamming,
+    &testBlackman,
+    &testTukey,
+    &testBartlett,
+    &testGaussian,
+    &testBartlettHann,
+    &testKaiser,
+    &testNuttall,
+    &testBlackmanHarris,
+    &testFlatTop
+};
+
 
 // >>hann(10, 'symmetric')
 static const float matlabHann[10] =
@@ -195,5 +217,20 @@ static const float matlabBlackmanHarris[10] =
     0.1470396,
     0.0150712,
     0.0000600
+};
+
+// >>flattopwin(10)
+static const float matlabFlatTop[10] =
+{
+    -0.0004211,
+    -0.0201720,
+    -0.0701990,
+    0.1982105,
+    0.8624763,
+    0.8624763,
+    0.1982105,
+    -0.0701990,
+    -0.0201720,
+    -0.0004211
 };
 #endif

@@ -17,89 +17,16 @@ runWindowFunctionTests()
     unsigned passed = 1;
 	printf("\n[FtAudioWindowFunction] RUNNING TESTS\n");
 	
-    
-    if (testHann())
-		printf("PASSED\n");
-	else
-	{
-		printf("FAILED\n");
-		passed = 0;
-	}
-    
-    if (testHamming())
-		printf("PASSED\n");
-	else
-	{
-		printf("FAILED\n");
-		passed = 0;
-	}
-    
-    
-	if (testBlackman())
-		printf("PASSED\n");
-	else
-	{
-		printf("FAILED\n");
-		passed = 0;
-	}
-	
-    
-    if (testTukey())
-		printf("PASSED\n");
-	else
-	{
-		printf("FAILED\n");
-		passed = 0;
-	}
-    
-    if (testBartlett())
-		printf("PASSED\n");
-	else
-	{
-		printf("FAILED\n");
-		passed = 0;
-	}
-    
-    if (testGaussian())
-		printf("PASSED\n");
-	else
-	{
-		printf("FAILED\n");
-		passed = 0;
-	}
-    
-    if (testBartlettHann())
-		printf("PASSED\n");
-	else
-	{
-		printf("FAILED\n");
-		passed = 0;
-	}
-    
-	if (testKaiser())
-		printf("PASSED\n");
-	else
-	{
-		printf("FAILED\n");
-		passed = 0;
-	}
-    
-    if (testNuttall())
-		printf("PASSED\n");
-	else
-	{
-		printf("FAILED\n");
-		passed = 0;
-	}
-    if (testBlackmanHarris())
-		printf("PASSED\n");
-	else
-	{
-		printf("FAILED\n");
-		passed = 0;
-	}
-    
-    
+    for (unsigned i = 0; i < 11; ++i)
+    {
+        if (tests[i]())
+            printf("PASSED\n");
+        else
+        {
+            printf("FAILED\n");
+            passed = 0;
+        }
+    }
 	return passed;
 
 }
@@ -192,4 +119,13 @@ testBlackmanHarris()
     float window[10];
     blackman_harris(10, window);
     return CompareFloatBuffers(window, matlabBlackmanHarris, 10, 0.000001);
+}
+
+unsigned
+testFlatTop()
+{
+    printf("Testing flat top window...");
+    float window[10];
+    flat_top(10, window);
+    return CompareFloatBuffers(window, matlabFlatTop, 10, 0.000001);
 }
