@@ -337,11 +337,22 @@ poisson(unsigned    n,
         float       D, 
         float*      dest);
 
+    
+FtAudioError_t
+chebyshev(unsigned  n,
+          float     A,
+          float*    dest);
+    
 /** Modified Bessel function of the first kind
  */
 static float
 modZeroBessel(float x);
 
+    
+float
+chebyshev_poly(int n, float x);
+    
+    
 /** Create a new FtAudioWindowFunction
  *
  * @details Allocates memory and returns an initialized FtAudioWindowFunction.

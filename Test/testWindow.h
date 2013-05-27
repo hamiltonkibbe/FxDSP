@@ -9,11 +9,18 @@
 #ifndef TESTWINDOW_H
 #define TESTWINDOW_H
 
+#define TEST_WINDOW_LENGTH (10)
+#define NUMBER_OF_WINDOW_TESTS (12)
+
+
 /* test function pointer */
 typedef unsigned(*windowTest)();
 
 unsigned
 runWindowFunctionTests();
+
+unsigned
+testBoxcar();
 
 unsigned
 testHann();
@@ -48,8 +55,9 @@ testBlackmanHarris();
 unsigned
 testFlatTop();
 
-static const windowTest tests[11] =
+static const windowTest tests[NUMBER_OF_WINDOW_TESTS] =
 {
+    &testBoxcar,
     &testHann,
     &testHamming,
     &testBlackman,
@@ -63,9 +71,24 @@ static const windowTest tests[11] =
     &testFlatTop
 };
 
+// >>rectwin(10)
+static const float matlabBoxcar[TEST_WINDOW_LENGTH] =
+{
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+};
+
 
 // >>hann(10, 'symmetric')
-static const float matlabHann[10] =
+static const float matlabHann[TEST_WINDOW_LENGTH] =
 {
     
     0,
@@ -82,7 +105,7 @@ static const float matlabHann[10] =
 
 
 // >>hamming(10)
-static const float matlabHamming[10] =
+static const float matlabHamming[TEST_WINDOW_LENGTH] =
 {
     0.0800000,
     0.1876196,
@@ -98,7 +121,7 @@ static const float matlabHamming[10] =
 
 
 // >>blackman(10)
-static const float matlabBlackman[10] =
+static const float matlabBlackman[TEST_WINDOW_LENGTH] =
 {
     -1.38777878e-17,
     5.08696327e-02,
@@ -113,7 +136,7 @@ static const float matlabBlackman[10] =
 };
 
 // >>tukeywin(10)
-static const float matlabTukey[10] =
+static const float matlabTukey[TEST_WINDOW_LENGTH] =
 {
     0,
     0.4131759,
@@ -128,7 +151,7 @@ static const float matlabTukey[10] =
 };
 
 // >>bartlett(10)
-static const float matlabBartlett[10] =
+static const float matlabBartlett[TEST_WINDOW_LENGTH] =
 {
     0,
     0.2222222,
@@ -143,7 +166,7 @@ static const float matlabBartlett[10] =
 };
 
 // >>gausswin(10)
-static const float matlabGaussian[10] =
+static const float matlabGaussian[TEST_WINDOW_LENGTH] =
 {
     0.0439369,
     0.1510065,
@@ -159,7 +182,7 @@ static const float matlabGaussian[10] =
 
 
 // >>barthannwin(10)
-static const float matlabBartlettHann[10] =
+static const float matlabBartlettHann[TEST_WINDOW_LENGTH] =
 {
     0,
     0.1422364,
@@ -174,7 +197,7 @@ static const float matlabBartlettHann[10] =
 };
 
 // >>kaiser(10,0.5 * pi)
-static const float matlabKaiser[10] =
+static const float matlabKaiser[TEST_WINDOW_LENGTH] =
 {
     0.58181688,
     0.73247767,
@@ -189,7 +212,7 @@ static const float matlabKaiser[10] =
 };
 
 // >>nutallwin(9)
-static const float matlabNuttall[10] =
+static const float matlabNuttall[TEST_WINDOW_LENGTH] =
 {
     0.0003628,
     0.0178910,
@@ -205,7 +228,7 @@ static const float matlabNuttall[10] =
 
 
 // >>blackmanharris(9)
-static const float matlabBlackmanHarris[10] =
+static const float matlabBlackmanHarris[TEST_WINDOW_LENGTH] =
 {
     0.0000600,
     0.0150712,
@@ -220,7 +243,7 @@ static const float matlabBlackmanHarris[10] =
 };
 
 // >>flattopwin(10)
-static const float matlabFlatTop[10] =
+static const float matlabFlatTop[TEST_WINDOW_LENGTH] =
 {
     -0.0004211,
     -0.0201720,

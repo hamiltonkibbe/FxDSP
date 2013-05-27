@@ -136,10 +136,11 @@ tukey(unsigned n, float a, float* dest)
 FtAudioError_t 
 cosine(unsigned n, float* dest)
 {
+    float N = n - 1.0;
     unsigned buf_idx;
     for (buf_idx = 0; buf_idx < n; ++buf_idx)
     {
-        *dest++ = sinf((M_PI * buf_idx) / (n - 1));
+        *dest++ = sinf((M_PI * buf_idx) / N);
     }
     return FT_NOERR;
 }
@@ -148,10 +149,12 @@ cosine(unsigned n, float* dest)
 FtAudioError_t 
 lanczos(unsigned n, float* dest)
 {
+    float N = n - 1.0;
     unsigned buf_idx;
     for (buf_idx = 0; buf_idx < n; ++buf_idx)
     {
-        *dest++ = sinf(M_PI * ((2 * n) / (n - 1) - 1)) / (M_PI * ((2 * n) / (n - 1) - 1));
+        float term = M_PI * ((2 * n)/ N) - 1.0;
+        *dest++ = sinf(term) / term;
     }
     return FT_NOERR;
 }
@@ -297,6 +300,43 @@ poisson(unsigned n, float D, float* dest)
     return FT_NOERR;    
 }
 
+// TODO: FIX This.
+FtAudioError_t
+chebyshev(unsigned n, float A, float *dest)
+{
+    float max=0;
+    float N = n - 1.0;
+    float M = N / 2;
+    if(n % 2 == 0)
+    {
+        M = M + 0.5; /* handle even length windows */
+    }
+    float tg = powf(10, A / 20.0);
+    float x0 = coshf((1.0 / N) * acoshf(tg));
+    
+    unsigned buf_idx;
+    for(buf_idx=0; buf_idx<(n/2+1); ++buf_idx)
+    {
+        //float y = buf_idx - M;
+        float sum = 0;
+        for(unsigned i=1; i<=M; i++){
+            sum += chebyshev_poly(N, x0 * cosf(M_PI * i / n)) * cosf( 2.0 * n * M_PI * i / n);
+        }
+        dest[buf_idx] = tg + 2 * sum;
+        dest[(unsigned)N - buf_idx] = dest[buf_idx];
+        if(dest[buf_idx] > max)
+        {
+            max = dest[buf_idx];
+        }
+    }
+    
+    for(buf_idx = 0; buf_idx < n; ++buf_idx)
+    {
+        dest[buf_idx] /= max; /* normalise everything */
+    }
+    return FT_NOERR;
+}
+
 /* Bessel Function */
 static float
 modZeroBessel(float x)
@@ -316,7 +356,22 @@ modZeroBessel(float x)
     return result;
 }
 
-
+/* Chebyshev Polynomial */
+float
+chebyshev_poly(int n, float x)
+{
+    float y;
+    if (fabs(x) <= 1)
+    {
+        y = cosf(n * acosf(x));
+    }
+    else
+    {
+        y = coshf(n * acoshf(x));
+    }
+    
+    return y;
+}
 
 FtAudioWindowFunction*
 FtAudioWindowFunctionInit(unsigned n, FtWindow_t type)
