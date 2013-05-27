@@ -31,8 +31,16 @@ unsigned
 testGaussian();
 
 unsigned
+testBartlettHann();
+
+unsigned
 testKaiser();
 
+unsigned
+testNuttall();
+
+unsigned
+testBlackmanHarris();
 
 // >>hann(10, 'symmetric')
 static const float matlabHann[10] =
@@ -112,18 +120,35 @@ static const float matlabBartlett[10] =
     0
 };
 
-// >>gausswin(9)
-static const float matlabGaussian[9] =
+// >>gausswin(10)
+static const float matlabGaussian[10] =
 {
     0.0439369,
-    0.1724216,
-    0.4578333,
-    0.8225775,
-    1.0000000,
-    0.8225775,
-    0.4578333,
-    0.1724216,
+    0.1510065,
+    0.3811714,
+    0.7066483,
+    0.9621545,
+    0.9621545,
+    0.7066483,
+    0.3811714,
+    0.1510065,
     0.0439369
+};
+
+
+// >>barthannwin(10)
+static const float matlabBartlettHann[10] =
+{
+    0,
+    0.1422364,
+    0.4206804,
+    0.7300000,
+    0.9504165,
+    0.9504165,
+    0.7300000,
+    0.4206804,
+    0.1422364,
+    0
 };
 
 // >>kaiser(10,0.5 * pi)
@@ -141,6 +166,34 @@ static const float matlabKaiser[10] =
     0.58181688
 };
 
+// >>nutallwin(9)
+static const float matlabNuttall[10] =
+{
+    0.0003628,
+    0.0178910,
+    0.1555961,
+    0.5292298,
+    0.9332202,
+    0.9332202,
+    0.5292298,
+    0.1555961,
+    0.0178910,
+    0.0003628
+};
 
 
+// >>blackmanharris(9)
+static const float matlabBlackmanHarris[10] =
+{
+    0.0000600,
+    0.0150712,
+    0.1470396,
+    0.5205750,
+    0.9316593,
+    0.9316593,
+    0.5205750,
+    0.1470396,
+    0.0150712,
+    0.0000600
+};
 #endif

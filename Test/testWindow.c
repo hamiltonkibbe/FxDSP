@@ -68,6 +68,14 @@ runWindowFunctionTests()
 		passed = 0;
 	}
     
+    if (testBartlettHann())
+		printf("PASSED\n");
+	else
+	{
+		printf("FAILED\n");
+		passed = 0;
+	}
+    
 	if (testKaiser())
 		printf("PASSED\n");
 	else
@@ -75,6 +83,23 @@ runWindowFunctionTests()
 		printf("FAILED\n");
 		passed = 0;
 	}
+    
+    if (testNuttall())
+		printf("PASSED\n");
+	else
+	{
+		printf("FAILED\n");
+		passed = 0;
+	}
+    if (testBlackmanHarris())
+		printf("PASSED\n");
+	else
+	{
+		printf("FAILED\n");
+		passed = 0;
+	}
+    
+    
 	return passed;
 
 }
@@ -128,12 +153,19 @@ unsigned
 testGaussian()
 {
     printf("Testing Gaussian window...");
-    float window[9];
-    gaussian(9, 0.4, window);
-    return CompareFloatBuffers(window, matlabGaussian, 9, 0.000001);
+    float window[10];
+    gaussian(10, 0.4, window);
+    return CompareFloatBuffers(window, matlabGaussian, 10, 0.000001);
 }
 
-
+unsigned
+testBartlettHann()
+{
+    printf("Testing Bartlett-Hann window...");
+    float window[10];
+    bartlett_hann(10, window);
+    return CompareFloatBuffers(window, matlabBartlettHann, 10, 0.000001);
+}
 
 unsigned
 testKaiser()
@@ -142,4 +174,22 @@ testKaiser()
     float window[10];
     kaiser(10, 0.5, window);
     return CompareFloatBuffers(window, matlabKaiser, 10, 0.000001);
+}
+
+unsigned
+testNuttall()
+{
+    printf("Testing Nuttall window...");
+    float window[10];
+    nuttall(10, window);
+    return CompareFloatBuffers(window, matlabNuttall, 10, 0.000001);
+}
+
+unsigned
+testBlackmanHarris()
+{
+    printf("Testing Blackman-Harris window...");
+    float window[10];
+    blackman_harris(10, window);
+    return CompareFloatBuffers(window, matlabBlackmanHarris, 10, 0.000001);
 }

@@ -179,7 +179,7 @@ bartlett(unsigned n, float* dest)
 FtAudioError_t 
 gaussian(unsigned n, float sigma, float* dest)
 {
-    float L = (n-1)/2;
+    float L = (n - 1)/2.0;
     unsigned buf_idx;
     for (buf_idx = 0; buf_idx < n; ++buf_idx)
     {   // TODO FIX THIS
@@ -193,10 +193,11 @@ gaussian(unsigned n, float sigma, float* dest)
 FtAudioError_t 
 bartlett_hann(unsigned n, float* dest)
 {
+    float N = n - 1.0;
     unsigned buf_idx;
     for (buf_idx = 0; buf_idx < n; ++buf_idx)
-    {   
-        *dest++ = 0.62 - 0.48 * fabs((buf_idx / (n - 1)) - 0.5) - 0.38 * cosf((2 * M_PI * buf_idx) / (n - 1));
+    {
+        *dest++ = 0.62 - 0.48 * fabs((buf_idx / N) - 0.5) + 0.38 * cosf(2 * M_PI * (buf_idx / N - 0.5));
     }
     return FT_NOERR;
 }
@@ -207,7 +208,7 @@ kaiser(unsigned n, float a, float* dest)
 {
     // Pre-calc
     float beta = M_PI * a;
-    float m_2 = (float)(n-1) / 2.0;
+    float m_2 = (float)(n - 1.0) / 2.0;
     float denom = modZeroBessel(beta);
     
     unsigned buf_idx;
@@ -226,11 +227,12 @@ FtAudioError_t
 nuttall(unsigned n, float* dest)
 {
     float term;
+    float N = n - 1.0;
     unsigned buf_idx;
     for (buf_idx = 0; buf_idx < n; ++buf_idx)
     {
-        term = (2 * M_PI * buf_idx) / (n - 1);
-        *dest++ = 0.355768 - 0.487396 * cosf(term)+ 0.144232 * cosf(2 * term) - 0.012604 * cosf(3 * term);
+        term = 2 * M_PI * (buf_idx / N);
+        *dest++ = 0.3635819  - 0.4891775 * cosf(term) + 0.1365995 * cosf(2 * term) - 0.0106411 * cosf(3 * term);
     }
     return FT_NOERR;
 }
