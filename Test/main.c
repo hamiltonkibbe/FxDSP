@@ -14,7 +14,7 @@ int main (int argc, const char * argv[]) {
         printf("%f\n", window[i]);
     }
 */
-    FtAudioFFT* fft = FtAudioFFTInit(64);
+    FtAudioFFTConfig* fft = FtAudioFFTInit(64);
     
     float in[64];
     float mag[32];

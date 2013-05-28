@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include "FtAudioFFT.h"
 
-struct FtAudioFFT
+struct FtAudioFFTConfig
 {
     unsigned        length;
     float           scale;
@@ -20,10 +20,10 @@ struct FtAudioFFT
     FFTSetup        setup;
 };
 
-FtAudioFFT*
+FtAudioFFTConfig*
 FtAudioFFTInit(unsigned length)
 {
-    FtAudioFFT* fft = (FtAudioFFT*)malloc(sizeof(FtAudioFFT));
+    FtAudioFFTConfig* fft = (FtAudioFFTConfig*)malloc(sizeof(FtAudioFFTConfig));
     fft->length = length;
     fft->scale = 1.0 / (2.0 * fft->length);
     fft->log2n = log2f(fft->length);
@@ -35,7 +35,7 @@ FtAudioFFTInit(unsigned length)
 
 
 FtAudioError_t
-FtAudioFFTFree(FtAudioFFT* fft)
+FtAudioFFTFree(FtAudioFFTConfig* fft)
 {
     free(fft->setup);
     free(fft->split.realp);
@@ -44,10 +44,10 @@ FtAudioFFTFree(FtAudioFFT* fft)
 }
 
 FtAudioError_t
-FtAudioFFTForward(FtAudioFFT*   fft,
-                  const float*  inBuffer,
-                  float*        outMag,
-                  float*        outPhase)
+FtAudioFFTForward(FtAudioFFTConfig*     fft,
+                  const float*          inBuffer,
+                  float*                outMag,
+                  float*                outPhase)
 {
     // Convert input to split complex format
     vDSP_ctoz((COMPLEX*) inBuffer, 2, &fft->split, 1, (fft->length / 2));
@@ -79,10 +79,10 @@ FtAudioFFTForward(FtAudioFFT*   fft,
 }
 
 FtAudioError_t
-FtAudioFFTInverse(FtAudioFFT*   fft,
-                  const float*  inMag,
-                  const float*  inPhase,
-                  float*        outBuffer)
+FtAudioFFTInverse(FtAudioFFTConfig*     fft,
+                  const float*          inMag,
+                  const float*          inPhase,
+                  float*                outBuffer)
 {
     float* real = fft->split.realp;
     float* imag = fft->split.imagp;
