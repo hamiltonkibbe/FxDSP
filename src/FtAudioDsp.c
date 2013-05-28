@@ -6,7 +6,7 @@
 
 #include "FtAudioDsp.h"
 #include "FtAudioUtilities.h"
-#include "string.h"
+#include <string.h>
 
 #ifdef __APPLE__
 #include <Accelerate/Accelerate.h>
@@ -32,8 +32,21 @@ FtAudioFillBuffer(float     *dest, unsigned  length, float     value)
 #endif
     return FT_NOERR;
 }
-    
 
+
+/* FtAudioCopyBuffer **********************************************************/
+FtAudioError_t
+FtAudioCopyBuffer(float* dest, const float* src, unsigned length)
+{
+#ifdef __APPLE__
+    // Use the Accelerate framework if we have it
+    cblas_scopy(length, src, 1, dest, 1);
+#else
+    // Do it the boring way
+    memcpy(dest, src, length * sizeof(float));
+#endif
+    return FT_NOERR;
+}
     
 /* FtAudioBufferAdd ***********************************************************/
 FtAudioError_t
@@ -137,7 +150,7 @@ FtAudioConvolve(float       *in1,
     FtAudioFillBuffer(padded, signalLength, 0.0);
     
     // Pad the input signal with (filter_length - 1) zeros.
-    memcpy(padded  + (in2_length - 1), in1, in1_length * sizeof(float));
+    cblas_scopy(in1_length, in1, 1, (padded + (in2_length - 1)), 1);
     vDSP_conv(padded, 1, in2_end, -1, dest, 1, resultLength, in2_length);
     
 #else

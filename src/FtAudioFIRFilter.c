@@ -32,16 +32,14 @@ FtAudioFIRFilterInit(const float*   filter_kernel,
     // Array lengths and sizes
     unsigned kernel_length = length;            // IN SAMPLES!
     unsigned overlap_length = kernel_length - 1;        // IN SAMPLES!
-    size_t kernel_size = kernel_length * sizeof(float); //IN BYTES!
-    size_t overlap_size = overlap_length * sizeof(float);   //IN BYTES!
 
     // Allocate Memory
     FtAudioFIRFilter* filter = (FtAudioFIRFilter*)malloc(sizeof(FtAudioFIRFilter));
-    float* kernel = (float*)malloc(kernel_size);
-    float* overlap = (float*)malloc(overlap_size);
+    float* kernel = (float*)malloc(kernel_length * sizeof(float));
+    float* overlap = (float*)malloc(overlap_length * sizeof(float));
 
     // Initialize Buffers
-    memcpy(kernel, filter_kernel, kernel_size);
+    FtAudioCopyBuffer(kernel, filter_kernel, kernel_length);
     
     //float zero = 0.0
     //vDSP_vfill(&zero, overlap, 1, overlap_length);
@@ -99,10 +97,10 @@ FtAudioFIRFilterProcess(FtAudioFIRFilter* filter,
 
                      
     // Save the overlap from this block
-    memcpy(filter->overlap, buffer + n_samples, filter->overlap_length * sizeof(float));
+    FtAudioCopyBuffer(filter->overlap, buffer + n_samples, filter->overlap_length);
     
     // write output
-    memcpy(outBuffer, buffer, n_samples * sizeof(float));
+    FtAudioCopyBuffer(outBuffer, buffer, n_samples);
     return FT_NOERR;
 }
 
@@ -112,7 +110,7 @@ FtAudioError_t
 FtAudioFIRFilterUpdateKernel(FtAudioFIRFilter*  filter, const float* filter_kernel)
 {
     // Copy the new kernel into the filter
-    memcpy(filter->kernel, filter_kernel, filter->kernel_length * sizeof(float));
+    FtAudioCopyBuffer(filter->kernel, filter_kernel, filter->kernel_length);
     return FT_NOERR;
 }
 

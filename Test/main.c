@@ -13,10 +13,11 @@ int main (int argc, const char * argv[]) {
     {
         printf("%f\n", window[i]);
     }
-*/
+
     FtAudioFFTConfig* fft = FtAudioFFTInit(64);
     
     float in[64];
+    float out[64];
     float mag[32];
     float phase[32];
     for (unsigned i = 0; i < 64; ++i)
@@ -25,10 +26,12 @@ int main (int argc, const char * argv[]) {
     }
 
     FtAudioFFTForward(fft, in, mag, phase);
-    for (unsigned i = 0; i < 32; ++i)
+    FtAudioFFTInverse(fft, mag, phase, out);
+    for (unsigned i = 0; i < 64; ++i)
     {
-        printf("%f\n", mag[i]);
+        printf("%f   %f\n", sinf(((4*M_PI)/64) * i) + 0.5 * sinf(((16*M_PI)/64) * i), out[i]);
     }
+ */
     // insert code here...
     runBiquadFilterTests();
     runFIRFilterTests();

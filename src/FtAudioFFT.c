@@ -25,7 +25,7 @@ FtAudioFFTInit(unsigned length)
 {
     FtAudioFFTConfig* fft = (FtAudioFFTConfig*)malloc(sizeof(FtAudioFFTConfig));
     fft->length = length;
-    fft->scale = 1.0 / (2.0 * fft->length);
+    fft->scale = 1.0 / (fft->length);
     fft->log2n = log2f(fft->length);
     fft->split.realp = (float*)malloc((fft->length / 2) * sizeof(float));
     fft->split.imagp = (float*)malloc((fft->length / 2) * sizeof(float));
@@ -49,6 +49,9 @@ FtAudioFFTForward(FtAudioFFTConfig*     fft,
                   float*                outMag,
                   float*                outPhase)
 {
+    // Scratch buffer
+    float out[fft->length];
+    
     // Convert input to split complex format
     vDSP_ctoz((COMPLEX*) inBuffer, 2, &fft->split, 1, (fft->length / 2));
     
@@ -57,24 +60,22 @@ FtAudioFFTForward(FtAudioFFTConfig*     fft,
     
     // Set this explicitly
     fft->split.imagp[0] = 0.0;
+
+
+    // convert split-complex format to interleaved
+    vDSP_ztoc(&fft->split, 1, (COMPLEX *) out, 2, (fft->length / 2));
     
-    // Shorthand pointers
-    float* real = fft->split.realp;
-    float* imag = fft->split.imagp;
-    unsigned buf_idx;
-    for(buf_idx = 0; buf_idx < (fft->length / 2); ++buf_idx)
-    {
-        // Scale by 2 to match textbook implementation
-        float r = real[buf_idx] / 2.0;
-        float i = imag[buf_idx] / 2.0;
-        
-        // Calculate power
-        float pwr = (r * r) + (i * i);
-        
-        // Calculate Mag and Phase
-        outMag[buf_idx] = sqrtf(pwr);
-        outPhase[buf_idx] = atan2f(i,r);
-    }
+    // Scale to match textbook implementation
+    float half = 0.5;
+    vDSP_vsmul(out, 1, &half, out, 1, fft->length);
+    
+    // Convert real/imaginary to magnitude/phase
+    vDSP_polar(out, 2, out, 2, (fft->length / 2));
+    
+    // Write mag/phase to outputs
+    cblas_scopy((fft->length/2), out, 2, outMag, 1);
+    cblas_scopy((fft->length / 2), out + 1, 2, outPhase, 1);
+
     return FT_NOERR;
 }
 
@@ -84,15 +85,20 @@ FtAudioFFTInverse(FtAudioFFTConfig*     fft,
                   const float*          inPhase,
                   float*                outBuffer)
 {
-    float* real = fft->split.realp;
-    float* imag = fft->split.imagp;
+    // Scratch buffer
+    float in[fft->length];
     
-    // Convert mag/phase to split real/complex format
-    for (unsigned i = 0; i < fft->length / 2; ++i)
-    {
-        *real++ = inMag[i] * cosf(inPhase[i]);
-        *imag++ = inMag[i] * sinf(inPhase[i]);
-    }
+    // Write interleaved magnitude/phase buffer
+    cblas_scopy((fft->length/2), inMag, 1, in , 2);
+    cblas_scopy((fft->length/2), inPhase, 1, (in + 1) , 2);
+    
+    // Convert magnitude/phase to real/imaginary
+    vDSP_rect(in, 2, in, 2, (fft->length / 2));
+    
+    // Write real and imaginary parts to their respective FFT buffers
+    cblas_scopy((fft->length/2), in, 2, fft->split.realp , 1);
+    cblas_scopy((fft->length/2), in + 1, 2, fft->split.imagp , 1);
+    
     
     // Inverse Real FFT
     vDSP_fft_zrip(fft->setup, &fft->split, 1, fft->log2n, FFT_INVERSE);
@@ -102,5 +108,6 @@ FtAudioFFTInverse(FtAudioFFTConfig*     fft,
     
     // Scale the result...
     vDSP_vsmul(outBuffer, 1, &fft->scale, outBuffer, 1, fft->length);
+    
     return FT_NOERR;
 }

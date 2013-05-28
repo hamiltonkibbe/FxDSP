@@ -29,7 +29,17 @@ extern "C" {
 FtAudioError_t
 FtAudioFillBuffer(float* dest, unsigned length, float value);
 
-
+/** Copy an array
+ * @details copy an array from src to dest
+ *
+ * @param dest          Array to fill
+ * @param src           source buffer
+ * @param length        Size of array in samples
+ * @return              Error code.
+ */
+FtAudioError_t
+FtAudioCopyBuffer(float* dest, const float* src, unsigned length);
+    
 /** Add two buffers
  * @details Add values in in1  to values in in2 element-by-element and write 
  * results to dest:
