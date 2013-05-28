@@ -182,11 +182,11 @@ bartlett(unsigned n, float* dest)
 FtAudioError_t 
 gaussian(unsigned n, float sigma, float* dest)
 {
-    float L = (n - 1)/2.0;
+    float N = n - 1;
+    float L = N / 2.0;
     unsigned buf_idx;
     for (buf_idx = 0; buf_idx < n; ++buf_idx)
-    {   // TODO FIX THIS
-        //*dest++ = expf(-0.5 * powf( (1/sigma) * ((buf_idx - N) / N), 2));
+    {   
         *dest++ = expf(-0.5 * powf((buf_idx - L)/(sigma * L),2));
     }
     return FT_NOERR;
@@ -200,7 +200,8 @@ bartlett_hann(unsigned n, float* dest)
     unsigned buf_idx;
     for (buf_idx = 0; buf_idx < n; ++buf_idx)
     {
-        *dest++ = 0.62 - 0.48 * fabs((buf_idx / N) - 0.5) + 0.38 * cosf(2 * M_PI * (buf_idx / N - 0.5));
+        float term = ((buf_idx / N) - 0.5);
+        *dest++ = 0.62 - 0.48 * fabs(term) + 0.38 * cosf(2 * M_PI * term);
     }
     return FT_NOERR;
 }
@@ -361,7 +362,7 @@ float
 chebyshev_poly(int n, float x)
 {
     float y;
-    if (fabs(x) <= 1)
+    if (fabsf(x) <= 1)
     {
         y = cosf(n * acosf(x));
     }

@@ -393,8 +393,6 @@ FtAudioError_t FtAudioWindowFunctionProcess(FtAudioWindowFunction*  window,
                                             unsigned                n_samples);
 
 
-
-
 #ifdef __cplusplus
 }
 #endif
