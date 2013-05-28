@@ -11,6 +11,8 @@
 #define TEST_H
 #include "signals.h"
 
+/* test function pointer */
+typedef unsigned(*testFunction)();
 
 unsigned
 CompareFloat(float val1, float val2, float precision);

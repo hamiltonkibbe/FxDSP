@@ -60,8 +60,7 @@ FtAudioFFTForward(FtAudioFFTConfig*     fft,
     
     // Set this explicitly
     fft->split.imagp[0] = 0.0;
-
-
+    
     // convert split-complex format to interleaved
     vDSP_ztoc(&fft->split, 1, (COMPLEX *) out, 2, (fft->length / 2));
     
@@ -88,14 +87,14 @@ FtAudioFFTInverse(FtAudioFFTConfig*     fft,
     // Scratch buffer
     float in[fft->length];
     
-    // Write interleaved magnitude/phase buffer
+    // Write magnitude/phase interleaved buffer
     cblas_scopy((fft->length/2), inMag, 1, in , 2);
     cblas_scopy((fft->length/2), inPhase, 1, (in + 1) , 2);
     
-    // Convert magnitude/phase to real/imaginary
+    // Convert from magnitude/phase to real/imaginary
     vDSP_rect(in, 2, in, 2, (fft->length / 2));
     
-    // Write real and imaginary parts to their respective FFT buffers
+    // Write real and imaginary parts to their respective fft buffers
     cblas_scopy((fft->length/2), in, 2, fft->split.realp , 1);
     cblas_scopy((fft->length/2), in + 1, 2, fft->split.imagp , 1);
     

@@ -57,26 +57,14 @@ FtAudioError_t
 hamming(unsigned n, float* dest)
 {
 
-#ifdef __APPLE__
-    // Use the accelerate version if we have it
-    // TODO: APPARENTLY THIS IS BROKEN
-    // vDSP_hamm_window(dest, n, 0);
-    
+    // do it manually. it seems like vDSP_hamm_window is wrong.
     unsigned buf_idx;
     for (buf_idx = 0; buf_idx < n; ++buf_idx)
     {
         *dest++ = 0.54 - 0.46 * cosf((2 * M_PI * buf_idx) / (n - 1));
     }
 
-#else
-    // Otherwise do it manually
-    unsigned buf_idx;
-    for (buf_idx = 0; buf_idx < n; ++buf_idx)
-    {
-        *dest++ = 0.54 - 0.46 * cosf((2 * M_PI * buf_idx) / (n - 1));
-    }
 
-#endif // __APPLE__
     return FT_NOERR;
 }
 

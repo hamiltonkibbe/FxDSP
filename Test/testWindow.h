@@ -9,6 +9,8 @@
 #ifndef TESTWINDOW_H
 #define TESTWINDOW_H
 
+#include "test.h"
+
 #define TEST_WINDOW_LENGTH (10)
 #define NUMBER_OF_WINDOW_TESTS (12)
 
@@ -55,7 +57,7 @@ testBlackmanHarris();
 unsigned
 testFlatTop();
 
-static const windowTest tests[NUMBER_OF_WINDOW_TESTS] =
+static const testFunction windowTests[NUMBER_OF_WINDOW_TESTS] =
 {
     &testBoxcar,
     &testHann,

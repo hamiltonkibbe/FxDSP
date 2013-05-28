@@ -1,9 +1,9 @@
 #include <stdio.h>
+#include "testFFT.h"
 #include "testBiquad.h"
 #include "testFIR.h"
 #include "testWindow.h"
-#include "FtAudioWindowFunction.h"
-#include "FtAudioFFT.h"
+
 
 int main (int argc, const char * argv[]) {
 /*
@@ -33,6 +33,7 @@ int main (int argc, const char * argv[]) {
     }
  */
     // insert code here...
+    runFFTTests();
     runBiquadFilterTests();
     runFIRFilterTests();
     runWindowFunctionTests();

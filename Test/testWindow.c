@@ -7,7 +7,6 @@
 //
 
 #include <stdio.h>
-#include "test.h"
 #include "testWindow.h"
 #include "FtAudioWindowFunction.h"
 
@@ -19,11 +18,11 @@ runWindowFunctionTests()
 	
     for (unsigned i = 0; i < NUMBER_OF_WINDOW_TESTS; ++i)
     {
-        if (tests[i]())
-            printf("PASSED\n");
+        if (windowTests[i]())
+            printf("\t\tPASSED\n");
         else
         {
-            printf("FAILED\n");
+            printf("\t\tFAILED\n");
             passed = 0;
         }
     }
