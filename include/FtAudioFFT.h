@@ -151,12 +151,12 @@ FtAudioFFTConvolve(FtAudioFFTConfig* fft,
  * @return              Error code.
  */
 FtAudioError_t
-FtAudioFFTFilterConvolve(FtAudioFFTConfig* fft,
-`                          float       *in1, 
-                         unsigned    in1_length, 
-                         float       *in2, 
-                         unsigned    in2_length, 
-                         float       *dest);
+FtAudioFFTFilterConvolve(FtAudioFFTConfig*  fft,
+                         float*             in1,
+                         unsigned           in1_length, 
+                         float*             in2, 
+                         unsigned           in2_length, 
+                         float*             dest);
 
 
     

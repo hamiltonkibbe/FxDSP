@@ -38,10 +38,8 @@ testFIRFilterBlockSize(void)
 {
     printf("Testing variable block size...");
     unsigned inputLength = 100;
-    //float input[inputLength];
     float outfull[inputLength];
     float outchunk[inputLength];
-    //generate_signal(input, inputLength);
     const float *input = MatlabSignal;
     
 	// Set up
@@ -59,7 +57,7 @@ testFIRFilterBlockSize(void)
 	FtAudioFIRFilterFree(theFilter);
 
 	// Check results
-    return CompareFloatBuffers(outfull, outchunk, inputLength, 0.000001);
+    return CompareFloatBuffers(outfull, outchunk, inputLength, 0.001);
 };
 
 

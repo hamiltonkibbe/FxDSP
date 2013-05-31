@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "FtAudioFFT.h"
+#include "FtAudioDsp.h"
 
 struct FtAudioFFTConfig
 {
@@ -37,7 +38,8 @@ FtAudioFFTInit(unsigned length)
 FtAudioError_t
 FtAudioFFTFree(FtAudioFFTConfig* fft)
 {
-    free(fft->setup);
+    //if (fft->setup)
+    //    free(fft->setup);
     free(fft->split.realp);
     free(fft->split.imagp);
     return FT_NOERR;
@@ -168,7 +170,7 @@ FtAudioFFTInverseInterleaved(FtAudioFFTConfig*     fft,
 
 
 FtAudioError_t
-FtAudioFFTConvolve(FtAudioFFTConfig* fft
+FtAudioFFTConvolve(FtAudioFFTConfig* fft,
                    float       *in1, 
                    unsigned    in1_length, 
                    float       *in2, 
@@ -176,30 +178,30 @@ FtAudioFFTConvolve(FtAudioFFTConfig* fft
                    float       *dest)
 {
     // Padded buffer
-    float* in1_padded[fft->length];
-    float* in2_padded[fft->length];
+    float in1_padded[fft->length];
+    float in2_padded[fft->length];
     
     // FFT Buffers
-    float* in1_fft[fft->length];
-    float* in2_fft[fft->length];
-    float* convolved[fft->length];
+    float in1_fft[fft->length];
+    float in2_fft[fft->length];
+    float convolved[fft->length];
 
     // Zero pad the inputs to FFT length
     FtAudioFillBuffer(in1_padded + in1_length, (fft->length - in1_length), 0.0);
     FtAudioFillBuffer(in2_padded + in2_length,  (fft->length - in2_length), 0.0);
-    FtAudioCopyBuffer(in1, in1_padded, length);
-    FtAudioCopyBuffer(in2, in2_padded, length);
+    FtAudioCopyBuffer(in1, in1_padded, in1_length);
+    FtAudioCopyBuffer(in2, in2_padded, in2_length);
     
     // Calculate FFT of the two signals
-    FtAudioFFtForwardInterleaved(fft, in1_padded, in1_fft);
+    FtAudioFFTForwardInterleaved(fft, in1_padded, in1_fft);
     FtAudioFFTForwardInterleaved(fft, in2_padded, in2_fft);
     
     // Multiply the FFTs
-    FtAudioBufferMultiply(convolved, in1_fft, in2_fft, fft->length);
+    FtAudioVectorVectorMultiply(convolved, in1_fft, in2_fft, fft->length);
     
     // Calculate IFFT of convolved signals and write to output
     FtAudioFFTInverseInterleaved(fft, convolved, dest);
-    return FT_NOERR:
+    return FT_NOERR;
     
 }
     
@@ -213,25 +215,25 @@ FtAudioFFTFilterConvolve(FtAudioFFTConfig* fft,
                    float       *dest)
 {
     // Padded buffer
-    float* in1_padded[fft->length];
+    float in1_padded[fft->length];
     
     // FFT Buffers
-    float* in1_fft[fft->length];
-    float* convolved[fft->length];
+    float in1_fft[fft->length];
+    float convolved[fft->length];
 
     // Zero pad the inputs to FFT length
     FtAudioFillBuffer(in1_padded + in1_length, (fft->length - in1_length), 0.0);
-    FtAudioCopyBuffer(in1, in1_padded, length);
+    FtAudioCopyBuffer(in1_padded, in1, in1_length);
     
     // Calculate FFT of the two signals
-    FtAudioFFtForwardInterleaved(fft, in1_padded, in1_fft);
+    FtAudioFFTForwardInterleaved(fft, in1_padded, in1_fft);
     
     // Multiply the FFTs
-    FtAudioBufferMultiply(convolved, in1_fft, in2, fft->length);
+    FtAudioVectorVectorMultiply(convolved, in1_fft, in2, fft->length);
     
     // Calculate IFFT of convolved signals and write to output
     FtAudioFFTInverseInterleaved(fft, convolved, dest);
-    return FT_NOERR:
+    return FT_NOERR;
 }
     
 
