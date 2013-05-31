@@ -41,7 +41,9 @@
 extern "C" {
 #endif
 
-	
+int
+next_pow2(int x);
+
 	
 float
 f_abs(float f);

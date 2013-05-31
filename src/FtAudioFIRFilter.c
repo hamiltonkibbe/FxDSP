@@ -7,10 +7,14 @@
 #include "FtAudioFIRFilter.h"
 #include "FtAudioDsp.h"
 #include "FtAudioUtilities.h"
-
+#include "FtAudioFFT.h"
 #include <stdlib.h>
 
-
+typedef enum _ConvolutionMode
+{
+    DIRECT  = 0,
+    FFT     = 1
+} ConvolutionMode_t;
 
 /* FtAudioFIRFilter ***********************************************************/
 struct FtAudioFIRFilter
@@ -20,6 +24,10 @@ struct FtAudioFIRFilter
     float * overlap;
     unsigned kernel_length;
     unsigned overlap_length;
+    ConvolutionMode_t conv_mode;
+    FtAudioFFTConfig *config;
+    float * fft_kernel;
+    unsigned fft_length;
 };
 
 
@@ -32,12 +40,15 @@ FtAudioFIRFilterInit(const float*   filter_kernel,
     // Array lengths and sizes
     unsigned kernel_length = length;            // IN SAMPLES!
     unsigned overlap_length = kernel_length - 1;        // IN SAMPLES!
-
+    
+    
+    
     // Allocate Memory
     FtAudioFIRFilter* filter = (FtAudioFIRFilter*)malloc(sizeof(FtAudioFIRFilter));
     float* kernel = (float*)malloc(kernel_length * sizeof(float));
     float* overlap = (float*)malloc(overlap_length * sizeof(float));
-
+   
+    
     // Initialize Buffers
     FtAudioCopyBuffer(kernel, filter_kernel, kernel_length);
     
@@ -51,6 +62,19 @@ FtAudioFIRFilterInit(const float*   filter_kernel,
     filter->overlap = overlap;
     filter->kernel_length = kernel_length;
     filter->overlap_length = overlap_length;
+    filter->fft_config = NULL;
+    filter->fft_kernel = NULL;
+    
+    if (kernel_length < USE_FFT_CONVOLUTION_LENGTH)
+    {
+        filter->conv_mode = DIRECT;
+    }
+
+    else
+    {
+        filter->conv_mode = FFT;
+    }
+    
     return filter;
 }
 
@@ -61,6 +85,8 @@ FtAudioFIRFilterFree(FtAudioFIRFilter * filter)
 {
     free(filter->kernel);
     free(filter->overlap);
+    FtAudioFFTFree(filter->fft_config);
+    free(filter->fft_kernel);
     free(filter);
     return FT_NOERR;
 }
@@ -83,24 +109,62 @@ FtAudioFIRFilterProcess(FtAudioFIRFilter* filter,
                         const float* inBuffer, 
                         unsigned n_samples)
 {
+    // Do direct convolution
+    if (filter->conv_mode == DIRECT)
+    {
+        unsigned resultLength = n_samples + (filter->kernel_length - 1);
+    
+        // Temporary buffer to store full result of filtering..
+        float buffer[resultLength];
+    
+        FtAudioConvolve((float*)inBuffer, n_samples, 
+                        filter->kernel, filter->kernel_length, buffer);
+    }
+    
+    // Otherwise do FFT Convolution
+    else
+    {
+        // Configure the FFT on the first run, that way we can figure out how
+        // long the input blocks are going to be. This makes the filter more 
+        // complicated internally in order to make the convolution transparent.
+        if (!filter->fft_config)
+        {
+            // Calculate length of FFT
+            int fft_length = next_pow2(n_samples + filter->kernel_length - 1);
+            filter->fft_config = FtAudioFFTInit(fft_length);
+            filter->fft_length = fft_length;
+            
+            // fft kernel buffers
+            float padded_kernel[fft_length];
+            float *fft_kernel = (float*)malloc(fft_length * sizeof(float));
+            
+            // Write zero padded kernel to buffer
+            FtAudioCopyBuffer(padded_kernel, filter->kernel, filter->kernel_length);
+            FtAudioFillBuffer((padded_kernel + filter->kernel_length), (fft_length - filter->kernel_length), 0.0);
+            
+            // Calculate FFT of filter kernel
+            FtAudioFFTForwardInterleaved(filter->fft_config, padded_kernel, fft_kernel);
+            filter->fft_kernel = fft_kernel;
+        }
 
-    unsigned resultLength = n_samples + (filter->kernel_length - 1);
+        
+        // Buffer for transformed input
+        float buffer[filter->fft_length];
+        
+        // Convolve
+        FtAudioFFTFilterConvolve(filter->fft, inBuffer, n_samples, filter->fft_kernel, filter->fft_length, buffer);
+    }
     
-    // Temporary buffer to store full result of filtering..
-    float buffer[resultLength];
-    
-    FtAudioConvolve((float*)inBuffer, n_samples, 
-                    filter->kernel, filter->kernel_length, buffer);
-    
+    // Overlap & add-----------------------------------
     // Add in the overlap from the last block
     FtAudioBufferAdd(buffer, filter->overlap, buffer, filter->overlap_length);
 
-                     
     // Save the overlap from this block
     FtAudioCopyBuffer(filter->overlap, buffer + n_samples, filter->overlap_length);
     
     // write output
     FtAudioCopyBuffer(outBuffer, buffer, n_samples);
+        
     return FT_NOERR;
 }
 
