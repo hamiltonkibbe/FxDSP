@@ -9,6 +9,7 @@
 #include "FtAudioUtilities.h"
 #include "FtAudioFFT.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 typedef enum _ConvolutionMode
 {
@@ -130,32 +131,36 @@ FtAudioFIRFilterProcess(FtAudioFIRFilter* filter,
         // Configure the FFT on the first run, that way we can figure out how
         // long the input blocks are going to be. This makes the filter more 
         // complicated internally in order to make the convolution transparent.
-        if (filter->fft_config == 0)
-        {
-            // Calculate length of FFT
-            int fft_length = next_pow2(n_samples + filter->kernel_length - 1);
+        // Calculate length of FFT
+        int fft_length = next_pow2(n_samples + filter->kernel_length - 1);
+        printf("\n\n\nFFT LENGTH: %d!!!!\n\n\n", fft_length);
+        if(!filter->fft_config)
             filter->fft_config = FtAudioFFTInit(fft_length);
-            filter->fft_length = fft_length;
-            
-            // fft kernel buffers
-            float padded_kernel[fft_length];
-            float *fft_kernel = (float*)malloc(fft_length * sizeof(float));
-            
-            // Write zero padded kernel to buffer
-            FtAudioCopyBuffer(padded_kernel, filter->kernel, filter->kernel_length);
-            FtAudioFillBuffer((padded_kernel + filter->kernel_length), (fft_length - filter->kernel_length), 0.0);
-            
-            // Calculate FFT of filter kernel
-            FtAudioFFTForwardInterleaved(filter->fft_config, padded_kernel, fft_kernel);
-            filter->fft_kernel = fft_kernel;
-        }
+        filter->fft_length = fft_length;
+        
+        // fft kernel buffers
+        float padded_kernel[fft_length];
+
+                    
+        // Write zero padded kernel to buffer
+        FtAudioFillBuffer(padded_kernel, fft_length, 0.0);
+        FtAudioCopyBuffer(padded_kernel + ((fft_length / 2) - (unsigned)(filter->kernel_length / 2)-1), filter->kernel, filter->kernel_length );
+                       
+        // Calculate FFT of filter kernel
+        //FtAudioFFTForwardInterleaved(filter->fft_config, (DSPComplex*)paddedkernelcomplex, (DSPComplex*)fft_kernel);
+       // filter->fft_kernel = fft_kernel;
+
+        
 
         
         // Buffer for transformed input
         float buffer[filter->fft_length];
+        FtAudioFillBuffer(buffer, filter->fft_length, 0.0);
+        FtAudioCopyBuffer(buffer, inBuffer, n_samples);
         
         // Convolve
-        FtAudioFFTFilterConvolve(filter->fft_config, (float*)inBuffer, n_samples, filter->fft_kernel, filter->fft_length, buffer);
+        FtAudioFFTConvolve(filter->fft_config, buffer, filter->fft_length, padded_kernel, filter->fft_length, buffer);
+      
         // Add in the overlap from the last block
         FtAudioBufferAdd(buffer, filter->overlap, buffer, filter->overlap_length);
         FtAudioCopyBuffer(filter->overlap, buffer + n_samples, filter->overlap_length);

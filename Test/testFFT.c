@@ -10,10 +10,14 @@
 #include "FtAudioFFT.h"
 #include <math.h>
 #include <stdio.h>
+#include "signals.h"
+#include "FtAudioDsp.h"
+#include "testFIR.h"
 
 unsigned
 runFFTTests(void)
 {
+    
     unsigned passed = 1;
 	printf("\n[FtAudioFFT] RUNNING TESTS\n");
 	
@@ -68,4 +72,25 @@ testForwardToInverseFFT()
     FtAudioFFTInverse(fft, magnitude, phase, output);
     FtAudioFFTFree(fft);
     return CompareFloatBuffers(signal, output, 64, 0.00001);
+}
+
+
+unsigned
+testFFTConvolution()
+{
+    printf("Testing FFT Convolution...");
+    float dest[15];
+    float in[3] = {1.0, 2.0, 3.0};
+    float in2[3] = {4.0,5.0,6.0};
+    FtAudioFFTConfig* fft = FtAudioFFTInit(16);
+    FtAudioFFTConvolve(fft, in, 3, in2, 3, dest);
+    return CompareFloatBuffers(dest, matlabConvolution, 15, 0.00015);
+}
+
+
+unsigned
+testFFTFilterConvolution()
+{
+    printf("Testing FFT Filter Convolution...");
+    return 0;
 }

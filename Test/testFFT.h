@@ -11,7 +11,7 @@
 
 
 #include "test.h"
-#define NUMBER_OF_FFT_TESTS (2)
+#define NUMBER_OF_FFT_TESTS (4)
 
 unsigned
 runFFTTests(void);
@@ -22,10 +22,18 @@ testForwardFFTAgainstMatlab();
 unsigned
 testForwardToInverseFFT();
 
+unsigned
+testFFTConvolution();
+
+unsigned
+testFFTFilterConvolution();
+
 static const testFunction fftTests[NUMBER_OF_FFT_TESTS] =
 {
     &testForwardFFTAgainstMatlab,
-    &testForwardToInverseFFT
+    &testForwardToInverseFFT,
+    &testFFTConvolution,
+    &testFFTFilterConvolution
 };
 
 // >> y = single(abs(fft(linspace(1,64,64))));
@@ -66,7 +74,7 @@ static const float matlabMagnitude[32] =
     3.2038593e+01
 };
 
-// >> y = single(angle(fft(linspace(1,64,64))));
+// >> y = single(angle(fft(linspace(1,64,64))))(1:32)';
 // >> y(1:32)'
 static const float matlabPhase[32] =
 {
@@ -103,4 +111,27 @@ static const float matlabPhase[32] =
     3.0434179,
     3.0925052
 };
+
+// >> x = [1,2,3,0,0,0,0,0];
+// >> y = [4,5,6,0,0,0,0,0]
+// >> conv(x,y)
+static const float matlabConvolution[15] =
+{
+    4.0,
+    13.0,
+    28.0,
+    27.0,
+    18.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+};
+
 #endif

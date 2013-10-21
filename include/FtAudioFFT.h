@@ -80,8 +80,8 @@ FtAudioFFTForward(FtAudioFFTConfig*     fft,
  */
 FtAudioError_t
 FtAudioFFTForwardInterleaved(FtAudioFFTConfig*     fft,
-                             const float*          inBuffer,
-                             float*                out);
+                             DSPComplex*            inBuffer,
+                             DSPComplex*                out);
                   
                   
              
@@ -140,7 +140,7 @@ FtAudioFFTConvolve(FtAudioFFTConfig* fft,
 /** Perform Convolution using FFT*
  * @details Convolve in1 with IFFT(in2) and write results to dest.
  *          This takes an already transformed kernel as the second argument, to
- *          be used in an TI filter, where the FFT of the kernel can be pre-
+ *          be used in an LTI filter, where the FFT of the kernel can be pre-
  *          calculated.
  * @param in1           First input to convolve.
  * @param in1_length    Length [samples] of in1.
@@ -157,6 +157,13 @@ FtAudioFFTFilterConvolve(FtAudioFFTConfig*  fft,
                          float*             in2, 
                          unsigned           in2_length, 
                          float*             dest);
+
+    
+    
+    
+FtAudioError_t
+FtAudioFFTdemo(FtAudioFFTConfig * fft,
+                   float*           buffer);
 
 
     

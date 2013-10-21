@@ -15,7 +15,7 @@ extern "C" {
 #endif
 
 /** The kernel length at which to use FFT convolution vs direct */
-#define USE_FFT_CONVOLUTION_LENGTH (512)
+#define USE_FFT_CONVOLUTION_LENGTH (1024)
 
 
 /** Opaque FtAudioFIRFilter structure */
