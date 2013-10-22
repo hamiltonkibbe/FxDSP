@@ -79,11 +79,25 @@ FtAudioFFTForward(FtAudioFFTConfig*     fft,
  * @return          Error code, 0 on success.
  */
 FtAudioError_t
-FtAudioFFTForwardInterleaved(FtAudioFFTConfig*     fft,
-                             DSPComplex*            inBuffer,
-                             DSPComplex*                out);
+FtAudioFFTForwardInterleaved(FtAudioFFTConfig*  fft,
+                             DSPComplex*        in_buffer,
+                             DSPComplex*        out);
                   
-                  
+/** Calculate Real Forward FFT
+ *
+ * @details Calculates the magnitude and phase of the real forward FFT of the
+ *          data in inBuffer. 
+ *
+ * @param fft       Pointer to the FFT configuration.
+ * @param inBuffer  Input data. should be the same size as the fft.
+ * @param out       Allocated DSPSPlitComplex
+ * @return          Error code, 0 on success.
+ */
+FtAudioError_t
+FtAudioFFTForwardSplit(FtAudioFFTConfig*    fft,
+                       DSPComplex*          in_buffer,
+                       DSPSplitComplex*     out);
+    
              
 /** Calculate Real Inverse FFT
  *
@@ -118,6 +132,22 @@ FtAudioFFTInverseInterleaved(FtAudioFFTConfig*     fft,
                              const float*          inBuffer,
                               float*                outBuffer);
 
+/** Calculate Real Inverse FFT
+*
+* @details Calculates the real inverse FFT of the split-complex data in in_buffer
+*
+* @param fft       Pointer to the FFT configuration.
+* @param in_buffer  interleaved real/imaginary input buffer. length same as fft.
+* @param out_buffer Allocated buffer where the ifft will be written. length
+*                  should be the same as the fft size.
+* @return          Error code, 0 on success.
+*/
+FtAudioError_t
+FtAudioFFTInverseSplit(FtAudioFFTConfig*     fft,
+                       DSPSplitComplex*      in_buffer,
+                       DSPComplex*           out_buffer);
+    
+    
 /** Perform Convolution using FFT*
  * @details convolve in1 with in2 and write results to dest
  * @param in1           First input to convolve.
@@ -138,14 +168,13 @@ FtAudioFFTConvolve(FtAudioFFTConfig* fft,
 
                    
 /** Perform Convolution using FFT*
- * @details Convolve in1 with IFFT(in2) and write results to dest.
+ * @details Convolve in1 with IFFT(fft_ir) and write results to dest.
  *          This takes an already transformed kernel as the second argument, to
  *          be used in an LTI filter, where the FFT of the kernel can be pre-
  *          calculated.
  * @param in1           First input to convolve.
  * @param in1_length    Length [samples] of in1.
- * @param in2           Second input to convolve (Already FFT'ed).
- * @param in2_length    Length[samples] of second input.
+ * @param fft_ir        Second input to convolve (Already FFT'ed).
  * @param dest          Output buffer. needs to be of length 
  *                      in1_length + in2_length - 1
  * @return              Error code.
@@ -154,8 +183,7 @@ FtAudioError_t
 FtAudioFFTFilterConvolve(FtAudioFFTConfig*  fft,
                          float*             in1,
                          unsigned           in1_length, 
-                         float*             in2, 
-                         unsigned           in2_length, 
+                         DSPSplitComplex    fft_ir,
                          float*             dest);
 
     

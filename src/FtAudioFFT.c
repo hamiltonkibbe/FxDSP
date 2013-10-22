@@ -18,6 +18,7 @@ struct FtAudioFFTConfig
     float           scale;
     float           log2n;
     DSPSplitComplex split;
+    DSPSplitComplex split2;
     FFTSetup        setup;
 };
 
@@ -29,8 +30,13 @@ FtAudioFFTInit(unsigned length)
     fft->length = length;
     fft->scale = 1.0 / (fft->length);
     fft->log2n = log2f(fft->length);
-    fft->split.realp = (float*)malloc((fft->length / 2) * sizeof(float));
-    fft->split.imagp = (float*)malloc((fft->length / 2) * sizeof(float));
+    
+    // Store these consecutively in memory
+    fft->split.realp = (float*)malloc(fft->length * sizeof(float));
+    fft->split2.realp = (float*)malloc(fft->length * sizeof(float));
+    fft->split.imagp = fft->split.realp + (fft->length / 2);
+    fft->split2.imagp = fft->split2.realp + (fft->length / 2);
+    
     fft->setup = vDSP_create_fftsetup(fft->log2n, FFT_RADIX2);
     return fft;
 }
@@ -42,7 +48,7 @@ FtAudioFFTFree(FtAudioFFTConfig* fft)
 {
     
     free(fft->split.realp);
-    free(fft->split.imagp);
+    free(fft->split2.realp);
     vDSP_destroy_fftsetup(fft->setup);
     return FT_NOERR;
 }
@@ -97,6 +103,21 @@ FtAudioFFTForwardInterleaved(FtAudioFFTConfig*      fft,
 }
 
 
+FtAudioError_t
+FtAudioFFTForwardSplit(FtAudioFFTConfig*    fft,
+                       DSPComplex*          in_buffer,
+                       DSPSplitComplex*      out)
+{
+    // convert real input to split complex
+    vDSP_ctoz((DSPComplex*)in_buffer, 2, out, 1, (fft->length/2));
+    
+    // Calculate FFT of the two signals
+    vDSP_fft_zrip(fft->setup, out, 1, fft->log2n, FFT_FORWARD);
+    
+    return FT_NOERR;
+}
+
+
 
 
 FtAudioError_t
@@ -144,6 +165,16 @@ FtAudioFFTInverseInterleaved(FtAudioFFTConfig*     fft,
 
 }
 
+FtAudioError_t
+FtAudioFFTInverseSplit(FtAudioFFTConfig*     fft,
+                       DSPSplitComplex*      in_buffer,
+                       DSPComplex*           out_buffer)
+{
+    vDSP_fft_zrip(fft->setup, in_buffer, 1, fft->log2n, FFT_INVERSE);
+    vDSP_ztoc(in_buffer, 1, (DSPComplex*)out_buffer, 2, fft->length/2);
+    
+    return FT_NOERR;
+}
 
 FtAudioError_t
 FtAudioFFTConvolve(FtAudioFFTConfig* fft,
@@ -153,81 +184,50 @@ FtAudioFFTConvolve(FtAudioFFTConfig* fft,
                    unsigned    in2_length, 
                    float       *dest)
 {
-    // Padded buffer
+    // Padded input buffers
     float in1_padded[fft->length];
     float in2_padded[fft->length];
     
-    // Allocate & initialize FFT Buffers
-    DSPSplitComplex fft1;
-    DSPSplitComplex fft2;
+    //  Allocate & initialize FFT Buffers
+    //  real and imaginary parts are consecutive in memory so we can zero both
+    //  with a single pass
+    FtAudioFillBuffer(fft->split.realp, fft->length, 0.0);
+    FtAudioFillBuffer(fft->split2.realp, fft->length, 0.0);
     
-    // Set these up as consecutive buffers
-    //float real1[fft->length/2];
-    //float real2[fft->length/2];
-    //float imag1[fft->length/2];
-    //float imag2[fft->length/2];
-    float buf1[fft->length];
-    float buf2[fft->length];
-    
-    //fft1.realp = real1;
-    //fft2.realp = real2;
-    //fft1.imagp = imag1;
-    //ft2.imagp = imag2;
-    fft1.realp = buf1;
-    fft2.realp = buf2;
-    fft1.imagp = buf1 + (fft->length/2);
-    fft2.imagp = buf2 + (fft->length/2);
-    
-    
-    
-    // So we can do this more efficiently
-    //FtAudioFillBuffer(fft1.realp, fft->length/2, 0.0);
-    //FtAudioFillBuffer(fft2.realp, fft->length/2, 0.0);
-    //FtAudioFillBuffer(fft1.imagp, fft->length/2, 0.0);
-    //FtAudioFillBuffer(fft2.imagp, fft->length/2, 0.0);
-    FtAudioFillBuffer(fft1.realp, fft->length, 0.0);
-    FtAudioFillBuffer(fft1.realp, fft->length, 0.0);
-    
-    // Zero pad the inputs to FFT length
+    // Zero pad the input buffers to FFT length
     FtAudioFillBuffer(in1_padded,fft->length, 0.0);
     FtAudioFillBuffer(in2_padded,fft->length, 0.0);
-    
     FtAudioCopyBuffer(in1_padded, in1, in1_length);
     FtAudioCopyBuffer(in2_padded, in2, in2_length);
     
-    // Interleaved to split-complex
-    vDSP_ctoz((DSPComplex*)in1_padded, 2, &fft1, 1, (fft->length/2));
-    vDSP_ctoz((DSPComplex*)in2_padded, 2, &fft2, 1, (fft->length/2));
-
    
     //Calculate FFT of the two signals
-    vDSP_fft_zrip(fft->setup, &fft1, 1, fft->log2n, FFT_FORWARD);
-    vDSP_fft_zrip(fft->setup, &fft2, 1, fft->log2n, FFT_FORWARD);
-
+    FtAudioFFTForwardSplit(fft, (DSPComplex*)in1_padded, &fft->split);
+    FtAudioFFTForwardSplit(fft, (DSPComplex*)in2_padded, &fft->split2);
     
-    // Store value at Nyquist. the FFT packs the real value at nyquist into the
+    
+    // Store Nyquist value. the FFT packs the real value at nyquist into the
     // imaginary DC location because DC phase is explicitly zero. We need to
     // store the nyquist value for later because this format doesn't work with
     // vDSP_zvmul
-    float in1_nyquist = fft1.imagp[0];
-    float in2_nyquist = fft2.imagp[0];
+    float in1_nyquist = fft->split.imagp[0];
+    float in2_nyquist = fft->split2.imagp[0];
     
     // Set these phase components to a zvmul-friendly 0.0!
-    fft1.imagp[0] = 0.0;
-    fft2.imagp[0] = 0.0;
+    fft->split.imagp[0] = 0.0;
+    fft->split2.imagp[0] = 0.0;
     
     // Multiply The two FFTs
-    vDSP_zvmul(&fft1, 1, &fft2, 1, &fft1, 1, fft->length/2, 1);
+    vDSP_zvmul(&fft->split, 1, &fft->split2, 1, &fft->split, 1, fft->length/2, 1);
     
     // And do the nyquist multiplication ourselves!
-    fft1.imagp[0] = in1_nyquist * in2_nyquist;
+    fft->split.imagp[0] = in1_nyquist * in2_nyquist;
     
-    // Do the inverse FFT and convert the split complex output to real!
-    vDSP_fft_zrip(fft->setup, &fft1, 1, fft->log2n, FFT_INVERSE);
-    vDSP_ztoc(&fft1, 1, (DSPComplex*)dest, 2, fft->length/2);
+    // Do the inverse FFT
+    FtAudioFFTInverseSplit(fft, &fft->split, (DSPComplex*)dest);
     
     // Scale the output
-    float scale = 1.0/(4.0 * fft->length);
+    float scale = (fft->scale / 4.0);
     vDSP_vsmul(dest, 1, &scale, dest, 1, fft->length/2);
     
     return FT_NOERR;
@@ -236,32 +236,48 @@ FtAudioFFTConvolve(FtAudioFFTConfig* fft,
 
 
 FtAudioError_t
-FtAudioFFTFilterConvolve(FtAudioFFTConfig* fft,
-                   float       *in1, 
-                   unsigned    in1_length, 
-                   float       *in2, 
-                   unsigned    in2_length, 
-                   float       *dest)
+FtAudioFFTFilterConvolve(FtAudioFFTConfig*  fft,
+                         float*             in,
+                         unsigned           in_length,
+                         DSPSplitComplex    fft_ir,
+                         float*             dest)
 {
     // Padded buffer
-    float in1_padded[fft->length];
+    float in_padded[fft->length];
     
-    // FFT Buffers
-    float in1_fft[fft->length];
-    float convolved[fft->length];
+    // Zero pad the input to FFT length
+    FtAudioFillBuffer(in_padded,fft->length, 0.0);
+    FtAudioCopyBuffer(in_padded, in, in_length);
+    
+    // Calculate FFT of the input
+    FtAudioFFTForwardSplit(fft, (DSPComplex*)in_padded, &fft->split);
+   
+    // Store Nyquist value. the FFT packs the real value at nyquist into the
+    // imaginary DC location because DC phase is explicitly zero. We need to
+    // store the nyquist value for later because this format doesn't work with
+    // vDSP_zvmul
+    float in_nyquist = fft->split.imagp[0];
+    float ir_nyquist = fft_ir.imagp[0];
+    
+    // Set these phase components to a zvmul-friendly 0.0!
+    fft->split.imagp[0] = 0.0;
+    fft_ir.imagp[0] = 0.0;
+    
+    // Multiply The two FFTs
+    vDSP_zvmul(&fft->split, 1, &fft_ir, 1, &fft->split, 1, fft->length/2, 1);
+    
+    // And do the nyquist multiplication ourselves!
+    fft->split.imagp[0] = in_nyquist * ir_nyquist;
+    
+    // Do the inverse FFT and convert the split complex output to real
+    vDSP_fft_zrip(fft->setup, &fft->split, 1, fft->log2n, FFT_INVERSE);
+    vDSP_ztoc(&fft->split, 1, (DSPComplex*)dest, 2, fft->length/2);
+    
+    // Scale the output
+    float scale = (fft->scale / 4.0);
+    vDSP_vsmul(dest, 1, &scale, dest, 1, fft->length/2);
+    
 
-    // Zero pad the inputs to FFT length
-    FtAudioFillBuffer(in1_padded + in1_length, (fft->length - in1_length), 0.0);
-    FtAudioCopyBuffer(in1_padded, in1, in1_length);
-    
-    // Calculate FFT of the two signals
-    FtAudioFFTForwardInterleaved(fft, (DSPComplex*)in1_padded, (DSPComplex*)in1_fft);
-    
-    // Multiply the FFTs
-    FtAudioVectorVectorMultiply(convolved, in1_fft, in2, fft->length);
-    
-    // Calculate IFFT of convolved signals and write to output
-    FtAudioFFTInverseInterleaved(fft, convolved, dest);
     return FT_NOERR;
 }
     

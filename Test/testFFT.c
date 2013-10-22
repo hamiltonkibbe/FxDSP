@@ -92,5 +92,21 @@ unsigned
 testFFTFilterConvolution()
 {
     printf("Testing FFT Filter Convolution...");
+    float in[3] = {1.0, 2.0, 3.0};
+    float in2[3] = {4.0,5.0,6.0};
+    FtAudioFFTConfig* fft = FtAudioFFTInit(16);
+    float padded[16];
+    float dest[16];
+    FtAudioFillBuffer(padded, 16, 0.0);
+    FtAudioCopyBuffer(padded, in2, 3);
+   
+    DSPSplitComplex splitcomplex;
+    splitcomplex.realp = (float*) malloc(16 * sizeof(float));
+    splitcomplex.imagp = splitcomplex.realp + 8;
+    
+    //FtAudioFillBuffer(splitcomplex.realp, 16, 0.0);
+    FtAudioFFTForwardSplit(fft, (DSPComplex*)padded, &splitcomplex);
+    FtAudioFFTFilterConvolve(fft, in, 3, splitcomplex, dest);
+    return CompareFloatBuffers(dest, matlabConvolution, 15, 0.00015);
     return 0;
 }
