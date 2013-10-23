@@ -81,10 +81,10 @@ testFFTConvolution()
     printf("Testing FFT Convolution...");
     float dest[15];
     float in[3] = {1.0, 2.0, 3.0};
-    float in2[3] = {4.0,5.0,6.0};
+    float in2[4] = {4.0,5.0,6.0, 7};
     FtAudioFFTConfig* fft = FtAudioFFTInit(16);
-    FtAudioFFTConvolve(fft, in, 3, in2, 3, dest);
-    return CompareFloatBuffers(dest, matlabConvolution, 15, 0.00015);
+    FtAudioFFTConvolve(fft, in, 3, in2, 4, dest);
+    return CompareFloatBuffers(dest, matlabConvolution, 15, 0.00025);
 }
 
 
@@ -93,12 +93,12 @@ testFFTFilterConvolution()
 {
     printf("Testing FFT Filter Convolution...");
     float in[3] = {1.0, 2.0, 3.0};
-    float in2[3] = {4.0,5.0,6.0};
+    float in2[4] = {4.0,5.0,6.0,7};
     FtAudioFFTConfig* fft = FtAudioFFTInit(16);
     float padded[16];
     float dest[16];
     FtAudioFillBuffer(padded, 16, 0.0);
-    FtAudioCopyBuffer(padded, in2, 3);
+    FtAudioCopyBuffer(padded, in2, 4);
    
     DSPSplitComplex splitcomplex;
     splitcomplex.realp = (float*) malloc(16 * sizeof(float));
@@ -107,6 +107,6 @@ testFFTFilterConvolution()
     //FtAudioFillBuffer(splitcomplex.realp, 16, 0.0);
     FtAudioFFTForwardSplit(fft, (DSPComplex*)padded, &splitcomplex);
     FtAudioFFTFilterConvolve(fft, in, 3, splitcomplex, dest);
-    return CompareFloatBuffers(dest, matlabConvolution, 15, 0.00015);
+    return CompareFloatBuffers(dest, matlabConvolution, 15, 0.00025);
     return 0;
 }
