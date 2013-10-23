@@ -18,14 +18,14 @@ unsigned
 testFIRFilterAgainstMatlab(void)
 {
     printf("Testing filter results against matlab...");
-    float output[100] = {};
-	
+    float output[100];
+
 	// Set up
     FtAudioFIRFilter *theFilter = FtAudioFIRFilterInit(MatlabFilter, 21);
-	
-	// Process
+   
+    // Process
     FtAudioFIRFilterProcess(theFilter, output, MatlabSignal, 100);
-	
+
 	// Tear down
     FtAudioFIRFilterFree(theFilter);
 

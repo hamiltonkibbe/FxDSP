@@ -9,7 +9,6 @@
 #include "FtAudioUtilities.h"
 #include "FtAudioFFT.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 typedef enum _ConvolutionMode
 {
