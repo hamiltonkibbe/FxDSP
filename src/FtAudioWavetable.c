@@ -77,7 +77,7 @@ FtAudioWavetableInit(WaveType_t type, float sampleRate)
         wavetable->table_frequencies[freq_idx] = frequency;
         
         // Generate the table
-        wavetable->wavetables[freq_idx] = wavetableGenerators[type](frequency, sampleRate, (wavetable->table_sizes + freq_idx));
+        wavetable->wavetables[freq_idx] = wavetableGenerators[type](frequency, sampleRate, *(wavetable->table_sizes + freq_idx));
     }
     return wavetable;
 }
@@ -103,7 +103,7 @@ FtAudioCustomWavetableInit(WavetableGenerator generator, const char* waveName, f
         wavetable->table_frequencies[freq_idx] = frequency;
         
         // Generate the table
-        wavetable->wavetables[freq_idx] = generator(frequency, sampleRate, (wavetable->table_sizes + freq_idx));
+        wavetable->wavetables[freq_idx] = generator(frequency, sampleRate, *(wavetable->table_sizes + freq_idx));
     }
     return wavetable;
 }
@@ -122,7 +122,7 @@ FtAudioWavetableFree(FtAudioWavetable *table)
 
 
 float *
-generateSquareTable(float frequency, float sampleRate, unsigned *length)
+generateSquareTable(float frequency, float sampleRate, unsigned length)
 {
     // Pre-calculate some shiz
     float fNyquist = sampleRate / 2;
@@ -155,7 +155,7 @@ generateSquareTable(float frequency, float sampleRate, unsigned *length)
 
 
 float *
-generateSawTable(float frequency, float sampleRate,unsigned *length)
+generateSawTable(float frequency, float sampleRate,unsigned length)
 {
     // Pre-calculate some shiz
     float fNyquist = sampleRate / 2;
@@ -187,7 +187,7 @@ generateSawTable(float frequency, float sampleRate,unsigned *length)
 
 
 float *
-generateTriangleTable(float frequency, float sampleRate, unsigned *length)
+generateTriangleTable(float frequency, float sampleRate, unsigned length)
 {
     // Pre-calculate some shiz
     float fNyquist = sampleRate / 2;

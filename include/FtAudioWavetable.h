@@ -23,7 +23,7 @@ extern "C" {
 typedef struct FtAudioWavetable FtAudioWavetable;
 
 /** wavetable Generator function pointer */
-typedef float* (*WavetableGenerator)(float,float,unsigned *);
+typedef float* (*WavetableGenerator)(float,float,unsigned );
 
 
 typedef enum _WaveType_t
@@ -50,13 +50,13 @@ FtAudioWavetableFree(FtAudioWavetable *table);
 
 
 float *
-generateSawTable(float frequency, float sampleRate, unsigned *length);
+generateSawTable(float frequency, float sampleRate, unsigned length);
 
 float *
-generateSquareTable(float frequency, float sampleRate, unsigned *length);
+generateSquareTable(float frequency, float sampleRate, unsigned length);
 
 float *
-generateTriangleTable(float frequency, float sampleRate, unsigned *length);
+generateTriangleTable(float frequency, float sampleRate, unsigned length);
 
     
 #ifdef __cplusplus
