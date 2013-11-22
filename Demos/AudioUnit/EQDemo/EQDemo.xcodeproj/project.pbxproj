@@ -13,7 +13,8 @@
 		0AA44B9C09D8D67C00AE6679 /* EQDemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AA44B9B09D8D67C00AE6679 /* EQDemo.cpp */; };
 		37678DF9183C4DA10049E87F /* EQDemoVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 37678DF8183C4DA10049E87F /* EQDemoVersion.h */; };
 		37678F81183C67FC0049E87F /* EQDemo.component in Copy Files */ = {isa = PBXBuildFile; fileRef = 8D01CCD20486CAD60068D4B7 /* EQDemo.component */; };
-		37CFF373183DC8440084DAC9 /* FutureTechAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37CFF372183DC8440084DAC9 /* FutureTechAudio.framework */; };
+		379784DA183EFA31008AED79 /* libFutureTechAudioStatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 379784D9183EFA31008AED79 /* libFutureTechAudioStatic.a */; };
+		379784DC183EFA4B008AED79 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379784DB183EFA4B008AED79 /* Accelerate.framework */; };
 		82FE269315DC41D800C22322 /* AUBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82FE265B15DC41D800C22322 /* AUBase.cpp */; };
 		82FE269415DC41D800C22322 /* AUBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 82FE265C15DC41D800C22322 /* AUBase.h */; };
 		82FE269715DC41D800C22322 /* AUInputElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82FE265F15DC41D800C22322 /* AUInputElement.cpp */; };
@@ -90,7 +91,9 @@
 		32BAE0B30371A71500C91783 /* EQDemo_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQDemo_Prefix.pch; sourceTree = "<group>"; };
 		37678DF8183C4DA10049E87F /* EQDemoVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQDemoVersion.h; sourceTree = "<group>"; };
 		37910620183C8B8100A89AD8 /* FutureTechAudioFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FutureTechAudioFramework.framework; path = "../../../../../../Library/Developer/Xcode/DerivedData/FutureTechAudio-afjfzryzrpxyoncijjmohkloyzbv/Build/Products/Debug/FutureTechAudioFramework.framework"; sourceTree = "<group>"; };
-		37CFF372183DC8440084DAC9 /* FutureTechAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = file; name = FutureTechAudio.framework; path = ../../../../../FutureTechAudio/build/Debug/FutureTechAudio.framework; sourceTree = "<group>"; };
+		379784D9183EFA31008AED79 /* libFutureTechAudioStatic.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFutureTechAudioStatic.a; path = "../../../../../../Library/Developer/Xcode/DerivedData/FutureTechAudio-afjfzryzrpxyoncijjmohkloyzbv/Build/Products/Debug/libFutureTechAudioStatic.a"; sourceTree = "<group>"; };
+		379784DB183EFA4B008AED79 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		37CFF372183DC8440084DAC9 /* FutureTechAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FutureTechAudio.framework; path = ../../../../../FutureTechAudio/build/Debug/FutureTechAudio.framework; sourceTree = "<group>"; };
 		82FE265B15DC41D800C22322 /* AUBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AUBase.cpp; sourceTree = "<group>"; };
 		82FE265C15DC41D800C22322 /* AUBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUBase.h; sourceTree = "<group>"; };
 		82FE265D15DC41D800C22322 /* AUDispatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AUDispatch.cpp; sourceTree = "<group>"; };
@@ -159,7 +162,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37CFF373183DC8440084DAC9 /* FutureTechAudio.framework in Frameworks */,
+				379784DA183EFA31008AED79 /* libFutureTechAudioStatic.a in Frameworks */,
+				379784DC183EFA4B008AED79 /* Accelerate.framework in Frameworks */,
 				0AA44A2909D88B2500AE6679 /* CoreServices.framework in Frameworks */,
 				0AA44A2E09D88B5E00AE6679 /* AudioToolbox.framework in Frameworks */,
 				0AA44A2C09D88B4400AE6679 /* AudioUnit.framework in Frameworks */,
@@ -172,6 +176,8 @@
 		089C166AFE841209C02AAC07 /* TremoloUnit */ = {
 			isa = PBXGroup;
 			children = (
+				379784DB183EFA4B008AED79 /* Accelerate.framework */,
+				379784D9183EFA31008AED79 /* libFutureTechAudioStatic.a */,
 				37CFF372183DC8440084DAC9 /* FutureTechAudio.framework */,
 				37910620183C8B8100A89AD8 /* FutureTechAudioFramework.framework */,
 				08FB77ADFE841716C02AAC07 /* Source */,

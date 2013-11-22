@@ -32,9 +32,29 @@ FtAudioCircularBuffer*
 FtAudioCircularBufferInit(unsigned length);
 
 
+/** Free Heap Memory associated with FtAudioCircularBuffer
+*
+* @details Frees memory allocated by FtAudioCircularBufferInit
+*/
+void
+FtAudioCircularBufferFree(FtAudioCircularBuffer* cb);
+    
+    
+/** Write samples to circular buffer
+*/
+void
+FtAudioCircularBufferWrite(FtAudioCircularBuffer* cb, const float* src, unsigned n_samples);
 
+/** Read samples from circular buffer
+ */
+void
+FtAudioCircularBufferRead(FtAudioCircularBuffer* cb, float* dest, unsigned n_samples);
 
-
+/** Flush circular buffer
+ */
+void
+FtAudioCircularBufferFlush(FtAudioCircularBuffer* cb);
+    
 #ifdef __cplusplus
 }
 #endif

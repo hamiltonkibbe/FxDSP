@@ -5,6 +5,7 @@
  */
 
 #include "FtAudioRBJFilter.h"
+#include "FtAudioDsp.h"
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -35,9 +36,13 @@ FtAudioRBJFilterUpdate(FtAudioRBJFilter* filter);
 static FtAudioError_t
 FtAudioRBJFilterUpdate(FtAudioRBJFilter* filter)
 {
+    filter->cosOmega = cos(filter->omega);
+	filter->sinOmega = sin(filter->omega);
+    
 	switch (filter->type)
 	{
 	case RBJ_LPF:
+        filter->alpha = filter->sinOmega / (2.0 * filter->Q);
 		filter->b[0] = (1 - filter->cosOmega) / 2;
 		filter->b[1] = 1 - filter->cosOmega;
 		filter->b[2] = filter->b[0];
@@ -47,6 +52,7 @@ FtAudioRBJFilterUpdate(FtAudioRBJFilter* filter)
 		break;
 
 	case RBJ_HPF:
+        filter->alpha = filter->sinOmega / (2.0 * filter->Q);
 		filter->b[0] = (1 + filter->cosOmega) / 2;
 		filter->b[1] = -(1 + filter->cosOmega);
 		filter->b[2] = filter->b[0];
@@ -56,6 +62,8 @@ FtAudioRBJFilterUpdate(FtAudioRBJFilter* filter)
 		break;
 
 	case RBJ_BPF:
+        filter->alpha = filter->sinOmega * sinhf(logf(2.0) / 2.0 * \
+            filter->Q * filter->omega/filter->sinOmega);
 		filter->b[0] = filter->sinOmega / 2;
 		filter->b[1] = 0;
 		filter->b[2] = -filter->b[0];
@@ -65,6 +73,7 @@ FtAudioRBJFilterUpdate(FtAudioRBJFilter* filter)
 		break;
 
 	case RBJ_APF:
+        filter->alpha = filter->sinOmega / (2.0 * filter->Q);
 		filter->b[0] = 1 - filter->alpha;
 		filter->b[1] = -2 * filter->cosOmega;
 		filter->b[2] = 1 + filter->alpha;
@@ -74,6 +83,8 @@ FtAudioRBJFilterUpdate(FtAudioRBJFilter* filter)
 		break;
 
 	case RBJ_NOTCH:
+        filter->alpha = filter->sinOmega * sinhf(logf(2.0) / 2.0 * \
+            filter->Q * filter->omega/filter->sinOmega);
 		filter->b[0] = 1;
 		filter->b[1] = -2 * filter->cosOmega;
 		filter->b[2] = 1;
@@ -83,6 +94,8 @@ FtAudioRBJFilterUpdate(FtAudioRBJFilter* filter)
 		break;
 
 	case RBJ_PEAK:
+        filter->alpha = filter->sinOmega * sinhf(logf(2.0) / 2.0 * \
+            filter->Q * filter->omega/filter->sinOmega);
 		filter->b[0] = 1 + (filter->alpha * filter->A);
 		filter->b[1] = -2 * filter->cosOmega;
 		filter->b[2] = 1 - (filter->alpha * filter->A);
@@ -92,17 +105,53 @@ FtAudioRBJFilterUpdate(FtAudioRBJFilter* filter)
 		break;
 
 	case RBJ_LSHELF:
+        filter->alpha = filter->sinOmega / 2.0 * sqrt( (filter->A + 1.0 / \
+            filter->A) * (1.0 / filter->Q - 1.0) + 2.0);
+        filter->b[0] = filter->A * ((filter->A + 1) - ((filter->A - 1) *       \
+            filter->cosOmega) + (2 * sqrtf(filter->A) * filter->alpha));
+        filter->b[1] = 2 * filter->A * ((filter->A - 1) - ((filter->A + 1) *   \
+            filter->cosOmega));
+        filter->b[2] = filter->A * ((filter->A + 1) - ((filter->A - 1) *       \
+            filter->cosOmega) - (2 * sqrtf(filter->A) * filter->alpha));
+        filter->a[0] = ((filter->A + 1) + ((filter->A - 1) *                   \
+            filter->cosOmega) + (2 * sqrtf(filter->A) * filter->alpha));
+        filter->a[1] = -2 * ((filter->A - 1) + ((filter->A + 1) *              \
+            filter->cosOmega));
+        filter->a[2] = ((filter->A + 1) + ((filter->A - 1) *                   \
+            filter->cosOmega) - (2 * sqrtf(filter->A) * filter->alpha));
 		break;
 
 	case RBJ_HSHELF:
+        filter->alpha = filter->sinOmega / 2.0 * sqrt( (filter->A + 1.0 / \
+            filter->A) * (1.0 / filter->Q - 1.0) + 2.0);
+        filter->b[0] = filter->A * ((filter->A + 1) + ((filter->A - 1) *       \
+            filter->cosOmega) + (2 * sqrtf(filter->A) * filter->alpha));
+        filter->b[1] = -2 * filter->A * ((filter->A - 1) + ((filter->A + 1) *  \
+            filter->cosOmega));
+        filter->b[2] = filter->A * ((filter->A + 1) + ((filter->A - 1) *       \
+            filter->cosOmega) - (2 * sqrtf(filter->A) * filter->alpha));
+        filter->a[0] = ((filter->A + 1) - ((filter->A - 1) *                   \
+            filter->cosOmega) + (2 * sqrtf(filter->A) * filter->alpha));
+        filter->a[1] = 2 * ((filter->A - 1) - ((filter->A + 1) *               \
+            filter->cosOmega));
+        filter->a[2] = ((filter->A + 1) - ((filter->A - 1) *                   \
+            filter->cosOmega) - (2 * sqrtf(filter->A) * filter->alpha));
 		break;
 
 	default:
 		return FT_ERR;
 		break;
 	}
-
-    FtAudioBiquadFilterUpdateKernel(filter->biquad, filter->b, filter->a);
+    
+    // Normalize filter coefficients
+    float factor = 1.0 / filter->a[0];
+    float norm_a[2];
+    float norm_b[3];
+    FtAudioVectorScalarMultiply(norm_a, &filter->a[1], factor, 2);
+    FtAudioVectorScalarMultiply(norm_b, filter->b, factor, 3);
+    printf("b = [ %0.10f %0.10f %0.10f];\n", norm_b[0], norm_b[1], norm_b[2]);
+    printf("a = [ %0.10f %0.10f %0.10f];\n", 1.0, norm_a[0], norm_a[1]);
+    FtAudioBiquadFilterUpdateKernel(filter->biquad, norm_b, norm_a);
 	return FT_NOERR;
 }
 
@@ -117,48 +166,18 @@ FtAudioRBJFilterInit(RBJFilter_t type, float cutoff,long long sampleRate)
 	// Initialization
 	filter->type = type;
 	filter->omega =  HZ_TO_RAD(cutoff) / sampleRate; //hzToRadians(cutoff, sampleRate);
-	filter->cosOmega = cos(filter->omega);
-	filter->sinOmega = sin(filter->omega);
 	filter->Q = 1;
 	filter->A = 1;
 	filter->dbGain = 0;
 	filter->sampleRate = sampleRate;
 
-	// Type-specific initialization
-	switch (type)
-	{
-	case RBJ_LPF:
-		filter->alpha = filter->sinOmega/(2*filter->Q);
-		break;
-
-	case RBJ_HPF:
-		filter->alpha = filter->sinOmega/(2*filter->Q);
-		break;
-
-	case RBJ_BPF:
-		break;
-
-	case RBJ_APF:
-		filter->alpha = filter->sinOmega/(2*filter->Q);
-		break;
-
-	case RBJ_NOTCH:
-		break;
-
-	case RBJ_PEAK:
-		break;
-
-	case RBJ_LSHELF:
-		break;
-
-	case RBJ_HSHELF:
-		break;
-	default:
-		break;
-	}
 	
-	//Update Coefficients and create biquad
-    filter->biquad = FtAudioBiquadFilterInit(filter->b,filter->a);
+	// Initialize biquad
+    float b[3] = {0, 0, 0};
+    float a[2] = {0, 0};
+    filter->biquad = FtAudioBiquadFilterInit(b,a);
+    
+    // Calculate coefficients
 	FtAudioRBJFilterUpdate(filter);
 
 	return filter;
@@ -190,7 +209,7 @@ FtAudioError_t
 FtAudioRBJFilterSetCutoff(FtAudioRBJFilter* filter,
 						  float 			cutoff)
 {
-	filter->omega = HZ_TO_RAD(cutoff) / filter->sampleRate; //hzToRadians(cutoff, filter->sampleRate);
+	filter->omega = HZ_TO_RAD(cutoff) / filter->sampleRate;
 	FtAudioRBJFilterUpdate(filter);
 	return FT_NOERR;
 }

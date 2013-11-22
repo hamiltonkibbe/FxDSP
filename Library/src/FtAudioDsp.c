@@ -13,6 +13,46 @@
 #endif
 
 
+/* FtAudioFloatBufferToInt16 **************************************************/
+FtAudioError_t
+FtAudioFloatBufferToInt16(signed short* dest, const float* src, unsigned length)
+{
+#ifdef __APPLE__
+    // Use the Accelerate framework if we have it
+    vDSP_vfix16(src,1,dest,1,length);
+    
+#else
+    // Otherwise do it manually
+    unsigned i;
+    for (i = 0; i < length; ++i)
+    {
+        *dest++ = floatToInt16(*src++);
+    }
+#endif
+    return FT_NOERR;
+}
+
+
+/* FtAudioInt16BufferToFloat **************************************************/
+FtAudioError_t
+FtAudioInt16BufferToFloat(float* dest, const signed short* src, unsigned length)
+{
+#ifdef __APPLE__
+    // Use the Accelerate framework if we have it
+    vDSP_vflt16(src,1,dest,1,length);
+    
+#else
+    // Otherwise do it manually
+    unsigned i;
+    for (i = 0; i < length; ++i)
+    {
+        *dest++ = int16ToFloat(*src++);
+    }
+#endif
+    return FT_NOERR;
+}
+
+
 
 /* FtAudioFillBuffer **********************************************************/
 FtAudioError_t 
@@ -143,7 +183,7 @@ FtAudioConvolve(float       *in1,
     
     // So there's some hella weird requirement that the signal input to 
     //vDSP_conv has to be larger than (result_length + filter_length - 1),
-    // and it has to be zero-padded. What. The. Fuck!
+    // (the output vector length) and it has to be zero-padded. What. The. Fuck!
     float padded[signalLength];
     
     //float zero = 0.0;

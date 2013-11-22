@@ -17,6 +17,31 @@ extern "C" {
 #endif
 
 
+/** Convert an array of float samples to 16-bit signed
+* @details Converts array of floating point samples in [-1, 1] to signed 16-bit 
+ * samples
+*
+* @param dest       Signed samples array
+* @param src        Floating point samples to convert
+* @param length     Number of samples.
+* @return           Error code.
+*/
+FtAudioError_t
+FtAudioFloatBufferToInt16(short* dest, const float* src, unsigned length);
+ 
+    
+/** Convert an array of 16-bit signed samples to floats
+* @details Converts array of 16-bit integer samples to float samples in [-1,1]
+*
+* @param dest       floating point samples array
+* @param src        integer samples to convert
+* @param length     Number of samples.
+* @return           Error code.
+*/
+FtAudioError_t
+FtAudioInt16BufferToFloat(float* dest, const signed short* src, unsigned length);
+ 
+    
 /** Fill an array with a given value
  * @details Fill the passed array with the value passed in as value. Uses
  * a vectorized implementation if available.
@@ -29,6 +54,7 @@ extern "C" {
 FtAudioError_t
 FtAudioFillBuffer(float* dest, unsigned length, float value);
 
+    
 /** Copy an array
  * @details copy an array from src to dest
  *
@@ -39,6 +65,7 @@ FtAudioFillBuffer(float* dest, unsigned length, float value);
  */
 FtAudioError_t
 FtAudioCopyBuffer(float* dest, const float* src, unsigned length);
+    
     
 /** Add two buffers
  * @details Add values in in1  to values in in2 element-by-element and write 
