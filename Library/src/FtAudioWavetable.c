@@ -16,8 +16,8 @@
 float fs = 48000;
 float nyquist = 24000;
 
-/* FtAudioWavetable ***********************************************************/
-struct FtAudioWavetable
+/* FTA_Wavetable ***********************************************************/
+struct FTA_Wavetable
 {
     char        wave_name[64];
     WaveType_t  wave_type;
@@ -35,12 +35,12 @@ WavetableGenerator wavetableGenerators[3] =
 };
 
 
-/* FtAudioWavetableInit *******************************************************/
-FtAudioWavetable *
-FtAudioWavetableInit(WaveType_t type, float sampleRate)
+/* FTA_WavetableInit *******************************************************/
+FTA_Wavetable *
+FTA_WavetableInit(WaveType_t type, float sampleRate)
 {
     // Create a wavetable
-    FtAudioWavetable* wavetable = malloc(sizeof(FtAudioWavetable));
+    FTA_Wavetable* wavetable = malloc(sizeof(FTA_Wavetable));
     
     // set type
     wavetable->wave_type = type;
@@ -83,12 +83,12 @@ FtAudioWavetableInit(WaveType_t type, float sampleRate)
 }
 
 
-/* FtAudioCustomWavetableInit *************************************************/
-FtAudioWavetable *
-FtAudioCustomWavetableInit(WavetableGenerator generator, const char* waveName, float sampleRate)
+/* FTA_CustomWavetableInit *************************************************/
+FTA_Wavetable *
+FTA_CustomWavetableInit(WavetableGenerator generator, const char* waveName, float sampleRate)
 {
     // Create a wavetable
-    FtAudioWavetable* wavetable = malloc(sizeof(FtAudioWavetable));
+    FTA_Wavetable* wavetable = malloc(sizeof(FTA_Wavetable));
     
     // Assign wavetable type
     wavetable->wave_type = OTHER;
@@ -110,8 +110,8 @@ FtAudioCustomWavetableInit(WavetableGenerator generator, const char* waveName, f
 
 
 
-FtAudioError_t
-FtAudioWavetableFree(FtAudioWavetable *table)
+FTA_Error_t
+FTA_WavetableFree(FTA_Wavetable *table)
 {
     for (unsigned i = 0; i < NUMBER_OF_TABLES; ++i)
     {

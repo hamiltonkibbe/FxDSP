@@ -18,9 +18,9 @@
 {
     const float data[4] = {1,2,3,4};
     float out[4] = {0,0,0,0};
-    FtAudioCircularBuffer *buffer = FtAudioCircularBufferInit(7);
-    FtAudioCircularBufferWrite(buffer, data, 4);
-    FtAudioCircularBufferRead(buffer, out, 4);
+    FTA_CircularBuffer *buffer = FTA_CircularBufferInit(7);
+    FTA_CircularBufferWrite(buffer, data, 4);
+    FTA_CircularBufferRead(buffer, out, 4);
     
     for (unsigned i = 0; i < 4; ++i)
     {
@@ -32,10 +32,10 @@
 {
     const float data[4] = {1,2,3,4};
     float out[4] = {0,0,0,0};
-    FtAudioCircularBuffer *buffer = FtAudioCircularBufferInit(7);
-    FtAudioCircularBufferWrite(buffer, data, 2);
-    FtAudioCircularBufferWrite(buffer, data + 2, 2);
-    FtAudioCircularBufferRead(buffer, out, 4);
+    FTA_CircularBuffer *buffer = FTA_CircularBufferInit(7);
+    FTA_CircularBufferWrite(buffer, data, 2);
+    FTA_CircularBufferWrite(buffer, data + 2, 2);
+    FTA_CircularBufferRead(buffer, out, 4);
     
     for (unsigned i = 0; i < 4; ++i)
     {
@@ -47,13 +47,13 @@
 {
     const float data[4] = {1,2,3,4};
     float out[4] = {0,0,0,0};
-    FtAudioCircularBuffer *buffer = FtAudioCircularBufferInit(7);
-    FtAudioCircularBufferWrite(buffer, data, 4);
-    FtAudioCircularBufferWrite(buffer, data, 4);
-    FtAudioCircularBufferWrite(buffer, data, 4);
-    FtAudioCircularBufferRead(buffer, out, 4);
-    FtAudioCircularBufferRead(buffer, out, 4);
-    FtAudioCircularBufferRead(buffer, out, 4);
+    FTA_CircularBuffer *buffer = FTA_CircularBufferInit(7);
+    FTA_CircularBufferWrite(buffer, data, 4);
+    FTA_CircularBufferWrite(buffer, data, 4);
+    FTA_CircularBufferWrite(buffer, data, 4);
+    FTA_CircularBufferRead(buffer, out, 4);
+    FTA_CircularBufferRead(buffer, out, 4);
+    FTA_CircularBufferRead(buffer, out, 4);
     
     for (unsigned i = 0; i < 4; ++i)
     {

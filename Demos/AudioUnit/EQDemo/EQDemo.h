@@ -10,6 +10,7 @@
 #include "AUEffectBase.h"
 #include "EQDemoVersion.h"
 #include "FtAudioRBJFilter.h"
+#include "FtAudioOnePoleFilter.h"
 
 #if AU_DEBUG_DISPATCHER
 	#include "AUDebugDispatcher.h"
@@ -30,9 +31,9 @@ static const float kMinimumValue_Lowpass_Freq	= 20.0;
 static const float kMaximumValue_Lowpass_Freq	= 20000.0;
 
 static CFStringRef kParamName_Lowpass_Q         = CFSTR ("Lowpass Q");
-static const float kDefaultValue_Lowpass_Q      = 0.7;
-static const float kMinimumValue_Lowpass_Q      = 0.0;
-static const float kMaximumValue_Lowpass_Q      = 10.0;
+static const float kDefaultValue_Lowpass_Q      = 0.71;
+static const float kMinimumValue_Lowpass_Q      = 0.1;
+static const float kMaximumValue_Lowpass_Q      = 18.0;
 
 static CFStringRef kParamName_Highpass_Freq     = CFSTR ("Highpass Frequency");
 static const float kDefaultValue_Highpass_Freq	= 10000.0;
@@ -40,9 +41,9 @@ static const float kMinimumValue_Highpass_Freq	= 20.0;
 static const float kMaximumValue_Highpass_Freq	= 20000.0;
 
 static CFStringRef kParamName_Highpass_Q         = CFSTR ("Highpass Q");
-static const float kDefaultValue_Highpass_Q      = 0.7;
-static const float kMinimumValue_Highpass_Q      = 0.0;
-static const float kMaximumValue_Highpass_Q      = 10.0;
+static const float kDefaultValue_Highpass_Q      = 0.71;
+static const float kMinimumValue_Highpass_Q      = 0.1;
+static const float kMaximumValue_Highpass_Q      = 18.0;
 
 static CFStringRef kParamName_Stage_Type	= CFSTR ("Stage Type");
 static const int kLowpass_Stage_Type		= 1;
@@ -174,9 +175,12 @@ protected:
         virtual void Reset ();
 		
 		private:
-            FtAudioRBJFilter    *mLowpass;
-            FtAudioRBJFilter    *mHighpass;
+            FTA_RBJFilter    *mLowpass;
+            FTA_RBJFilter    *mHighpass;
+            FTA_OnePoleFilter *mLowCutoffsmoother;
+            FTA_OnePoleFilter *mHighCutoffsmoother;
             Float32             mSampleFrequency;
+        
 	};
 };
 

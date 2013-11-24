@@ -10,10 +10,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-/* FtAudioRBJFilter ***********************************************************/
-struct FtAudioRBJFilter
+/* FTA_RBJFilter ***********************************************************/
+struct FTA_RBJFilter
 {
-	FtAudioBiquadFilter* biquad;
+	FTA_BiquadFilter* biquad;
 	RBJFilter_t type;
 	float omega;
 	float Q;
@@ -28,13 +28,13 @@ struct FtAudioRBJFilter
 };
 
 
-static FtAudioError_t
-FtAudioRBJFilterUpdate(FtAudioRBJFilter* filter);
+static FTA_Error_t
+FTA_RBJFilterUpdate(FTA_RBJFilter* filter);
 
 
-/* FtAudioRBJFilterUpdate *****************************************************/
-static FtAudioError_t
-FtAudioRBJFilterUpdate(FtAudioRBJFilter* filter)
+/* FTA_RBJFilterUpdate *****************************************************/
+static FTA_Error_t
+FTA_RBJFilterUpdate(FTA_RBJFilter* filter)
 {
     filter->cosOmega = cos(filter->omega);
 	filter->sinOmega = sin(filter->omega);
@@ -147,21 +147,21 @@ FtAudioRBJFilterUpdate(FtAudioRBJFilter* filter)
     float factor = 1.0 / filter->a[0];
     float norm_a[2];
     float norm_b[3];
-    FtAudioVectorScalarMultiply(norm_a, &filter->a[1], factor, 2);
-    FtAudioVectorScalarMultiply(norm_b, filter->b, factor, 3);
-    printf("b = [ %0.10f %0.10f %0.10f];\n", norm_b[0], norm_b[1], norm_b[2]);
-    printf("a = [ %0.10f %0.10f %0.10f];\n", 1.0, norm_a[0], norm_a[1]);
-    FtAudioBiquadFilterUpdateKernel(filter->biquad, norm_b, norm_a);
+    FTA_VectorScalarMultiply(norm_a, &filter->a[1], factor, 2);
+    FTA_VectorScalarMultiply(norm_b, filter->b, factor, 3);
+    //printf("b = [ %0.10f %0.10f %0.10f];\n", norm_b[0], norm_b[1], norm_b[2]);
+    //printf("a = [ %0.10f %0.10f %0.10f];\n", 1.0, norm_a[0], norm_a[1]);
+    FTA_BiquadFilterUpdateKernel(filter->biquad, norm_b, norm_a);
 	return FT_NOERR;
 }
 
 
-/* FtAudioRBJFilterInit *******************************************************/
-FtAudioRBJFilter* 
-FtAudioRBJFilterInit(RBJFilter_t type, float cutoff,long long sampleRate)
+/* FTA_RBJFilterInit *******************************************************/
+FTA_RBJFilter* 
+FTA_RBJFilterInit(RBJFilter_t type, float cutoff,long long sampleRate)
 {	
 	// Create the filter
-	FtAudioRBJFilter* filter = (FtAudioRBJFilter*)malloc(sizeof(FtAudioRBJFilter));
+	FTA_RBJFilter* filter = (FTA_RBJFilter*)malloc(sizeof(FTA_RBJFilter));
 
 	// Initialization
 	filter->type = type;
@@ -175,72 +175,85 @@ FtAudioRBJFilterInit(RBJFilter_t type, float cutoff,long long sampleRate)
 	// Initialize biquad
     float b[3] = {0, 0, 0};
     float a[2] = {0, 0};
-    filter->biquad = FtAudioBiquadFilterInit(b,a);
+    filter->biquad = FTA_BiquadFilterInit(b,a);
     
     // Calculate coefficients
-	FtAudioRBJFilterUpdate(filter);
+	FTA_RBJFilterUpdate(filter);
 
 	return filter;
 }
 
 
-/* FtAudioRBJFilterFree *******************************************************/
-FtAudioError_t 
-FtAudioRBJFilterFree(FtAudioRBJFilter* 	filter)
+/* FTA_RBJFilterFree *******************************************************/
+FTA_Error_t 
+FTA_RBJFilterFree(FTA_RBJFilter* 	filter)
 {
-	FtAudioBiquadFilterFree(filter->biquad);
+	FTA_BiquadFilterFree(filter->biquad);
 	free(filter);
 	return FT_NOERR;
 }
 
-/* FtAudioRBJFilterSetType ****************************************************/
-FtAudioError_t 
-FtAudioRBJFilterSetType(FtAudioRBJFilter*	filter,
+/* FTA_RBJFilterSetType ****************************************************/
+FTA_Error_t 
+FTA_RBJFilterSetType(FTA_RBJFilter*	filter,
 						  RBJFilter_t 		type)
 {
 	filter->type = type;
-	FtAudioRBJFilterUpdate(filter);
+	FTA_RBJFilterUpdate(filter);
 	return FT_NOERR;
 }
 
 
-/* FtAudioRBJFilterSetCutoff **************************************************/
-FtAudioError_t 
-FtAudioRBJFilterSetCutoff(FtAudioRBJFilter* filter,
+/* FTA_RBJFilterSetCutoff **************************************************/
+FTA_Error_t 
+FTA_RBJFilterSetCutoff(FTA_RBJFilter* filter,
 						  float 			cutoff)
 {
 	filter->omega = HZ_TO_RAD(cutoff) / filter->sampleRate;
-	FtAudioRBJFilterUpdate(filter);
+	FTA_RBJFilterUpdate(filter);
 	return FT_NOERR;
 }
 
 
-/* FtAudioRBJFilterSetQ *******************************************************/
-FtAudioError_t 
-FtAudioRBJFilterSetQ(FtAudioRBJFilter* 	filter, 
+/* FTA_RBJFilterSetQ *******************************************************/
+FTA_Error_t 
+FTA_RBJFilterSetQ(FTA_RBJFilter* 	filter, 
 					 float 				Q)
 {
 	filter->Q = Q;
-	FtAudioRBJFilterUpdate(filter);
+	FTA_RBJFilterUpdate(filter);
 	return FT_NOERR;
 }
 
+/* FTA_RBJFilterSetParams **************************************************/
+FTA_Error_t
+FTA_RBJFilterSetParams(FTA_RBJFilter* filter,
+                          RBJFilter_t       type,
+                          float             cutoff,
+                          float             Q)
+{
+    filter->type = type;
+    filter->omega = HZ_TO_RAD(cutoff) / filter->sampleRate;
+    filter->Q = Q;
+    FTA_RBJFilterUpdate(filter);
+    return FT_NOERR;
+}
 
-/* FtAudioRBJFilterProcess ****************************************************/
-FtAudioError_t
-FtAudioRBJFilterProcess(FtAudioRBJFilter* 	filter,
+/* FTA_RBJFilterProcess ****************************************************/
+FTA_Error_t
+FTA_RBJFilterProcess(FTA_RBJFilter* 	filter,
 						float* 				outBuffer,
 						const float* 		inBuffer, 
 						unsigned 			n_samples)
 {
-	FtAudioBiquadFilterProcess(filter->biquad,outBuffer,inBuffer,n_samples);
+	FTA_BiquadFilterProcess(filter->biquad,outBuffer,inBuffer,n_samples);
 	return FT_NOERR;
 }
 
-/* FtAudioRBJFilterFlush ******************************************************/
-FtAudioError_t
-FtAudioRBJFilterFlush(FtAudioRBJFilter* filter)
+/* FTA_RBJFilterFlush ******************************************************/
+FTA_Error_t
+FTA_RBJFilterFlush(FTA_RBJFilter* filter)
 {
-    FtAudioBiquadFilterFlush(filter->biquad);
+    FTA_BiquadFilterFlush(filter->biquad);
     return FT_NOERR;
 }

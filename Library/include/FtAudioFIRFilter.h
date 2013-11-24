@@ -34,47 +34,47 @@ typedef enum _ConvolutionMode
 } ConvolutionMode_t;
     
     
-/** Opaque FtAudioFIRFilter structure */
-typedef struct FtAudioFIRFilter FtAudioFIRFilter;
+/** Opaque FTA_FIRFilter structure */
+typedef struct FTA_FIRFilter FTA_FIRFilter;
 
 
-/** Create a new FtAudioFIRFilter
+/** Create a new FTA_FIRFilter
  *
- * @details Allocates memory and returns an initialized FtAudioFIRFilter.
- *			Play nice and call FtAudioFIRFilterFree on the filter when you're
+ * @details Allocates memory and returns an initialized FTA_FIRFilter.
+ *			Play nice and call FTA_FIRFilterFree on the filter when you're
  *          done with it.
  *
  * @param filter_kernel     The filter coefficients. These are copied to the
  *                          filter so there is no need to keep them around.
  * @param length            The number of coefficients in filter_kernel.
  * @param convolution_mode  Convolution algorithm. Either BEST, FFT, or DIRECT.
- * @return                  An initialized FtAudioFIRFilter
+ * @return                  An initialized FTA_FIRFilter
  */
-FtAudioFIRFilter* 
-FtAudioFIRFilterInit(const float*       filter_kernel,
+FTA_FIRFilter* 
+FTA_FIRFilterInit(const float*       filter_kernel,
 					 unsigned           length,
                      ConvolutionMode_t  convolution_mode);
 
 
-/** Free memory associated with a FtAudioFIRFilter
+/** Free memory associated with a FTA_FIRFilter
  *  
- * @details release all memory allocated by FtAudioFIRFilterInit for the
+ * @details release all memory allocated by FTA_FIRFilterInit for the
  *			supplied filter.
  *
- * @param filter	FtAudioFIRFilter to free
+ * @param filter	FTA_FIRFilter to free
  * @return			Error code, 0 on success
  */ 
-FtAudioError_t 
-FtAudioFIRFilterFree(FtAudioFIRFilter* filter);
+FTA_Error_t 
+FTA_FIRFilterFree(FTA_FIRFilter* filter);
 
 
 /** Flush filter state buffer
  *  
- * @param filter	FtAudioFIRFilter to flush
+ * @param filter	FTA_FIRFilter to flush
  * @return			Error code, 0 on success
  */
-FtAudioError_t  
-FtAudioFIRFilterFlush(FtAudioFIRFilter* filter);
+FTA_Error_t  
+FTA_FIRFilterFlush(FTA_FIRFilter* filter);
 
 
 
@@ -85,14 +85,14 @@ FtAudioFIRFilterFlush(FtAudioFIRFilter* filter);
  *			128 coefficients or so
  * @TODO:	Add FFT convolution implementation for longer filters
  *
- * @param filter	The FtAudioFIRFilter to use
+ * @param filter	The FTA_FIRFilter to use
  * @param outBuffer	The buffer to write the output to
  * @param inBuffer	The buffer to filter
  * @param n_samples The number of samples to filter
  * @return			Error code, 0 on success
  */
-FtAudioError_t 
-FtAudioFIRFilterProcess(FtAudioFIRFilter*	filter, 
+FTA_Error_t 
+FTA_FIRFilterProcess(FTA_FIRFilter*	filter, 
 						float*				outBuffer, 
 						const float*		inBuffer, 
 						unsigned			n_samples);
@@ -102,12 +102,12 @@ FtAudioFIRFilterProcess(FtAudioFIRFilter*	filter,
  *  
  * @details New kernel must be the same length as the old one!
  *
- * @param filter		The FtAudioFIRFilter to use
+ * @param filter		The FTA_FIRFilter to use
  * @param filter_kernel	The new filter kernel to use
  * @return			Error code, 0 on success
  */
-FtAudioError_t  
-FtAudioFIRFilterUpdateKernel(FtAudioFIRFilter*	filter,
+FTA_Error_t  
+FTA_FIRFilterUpdateKernel(FTA_FIRFilter*	filter,
 							 const float*		filter_kernel);
 									
 

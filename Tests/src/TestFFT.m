@@ -39,9 +39,9 @@
         signal[i] = (float)i + 1.0;
     }
     
-    FtAudioFFTConfig* fft = FtAudioFFTInit(64);
-    FtAudioFFTForward(fft, signal, magnitude, phase);
-    FtAudioFFTFree(fft);
+    FTA_FFTConfig* fft = FTA_FFTInit(64);
+    FTA_FFTForward(fft, signal, magnitude, phase);
+    FTA_FFTFree(fft);
     for (unsigned i = 0; i < 32; ++i)
     {
         XCTAssertEqualWithAccuracy(magnitude[i], matlabMagnitude[i], 0.001, @"[%s FAILED] Buffer Compare failed at index %d. Got: %0.10f  Expected: %0.10f\n", __PRETTY_FUNCTION__,i, magnitude[i], matlabMagnitude[i]);
@@ -61,10 +61,10 @@
         signal[i] = sinf(((4*M_PI)/64) * i) + 0.5 * sinf(((8*M_PI)/64) * i);
     }
     
-    FtAudioFFTConfig* fft = FtAudioFFTInit(64);
-    FtAudioFFTForward(fft, signal, magnitude, phase);
-    FtAudioFFTInverse(fft, magnitude, phase, output);
-    FtAudioFFTFree(fft);
+    FTA_FFTConfig* fft = FTA_FFTInit(64);
+    FTA_FFTForward(fft, signal, magnitude, phase);
+    FTA_FFTInverse(fft, magnitude, phase, output);
+    FTA_FFTFree(fft);
     for (unsigned i = 0; i < 64; ++i)
     {
         XCTAssertEqualWithAccuracy(signal[i], output[i], 0.00001, @"[%s FAILED] Buffer Compare failed at index %d. Got: %0.10f  Expected: %0.10f\n", __PRETTY_FUNCTION__,i, signal[i], output[i]);
@@ -76,8 +76,8 @@
     float dest[15];
     float in[3] = {1.0, 2.0, 3.0};
     float in2[4] = {4.0,5.0,6.0, 7};
-    FtAudioFFTConfig* fft = FtAudioFFTInit(16);
-    FtAudioFFTConvolve(fft, in, 3, in2, 4, dest);
+    FTA_FFTConfig* fft = FTA_FFTInit(16);
+    FTA_FFTConvolve(fft, in, 3, in2, 4, dest);
     for (unsigned i = 0; i < 15; ++i)
     {
         XCTAssertEqualWithAccuracy(dest[i], matlabConvolution[i], 0.00025, @"[%s FAILED] Buffer Compare failed at index %d. Got: %0.10f  Expected: %0.10f\n", __PRETTY_FUNCTION__,i, dest[i], matlabConvolution[i]);
@@ -89,19 +89,19 @@
 
     float in[3] = {1.0, 2.0, 3.0};
     float in2[4] = {4.0,5.0,6.0,7};
-    FtAudioFFTConfig* fft = FtAudioFFTInit(16);
+    FTA_FFTConfig* fft = FTA_FFTInit(16);
     float padded[16];
     float dest[16];
-    FtAudioFillBuffer(padded, 16, 0.0);
-    FtAudioCopyBuffer(padded, in2, 4);
+    FTA_FillBuffer(padded, 16, 0.0);
+    FTA_CopyBuffer(padded, in2, 4);
     
     DSPSplitComplex splitcomplex;
     splitcomplex.realp = (float*) malloc(16 * sizeof(float));
     splitcomplex.imagp = splitcomplex.realp + 8;
     
-    //FtAudioFillBuffer(splitcomplex.realp, 16, 0.0);
-    FtAudioFFTForwardSplit(fft, (DSPComplex*)padded, &splitcomplex);
-    FtAudioFFTFilterConvolve(fft, in, 3, splitcomplex, dest);
+    //FTA_FillBuffer(splitcomplex.realp, 16, 0.0);
+    FTA_FFTForwardSplit(fft, (DSPComplex*)padded, &splitcomplex);
+    FTA_FFTFilterConvolve(fft, in, 3, splitcomplex, dest);
     for (unsigned i = 0; i < 15; ++i)
     {
         XCTAssertEqualWithAccuracy(dest[i], matlabConvolution[i], 0.00025, @"[%s FAILED] Buffer Compare failed at index %d. Got: %0.10f  Expected: %0.10f\n", __PRETTY_FUNCTION__,i, dest[i], matlabConvolution[i]);

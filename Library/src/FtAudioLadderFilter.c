@@ -14,8 +14,8 @@
 #include <stdlib.h>
 #include <math.h>
 
-/* FtAudioLadderFilter ********************************************************/
-struct FtAudioLadderFilter
+/* FTA_LadderFilter ********************************************************/
+struct FTA_LadderFilter
 {
     float y[4];
     float w[4];
@@ -26,13 +26,13 @@ struct FtAudioLadderFilter
 };
 
 
-/* FtAudioLadderFilterInit ****************************************************/
-FtAudioLadderFilter* 
-FtAudioLadderFilterInit(float _sample_rate)
+/* FTA_LadderFilterInit ****************************************************/
+FTA_LadderFilter* 
+FTA_LadderFilterInit(float _sample_rate)
 {
-	FtAudioLadderFilter *filter = (FtAudioLadderFilter*)malloc(sizeof(FtAudioLadderFilter));
-	FtAudioFillBuffer(filter->y, 4, 0.0);
-	FtAudioFillBuffer(filter->w, 4, 0.0);
+	FTA_LadderFilter *filter = (FTA_LadderFilter*)malloc(sizeof(FTA_LadderFilter));
+	FTA_FillBuffer(filter->y, 4, 0.0);
+	FTA_FillBuffer(filter->w, 4, 0.0);
     filter->Vt = 0.026;
 	filter->cutoff = 0;
 	filter->resonance = 0;
@@ -40,30 +40,30 @@ FtAudioLadderFilterInit(float _sample_rate)
 	return filter;
 }
 
-/* FtAudioLadderFilterFree ****************************************************/
-FtAudioError_t 
-FtAudioLadderFilterFree(FtAudioLadderFilter* filter)
+/* FTA_LadderFilterFree ****************************************************/
+FTA_Error_t 
+FTA_LadderFilterFree(FTA_LadderFilter* filter)
 {
 	free(filter);
 	return FT_NOERR;
 }
 
 
-/* FtAudioLadderFilterFlush ***************************************************/
-FtAudioError_t
-FtAudioLadderFilterFlush(FtAudioLadderFilter* filter)
+/* FTA_LadderFilterFlush ***************************************************/
+FTA_Error_t
+FTA_LadderFilterFlush(FTA_LadderFilter* filter)
 {
-	FtAudioFillBuffer(filter->y, 4, 0.0);
-	FtAudioFillBuffer(filter->w, 4, 0.0);
+	FTA_FillBuffer(filter->y, 4, 0.0);
+	FTA_FillBuffer(filter->w, 4, 0.0);
 	filter->cutoff = 0;
 	filter->resonance = 0;
 	return FT_NOERR;
 }
 
 
-/* FtAudioLadderFilterProcess *************************************************/
-FtAudioError_t
-FtAudioLadderFilterProcess(FtAudioLadderFilter *filter, float *outBuffer, float *inBuffer, unsigned n_samples)
+/* FTA_LadderFilterProcess *************************************************/
+FTA_Error_t
+FTA_LadderFilterProcess(FTA_LadderFilter *filter, float *outBuffer, float *inBuffer, unsigned n_samples)
 {
 	// Pre-calculate Scalars
 	float TWO_VT_INV = 1.0 / (2 * filter->Vt);
@@ -97,8 +97,8 @@ FtAudioLadderFilterProcess(FtAudioLadderFilter *filter, float *outBuffer, float 
 	return FT_NOERR;
 }
 
-FtAudioError_t
-FtAudioLadderFilterSetTemperature(FtAudioLadderFilter *filter, float tempC)
+FTA_Error_t
+FTA_LadderFilterSetTemperature(FTA_LadderFilter *filter, float tempC)
 {
     float T = tempC + 273.15;
     filter->Vt = BOLTZMANS_CONSTANT * T / Q;

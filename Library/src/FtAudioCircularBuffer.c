@@ -14,8 +14,8 @@
 #include <string.h>
 
 
-/* FtAudioCircularBuffer ******************************************************/
-struct FtAudioCircularBuffer
+/* FTA_CircularBuffer ******************************************************/
+struct FTA_CircularBuffer
 {
     unsigned    length;
     unsigned    wrap;
@@ -24,17 +24,17 @@ struct FtAudioCircularBuffer
     unsigned write_index;
 };
 
-/* FtAudioCircularBufferInit **************************************************/
-FtAudioCircularBuffer* 
-FtAudioCircularBufferInit(unsigned length)
+/* FTA_CircularBufferInit **************************************************/
+FTA_CircularBuffer* 
+FTA_CircularBufferInit(unsigned length)
 {
-    FtAudioCircularBuffer* cb = (FtAudioCircularBuffer*)malloc(sizeof(FtAudioCircularBuffer));
+    FTA_CircularBuffer* cb = (FTA_CircularBuffer*)malloc(sizeof(FTA_CircularBuffer));
     
     // use next power of two so we can do a bitwise wrap
     length = next_pow2(length);
     float* buffer = (float*)malloc(length * sizeof(float));
 
-    FtAudioFillBuffer(buffer, length, 0.0);
+    FTA_FillBuffer(buffer, length, 0.0);
     
     cb->length = length;
     cb->wrap = length - 1;
@@ -45,17 +45,17 @@ FtAudioCircularBufferInit(unsigned length)
 }
 
 
-/* FtAudioCircularBufferFree **************************************************/
+/* FTA_CircularBufferFree **************************************************/
 void
-FtAudioCircularBufferFree(FtAudioCircularBuffer* cb)
+FTA_CircularBufferFree(FTA_CircularBuffer* cb)
 {
     free(cb->buffer);
 }
 
 
-/* FtAudioCircularBufferWrite *************************************************/
+/* FTA_CircularBufferWrite *************************************************/
 void
-FtAudioCircularBufferWrite(FtAudioCircularBuffer* cb, const float* src, unsigned n_samples)
+FTA_CircularBufferWrite(FTA_CircularBuffer* cb, const float* src, unsigned n_samples)
 {
     for (unsigned i=0; i < n_samples; ++i)
     {
@@ -63,9 +63,9 @@ FtAudioCircularBufferWrite(FtAudioCircularBuffer* cb, const float* src, unsigned
     }
 }
 
-/* FtAudioCircularBufferRead **************************************************/
+/* FTA_CircularBufferRead **************************************************/
 void
-FtAudioCircularBufferRead(FtAudioCircularBuffer* cb, float* dest, unsigned n_samples)
+FTA_CircularBufferRead(FTA_CircularBuffer* cb, float* dest, unsigned n_samples)
 {
     for (unsigned i=0; i < n_samples; ++i)
     {
@@ -73,10 +73,10 @@ FtAudioCircularBufferRead(FtAudioCircularBuffer* cb, float* dest, unsigned n_sam
     }
 }
 
-/* FtAudioCircularBufferFlush *************************************************/
+/* FTA_CircularBufferFlush *************************************************/
 void
-FtAudioCircularBufferFlush(FtAudioCircularBuffer* cb)
+FTA_CircularBufferFlush(FTA_CircularBuffer* cb)
 {
-    FtAudioFillBuffer(cb->buffer, cb->length, 0.0);
+    FTA_FillBuffer(cb->buffer, cb->length, 0.0);
 }
 

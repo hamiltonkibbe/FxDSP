@@ -1,5 +1,5 @@
 //
-//  FtAudioFFT.h
+//  FtAudio.h
 //  Test
 //
 //  Created by Hamilton Kibbe on 5/27/13.
@@ -19,32 +19,32 @@
 extern "C" {
 #endif
 
-typedef struct FtAudioFFTConfig FtAudioFFTConfig;
+typedef struct FTA_FFTConfig FTA_FFTConfig;
 
     
-/** Create a new FtAudioFFTConfig
+/** Create a new FTA_FFTConfig
  *
- * @details Allocates memory and returns an initialized FtAudioFFTConfig,
+ * @details Allocates memory and returns an initialized FTA_FFTConfig,
  *			which is used to store the FFT Configuration. Play nice and call 
- *          FtAudioFFTFree on it when you're done.
+ *          FTA_FFTFree on it when you're done.
  *
  * @param length        length of the FFT. should be a power of 2.
- * @return 				An initialized FtAudioFFTConfig.
+ * @return 				An initialized FTA_FFTConfig.
  */
-FtAudioFFTConfig*
-FtAudioFFTInit(unsigned length);
+FTA_FFTConfig*
+FTA_FFTInit(unsigned length);
 
     
-/** Free memory associated with a FtAudioFFTConfig
+/** Free memory associated with a FTA_FFTConfig
  *
- * @details release all memory allocated by FtAudioFFTInit for the supplied
+ * @details release all memory allocated by FTA_FFTInit for the supplied
  *			fft configuration.
  *
- * @param fft       pointer to the FtAudioFFTConfig to free.
+ * @param fft       pointer to the FTA_FFTConfig to free.
  * @return			Error code, 0 on success
  */
-FtAudioError_t
-FtAudioFFTFree(FtAudioFFTConfig* fft);
+FTA_Error_t
+FTA_FFTFree(FTA_FFTConfig* fft);
 
     
 /** Calculate Real Forward FFT
@@ -60,8 +60,8 @@ FtAudioFFTFree(FtAudioFFTConfig* fft);
  *                  should be (fft length / 2).
  * @return          Error code, 0 on success.
  */
-FtAudioError_t
-FtAudioFFTForward(FtAudioFFTConfig*     fft,
+FTA_Error_t
+FTA_FFTForward(FTA_FFTConfig*     fft,
                   const float*          inBuffer,
                   float*                outMag,
                   float*                outPhase);
@@ -78,8 +78,8 @@ FtAudioFFTForward(FtAudioFFTConfig*     fft,
  *                  should be the same as the fft length
  * @return          Error code, 0 on success.
  */
-FtAudioError_t
-FtAudioFFTForwardInterleaved(FtAudioFFTConfig*  fft,
+FTA_Error_t
+FTA_FFTForwardInterleaved(FTA_FFTConfig*  fft,
                              DSPComplex*        in_buffer,
                              DSPComplex*        out);
                   
@@ -93,8 +93,8 @@ FtAudioFFTForwardInterleaved(FtAudioFFTConfig*  fft,
  * @param out       Allocated DSPSPlitComplex
  * @return          Error code, 0 on success.
  */
-FtAudioError_t
-FtAudioFFTForwardSplit(FtAudioFFTConfig*    fft,
+FTA_Error_t
+FTA_FFTForwardSplit(FTA_FFTConfig*    fft,
                        DSPComplex*          in_buffer,
                        DSPSplitComplex*     out);
     
@@ -110,8 +110,8 @@ FtAudioFFTForwardSplit(FtAudioFFTConfig*    fft,
  *                  should be the same as the fft size.
  * @return          Error code, 0 on success.
  */
-FtAudioError_t
-FtAudioFFTInverse(FtAudioFFTConfig*     fft,
+FTA_Error_t
+FTA_FFTInverse(FTA_FFTConfig*     fft,
                   const float*          inMag,
                   const float*          inPhase,
                   float*                outBuffer);
@@ -127,8 +127,8 @@ FtAudioFFTInverse(FtAudioFFTConfig*     fft,
  *                  should be the same as the fft size.
  * @return          Error code, 0 on success.
  */
-FtAudioError_t
-FtAudioFFTInverseInterleaved(FtAudioFFTConfig*     fft,
+FTA_Error_t
+FTA_FFTInverseInterleaved(FTA_FFTConfig*     fft,
                              const float*          inBuffer,
                               float*                outBuffer);
 
@@ -142,8 +142,8 @@ FtAudioFFTInverseInterleaved(FtAudioFFTConfig*     fft,
 *                  should be the same as the fft size.
 * @return          Error code, 0 on success.
 */
-FtAudioError_t
-FtAudioFFTInverseSplit(FtAudioFFTConfig*     fft,
+FTA_Error_t
+FTA_FFTInverseSplit(FTA_FFTConfig*     fft,
                        DSPSplitComplex*      in_buffer,
                        DSPComplex*           out_buffer);
     
@@ -158,8 +158,8 @@ FtAudioFFTInverseSplit(FtAudioFFTConfig*     fft,
  *                      in1_length + in2_length - 1
  * @return              Error code.
  */
-FtAudioError_t
-FtAudioFFTConvolve(FtAudioFFTConfig* fft,
+FTA_Error_t
+FTA_FFTConvolve(FTA_FFTConfig* fft,
                     float       *in1, 
                    unsigned    in1_length, 
                    float       *in2, 
@@ -179,8 +179,8 @@ FtAudioFFTConvolve(FtAudioFFTConfig* fft,
  *                      in1_length + in2_length - 1
  * @return              Error code.
  */
-FtAudioError_t
-FtAudioFFTFilterConvolve(FtAudioFFTConfig*  fft,
+FTA_Error_t
+FTA_FFTFilterConvolve(FTA_FFTConfig*  fft,
                          float*             in1,
                          unsigned           in1_length, 
                          DSPSplitComplex    fft_ir,
@@ -189,9 +189,9 @@ FtAudioFFTFilterConvolve(FtAudioFFTConfig*  fft,
     
     
     
-FtAudioError_t
-FtAudioFFTdemo(FtAudioFFTConfig * fft,
-                   float*           buffer);
+FTA_Error_t
+FTA_FFTdemo(FTA_FFTConfig *   fft,
+               float*               buffer);
 
 
     

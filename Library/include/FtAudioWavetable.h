@@ -6,8 +6,8 @@
 //
 //
 
-#ifndef Test_FtAudioWavetable_h
-#define Test_FtAudioWavetable_h
+#ifndef Test_FTA_Wavetable_h
+#define Test_FTA_Wavetable_h
 
 #include "FtAudioError.h"
 
@@ -19,8 +19,8 @@ extern "C" {
 #endif
 
 
-/** Opaque FtAudioBiquadFilter structure */
-typedef struct FtAudioWavetable FtAudioWavetable;
+/** Opaque FTA_BiquadFilter structure */
+typedef struct FTA_Wavetable FTA_Wavetable;
 
 /** wavetable Generator function pointer */
 typedef float* (*WavetableGenerator)(float,float,unsigned );
@@ -36,16 +36,16 @@ typedef enum _WaveType_t
     
 }WaveType_t;
 
-FtAudioWavetable *
-FtAudioWavetableInit(WaveType_t type, float sampleRate);
+FTA_Wavetable *
+FTA_WavetableInit(WaveType_t type, float sampleRate);
 
 
-FtAudioWavetable *
-FtAudioCustomWavetableInit(WavetableGenerator generator, const char* waveName, float sampleRate);
+FTA_Wavetable *
+FTA_CustomWavetableInit(WavetableGenerator generator, const char* waveName, float sampleRate);
 
 
-FtAudioError_t
-FtAudioWavetableFree(FtAudioWavetable *table);
+FTA_Error_t
+FTA_WavetableFree(FTA_Wavetable *table);
 
 
 

@@ -23,41 +23,46 @@ static const float BOLTZMANS_CONSTANT = 1.38e-23;
 /** Magnitude of electron charge */
 static const float Q = 1.609e-19;
 
-/** Opaque FtAudioLadderFilter structure */
-typedef struct FtAudioLadderFilter FtAudioLadderFilter;
+/** Opaque FTA_LadderFilter structure */
+typedef struct FTA_LadderFilter FTA_LadderFilter;
 
 
-
-FtAudioLadderFilter* 
-FtAudioLadderFilterInit(float _sample_rate);
-
-
-FtAudioError_t 
-FtAudioLadderFilterFree(FtAudioLadderFilter* filter);   
-
-
-FtAudioError_t  
-FtAudioLadderFilterFlush(FtAudioLadderFilter* filter);
+/** Initialize a Ladder Filter 
+ *
+ *  @details allocates memory on the heap for the filter. Make sure to call 
+ *  FTA_LadderFilterFree when you're finished.
+ *
+ */
+FTA_LadderFilter* 
+FTA_LadderFilterInit(float _sample_rate);
 
 
-FtAudioError_t
-FtAudioLadderFilterProcess(FtAudioLadderFilter  *filter,
+FTA_Error_t 
+FTA_LadderFilterFree(FTA_LadderFilter* filter);   
+
+
+FTA_Error_t  
+FTA_LadderFilterFlush(FTA_LadderFilter* filter);
+
+
+FTA_Error_t
+FTA_LadderFilterProcess(FTA_LadderFilter  *filter,
                            float                *outBuffer,
                            float                *inBuffer,
                            unsigned             n_samples);
 
 
-FtAudioError_t
-FtAudioLadderFilterSetCutoff(FtAudioLadderFilter *filter, float _cutoff);
+FTA_Error_t
+FTA_LadderFilterSetCutoff(FTA_LadderFilter *filter, float _cutoff);
 
 
-FtAudioError_t
-FtAudioLadderFilterSetResonance(FtAudioLadderFilter *filter, 
+FTA_Error_t
+FTA_LadderFilterSetResonance(FTA_LadderFilter *filter, 
                                 float               _resonance);
 
 
-FtAudioError_t
-FtAudioLadderFilterSetTemperature(FtAudioLadderFilter   *filter, 
+FTA_Error_t
+FTA_LadderFilterSetTemperature(FTA_LadderFilter   *filter, 
                                   float                 tempC);
 
 

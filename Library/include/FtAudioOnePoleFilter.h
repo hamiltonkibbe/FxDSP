@@ -15,24 +15,27 @@
 extern "C" {
 #endif
     
-/** Opaque FtAudioOnePoleFilter structure */
-typedef struct FtAudioOnePoleFilter FtAudioOnePoleFilter;
+/** Opaque FTA_OnePoleFilter structure */
+typedef struct FTA_OnePoleFilter FTA_OnePoleFilter;
    
 
-FtAudioOnePoleFilter*
-FtAudioOnePoleFilterInit(float cutoff, float sampleRate);
+FTA_OnePoleFilter*
+FTA_OnePoleFilterInit(float cutoff, float sampleRate);
 
-FtAudioError_t
-FtAudioOnePoleFilterFree(FtAudioOnePoleFilter *filter);
+FTA_Error_t
+FTA_OnePoleFilterFree(FTA_OnePoleFilter *filter);
     
-FtAudioError_t
-FtAudioOnePoleFilterSetCutoff(FtAudioOnePoleFilter* filter, float cutoff);
+FTA_Error_t
+FTA_OnePoleFilterSetCutoff(FTA_OnePoleFilter* filter, float cutoff);
 
-FtAudioError_t
-FtAudioOnePoleFilterProcess(FtAudioOnePoleFilter* filter,
+FTA_Error_t
+FTA_OnePoleFilterProcess(FTA_OnePoleFilter* filter,
                             float*               outBuffer,
                             const float*         inBuffer,
                             unsigned             n_samples);
+float
+FTA_OnePoleFilterTick(FTA_OnePoleFilter*  filter,
+                         float                  inSample);
 
 #ifdef __cplusplus
 }

@@ -13,9 +13,9 @@
 #endif
 
 
-/* FtAudioFloatBufferToInt16 **************************************************/
-FtAudioError_t
-FtAudioFloatBufferToInt16(signed short* dest, const float* src, unsigned length)
+/* FTA_FloatBufferToInt16 **************************************************/
+FTA_Error_t
+FTA_FloatBufferToInt16(signed short* dest, const float* src, unsigned length)
 {
 #ifdef __APPLE__
     // Use the Accelerate framework if we have it
@@ -33,9 +33,9 @@ FtAudioFloatBufferToInt16(signed short* dest, const float* src, unsigned length)
 }
 
 
-/* FtAudioInt16BufferToFloat **************************************************/
-FtAudioError_t
-FtAudioInt16BufferToFloat(float* dest, const signed short* src, unsigned length)
+/* FTA_Int16BufferToFloat **************************************************/
+FTA_Error_t
+FTA_Int16BufferToFloat(float* dest, const signed short* src, unsigned length)
 {
 #ifdef __APPLE__
     // Use the Accelerate framework if we have it
@@ -54,9 +54,9 @@ FtAudioInt16BufferToFloat(float* dest, const signed short* src, unsigned length)
 
 
 
-/* FtAudioFillBuffer **********************************************************/
-FtAudioError_t 
-FtAudioFillBuffer(float     *dest, unsigned  length, float     value)
+/* FTA_FillBuffer **********************************************************/
+FTA_Error_t 
+FTA_FillBuffer(float     *dest, unsigned  length, float     value)
 {
 #ifdef __APPLE__
     // Use the Accelerate framework if we have it
@@ -74,9 +74,9 @@ FtAudioFillBuffer(float     *dest, unsigned  length, float     value)
 }
 
 
-/* FtAudioCopyBuffer **********************************************************/
-FtAudioError_t
-FtAudioCopyBuffer(float* dest, const float* src, unsigned length)
+/* FTA_CopyBuffer **********************************************************/
+FTA_Error_t
+FTA_CopyBuffer(float* dest, const float* src, unsigned length)
 {
 #ifdef __APPLE__
     // Use the Accelerate framework if we have it
@@ -88,9 +88,9 @@ FtAudioCopyBuffer(float* dest, const float* src, unsigned length)
     return FT_NOERR;
 }
     
-/* FtAudioBufferAdd ***********************************************************/
-FtAudioError_t
-FtAudioBufferAdd(float      *dest, 
+/* FTA_BufferAdd ***********************************************************/
+FTA_Error_t
+FTA_BufferAdd(float      *dest, 
                  float      *in1, 
                  float      *in2, 
                  unsigned   length)
@@ -114,9 +114,9 @@ FtAudioBufferAdd(float      *dest,
 
 
 
-/* FtAudioVectorVectorMultiply ************************************************/
-FtAudioError_t
-FtAudioVectorVectorMultiply(float       *dest, 
+/* FTA_VectorVectorMultiply ************************************************/
+FTA_Error_t
+FTA_VectorVectorMultiply(float       *dest, 
                             float       *in1, 
                             float       *in2, 
                             unsigned    length)
@@ -140,9 +140,9 @@ FtAudioVectorVectorMultiply(float       *dest,
 
 
 
-/* FtAudioVectorScalarMultiply ************************************************/
-FtAudioError_t
-FtAudioVectorScalarMultiply(float       *dest, 
+/* FTA_VectorScalarMultiply ************************************************/
+FTA_Error_t
+FTA_VectorScalarMultiply(float       *dest, 
                             float       *in1, 
                             float       scalar, 
                             unsigned    length)
@@ -165,9 +165,9 @@ FtAudioVectorScalarMultiply(float       *dest,
 
 
 
-/* FtAudioConvolve ************************************************************/
-FtAudioError_t
-FtAudioConvolve(float       *in1,
+/* FTA_Convolve ************************************************************/
+FTA_Error_t
+FTA_Convolve(float       *in1,
                 unsigned    in1_length,
                 float       *in2, 
                 unsigned    in2_length, 
@@ -187,7 +187,7 @@ FtAudioConvolve(float       *in1,
     float padded[signalLength];
     
     //float zero = 0.0;
-    FtAudioFillBuffer(padded, signalLength, 0.0);
+    FTA_FillBuffer(padded, signalLength, 0.0);
     
     // Pad the input signal with (filter_length - 1) zeros.
     cblas_scopy(in1_length, in1, 1, (padded + (in2_length - 1)), 1);

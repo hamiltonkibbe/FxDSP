@@ -65,39 +65,39 @@ arctan(float* outBuffer,
 	
 	
 	
-/** Opaque FtAudioWaveshaper structure */
-typedef struct FtAudioWaveshaper FtAudioWaveshaper;
+/** Opaque FTA_Waveshaper structure */
+typedef struct FTA_Waveshaper FTA_Waveshaper;
 
 
-/** Create a new FtAudioFIRFilter
+/** Create a new FTA_FIRFilter
  *
- * @details Allocates memory and returns an initialized FtAudioWaveshaper.
- *			Play nice and call FtAudioWaveshaperFree on it when you're
+ * @details Allocates memory and returns an initialized FTA_Waveshaper.
+ *			Play nice and call FTA_WaveshaperFree on it when you're
  *          done with it.
  * @param type			The waveshaping function to use
  */
-FtAudioWaveshaper* 
-FtAudioWaveshaperInit(Waveshaper_t type);
+FTA_Waveshaper* 
+FTA_WaveshaperInit(Waveshaper_t type);
 	
 	
-FtAudioWaveshaper*
-FtAudioWaveshaperInitFn(WaveshaperFn shape);
+FTA_Waveshaper*
+FTA_WaveshaperInitFn(WaveshaperFn shape);
 	
 
-/** Free memory associated with a FtAudioWaveshaper
+/** Free memory associated with a FTA_Waveshaper
  *  
- * @details release all memory allocated by FtAudioWaveshaperInit for the
+ * @details release all memory allocated by FTA_WaveshaperInit for the
  *			supplied waveshaper.
- * @param waveshaper	FtAudioWaveshaper to free.
+ * @param waveshaper	FTA_Waveshaper to free.
  * @return				Error code, 0 on success
  */
-FtAudioError_t
-FtAudioWaveshaperFree(FtAudioWaveshaper* waveshaper);
+FTA_Error_t
+FTA_WaveshaperFree(FTA_Waveshaper* waveshaper);
 
 
 
-FtAudioError_t
-FtAudioWaveshaperProcess(FtAudioWaveshaper* waveshaper,
+FTA_Error_t
+FTA_WaveshaperProcess(FTA_Waveshaper* waveshaper,
 						 float* outBuffer,
 						 const float* inBuffer,
 						 unsigned n_samples);

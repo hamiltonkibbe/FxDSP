@@ -7,7 +7,7 @@
 
 // This file defines the EQDemo class, as well as the EQDemoKernel
 //  helper class.
-
+#include <stdio.h>
 #include "EQDemo.h"
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -338,8 +338,10 @@ EQDemo::EQDemoKernel::EQDemoKernel (AUEffectBase *inAudioUnit ) : AUKernelBase (
 	// Obtaining this value here in the constructor assumes that the sample rate
 	// will not change during one instantiation of the audio unit.
 	mSampleFrequency = GetSampleRate ();
-    mLowpass = FtAudioRBJFilterInit(RBJ_LPF, 0.0, mSampleFrequency);
-    mHighpass = FtAudioRBJFilterInit(RBJ_HPF, 20000.0, mSampleFrequency);
+    mLowpass = FTA_RBJFilterInit(RBJ_LPF, 0.0, mSampleFrequency);
+    mHighpass = FTA_RBJFilterInit(RBJ_HPF, 20000.0, mSampleFrequency);
+    mLowCutoffsmoother = FTA_OnePoleFilterInit(20, mSampleFrequency);
+    mHighCutoffsmoother = FTA_OnePoleFilterInit(20, mSampleFrequency);
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -349,8 +351,8 @@ EQDemo::EQDemoKernel::EQDemoKernel (AUEffectBase *inAudioUnit ) : AUKernelBase (
 void
 EQDemo::EQDemoKernel::Reset()
 {
-	FtAudioRBJFilterFlush(mLowpass);
-	FtAudioRBJFilterFlush(mHighpass);
+	FTA_RBJFilterFlush(mLowpass);
+	FTA_RBJFilterFlush(mHighpass);
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -379,19 +381,18 @@ EQDemo::EQDemoKernel::Process (
 		// Assigns a pointer variable to the start of the audio sample output buffer.
 		Float32	*destP = inDestP;
 
-        //Float32 inputSample;
-        //Float32 outputSample;
+
         Float32 tempBuffer[inSamplesToProcess];
-		
-		// Once per input buffer, gets the tremolo frequency (in Hz) from the user 
+
+		// Once per input buffer, get effect params from the user 
 		//	via the audio unit view.
-		Float32 lowpassFrequency = GetParameter (kParameter_Lowpass_Frequency);
+		Float32 lowpassFrequency = FTA_OnePoleFilterTick(mLowCutoffsmoother, GetParameter(kParameter_Lowpass_Frequency));
 		Float32 lowpassQ = GetParameter (kParameter_Lowpass_Q);
-		Float32 highpassFrequency =  GetParameter (kParameter_Highpass_Frequency);
+		Float32 highpassFrequency =  FTA_OnePoleFilterTick(mHighCutoffsmoother, GetParameter(kParameter_Highpass_Frequency));
 		Float32 highpassQ = GetParameter(kParameter_Highpass_Q);
         //int stageType = (int) GetParameter(kParameter_Stage_Type);
 
-		
+	
 		// Performs bounds checking on the parameters.
 		if (lowpassFrequency	< kMinimumValue_Lowpass_Freq)
 			lowpassFrequency	= kMinimumValue_Lowpass_Freq;
@@ -412,18 +413,19 @@ EQDemo::EQDemoKernel::Process (
 			highpassQ	= kMinimumValue_Highpass_Q;
 		if (highpassQ	> kMaximumValue_Highpass_Q)
 			highpassQ	= kMaximumValue_Highpass_Q;
-		
+	
         // Update Filters
-        FtAudioRBJFilterSetCutoff(mLowpass, lowpassFrequency);
-        FtAudioRBJFilterSetQ(mLowpass, lowpassQ);
+        FTA_RBJFilterSetParams(mLowpass, RBJ_LPF, lowpassFrequency, lowpassQ);
+        //FTA_RBJFilterSetCutoff(mLowpass, lowpassFrequency);
+        //FTA_RBJFilterSetQ(mLowpass, lowpassQ);
         
-        FtAudioRBJFilterSetCutoff(mHighpass, highpassFrequency);
-        FtAudioRBJFilterSetQ(mHighpass, highpassQ);
-        
-        
+        FTA_RBJFilterSetParams(mHighpass, RBJ_HPF, highpassFrequency, highpassQ);
+        //FTA_RBJFilterSetCutoff(mHighpass, highpassFrequency);
+        //FTA_RBJFilterSetQ(mHighpass, highpassQ);
+
         // Process available data
-        FtAudioRBJFilterProcess(mLowpass, tempBuffer, sourceP, inSamplesToProcess);
-        FtAudioRBJFilterProcess(mHighpass, destP, (const float*)tempBuffer, inSamplesToProcess);
+        FTA_RBJFilterProcess(mLowpass, tempBuffer, sourceP, inSamplesToProcess);
+        FTA_RBJFilterProcess(mHighpass, destP, (const float*)tempBuffer, inSamplesToProcess);
 
 	}
 }

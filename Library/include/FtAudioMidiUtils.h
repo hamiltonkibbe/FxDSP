@@ -15,8 +15,6 @@
 #include <math.h>
 
 
-
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -30,7 +28,7 @@ midiNoteToFrequency(unsigned note)
 static inline unsigned
 frequencyToMidiNote(float f)
 {
-    return 69 + (12 * log2(f/440.));
+    return (unsigned)(69 + (12 * log2f(f / 440.0)));
 }
 
 #ifdef __cplusplus

@@ -26,8 +26,8 @@ extern "C" {
 * @param length     Number of samples.
 * @return           Error code.
 */
-FtAudioError_t
-FtAudioFloatBufferToInt16(short* dest, const float* src, unsigned length);
+FTA_Error_t
+FTA_FloatBufferToInt16(short* dest, const float* src, unsigned length);
  
     
 /** Convert an array of 16-bit signed samples to floats
@@ -38,8 +38,8 @@ FtAudioFloatBufferToInt16(short* dest, const float* src, unsigned length);
 * @param length     Number of samples.
 * @return           Error code.
 */
-FtAudioError_t
-FtAudioInt16BufferToFloat(float* dest, const signed short* src, unsigned length);
+FTA_Error_t
+FTA_Int16BufferToFloat(float* dest, const signed short* src, unsigned length);
  
     
 /** Fill an array with a given value
@@ -51,8 +51,8 @@ FtAudioInt16BufferToFloat(float* dest, const signed short* src, unsigned length)
  * @param value         Value to use.
  * @return              Error code.
  */
-FtAudioError_t
-FtAudioFillBuffer(float* dest, unsigned length, float value);
+FTA_Error_t
+FTA_FillBuffer(float* dest, unsigned length, float value);
 
     
 /** Copy an array
@@ -63,8 +63,8 @@ FtAudioFillBuffer(float* dest, unsigned length, float value);
  * @param length        Size of array in samples
  * @return              Error code.
  */
-FtAudioError_t
-FtAudioCopyBuffer(float* dest, const float* src, unsigned length);
+FTA_Error_t
+FTA_CopyBuffer(float* dest, const float* src, unsigned length);
     
     
 /** Add two buffers
@@ -80,8 +80,8 @@ FtAudioCopyBuffer(float* dest, const float* src, unsigned length);
  * @param length        Number of samples to add
  * @return              Error code.
  */
-FtAudioError_t
-FtAudioBufferAdd(float *dest, float *in1, float *in2, unsigned length);
+FTA_Error_t
+FTA_BufferAdd(float *dest, float *in1, float *in2, unsigned length);
 
 
 /** Multiply two buffers
@@ -97,8 +97,8 @@ FtAudioBufferAdd(float *dest, float *in1, float *in2, unsigned length);
  * @param length        Number of samples to multiply
  * @return              Error code.
  */
-FtAudioError_t
-FtAudioVectorVectorMultiply(float *dest, float *in1, float *in2, unsigned length);
+FTA_Error_t
+FTA_VectorVectorMultiply(float *dest, float *in1, float *in2, unsigned length);
 
 
 /** Multiply buffer by a scalar
@@ -113,8 +113,8 @@ FtAudioVectorVectorMultiply(float *dest, float *in1, float *in2, unsigned length
  * @param length        Number of samples to multiply.
  * @return              Error code.
  */
-FtAudioError_t
-FtAudioVectorScalarMultiply(float *dest, float *in1, float scalar, unsigned length);
+FTA_Error_t
+FTA_VectorScalarMultiply(float *dest, float *in1, float scalar, unsigned length);
 
 
 /** Perform Convolution *
@@ -127,8 +127,8 @@ FtAudioVectorScalarMultiply(float *dest, float *in1, float scalar, unsigned leng
  *                      in1_length + in2_length - 1
  * @return              Error code.
  */
-FtAudioError_t
-FtAudioConvolve(float       *in1, 
+FTA_Error_t
+FTA_Convolve(float       *in1, 
                 unsigned    in1_length, 
                 float       *in2, 
                 unsigned    in2_length, 

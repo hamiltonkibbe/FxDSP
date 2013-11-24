@@ -14,7 +14,7 @@
 		37678DF9183C4DA10049E87F /* EQDemoVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 37678DF8183C4DA10049E87F /* EQDemoVersion.h */; };
 		37678F81183C67FC0049E87F /* EQDemo.component in Copy Files */ = {isa = PBXBuildFile; fileRef = 8D01CCD20486CAD60068D4B7 /* EQDemo.component */; };
 		379784DA183EFA31008AED79 /* libFutureTechAudioStatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 379784D9183EFA31008AED79 /* libFutureTechAudioStatic.a */; };
-		379784DC183EFA4B008AED79 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379784DB183EFA4B008AED79 /* Accelerate.framework */; };
+		379784E41841263D008AED79 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379784E31841263D008AED79 /* Accelerate.framework */; };
 		82FE269315DC41D800C22322 /* AUBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82FE265B15DC41D800C22322 /* AUBase.cpp */; };
 		82FE269415DC41D800C22322 /* AUBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 82FE265C15DC41D800C22322 /* AUBase.h */; };
 		82FE269715DC41D800C22322 /* AUInputElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82FE265F15DC41D800C22322 /* AUInputElement.cpp */; };
@@ -75,7 +75,7 @@
 		37678F80183C67E80049E87F /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "~/Library/Audio/Plug-Ins/Components";
+			dstPath = "$(USER_LIBRARY_DIR)/Audio/Plug-Ins/Components";
 			dstSubfolderSpec = 0;
 			files = (
 				37678F81183C67FC0049E87F /* EQDemo.component in Copy Files */,
@@ -90,10 +90,8 @@
 		0AA44B9B09D8D67C00AE6679 /* EQDemo.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = EQDemo.cpp; sourceTree = "<group>"; };
 		32BAE0B30371A71500C91783 /* EQDemo_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQDemo_Prefix.pch; sourceTree = "<group>"; };
 		37678DF8183C4DA10049E87F /* EQDemoVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQDemoVersion.h; sourceTree = "<group>"; };
-		37910620183C8B8100A89AD8 /* FutureTechAudioFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FutureTechAudioFramework.framework; path = "../../../../../../Library/Developer/Xcode/DerivedData/FutureTechAudio-afjfzryzrpxyoncijjmohkloyzbv/Build/Products/Debug/FutureTechAudioFramework.framework"; sourceTree = "<group>"; };
 		379784D9183EFA31008AED79 /* libFutureTechAudioStatic.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFutureTechAudioStatic.a; path = "../../../../../../Library/Developer/Xcode/DerivedData/FutureTechAudio-afjfzryzrpxyoncijjmohkloyzbv/Build/Products/Debug/libFutureTechAudioStatic.a"; sourceTree = "<group>"; };
-		379784DB183EFA4B008AED79 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		37CFF372183DC8440084DAC9 /* FutureTechAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FutureTechAudio.framework; path = ../../../../../FutureTechAudio/build/Debug/FutureTechAudio.framework; sourceTree = "<group>"; };
+		379784E31841263D008AED79 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		82FE265B15DC41D800C22322 /* AUBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AUBase.cpp; sourceTree = "<group>"; };
 		82FE265C15DC41D800C22322 /* AUBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUBase.h; sourceTree = "<group>"; };
 		82FE265D15DC41D800C22322 /* AUDispatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AUDispatch.cpp; sourceTree = "<group>"; };
@@ -162,8 +160,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				379784E41841263D008AED79 /* Accelerate.framework in Frameworks */,
 				379784DA183EFA31008AED79 /* libFutureTechAudioStatic.a in Frameworks */,
-				379784DC183EFA4B008AED79 /* Accelerate.framework in Frameworks */,
 				0AA44A2909D88B2500AE6679 /* CoreServices.framework in Frameworks */,
 				0AA44A2E09D88B5E00AE6679 /* AudioToolbox.framework in Frameworks */,
 				0AA44A2C09D88B4400AE6679 /* AudioUnit.framework in Frameworks */,
@@ -176,10 +174,8 @@
 		089C166AFE841209C02AAC07 /* TremoloUnit */ = {
 			isa = PBXGroup;
 			children = (
-				379784DB183EFA4B008AED79 /* Accelerate.framework */,
+				379784E31841263D008AED79 /* Accelerate.framework */,
 				379784D9183EFA31008AED79 /* libFutureTechAudioStatic.a */,
-				37CFF372183DC8440084DAC9 /* FutureTechAudio.framework */,
-				37910620183C8B8100A89AD8 /* FutureTechAudioFramework.framework */,
 				08FB77ADFE841716C02AAC07 /* Source */,
 				089C167CFE841241C02AAC07 /* Resources */,
 				089C1671FE841209C02AAC07 /* External Frameworks and Libraries */,
@@ -490,7 +486,7 @@
 		3E4BA244089833B7007656EC /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
@@ -510,7 +506,7 @@
 				GENERATE_PKGINFO_FILE = NO;
 				HEADER_SEARCH_PATHS = "../../../Library/include/**";
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Library/Audio/Plug-Ins/Components/";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Audio/Plug-Ins/Components/";
 				LIBRARY_SEARCH_PATHS = (
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/FutureTechAudio-afjfzryzrpxyoncijjmohkloyzbv/Build/Products/Debug",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/FutureTechAudio-afjfzryzrpxyoncijjmohkloyzbv/Build/Products/Release",
@@ -540,10 +536,11 @@
 		3E4BA245089833B7007656EC /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				DEPLOYMENT_LOCATION = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
 				EXPORTED_SYMBOLS_FILE = EQDemo.exp;
 				FRAMEWORK_SEARCH_PATHS = "$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/FutureTechAudio-afjfzryzrpxyoncijjmohkloyzbv/Build/Products/Debug";
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -557,7 +554,7 @@
 				GENERATE_PKGINFO_FILE = NO;
 				HEADER_SEARCH_PATHS = "../../../Library/include/**";
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Library/Audio/Plug-Ins/Components/";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Audio/Plug-Ins/Components/";
 				LIBRARY_SEARCH_PATHS = (
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/FutureTechAudio-afjfzryzrpxyoncijjmohkloyzbv/Build/Products/Debug",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/FutureTechAudio-afjfzryzrpxyoncijjmohkloyzbv/Build/Products/Release",

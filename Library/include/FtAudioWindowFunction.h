@@ -14,8 +14,8 @@
 extern "C" {
 #endif
 
-/** Opaque FtAudioWindowFunction type */
-typedef struct FtAudioWindowFunction FtAudioWindowFunction;
+/** Opaque FTA_WindowFunction type */
+typedef struct FTA_WindowFunction FTA_WindowFunction;
 
 /** Window function type */
 typedef enum _FtWindow_t
@@ -84,7 +84,7 @@ typedef enum _FtWindow_t
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-FtAudioError_t 
+FTA_Error_t 
 boxcar(unsigned n, 
        float*   dest);
 
@@ -100,7 +100,7 @@ boxcar(unsigned n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-FtAudioError_t
+FTA_Error_t
 hann(unsigned   n, 
      float*     dest);
 
@@ -116,7 +116,7 @@ hann(unsigned   n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-FtAudioError_t 
+FTA_Error_t 
 hamming(unsigned    n, 
         float*      dest);
 
@@ -133,7 +133,7 @@ hamming(unsigned    n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-FtAudioError_t 
+FTA_Error_t 
 blackman(unsigned   n, 
          float      a, 
          float*     dest);
@@ -151,7 +151,7 @@ blackman(unsigned   n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-FtAudioError_t
+FTA_Error_t
 tukey(unsigned  n, 
       float     a, 
       float*    dest);
@@ -168,7 +168,7 @@ tukey(unsigned  n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-FtAudioError_t 
+FTA_Error_t 
 cosine(unsigned n, 
        float*   dest);
 
@@ -184,7 +184,7 @@ cosine(unsigned n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-FtAudioError_t 
+FTA_Error_t 
 lanczos(unsigned    n, 
         float*      dest);
 
@@ -200,7 +200,7 @@ lanczos(unsigned    n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-FtAudioError_t 
+FTA_Error_t 
 bartlett(unsigned   n, 
          float*     dest);
 
@@ -216,7 +216,7 @@ bartlett(unsigned   n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-FtAudioError_t 
+FTA_Error_t 
 gaussian(unsigned   n, 
          float      sigma, 
          float*     dest);
@@ -233,7 +233,7 @@ gaussian(unsigned   n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-FtAudioError_t 
+FTA_Error_t 
 bartlett_hann(unsigned  n, 
               float*    dest);
 
@@ -250,7 +250,7 @@ bartlett_hann(unsigned  n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-FtAudioError_t 
+FTA_Error_t 
 kaiser(unsigned n, 
        float    a, 
        float*   dest);
@@ -267,7 +267,7 @@ kaiser(unsigned n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-FtAudioError_t 
+FTA_Error_t 
 nuttall(unsigned    n, 
         float*      dest);
 
@@ -283,7 +283,7 @@ nuttall(unsigned    n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-FtAudioError_t 
+FTA_Error_t 
 blackman_harris(unsigned    n, 
                 float*      dest);
 
@@ -299,7 +299,7 @@ blackman_harris(unsigned    n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-FtAudioError_t 
+FTA_Error_t 
 blackman_nuttall(unsigned   n, 
                  float*     dest);
 
@@ -315,7 +315,7 @@ blackman_nuttall(unsigned   n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-FtAudioError_t 
+FTA_Error_t 
 flat_top(unsigned   n, 
          float*     dest);
 
@@ -332,13 +332,13 @@ flat_top(unsigned   n,
  *              least n * sizeof(float)
  * @return      Error code, 0 on success
  */
-FtAudioError_t 
+FTA_Error_t 
 poisson(unsigned    n, 
         float       D, 
         float*      dest);
 
     
-FtAudioError_t
+FTA_Error_t
 chebyshev(unsigned  n,
           float     A,
           float*    dest);
@@ -349,41 +349,41 @@ float
 chebyshev_poly(int n, float x);
     
     
-/** Create a new FtAudioWindowFunction
+/** Create a new FTA_WindowFunction
  *
- * @details Allocates memory and returns an initialized FtAudioWindowFunction.
- *          Play nice and call FtAudioWindowFunctionFree on the window when
+ * @details Allocates memory and returns an initialized FTA_WindowFunction.
+ *          Play nice and call FTA_WindowFunctionFree on the window when
  *          you're done with it.
  *
  * @param n     Number of points in the window.
  * @param type  Type of window function to generate.
  * @return          Error code, 0 on success
  */
-FtAudioWindowFunction* FtAudioWindowFunctionInit(unsigned   n, 
+FTA_WindowFunction* FTA_WindowFunctionInit(unsigned   n, 
                                                  FtWindow_t type);
 
-/** Free memory associated with a FtAudioWindowFunction
+/** Free memory associated with a FTA_WindowFunction
  *  
- * @details release all memory allocated by FtAudioWindowFunctionInit for the
+ * @details release all memory allocated by FTA_WindowFunctionInit for the
  *          supplied window.
  *
  * @param window    The window to free
  * @return          Error code, 0 on success
  */
-FtAudioError_t FtAudioWindowFunctionFree(FtAudioWindowFunction* window);
+FTA_Error_t FTA_WindowFunctionFree(FTA_WindowFunction* window);
 
 
 /** Window a buffer of samples
  *
  * @details Applies the window to the buffer of samples passed to it
  *
- * @param window    The FtAudioWindowFunction to use
+ * @param window    The FTA_WindowFunction to use
  * @param outBuffer The buffer to write the output to
  * @param inBuffer  The buffer to filter
  * @param n_samples The number of samples to window
  * @return          Error code, 0 on success
  */
-FtAudioError_t FtAudioWindowFunctionProcess(FtAudioWindowFunction*  window, 
+FTA_Error_t FTA_WindowFunctionProcess(FTA_WindowFunction*  window, 
                                             float*                  outBuffer, 
                                             float*                  inBuffer, 
                                             unsigned                n_samples);

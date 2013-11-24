@@ -16,44 +16,44 @@ extern "C" {
 #endif
 
 
-/** Opaque FtAudioFIRFilter structure */
-typedef struct FtAudioCircularBuffer FtAudioCircularBuffer;
+/** Opaque FTA_FIRFilter structure */
+typedef struct FTA_CircularBuffer FTA_CircularBuffer;
 
 
-/** Create a new FtAudioCircularBuffer
+/** Create a new FTA_CircularBuffer
  *
- * @details Allocates memory and returns an initialized FtAudioCircularBuffer.
- *			Play nice and call FtAudioCircularBuffer Free on the filter when you're
+ * @details Allocates memory and returns an initialized FTA_CircularBuffer.
+ *			Play nice and call FTA_CircularBuffer Free on the filter when you're
  *          done with it.
  *
  * @param length		The number of elements in the circular buffer
  */
-FtAudioCircularBuffer* 
-FtAudioCircularBufferInit(unsigned length);
+FTA_CircularBuffer* 
+FTA_CircularBufferInit(unsigned length);
 
 
-/** Free Heap Memory associated with FtAudioCircularBuffer
+/** Free Heap Memory associated with FTA_CircularBuffer
 *
-* @details Frees memory allocated by FtAudioCircularBufferInit
+* @details Frees memory allocated by FTA_CircularBufferInit
 */
 void
-FtAudioCircularBufferFree(FtAudioCircularBuffer* cb);
+FTA_CircularBufferFree(FTA_CircularBuffer* cb);
     
     
 /** Write samples to circular buffer
 */
 void
-FtAudioCircularBufferWrite(FtAudioCircularBuffer* cb, const float* src, unsigned n_samples);
+FTA_CircularBufferWrite(FTA_CircularBuffer* cb, const float* src, unsigned n_samples);
 
 /** Read samples from circular buffer
  */
 void
-FtAudioCircularBufferRead(FtAudioCircularBuffer* cb, float* dest, unsigned n_samples);
+FTA_CircularBufferRead(FTA_CircularBuffer* cb, float* dest, unsigned n_samples);
 
 /** Flush circular buffer
  */
 void
-FtAudioCircularBufferFlush(FtAudioCircularBuffer* cb);
+FTA_CircularBufferFlush(FTA_CircularBuffer* cb);
     
 #ifdef __cplusplus
 }

@@ -12,7 +12,7 @@ extern "C" {
 #endif
 
 /** Error codes */
-typedef enum FtAudioError
+typedef enum FTA_Error
 {
 	/** No Error (0) */
 	FT_NOERR,
@@ -22,7 +22,7 @@ typedef enum FtAudioError
 
 	/** Number of defined error codes */
 	FT_N_ERRORS
-}FtAudioError_t;
+}FTA_Error_t;
 
 #ifdef __cplusplus
 }

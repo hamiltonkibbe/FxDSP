@@ -22,8 +22,9 @@ modZeroBessel(float x);
 
 
 
+/* Implementations */
 
-struct FtAudioWindowFunction
+struct FTA_WindowFunction
 {
     float*      window;
     unsigned    length;
@@ -31,15 +32,15 @@ struct FtAudioWindowFunction
 };
 
 /* Boxcar window  */
-FtAudioError_t 
+FTA_Error_t 
 boxcar(unsigned n, float* dest)
 {
-    FtAudioFillBuffer(dest, n, 1.0);
+    FTA_FillBuffer(dest, n, 1.0);
     return FT_NOERR;
 }
 
 /* Hann window  */
-FtAudioError_t 
+FTA_Error_t 
 hann(unsigned n, float* dest)
 {
 
@@ -61,7 +62,7 @@ hann(unsigned n, float* dest)
 }
 
 /* Hamming window  */
-FtAudioError_t 
+FTA_Error_t 
 hamming(unsigned n, float* dest)
 {
 
@@ -77,7 +78,7 @@ hamming(unsigned n, float* dest)
 }
 
 /* Blackman window  */
-FtAudioError_t 
+FTA_Error_t 
 blackman(unsigned n, float a, float* dest)
 {
 #ifdef __APPLE__
@@ -104,7 +105,7 @@ blackman(unsigned n, float a, float* dest)
 }
 
 /* Tukey window  */
-FtAudioError_t 
+FTA_Error_t 
 tukey(unsigned n, float a, float* dest)
 {
     float term = a * (n - 1) / 2;
@@ -131,7 +132,7 @@ tukey(unsigned n, float a, float* dest)
 }
 
 /* Cosine window  */
-FtAudioError_t 
+FTA_Error_t 
 cosine(unsigned n, float* dest)
 {
     float N = n - 1.0;
@@ -144,7 +145,7 @@ cosine(unsigned n, float* dest)
 }
 
 /* Lanczos window  */
-FtAudioError_t 
+FTA_Error_t 
 lanczos(unsigned n, float* dest)
 {
     float N = n - 1.0;
@@ -158,7 +159,7 @@ lanczos(unsigned n, float* dest)
 }
 
 /* Bartlett window  */
-FtAudioError_t 
+FTA_Error_t 
 bartlett(unsigned n, float* dest)
 {
     unsigned buf_idx;
@@ -177,7 +178,7 @@ bartlett(unsigned n, float* dest)
 }
 
 /* Gaussian window  */
-FtAudioError_t 
+FTA_Error_t 
 gaussian(unsigned n, float sigma, float* dest)
 {
     float N = n - 1;
@@ -191,7 +192,7 @@ gaussian(unsigned n, float sigma, float* dest)
 }
 
 /* Bartlett-Hann window  */
-FtAudioError_t 
+FTA_Error_t 
 bartlett_hann(unsigned n, float* dest)
 {
     float N = n - 1.0;
@@ -205,7 +206,7 @@ bartlett_hann(unsigned n, float* dest)
 }
 
 /* Kaiser Window */
-FtAudioError_t 
+FTA_Error_t 
 kaiser(unsigned n, float a, float* dest)
 {
     // Pre-calc
@@ -225,7 +226,7 @@ kaiser(unsigned n, float a, float* dest)
 
 
 /* Nuttall window  */
-FtAudioError_t 
+FTA_Error_t 
 nuttall(unsigned n, float* dest)
 {
     float term;
@@ -242,7 +243,7 @@ nuttall(unsigned n, float* dest)
 
 
 /* Blackman-Harris window  */
-FtAudioError_t 
+FTA_Error_t 
 blackman_harris(unsigned n, float* dest)
 {
     float term;
@@ -257,7 +258,7 @@ blackman_harris(unsigned n, float* dest)
 }
 
 /* Blackman-Nuttall window  */
-FtAudioError_t
+FTA_Error_t
 blackman_nuttall(unsigned n, float* dest)
 {
     float term;
@@ -271,7 +272,7 @@ blackman_nuttall(unsigned n, float* dest)
 }
 
 /* Flat top window */
-FtAudioError_t
+FTA_Error_t
 flat_top(unsigned n, float* dest)
 {
     float N = n - 1.0;
@@ -288,7 +289,7 @@ flat_top(unsigned n, float* dest)
 }
 
 /* Poisson window */
-FtAudioError_t 
+FTA_Error_t 
 poisson(unsigned n, float D, float* dest)
 {
     float term = (n - 1) / 2;
@@ -304,7 +305,7 @@ poisson(unsigned n, float D, float* dest)
 }
 
 // TODO: FIX This.
-FtAudioError_t
+FTA_Error_t
 chebyshev(unsigned n, float A, float *dest)
 {
     float max=0;
@@ -377,10 +378,10 @@ chebyshev_poly(int n, float x)
     return y;
 }
 
-FtAudioWindowFunction*
-FtAudioWindowFunctionInit(unsigned n, FtWindow_t type)
+FTA_WindowFunction*
+FTA_WindowFunctionInit(unsigned n, FtWindow_t type)
 {
-    FtAudioWindowFunction* window = (FtAudioWindowFunction*)malloc(sizeof(FtAudioWindowFunction));
+    FTA_WindowFunction* window = (FTA_WindowFunction*)malloc(sizeof(FTA_WindowFunction));
     
     window->length = n;
     window->window = (float*)malloc(n * sizeof(float));
@@ -445,18 +446,18 @@ FtAudioWindowFunctionInit(unsigned n, FtWindow_t type)
 }
 
 
-FtAudioError_t
-FtAudioWindowFunctionFree(FtAudioWindowFunction* window)
+FTA_Error_t
+FTA_WindowFunctionFree(FTA_WindowFunction* window)
 {
     free(window->window);
     free(window);
     return FT_NOERR;
 }
 
-FtAudioError_t
-FtAudioWindowFunctionProcess(FtAudioWindowFunction* window, float* outBuffer, float* inBuffer,unsigned n_samples)
+FTA_Error_t
+FTA_WindowFunctionProcess(FTA_WindowFunction* window, float* outBuffer, float* inBuffer,unsigned n_samples)
 {
-    FtAudioVectorVectorMultiply(outBuffer, inBuffer, window->window, n_samples);
+    FTA_VectorVectorMultiply(outBuffer, inBuffer, window->window, n_samples);
     return FT_NOERR;
 }
 

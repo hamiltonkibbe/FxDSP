@@ -36,14 +36,14 @@
     
     // Set up
     float output[10];
-    FtAudioFillBuffer(output, 10, 0.0);
-    FtAudioBiquadFilter *filter = FtAudioBiquadFilterInit(b, a);
+    FTA_FillBuffer(output, 10, 0.0);
+    FTA_BiquadFilter *filter = FTA_BiquadFilterInit(b, a);
     
     // Process
-    FtAudioBiquadFilterProcess(filter, output, input, 10);
+    FTA_BiquadFilterProcess(filter, output, input, 10);
     
     // Clean up
-    FtAudioBiquadFilterFree(filter);
+    FTA_BiquadFilterFree(filter);
     
     // Check results
     for (unsigned i = 0; i < 10; ++i)
@@ -57,16 +57,16 @@
 {
     // Set up
     float output[10];
-    FtAudioFillBuffer(output, 10, 0.0);
-    FtAudioBiquadFilter *filter = FtAudioBiquadFilterInit(b, a);
+    FTA_FillBuffer(output, 10, 0.0);
+    FTA_BiquadFilter *filter = FTA_BiquadFilterInit(b, a);
     
     // Process
-    FtAudioBiquadFilterProcess(filter, output, input, 3);
-    FtAudioBiquadFilterProcess(filter,output + 3, input + 3, 3);
-    FtAudioBiquadFilterProcess(filter, output + 6, input + 6, 4);
+    FTA_BiquadFilterProcess(filter, output, input, 3);
+    FTA_BiquadFilterProcess(filter,output + 3, input + 3, 3);
+    FTA_BiquadFilterProcess(filter, output + 6, input + 6, 4);
     
     // Clean up
-    FtAudioBiquadFilterFree(filter);
+    FTA_BiquadFilterFree(filter);
     
     // Check results
     for (unsigned i = 0; i < 10; ++i)

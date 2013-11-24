@@ -4,7 +4,7 @@
  * Copyright 2012 Hamilton Kibbe
  */
 
-#include "FtAudioBiquadFilter.h"
+#include "FTABiquadFilter.h"
 #include "FtAudioDsp.h"
 #include <stdlib.h>
 
@@ -14,8 +14,8 @@
 #endif
 
 
-/* FtAudioBiquadFilter ********************************************************/
-struct FtAudioBiquadFilter
+/* FTA_BiquadFilter ********************************************************/
+struct FTA_BiquadFilter
 {
     float b[3];     // b0, b1, b2
     float a[2];     // a1, a2
@@ -24,50 +24,50 @@ struct FtAudioBiquadFilter
     float w[2];
 };
 
-/* FtAudioBiquadFilterInit ****************************************************/
-FtAudioBiquadFilter* FtAudioBiquadFilterInit(const float    *bCoeff, 
+/* FTA_BiquadFilterInit ****************************************************/
+FTA_BiquadFilter* FTA_BiquadFilterInit(const float    *bCoeff, 
                                              const float    *aCoeff)
 {
 
     // Allocate Memory
-    FtAudioBiquadFilter* filter = (FtAudioBiquadFilter*)malloc(sizeof(FtAudioBiquadFilter));
+    FTA_BiquadFilter* filter = (FTA_BiquadFilter*)malloc(sizeof(FTA_BiquadFilter));
 
     // Initialize Buffers
-    FtAudioCopyBuffer(filter->b, bCoeff, 3 * sizeof(float));
-    FtAudioCopyBuffer(filter->a, aCoeff, 2 * sizeof(float));
+    FTA_CopyBuffer(filter->b, bCoeff, 3 * sizeof(float));
+    FTA_CopyBuffer(filter->a, aCoeff, 2 * sizeof(float));
 
-	FtAudioFillBuffer(filter->x, 2, 0.0);
-	FtAudioFillBuffer(filter->y, 2, 0.0);
-    FtAudioFillBuffer(filter->w, 2, 0.0);
+	FTA_FillBuffer(filter->x, 2, 0.0);
+	FTA_FillBuffer(filter->y, 2, 0.0);
+    FTA_FillBuffer(filter->w, 2, 0.0);
 
         
     return filter;
 }
 
 
-/* FtAudioBiquadFilterFree ****************************************************/
-FtAudioError_t 
-FtAudioBiquadFilterFree(FtAudioBiquadFilter * filter)
+/* FTA_BiquadFilterFree ****************************************************/
+FTA_Error_t 
+FTA_BiquadFilterFree(FTA_BiquadFilter * filter)
 {
     free(filter);
     return FT_NOERR;
 }
 
 
-/* FtAudioBiquadFilterFlush ***************************************************/
-FtAudioError_t 
-FtAudioBiquadFilterFlush(FtAudioBiquadFilter* filter)
+/* FTA_BiquadFilterFlush ***************************************************/
+FTA_Error_t 
+FTA_BiquadFilterFlush(FTA_BiquadFilter* filter)
 {
-    FtAudioFillBuffer(filter->x, 2, 0.0);
-	FtAudioFillBuffer(filter->y, 2, 0.0);
-    FtAudioFillBuffer(filter->w, 2, 0.0);
+    FTA_FillBuffer(filter->x, 2, 0.0);
+	FTA_FillBuffer(filter->y, 2, 0.0);
+    FTA_FillBuffer(filter->w, 2, 0.0);
     return FT_NOERR;
 }
 
 
-/* FtAudioBiquadFilterProcess *************************************************/
-FtAudioError_t
-FtAudioBiquadFilterProcess(FtAudioBiquadFilter  *filter, 
+/* FTA_BiquadFilterProcess *************************************************/
+FTA_Error_t
+FTA_BiquadFilterProcess(FTA_BiquadFilter  *filter, 
                            float                *outBuffer, 
                            const float          *inBuffer, 
                            unsigned             n_samples)
@@ -110,21 +110,21 @@ FtAudioBiquadFilterProcess(FtAudioBiquadFilter  *filter,
     }
     
     // Write output
-    FtAudioCopyBuffer(outBuffer, buffer, n_samples);
+    FTA_CopyBuffer(outBuffer, buffer, n_samples);
     
 #endif
     return FT_NOERR;
 }
 
 
-/* FtAudioBiquadFilterUpdateKernel ********************************************/
-FtAudioError_t
-FtAudioBiquadFilterUpdateKernel(FtAudioBiquadFilter *filter, 
+/* FTA_BiquadFilterUpdateKernel ********************************************/
+FTA_Error_t
+FTA_BiquadFilterUpdateKernel(FTA_BiquadFilter *filter, 
                                 const float         *bCoeff, 
                                 const float         *aCoeff)
 {
 
-    FtAudioCopyBuffer(filter->b, bCoeff, 3);
-    FtAudioCopyBuffer(filter->a, aCoeff, 2); 
+    FTA_CopyBuffer(filter->b, bCoeff, 3);
+    FTA_CopyBuffer(filter->a, aCoeff, 2); 
     return FT_NOERR;
 }

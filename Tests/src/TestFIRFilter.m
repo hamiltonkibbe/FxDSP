@@ -34,13 +34,13 @@
     float output[100];
     
 	// Set up
-    FtAudioFIRFilter *theFilter = FtAudioFIRFilterInit(MatlabFilter, 21, DIRECT);
+    FTA_FIRFilter *theFilter = FTA_FIRFilterInit(MatlabFilter, 21, DIRECT);
     
     // Process
-    FtAudioFIRFilterProcess(theFilter, output, MatlabSignal, 100);
+    FTA_FIRFilterProcess(theFilter, output, MatlabSignal, 100);
     
 	// Tear down
-    FtAudioFIRFilterFree(theFilter);
+    FTA_FIRFilterFree(theFilter);
     
 	// Check results
     for (unsigned i = 0; i < 32; ++i)
@@ -55,13 +55,13 @@
     float output[100];
     
 	// Set up
-    FtAudioFIRFilter *theFilter = FtAudioFIRFilterInit(MatlabFilter, 21, FFT);
+    FTA_FIRFilter *theFilter = FTA_FIRFilterInit(MatlabFilter, 21, FFT);
     
     // Process
-    FtAudioFIRFilterProcess(theFilter, output, MatlabSignal, 100);
+    FTA_FIRFilterProcess(theFilter, output, MatlabSignal, 100);
     
 	// Tear down
-    FtAudioFIRFilterFree(theFilter);
+    FTA_FIRFilterFree(theFilter);
     
 	// Check results
     for (unsigned i = 0; i < 32; ++i)
@@ -82,18 +82,18 @@
     const float *input = MatlabSignal;
     
 	// Set up
-	FtAudioFIRFilter *theFilter = FtAudioFIRFilterInit(MatlabFilter, 21, FFT);//BEST);
+	FTA_FIRFilter *theFilter = FTA_FIRFilterInit(MatlabFilter, 21, FFT);//BEST);
 	
 	// Process in one block
-    FtAudioFIRFilterProcess(theFilter, outfull, input, inputLength);
+    FTA_FIRFilterProcess(theFilter, outfull, input, inputLength);
     
 	// Process in two blocks
-    FtAudioFIRFilterFlush(theFilter);
-    FtAudioFIRFilterProcess(theFilter, outchunk, input, (inputLength / 2));
-    FtAudioFIRFilterProcess(theFilter, outchunk+(inputLength / 2), input+(inputLength / 2), (inputLength / 2));
+    FTA_FIRFilterFlush(theFilter);
+    FTA_FIRFilterProcess(theFilter, outchunk, input, (inputLength / 2));
+    FTA_FIRFilterProcess(theFilter, outchunk+(inputLength / 2), input+(inputLength / 2), (inputLength / 2));
     
 	// Tear down
-	FtAudioFIRFilterFree(theFilter);
+	FTA_FIRFilterFree(theFilter);
     
 	// Check results
     for (unsigned i = 0; i < 32; ++i)
