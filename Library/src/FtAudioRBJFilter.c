@@ -5,7 +5,9 @@
  */
 
 #include "FtAudioRBJFilter.h"
+#include "FtAudioBiquadFilter.h"
 #include "FtAudioDsp.h"
+#include "FtAudioUtilities.h"
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -14,7 +16,7 @@
 struct FTA_RBJFilter
 {
 	FTA_BiquadFilter* biquad;
-	RBJFilter_t type;
+	Filter_t type;
 	float omega;
 	float Q;
 	float cosOmega;
@@ -41,7 +43,7 @@ FTA_RBJFilterUpdate(FTA_RBJFilter* filter)
     
 	switch (filter->type)
 	{
-	case RBJ_LPF:
+	case LOWPASS:
         filter->alpha = filter->sinOmega / (2.0 * filter->Q);
 		filter->b[0] = (1 - filter->cosOmega) / 2;
 		filter->b[1] = 1 - filter->cosOmega;
@@ -51,7 +53,7 @@ FTA_RBJFilterUpdate(FTA_RBJFilter* filter)
 		filter->a[2] = 1 - filter->alpha;
 		break;
 
-	case RBJ_HPF:
+	case HIGHPASS:
         filter->alpha = filter->sinOmega / (2.0 * filter->Q);
 		filter->b[0] = (1 + filter->cosOmega) / 2;
 		filter->b[1] = -(1 + filter->cosOmega);
@@ -61,7 +63,7 @@ FTA_RBJFilterUpdate(FTA_RBJFilter* filter)
 		filter->a[2] = 1 - filter->alpha;
 		break;
 
-	case RBJ_BPF:
+	case BANDPASS:
         filter->alpha = filter->sinOmega * sinhf(logf(2.0) / 2.0 * \
             filter->Q * filter->omega/filter->sinOmega);
 		filter->b[0] = filter->sinOmega / 2;
@@ -72,7 +74,7 @@ FTA_RBJFilterUpdate(FTA_RBJFilter* filter)
 		filter->a[2] = 1 - filter->alpha;
 		break;
 
-	case RBJ_APF:
+	case ALLPASS:
         filter->alpha = filter->sinOmega / (2.0 * filter->Q);
 		filter->b[0] = 1 - filter->alpha;
 		filter->b[1] = -2 * filter->cosOmega;
@@ -82,7 +84,7 @@ FTA_RBJFilterUpdate(FTA_RBJFilter* filter)
 		filter->a[2] = filter->b[0];
 		break;
 
-	case RBJ_NOTCH:
+	case NOTCH:
         filter->alpha = filter->sinOmega * sinhf(logf(2.0) / 2.0 * \
             filter->Q * filter->omega/filter->sinOmega);
 		filter->b[0] = 1;
@@ -93,7 +95,7 @@ FTA_RBJFilterUpdate(FTA_RBJFilter* filter)
 		filter->a[2] = 1 - filter->alpha;
 		break;
 
-	case RBJ_PEAK:
+	case PEAK:
         filter->alpha = filter->sinOmega * sinhf(logf(2.0) / 2.0 * \
             filter->Q * filter->omega/filter->sinOmega);
 		filter->b[0] = 1 + (filter->alpha * filter->A);
@@ -104,7 +106,7 @@ FTA_RBJFilterUpdate(FTA_RBJFilter* filter)
 		filter->a[2] = 1 - (filter->alpha / filter->A);
 		break;
 
-	case RBJ_LSHELF:
+	case LOW_SHELF:
         filter->alpha = filter->sinOmega / 2.0 * sqrt( (filter->A + 1.0 / \
             filter->A) * (1.0 / filter->Q - 1.0) + 2.0);
         filter->b[0] = filter->A * ((filter->A + 1) - ((filter->A - 1) *       \
@@ -121,7 +123,7 @@ FTA_RBJFilterUpdate(FTA_RBJFilter* filter)
             filter->cosOmega) - (2 * sqrtf(filter->A) * filter->alpha));
 		break;
 
-	case RBJ_HSHELF:
+	case HIGH_SHELF:
         filter->alpha = filter->sinOmega / 2.0 * sqrt( (filter->A + 1.0 / \
             filter->A) * (1.0 / filter->Q - 1.0) + 2.0);
         filter->b[0] = filter->A * ((filter->A + 1) + ((filter->A - 1) *       \
@@ -156,9 +158,9 @@ FTA_RBJFilterUpdate(FTA_RBJFilter* filter)
 }
 
 
-/* FTA_RBJFilterInit *******************************************************/
+/* FTA_RBJFilterInit **********************************************************/
 FTA_RBJFilter* 
-FTA_RBJFilterInit(RBJFilter_t type, float cutoff,long long sampleRate)
+FTA_RBJFilterInit(Filter_t type, float cutoff,long long sampleRate)
 {	
 	// Create the filter
 	FTA_RBJFilter* filter = (FTA_RBJFilter*)malloc(sizeof(FTA_RBJFilter));
@@ -196,7 +198,7 @@ FTA_RBJFilterFree(FTA_RBJFilter* 	filter)
 /* FTA_RBJFilterSetType ****************************************************/
 FTA_Error_t 
 FTA_RBJFilterSetType(FTA_RBJFilter*	filter,
-						  RBJFilter_t 		type)
+						  Filter_t 		type)
 {
 	filter->type = type;
 	FTA_RBJFilterUpdate(filter);
@@ -228,7 +230,7 @@ FTA_RBJFilterSetQ(FTA_RBJFilter* 	filter,
 /* FTA_RBJFilterSetParams **************************************************/
 FTA_Error_t
 FTA_RBJFilterSetParams(FTA_RBJFilter* filter,
-                          RBJFilter_t       type,
+                          Filter_t       type,
                           float             cutoff,
                           float             Q)
 {

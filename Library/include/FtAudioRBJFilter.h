@@ -8,43 +8,11 @@
 #define FTAUDIORBJFILTER_H_
 
 #include "FtAudioError.h"
-#include "FtAudioUtilities.h"
-#include "FtAudioBiquadFilter.h"
+#include "FtAudioFilterTypes.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-/** RBJ filter type */
-typedef enum RBJFilter_t
-{
-	/** Lowpass */
-	RBJ_LPF,
-
-	/** Highpass */
-	RBJ_HPF,
-
-	/** Bandpass */
-	RBJ_BPF,
-
-	/** Allpass */
-	RBJ_APF,  
-
-	/** Notch */
-	RBJ_NOTCH,
-
-	/** Peaking */
-	RBJ_PEAK,
-
-	/** Low Shelf */
-	RBJ_LSHELF,
-
-	/** High Shelf */
-	RBJ_HSHELF,
-
-	/** Number of RBJ Filter types */
-	RBJ_N_TYPES
-}RBJFilter_t;
 
 
 /** Opaque FTA_RBJFilter structure */
@@ -64,9 +32,9 @@ typedef struct FTA_RBJFilter FTA_RBJFilter;
  * @return 				An initialized FTA_RBJFilter	
  */
 FTA_RBJFilter* 
-FTA_RBJFilterInit(RBJFilter_t 	type, 
-					 float 			cutoff,
-					 long long 		sampleRate);
+FTA_RBJFilterInit(Filter_t 	type, 
+                float 			cutoff,
+                long long 		sampleRate);
 
 
 /** Free memory associated with a FTA_RBJFilter
@@ -90,7 +58,7 @@ FTA_RBJFilterFree(FTA_RBJFilter* 	filter);
  */
 FTA_Error_t 
 FTA_RBJFilterSetType(FTA_RBJFilter* 	filter, 
-						RBJFilter_t 		type);
+						Filter_t 		type);
 
 /** Update FTA_RBJFilter Cutoff
  *  
@@ -131,7 +99,7 @@ FTA_RBJFilterSetQ(FTA_RBJFilter* 	filter,
  */
 FTA_Error_t
 FTA_RBJFilterSetParams(FTA_RBJFilter* filter,
-                          RBJFilter_t       type,
+                          Filter_t       type,
                           float             cutoff,
                           float             Q);
     

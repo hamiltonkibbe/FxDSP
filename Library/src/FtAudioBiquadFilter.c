@@ -4,7 +4,7 @@
  * Copyright 2012 Hamilton Kibbe
  */
 
-#include "FTABiquadFilter.h"
+#include "FtAudioBiquadFilter.h"
 #include "FtAudioDsp.h"
 #include <stdlib.h>
 

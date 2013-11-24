@@ -22,7 +22,7 @@
 - (void)testRBJLowpassFilterAgainstMatlab
 {
     
-    FTA_RBJFilter *filter = FTA_RBJFilterInit(RBJ_LPF, 3000, 44100);
+    FTA_RBJFilter *filter = FTA_RBJFilterInit(LOWPASS, 3000, 44100);
     float output[10];
 
     FTA_FillBuffer(output, 10, 0.0);
@@ -37,7 +37,7 @@
 - (void)testRBJHighpassFilterAgainstMatlab
 {
     
-    FTA_RBJFilter *filter = FTA_RBJFilterInit(RBJ_HPF, 3000, 44100);
+    FTA_RBJFilter *filter = FTA_RBJFilterInit(HIGHPASS, 3000, 44100);
     float output[10];
     
     FTA_FillBuffer(output, 10, 0.0);
@@ -53,7 +53,7 @@
 - (void)testRBJBandpassFilterAgainstMatlab
 {
     
-    FTA_RBJFilter *filter = FTA_RBJFilterInit(RBJ_BPF, 3000, 44100);
+    FTA_RBJFilter *filter = FTA_RBJFilterInit(BANDPASS, 3000, 44100);
     float output[10];
     
     FTA_FillBuffer(output, 10, 0.0);
@@ -69,7 +69,7 @@
 - (void)testRBJAllpassFilterAgainstMatlab
 {
     
-    FTA_RBJFilter *filter = FTA_RBJFilterInit(RBJ_APF, 3000, 44100);
+    FTA_RBJFilter *filter = FTA_RBJFilterInit(ALLPASS, 3000, 44100);
     float output[10];
     
     FTA_FillBuffer(output, 10, 0.0);
@@ -86,7 +86,7 @@
 - (void)testRBJNotchFilterAgainstMatlab
 {
     
-    FTA_RBJFilter *filter = FTA_RBJFilterInit(RBJ_NOTCH, 3000, 44100);
+    FTA_RBJFilter *filter = FTA_RBJFilterInit(NOTCH, 3000, 44100);
     float output[10];
     
     FTA_FillBuffer(output, 10, 0.0);
@@ -103,7 +103,7 @@
 - (void)testRBJPeakFilterAgainstMatlab
 {
     
-    FTA_RBJFilter *filter = FTA_RBJFilterInit(RBJ_PEAK, 3000, 44100);
+    FTA_RBJFilter *filter = FTA_RBJFilterInit(PEAK, 3000, 44100);
     float output[10];
     
     FTA_FillBuffer(output, 10, 0.0);
@@ -121,7 +121,7 @@
 - (void)testRBJLowShelfFilterAgainstMatlab
 {
     
-    FTA_RBJFilter *filter = FTA_RBJFilterInit(RBJ_LSHELF, 300, 44100);
+    FTA_RBJFilter *filter = FTA_RBJFilterInit(LOW_SHELF, 300, 44100);
     float output[10];
 
     FTA_FillBuffer(output, 10, 0.0);
@@ -139,7 +139,7 @@
 - (void)testRBJHighShelfFilterAgainstMatlab
 {
     
-    FTA_RBJFilter *filter = FTA_RBJFilterInit(RBJ_LSHELF, 300, 44100);
+    FTA_RBJFilter *filter = FTA_RBJFilterInit(LOW_SHELF, 300, 44100);
     float output[10];
     
     FTA_FillBuffer(output, 10, 0.0);
@@ -157,7 +157,7 @@
 - (void)testRBJFilterSetCutoff
 {
     
-    FTA_RBJFilter *filter = FTA_RBJFilterInit(RBJ_LPF, 2000, 44100);
+    FTA_RBJFilter *filter = FTA_RBJFilterInit(LOWPASS, 2000, 44100);
     float output[10];
     
     FTA_FillBuffer(output, 10, 0.0);
@@ -173,12 +173,12 @@
 - (void)testRBJFilterSetType
 {
     
-    FTA_RBJFilter *filter = FTA_RBJFilterInit(RBJ_HPF, 3000, 44100);
+    FTA_RBJFilter *filter = FTA_RBJFilterInit(HIGHPASS, 3000, 44100);
     float output[10];
     
     FTA_FillBuffer(output, 10, 0.0);
     
-    FTA_RBJFilterSetType(filter, RBJ_LPF);
+    FTA_RBJFilterSetType(filter, LOWPASS);
     FTA_RBJFilterProcess(filter, output, input, 10);
     for (unsigned i = 0; i < 10; ++i)
     {
@@ -189,7 +189,7 @@
 - (void)testRBJFilterSetQ
 {
     
-    FTA_RBJFilter *filter = FTA_RBJFilterInit(RBJ_LPF, 3000, 44100);
+    FTA_RBJFilter *filter = FTA_RBJFilterInit(LOWPASS, 3000, 44100);
     float output[10];
     
     FTA_FillBuffer(output, 10, 0.0);
