@@ -42,15 +42,16 @@ FTA_RBJFilter
 Biquad EQ stages, implements shelves, low/high-pass, bandpass, and notch filters
 with adjustable cutoff and Q. Each stage is a single biquad section.
 Ex.
-
-	FTA_RBJFilter *filter = FTA_RBJFilterInit(RBJ_LSHELF, 100, 44100);
-
+```C
+	FTA_RBJFilter *filter = FTA_RBJFilterInit(LOW_SHELF, 100, 44100);
+```
 creates a low shelf filter with a cutoff at 100Hz, which you would use to 
 process a 2048-sample audio buffer like:
-
+```C
 	FTA_RBJFilterProcess(filter, destP, sourceP, 2048);
-
-Chain a few of these stages together and you've got a parametric EQ. 
+```
+Chain a few of these stages together to create a parametric EQ.
+ 
 
 FTA_OnePoleFilter
 -----------------
