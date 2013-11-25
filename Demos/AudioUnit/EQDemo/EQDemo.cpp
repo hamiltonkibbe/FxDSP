@@ -338,10 +338,10 @@ EQDemo::EQDemoKernel::EQDemoKernel (AUEffectBase *inAudioUnit ) : AUKernelBase (
 	// Obtaining this value here in the constructor assumes that the sample rate
 	// will not change during one instantiation of the audio unit.
 	mSampleFrequency = GetSampleRate ();
-    mLowpass = FTA_RBJFilterInit(RBJ_LPF, 0.0, mSampleFrequency);
-    mHighpass = FTA_RBJFilterInit(RBJ_HPF, 20000.0, mSampleFrequency);
-    mLowCutoffsmoother = FTA_OnePoleFilterInit(20, mSampleFrequency);
-    mHighCutoffsmoother = FTA_OnePoleFilterInit(20, mSampleFrequency);
+    mLowpass = FTA_RBJFilterInit(LOWPASS, 0.0, mSampleFrequency);
+    mHighpass = FTA_RBJFilterInit(HIGHPASS, 20000.0, mSampleFrequency);
+    mLowCutoffsmoother = FTA_OnePoleFilterInit(200, mSampleFrequency/512);
+    mHighCutoffsmoother = FTA_OnePoleFilterInit(200, mSampleFrequency/512);
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -415,11 +415,11 @@ EQDemo::EQDemoKernel::Process (
 			highpassQ	= kMaximumValue_Highpass_Q;
 	
         // Update Filters
-        FTA_RBJFilterSetParams(mLowpass, RBJ_LPF, lowpassFrequency, lowpassQ);
+        FTA_RBJFilterSetParams(mLowpass, LOWPASS, lowpassFrequency, lowpassQ);
         //FTA_RBJFilterSetCutoff(mLowpass, lowpassFrequency);
         //FTA_RBJFilterSetQ(mLowpass, lowpassQ);
         
-        FTA_RBJFilterSetParams(mHighpass, RBJ_HPF, highpassFrequency, highpassQ);
+        FTA_RBJFilterSetParams(mHighpass, HIGHPASS, highpassFrequency, highpassQ);
         //FTA_RBJFilterSetCutoff(mHighpass, highpassFrequency);
         //FTA_RBJFilterSetQ(mHighpass, highpassQ);
 

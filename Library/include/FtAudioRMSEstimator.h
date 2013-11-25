@@ -49,7 +49,9 @@ FTA_RMSEstimatorProcess(FTA_RMSEstimator*   rms,
                         const float*        inBuffer,
                         unsigned            n_samples);
 
-/** Calculate one point of a sliding RMS
+
+    
+/** Return sliding RMS at the current sample
  *
  * @details Uses an algorithm based on Newton's method for fast square-root 
  *          calculation to estimate RMS power of a signal.

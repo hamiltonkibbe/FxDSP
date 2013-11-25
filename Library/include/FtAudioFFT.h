@@ -188,9 +188,11 @@ FTA_FFTFilterConvolve(FTA_FFTConfig*  fft,
 
     
     
-    
+/** Just prints the complex output
+ *
+ */
 FTA_Error_t
-FTA_FFTdemo(FTA_FFTConfig *   fft,
+FTA_FFTdemo(FTA_FFTConfig *         fft,
                float*               buffer);
 
 
