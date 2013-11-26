@@ -191,7 +191,11 @@ FTA_Error_t
 FTA_RBJFilterFree(FTA_RBJFilter* 	filter)
 {
 	FTA_BiquadFilterFree(filter->biquad);
-	free(filter);
+    if (filter)
+    {
+        free(filter);
+        filter = NULL;
+    }
 	return FT_NOERR;
 }
 

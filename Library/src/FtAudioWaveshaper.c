@@ -140,7 +140,11 @@ arctan(float* outBuffer,
  {
 	FTA_UpsamplerFree(waveshaper->upsampler);
 	//FTA_DownsamplerFree(waveshaper->downsampler);
-	free(waveshaper);
+    if (waveshaper)
+    {
+        free(waveshaper);
+        waveshaper = NULL;
+    }
 	return FT_NOERR;
  }
 

@@ -55,7 +55,11 @@ FTA_MultibandFilterFree(FTA_MultibandFilter* filter)
     FTA_LRFilterFree(filter->HPA);
     FTA_LRFilterFree(filter->HPA);
     FTA_RBJFilterFree(filter->APF);
-    free(filter);
+    if (filter)
+    {
+        free(filter);
+        filter = NULL;
+    }
     
     return FT_NOERR;
 }

@@ -7,16 +7,17 @@
 //
 
 #include "FtAudioRMSEstimator.h"
+#include "FtAudioUtilities.h"
 #include <math.h>
 #include <stdlib.h>
 
 /* FTA_RMSEstimator ***********************************************************/
 struct FTA_RMSEstimator
 {
-    float avgTime;
-    long long sampleRate;
-    float avgCoeff;
-    float RMS;
+    float       avgTime;
+    long long   sampleRate;
+    float       avgCoeff;
+    float       RMS;
 };
 
 
@@ -28,8 +29,8 @@ FTA_RMSEstimatorInit(float      avgTime,
     FTA_RMSEstimator* rms = (FTA_RMSEstimator*) malloc(sizeof(FTA_RMSEstimator));
     rms->avgTime = avgTime;
     rms->sampleRate = sampleRate;
-    rms->RMS = 1.0;
-    rms->avgCoeff = 0.5 * (1.0 - exp(-1.0 / (rms->sampleRate * rms->avgTime)));
+    rms->RMS = 1;
+    rms->avgCoeff = 0.5 * (1.0 - expf( -1.0 / (rms->sampleRate * rms->avgTime)));
     
     return rms;
 }
@@ -39,7 +40,11 @@ FTA_RMSEstimatorInit(float      avgTime,
 FTA_Error_t
 FTA_RMSEstimatorFree(FTA_RMSEstimator* rms)
 {
-    free(rms);
+    if (rms)
+    {
+        free(rms);
+        rms = NULL;
+    }
     return FT_NOERR;
 }
 
@@ -53,7 +58,7 @@ FTA_RMSEstimatorProcess(FTA_RMSEstimator*   rms,
 {
     for (unsigned i = 0; i < n_samples; ++i)
     {
-        rms->RMS += rms->avgCoeff * ((inBuffer[i]/rms->RMS) - rms->RMS);
+        rms->RMS += rms->avgCoeff * ((f_abs(inBuffer[i])/rms->RMS) - rms->RMS);
         outBuffer[i] = rms->RMS;
     }
     return FT_NOERR;
@@ -64,6 +69,6 @@ float
 FTA_RMSEstimatorTick(FTA_RMSEstimator*  rms,
                      float              inSample)
 {
-    rms->RMS += rms->avgCoeff * ((inSample/rms->RMS) - rms->RMS);
+    rms->RMS += rms->avgCoeff * ((f_abs(inSample/rms->RMS)) - rms->RMS);
     return rms->RMS;
 }

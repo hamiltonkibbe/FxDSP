@@ -48,8 +48,16 @@ FTA_UpsamplerInit(FTA_UpsampleFactor_t factor)
 FTA_Error_t
 FTA_UpsamplerFree(FTA_Upsampler* upsampler)
 {
-	free(upsampler->polyphase);
-	free(upsampler);
+    if (upsampler)
+    {
+        if (upsampler->polyphase)
+        {
+            free(upsampler->polyphase);
+            upsampler->polyphase = NULL;
+        }
+        free(upsampler);
+        upsampler = NULL;
+    }
 	return FT_NOERR;
 }
 

@@ -78,13 +78,31 @@ FTA_FIRFilterInit(const float*       filter_kernel,
 FTA_Error_t 
 FTA_FIRFilterFree(FTA_FIRFilter * filter)
 {
-    free(filter->kernel);
-    free(filter->overlap);
-    if (filter->fft_config)
-        FTA_FFTFree(filter->fft_config);
-    if (filter->fft_kernel.realp)
-        free(filter->fft_kernel.realp);
-    free(filter);
+    if (filter)
+    {
+        if (filter->kernel)
+        {
+            free(filter->kernel);
+            filter->kernel = NULL;
+        }
+        if (filter->overlap)
+        {
+            free(filter->overlap);
+            filter->overlap = NULL;
+        }
+        if (filter->fft_config)
+        {
+            FTA_FFTFree(filter->fft_config);
+            filter->fft_config = NULL;
+        }
+        if (filter->fft_kernel.realp)
+        {
+            free(filter->fft_kernel.realp);
+            filter->fft_kernel.realp = NULL;
+        }
+        free(filter);
+        filter = NULL;
+    }
     return FT_NOERR;
 }
 

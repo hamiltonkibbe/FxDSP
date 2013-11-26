@@ -48,7 +48,11 @@ FTA_LRFilterFree(FTA_LRFilter* 	filter)
 {
     FTA_RBJFilterFree(filter->filterA);
     FTA_RBJFilterFree(filter->filterA);
-    free(filter);
+    if (filter)
+    {
+        free(filter);
+        filter = NULL;
+    }
     
     return FT_NOERR;
 }

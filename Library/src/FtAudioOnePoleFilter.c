@@ -48,7 +48,11 @@ FTA_OnePoleFilterSetCutoff(FTA_OnePoleFilter* filter, float cutoff)
 FTA_Error_t
 FTA_OnePoleFilterFree(FTA_OnePoleFilter *filter)
 {
-    free(filter);
+    if (filter)
+    {
+        free(filter);
+        filter = NULL;
+    }
     return FT_NOERR;
 }
 

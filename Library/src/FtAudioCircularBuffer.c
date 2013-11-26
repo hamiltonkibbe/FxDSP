@@ -49,7 +49,16 @@ FTA_CircularBufferInit(unsigned length)
 void
 FTA_CircularBufferFree(FTA_CircularBuffer* cb)
 {
-    free(cb->buffer);
+    if (cb)
+    {
+        if (cb->buffer)
+        {
+            free(cb->buffer);
+            cb->buffer = NULL;
+        }
+        free(cb);
+        cb = NULL;
+    }
 }
 
 

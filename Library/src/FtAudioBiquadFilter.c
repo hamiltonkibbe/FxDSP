@@ -49,7 +49,11 @@ FTA_BiquadFilter* FTA_BiquadFilterInit(const float    *bCoeff,
 FTA_Error_t 
 FTA_BiquadFilterFree(FTA_BiquadFilter * filter)
 {
-    free(filter);
+    if (filter)
+    {
+        free(filter);
+        filter = NULL;
+    }
     return FT_NOERR;
 }
 

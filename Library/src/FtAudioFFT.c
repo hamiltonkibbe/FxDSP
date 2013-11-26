@@ -46,10 +46,23 @@ FTA_FFTInit(unsigned length)
 FTA_Error_t
 FTA_FFTFree(FTA_FFTConfig* fft)
 {
+    if (fft)
+    {
+        if (fft->split.realp)
+        {
+            free(fft->split.realp);
+            fft->split2.realp = NULL;
+        }
+        if (fft->split2.realp)
+        {
+            free(fft->split2.realp);
+            fft->split2.realp = NULL;
+        }
+        vDSP_destroy_fftsetup(fft->setup);
+        free(fft);
+        fft = NULL;
+    }
     
-    free(fft->split.realp);
-    free(fft->split2.realp);
-    vDSP_destroy_fftsetup(fft->setup);
     return FT_NOERR;
 }
 

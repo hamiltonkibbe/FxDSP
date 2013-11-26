@@ -15,7 +15,7 @@ All of the "objects" have a similar interface, and they look something like this
 	// rate, a Q and a Gain (maybe its some sort of filter or something)
 	FTA_Object * an_object = FTA_ObjectInit(cutoff, sampleRate, Q, Gain);
 	
-	// ...Later, in your render_callback, update the parameters and process the data
+	// ...Later, in your render callback, update the parameters and process the data
 	FTA_ObjectSetParams(an_object, cutoff, sampleRate, Q, Gain);	
 	FTA_ObjectProcess(an_object, dest_pointer, source_pointer, number_of_samples);
 	
@@ -23,6 +23,12 @@ All of the "objects" have a similar interface, and they look something like this
 	FTA_ObjectFree(an_object);
 ```
     
+FTA_CircularBuffer
+------------------
+A Circular buffer with fast wrapping. 
+
+
+
 FTA_BiquadFilter
 -------------------
 Digital Biquad filter. A building block for more complex filters. Uses a vectorized

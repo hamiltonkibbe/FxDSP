@@ -449,8 +449,17 @@ FTA_WindowFunctionInit(unsigned n, FtWindow_t type)
 FTA_Error_t
 FTA_WindowFunctionFree(FTA_WindowFunction* window)
 {
-    free(window->window);
-    free(window);
+    if (window)
+    {
+        if (window->window)
+        {
+            free(window->window);
+            window->window = NULL;
+        }
+
+        free(window);
+        window = NULL;
+    }
     return FT_NOERR;
 }
 

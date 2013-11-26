@@ -44,7 +44,11 @@ FTA_LadderFilterInit(float _sample_rate)
 FTA_Error_t 
 FTA_LadderFilterFree(FTA_LadderFilter* filter)
 {
-	free(filter);
+	if (filter)
+    {
+        free(filter);
+        filter = NULL;
+    }
 	return FT_NOERR;
 }
 
