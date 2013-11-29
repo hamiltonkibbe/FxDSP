@@ -61,7 +61,7 @@ FTA_FFTFree(FTA_FFTConfig* fft);
  * @return          Error code, 0 on success.
  */
 FTA_Error_t
-FTA_FFTForward(FTA_FFTConfig*     fft,
+FTA_FFTForward(FTA_FFTConfig*           fft,
                   const float*          inBuffer,
                   float*                outMag,
                   float*                outPhase);

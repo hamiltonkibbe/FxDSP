@@ -115,4 +115,48 @@ static const float MatlabSignal[] =
     -0.187381312251091,
 };
 
+
+static const float zeros[10] =
+{
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+};
+
+static const float ones[10] =
+{
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+};
+
+static const float ramp[10] =
+{
+    -1.0,
+    -0.8,
+    -0.6,
+    -0.4,
+    -0.2,
+    0,
+    0.2,
+    0.4,
+    0.6,
+    0.8
+};
+
+
 #endif // SIGNALS_H

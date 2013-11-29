@@ -40,7 +40,7 @@ FTA_MultibandFilterInit(float       lowCutoff,
     filter->HPA = FTA_LRFilterInit(HIGHPASS, filter->lowCutoff, 0.7071, filter->sampleRate);
     filter->LPB = FTA_LRFilterInit(LOWPASS, filter->highCutoff, 0.7071, filter->sampleRate);
     filter->HPB = FTA_LRFilterInit(HIGHPASS, filter->highCutoff, 0.7071, filter->sampleRate);
-    filter->APF = FTA_RBJFilterInit(ALLPASS, filter->lowCutoff, filter->sampleRate);
+    filter->APF = FTA_RBJFilterInit(ALLPASS, filter->sampleRate/2.0, filter->sampleRate);
     FTA_RBJFilterSetQ(filter->APF, 0.5);
     return filter;
 }
@@ -53,7 +53,7 @@ FTA_MultibandFilterFree(FTA_MultibandFilter* filter)
     FTA_LRFilterFree(filter->LPA);
     FTA_LRFilterFree(filter->LPB);
     FTA_LRFilterFree(filter->HPA);
-    FTA_LRFilterFree(filter->HPA);
+    FTA_LRFilterFree(filter->HPB);
     FTA_RBJFilterFree(filter->APF);
     if (filter)
     {

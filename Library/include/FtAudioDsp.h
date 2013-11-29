@@ -9,7 +9,6 @@
 
 #ifndef FTAUDIODSP_H
 #define FTAUDIODSP_H
-
 #include "FtAudioError.h"
 
 #ifdef __cplusplus

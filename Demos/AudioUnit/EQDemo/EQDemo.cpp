@@ -37,6 +37,10 @@ EQDemo::EQDemo (AudioUnit component) : AUEffectBase (component) {
     SetParameter (kParameter_Highpass_Frequency, kDefaultValue_Highpass_Freq);
 	SetParameter (kParameter_Highpass_Q, kDefaultValue_Highpass_Q);
 	SetParameter (kParameter_Stage_Type, kDefaultValue_Stage_Type);
+    SetParameter (kParameter_Stage3_Cutoff, kDefaultValue_Stage3_Cutoff);
+    SetParameter(kParameter_Stage3_Q, kDefaultValue_Stage3_Q);
+
+    
 
 	// Also during instantiation, sets the preset menu to indicate the default preset,
 	//	which corresponds to the default parameters. It's possible to set this so a
@@ -74,11 +78,7 @@ EQDemo::GetParameterInfo (
         switch (inParameterID) {
 		
             case kParameter_Lowpass_Frequency:
-				AUBase::FillInParameterName (
-					outParameterInfo,
-					kParamName_Lowpass_Freq,
-					false
-				);
+				AUBase::FillInParameterName (outParameterInfo, kParamName_Lowpass_Freq, false);
 				outParameterInfo.unit			= kAudioUnitParameterUnit_Hertz;
 				outParameterInfo.minValue		= kMinimumValue_Lowpass_Freq;
 				outParameterInfo.maxValue		= kMaximumValue_Lowpass_Freq;
@@ -99,11 +99,7 @@ EQDemo::GetParameterInfo (
 				break;
             
             case kParameter_Highpass_Frequency:
-				AUBase::FillInParameterName (
-                                             outParameterInfo,
-                                             kParamName_Highpass_Freq,
-                                             false
-                                             );
+				AUBase::FillInParameterName(outParameterInfo,kParamName_Highpass_Freq,false);
 				outParameterInfo.unit			= kAudioUnitParameterUnit_Hertz;
 				outParameterInfo.minValue		= kMinimumValue_Highpass_Freq;
 				outParameterInfo.maxValue		= kMaximumValue_Highpass_Freq;
@@ -112,12 +108,7 @@ EQDemo::GetParameterInfo (
 				break;
                 
             case kParameter_Highpass_Q:
-				AUBase::FillInParameterName (
-                                             outParameterInfo,
-                                             kParamName_Highpass_Q,
-                                             false
-                                             );
-				//outParameterInfo.unit			= kAudioUnitParameterUnit_CustomUnit;
+				AUBase::FillInParameterName(outParameterInfo,kParamName_Highpass_Q,false);
 				outParameterInfo.minValue		= kMinimumValue_Highpass_Q;
 				outParameterInfo.maxValue		= kMaximumValue_Highpass_Q;
 				outParameterInfo.defaultValue	= kDefaultValue_Highpass_Q;
@@ -125,11 +116,7 @@ EQDemo::GetParameterInfo (
             
             case kParameter_Stage_Type:
 			// Invoked when the view needs information for the kTremoloParam_Waveform parameter.
-				AUBase::FillInParameterName (
-					outParameterInfo,
-					kParamName_Stage_Type,
-					false
-				);
+				AUBase::FillInParameterName(outParameterInfo,kParamName_Stage_Type,false);
 				outParameterInfo.unit			= kAudioUnitParameterUnit_Indexed;
 				// Sets the unit of measurement for the Waveform parameter to "indexed," allowing 
 				// it to be displayed as a pop-up menu in the generic view. The following three 
@@ -140,6 +127,21 @@ EQDemo::GetParameterInfo (
 				outParameterInfo.defaultValue	= kDefaultValue_Stage_Type;
 				break;
 
+            case kParameter_Stage3_Cutoff:
+                AUBase::FillInParameterName(outParameterInfo, kParamName_Stage3_Cutoff, false);
+                outParameterInfo.unit           = kAudioUnitParameterUnit_Hertz;
+                outParameterInfo.minValue       = kMinimumValue_Stage3_Cutoff;
+                outParameterInfo.maxValue       = kMaximumValue_Stage3_Cutoff;
+                outParameterInfo.defaultValue   = kDefaultValue_Stage3_Cutoff;
+                break;
+                
+            case kParameter_Stage3_Q:
+                AUBase::FillInParameterName(outParameterInfo, kParamName_Stage3_Q, false);
+                outParameterInfo.minValue       = kMinimumValue_Stage3_Q;
+                outParameterInfo.maxValue       = kMaximumValue_Stage3_Q;
+                outParameterInfo.defaultValue   = kDefaultValue_Stage3_Q;
+                break;
+                
 			default:
 				result = kAudioUnitErr_InvalidParameter;
 				break;
@@ -290,26 +292,21 @@ EQDemo::NewFactoryPresetSet(const AUPreset &inNewFactoryPreset)
 
 					// The settings for the "Slow & Gentle" factory preset.
 					case kPreset_Phone:
-						SetParameter (
-							kParameter_Lowpass_Frequency,
-							kParameter_Preset_Lowpass_Frequency_Phone
-						);
-						SetParameter (
-							kParameter_Highpass_Frequency,
-							kParameter_Preset_Highpass_Frequency_Phone
-						);
-						SetParameter (
-							kParameter_Stage_Type,
-							kParameter_Preset_Stage_Type
-						);
+						SetParameter (kParameter_Lowpass_Frequency, kParameter_Preset_Lowpass_Frequency_Phone);
+						SetParameter (kParameter_Highpass_Frequency,kParameter_Preset_Highpass_Frequency_Phone);
+						SetParameter (kParameter_Stage_Type,kParameter_Preset_Stage_Type);
 						break;
-					
+                        
+					case kPreset_DefaultPreset:
+                        SetParameter(kParameter_Lowpass_Frequency,kDefaultValue_Lowpass_Freq );
+                        SetParameter(kParameter_Lowpass_Q, kDefaultValue_Lowpass_Q);
+                        SetParameter(kParameter_Highpass_Frequency,kDefaultValue_Highpass_Freq );
+                        SetParameter(kParameter_Highpass_Q, kDefaultValue_Highpass_Q);
+                        break;
 				}
 				
 				// Updates the preset menu in the generic view to display the new factory preset.
-				SetAFactoryPresetAsCurrent (
-					kPresets [i]
-				);
+				SetAFactoryPresetAsCurrent(kPresets [i]);
 				return noErr;
 			}
 		}
@@ -338,8 +335,9 @@ EQDemo::EQDemoKernel::EQDemoKernel (AUEffectBase *inAudioUnit ) : AUKernelBase (
 	// Obtaining this value here in the constructor assumes that the sample rate
 	// will not change during one instantiation of the audio unit.
 	mSampleFrequency = GetSampleRate ();
-    mLowpass = FTA_RBJFilterInit(LOWPASS, 0.0, mSampleFrequency);
-    mHighpass = FTA_RBJFilterInit(HIGHPASS, 20000.0, mSampleFrequency);
+    mLowpass = FTA_RBJFilterInit(LOWPASS, kDefaultValue_Lowpass_Freq, mSampleFrequency);
+    mHighpass = FTA_RBJFilterInit(HIGHPASS, kDefaultValue_Highpass_Freq, mSampleFrequency);
+    mStage3 = FTA_RBJFilterInit(PEAK, kDefaultValue_Stage3_Cutoff, mSampleFrequency);
     mLowCutoffsmoother = FTA_OnePoleFilterInit(200, mSampleFrequency/512);
     mHighCutoffsmoother = FTA_OnePoleFilterInit(200, mSampleFrequency/512);
 }
@@ -353,6 +351,7 @@ EQDemo::EQDemoKernel::Reset()
 {
 	FTA_RBJFilterFlush(mLowpass);
 	FTA_RBJFilterFlush(mHighpass);
+    FTA_RBJFilterFlush(mStage3);
 }
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -390,7 +389,9 @@ EQDemo::EQDemoKernel::Process (
 		Float32 lowpassQ = GetParameter (kParameter_Lowpass_Q);
 		Float32 highpassFrequency =  FTA_OnePoleFilterTick(mHighCutoffsmoother, GetParameter(kParameter_Highpass_Frequency));
 		Float32 highpassQ = GetParameter(kParameter_Highpass_Q);
-        //int stageType = (int) GetParameter(kParameter_Stage_Type);
+        Float32 stage3Frequency = GetParameter(kParameter_Stage3_Cutoff);
+        Float32 stage3Q = GetParameter(kParameter_Stage3_Q);
+        Filter_t stageType = (Filter_t) GetParameter(kParameter_Stage_Type);
 
 	
 		// Performs bounds checking on the parameters.
@@ -416,16 +417,13 @@ EQDemo::EQDemoKernel::Process (
 	
         // Update Filters
         FTA_RBJFilterSetParams(mLowpass, LOWPASS, lowpassFrequency, lowpassQ);
-        //FTA_RBJFilterSetCutoff(mLowpass, lowpassFrequency);
-        //FTA_RBJFilterSetQ(mLowpass, lowpassQ);
-        
         FTA_RBJFilterSetParams(mHighpass, HIGHPASS, highpassFrequency, highpassQ);
-        //FTA_RBJFilterSetCutoff(mHighpass, highpassFrequency);
-        //FTA_RBJFilterSetQ(mHighpass, highpassQ);
-
+        FTA_RBJFilterSetParams(mStage3, stageType, stage3Frequency, stage3Q);
+        
         // Process available data
         FTA_RBJFilterProcess(mLowpass, tempBuffer, sourceP, inSamplesToProcess);
         FTA_RBJFilterProcess(mHighpass, destP, (const float*)tempBuffer, inSamplesToProcess);
+        //FTA_RBJFilterProcess(mStage3, destP, (const float*)tempBuffer, inSamplesToProcess);
 
 	}
 }

@@ -47,7 +47,7 @@ FTA_Error_t
 FTA_LRFilterFree(FTA_LRFilter* 	filter)
 {
     FTA_RBJFilterFree(filter->filterA);
-    FTA_RBJFilterFree(filter->filterA);
+    FTA_RBJFilterFree(filter->filterB);
     if (filter)
     {
         free(filter);
