@@ -60,22 +60,22 @@ FTA_OnePoleFilterFree(FTA_OnePoleFilter *filter)
 /* FTA_OnePoleFilterProcess ************************************************/
 inline FTA_Error_t
 FTA_OnePoleFilterProcess(FTA_OnePoleFilter* filter,
-                            float*               outBuffer,
-                            const float*         inBuffer,
-                            unsigned             n_samples)
+                            float*          outBuffer,
+                            const float*    inBuffer,
+                            unsigned        n_samples)
 {
     for (unsigned i = 0; i < n_samples; ++i)
     {
         outBuffer[i] = filter->y1 = inBuffer[i] * filter->a0 + filter->y1 * filter->b1;
-        //printf("OUT: %0.10f\n", outBuffer[i]);
     }
     return FT_NOERR;
 }
 
+
 /* FTA_OnePoleFilterTick ***************************************************/
 inline float
 FTA_OnePoleFilterTick(FTA_OnePoleFilter*  filter,
-                         float                  inSample)
+                         float            inSample)
 {
     return  filter->y1 = inSample * filter->a0 + filter->y1 * filter->b1;
 }

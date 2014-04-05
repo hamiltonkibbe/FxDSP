@@ -194,12 +194,13 @@ protected:
         virtual void Reset ();
 		
 		private:
-            FTA_RBJFilter    *mLowpass;
-            FTA_RBJFilter    *mHighpass;
-            FTA_RBJFilter    *mStage3;
-            FTA_OnePoleFilter *mLowCutoffsmoother;
-            FTA_OnePoleFilter *mHighCutoffsmoother;
+            FTA_RBJFilter       *mLowpass;
+            FTA_RBJFilter       *mHighpass;
+            FTA_RBJFilter       *mStage3;
+            FTA_OnePoleFilter   *mLowCutoffsmoother;
+            FTA_OnePoleFilter   *mHighCutoffsmoother;
             Float32             mSampleFrequency;
+        Float32                 mTempBuffer[8192];
         
 	};
 };

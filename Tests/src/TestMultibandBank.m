@@ -62,7 +62,7 @@
     
     
     // Print Matlab-readable values for each band
-    printf("\n\nlow = 20*log10(abs(fft([ ");
+    /*printf("\n\nlow = 20*log10(abs(fft([ ");
     for (unsigned i = 0; i < 64; ++i)
     {
         printf("%f\n", low[i]);
@@ -84,7 +84,7 @@
         printf("%f\n", high[i]);
     }
     printf("])));\n\n");
-    
+    */
     
     
     // Verify output

@@ -39,9 +39,7 @@ EQDemo::EQDemo (AudioUnit component) : AUEffectBase (component) {
 	SetParameter (kParameter_Stage_Type, kDefaultValue_Stage_Type);
     SetParameter (kParameter_Stage3_Cutoff, kDefaultValue_Stage3_Cutoff);
     SetParameter(kParameter_Stage3_Q, kDefaultValue_Stage3_Q);
-
     
-
 	// Also during instantiation, sets the preset menu to indicate the default preset,
 	//	which corresponds to the default parameters. It's possible to set this so a
 	//	fresh audio unit indicates the wrong preset, so be careful to get it right.
@@ -421,8 +419,8 @@ EQDemo::EQDemoKernel::Process (
         FTA_RBJFilterSetParams(mStage3, stageType, stage3Frequency, stage3Q);
         
         // Process available data
-        FTA_RBJFilterProcess(mLowpass, tempBuffer, sourceP, inSamplesToProcess);
-        FTA_RBJFilterProcess(mHighpass, destP, (const float*)tempBuffer, inSamplesToProcess);
+        FTA_RBJFilterProcess(mLowpass, mTempBuffer, sourceP, inSamplesToProcess);
+        FTA_RBJFilterProcess(mHighpass, destP, (const float*)mTempBuffer, inSamplesToProcess);
         //FTA_RBJFilterProcess(mStage3, destP, (const float*)tempBuffer, inSamplesToProcess);
 
 	}

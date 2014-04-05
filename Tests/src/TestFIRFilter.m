@@ -66,7 +66,8 @@
 	// Check results
     for (unsigned i = 0; i < 32; ++i)
     {
-        XCTAssertEqualWithAccuracy(output[i], MatlabLowpassOutput[i], 0.01, @"[%s FAILED] Buffer Compare failed at index %d. Got: %0.10f  Expected: %0.10f\n", __PRETTY_FUNCTION__,i, output[i], MatlabLowpassOutput[i]);
+        XCTAssertEqualWithAccuracy(output[i], MatlabLowpassOutput[i], 0.01,
+                                   @"[%s FAILED] Buffer Compare failed at index %d. Got: %0.10f  Expected: %0.10f\n", __PRETTY_FUNCTION__,i, output[i], MatlabLowpassOutput[i]);
     }
 }
 
