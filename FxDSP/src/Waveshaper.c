@@ -53,9 +53,9 @@ hard_clip(float* outBuffer,
 		vDSP_vclip((float*)inBuffer,1,&low,&high,outBuffer,1,n_samples);
 	
 #else
-	float *inptr = inBuffer;
+	float *inptr = (float*)inBuffer;
 	float *outptr = outBuffer;
-	while(inptr < inbuffer + n_samples)
+	while(inptr < inBuffer + n_samples)
 	{
 		*outptr++ = *inptr < -threshold ? -threshold : (*inptr > threshold ? threshold : *inptr);
 		++inptr;
@@ -86,7 +86,7 @@ arctan(float* outBuffer,
 	vvatanf(outBuffer, inBuffer,(const int*)&n_samples);
 	vDSP_vsmul(outBuffer, 1, (const float*)&four_over_pi, outBuffer, 1, n_samples);
 #else
-	float *inptr = inBuffer;
+	float *inptr = (float*)(float*)(float*)(float*)(float*)(float*)(float*)(float*)inBuffer;
 	float *outptr = outBuffer;
 	while(inptr < inBuffer + n_samples)
 	{

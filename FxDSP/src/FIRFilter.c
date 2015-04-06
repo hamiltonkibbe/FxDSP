@@ -288,7 +288,7 @@ FIRFilterProcess(FIRFilter* filter,
                 ClearBuffer((padded_kernel + filter->kernel_length), (filter->fft_length - filter->kernel_length));
                 
                 // Calculate FFT of filter kernel
-                FFTForwardSplit(filter->fft_config, (DSPComplex*)padded_kernel, &filter->fft_kernel);
+                FFTForwardSplit(filter->fft_config, (FFTComplex*)padded_kernel, &filter->fft_kernel);
             }
             
             // Buffer for transformed input
