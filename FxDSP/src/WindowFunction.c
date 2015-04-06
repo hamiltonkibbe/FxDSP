@@ -10,6 +10,9 @@
 #include "WindowFunction.h"
 #include "Dsp.h"
 
+#include <stdlib.h>
+#include <stddef.h>
+
 
 #ifdef __APPLE__
 #include <Accelerate/Accelerate.h>
