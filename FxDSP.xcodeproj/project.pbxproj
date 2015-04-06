@@ -52,6 +52,8 @@
 		37BC9E381AC71FD7008718DC /* Waveshaper.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C030B01ABB5EA800ABB47B /* Waveshaper.h */; };
 		37BC9E391AC71FD7008718DC /* Wavetable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C030B11ABB5EA800ABB47B /* Wavetable.h */; };
 		37BC9E3A1AC71FD7008718DC /* WindowFunction.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C030B21ABB5EA800ABB47B /* WindowFunction.h */; };
+		37BE91AC1ACADE270068DDD5 /* PanLaw.h in Headers */ = {isa = PBXBuildFile; fileRef = 37CDDD8C1AC9C82F001B96BA /* PanLaw.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		37BE91AD1ACADE350068DDD5 /* PanLaw.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37CDDD8C1AC9C82F001B96BA /* PanLaw.h */; };
 		37C030B31ABB5EA800ABB47B /* BiquadFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C0309A1ABB5EA800ABB47B /* BiquadFilter.h */; };
 		37C030B41ABB5EA800ABB47B /* CircularBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C0309B1ABB5EA800ABB47B /* CircularBuffer.h */; };
 		37C030B51ABB5EA800ABB47B /* Compressor.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C0309C1ABB5EA800ABB47B /* Compressor.h */; };
@@ -206,6 +208,7 @@
 			dstPath = /usr/local/include/FxDSP;
 			dstSubfolderSpec = 0;
 			files = (
+				37BE91AD1ACADE350068DDD5 /* PanLaw.h in CopyFiles */,
 				37BC9E221AC71FD7008718DC /* BiquadFilter.h in CopyFiles */,
 				37BC9E231AC71FD7008718DC /* CircularBuffer.h in CopyFiles */,
 				37BC9E241AC71FD7008718DC /* Compressor.h in CopyFiles */,
@@ -247,7 +250,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3706641418232CDB00C716B0 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = Tests.xctest; path = "Test FxDSP.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3706641418232CDB00C716B0 /* Test FxDSP.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Test FxDSP.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		375E0C661AC1011D00CF9209 /* testUpsampler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = testUpsampler.m; path = FxDSP/test/src/testUpsampler.m; sourceTree = SOURCE_ROOT; };
 		37B9928C1AC2415100236C2F /* testOnePole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = testOnePole.m; path = FxDSP/test/src/testOnePole.m; sourceTree = SOURCE_ROOT; };
 		37B9928E1AC2441000236C2F /* testOnePole.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = testOnePole.h; path = FxDSP/test/include/testOnePole.h; sourceTree = SOURCE_ROOT; };
@@ -500,7 +503,7 @@
 			isa = PBXGroup;
 			children = (
 				37EAC0E71818AE2F00736C52 /* libFxDSP.dylib */,
-				3706641418232CDB00C716B0 /* Tests.xctest */,
+				3706641418232CDB00C716B0 /* Test FxDSP.xctest */,
 				37C0317A1ABB7E0200ABB47B /* libFxDSP.a */,
 			);
 			name = Products;
@@ -546,6 +549,7 @@
 				37C031A91ABB7E4D00ABB47B /* Utilities.h in Headers */,
 				37C031AA1ABB7E4D00ABB47B /* Waveshaper.h in Headers */,
 				37C031AB1ABB7E4D00ABB47B /* Wavetable.h in Headers */,
+				37BE91AC1ACADE270068DDD5 /* PanLaw.h in Headers */,
 				37C031AC1ABB7E4D00ABB47B /* WindowFunction.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -601,7 +605,7 @@
 			);
 			name = "Test FxDSP";
 			productName = Tests;
-			productReference = 3706641418232CDB00C716B0 /* Tests.xctest */;
+			productReference = 3706641418232CDB00C716B0 /* Test FxDSP.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		37C031791ABB7E0200ABB47B /* FxDSP Static */ = {
@@ -873,6 +877,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = FxDSP;
 			};
 			name = Debug;
