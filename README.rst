@@ -1,6 +1,7 @@
 FxDSP Library
 =============
-
+.. image:: https://travis-ci.org/hamiltonkibbe/FxDSP.svg?branch=master
+    :target: https://travis-ci.org/hamiltonkibbe/FxDSP
 A Fast DSP library for effect and synthesizer development in C. Optimized for 
 iOS/OSX using the Accelerate framework but should run using non-vectorized 
 implementations for use on any platform. 
