@@ -36,6 +36,7 @@ typedef enum _ConvolutionMode
     
 /** FIRFilter type */
 typedef struct FIRFilter FIRFilter;
+typedef struct FIRFilterD FIRFilterD;
 
 
 /** Create a new FIRFilter
@@ -54,6 +55,10 @@ FIRFilter*
 FIRFilterInit(const float*      filter_kernel,
               unsigned          length,
               ConvolutionMode_t convolution_mode);
+FIRFilterD*
+FIRFilterInitD(const double*        filter_kernel,
+               unsigned             length,
+               ConvolutionMode_t    convolution_mode);
 
 
 /** Free memory associated with a FIRFilter
@@ -67,7 +72,10 @@ FIRFilterInit(const float*      filter_kernel,
 Error_t 
 FIRFilterFree(FIRFilter* filter);
 
+Error_t
+FIRFilterFreeD(FIRFilterD* filter);
 
+    
 /** Flush filter state buffer
  *  
  * @param filter	FIRFilter to flush
@@ -76,8 +84,10 @@ FIRFilterFree(FIRFilter* filter);
 Error_t  
 FIRFilterFlush(FIRFilter* filter);
 
+Error_t
+FIRFilterFlushD(FIRFilterD* filter);
 
-
+    
 /** Filter a buffer of samples
  *
  * @details Uses direct form convolution to filter the samples. This is not the
@@ -98,6 +108,13 @@ FIRFilterProcess(FIRFilter*     filter,
 				 unsigned       n_samples);
 
 
+Error_t
+FIRFilterProcessD(FIRFilterD*   filter,
+                  double*       outBuffer,
+                  const double* inBuffer,
+                  unsigned      n_samples);
+    
+
 /** Update the filter kernel for a given filter
  *  
  * @details New kernel must be the same length as the old one!
@@ -109,6 +126,10 @@ FIRFilterProcess(FIRFilter*     filter,
 Error_t  
 FIRFilterUpdateKernel(FIRFilter*    filter,
 					  const float*  filter_kernel);
+    
+Error_t
+FIRFilterUpdateKernelD(FIRFilterD*    filter,
+                       const double*  filter_kernel);
 									
 
 #ifdef __cplusplus

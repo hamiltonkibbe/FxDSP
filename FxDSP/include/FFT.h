@@ -85,7 +85,11 @@ FFTForward(FFTConfig*       fft,
            float*           outMag,
            float*           outPhase);
 
-
+Error_t
+FFTForwardD(FFTConfigD*     fft,
+            const double*   inBuffer,
+            double*         outMag,
+            double*         outPhase);
                   
 /** Calculate Real Forward FFT
  *
@@ -102,6 +106,11 @@ Error_t
 FFTForwardInterleaved(FFTConfig*    fft,
                       FFTComplex*   in_buffer,
                       FFTComplex*   out);
+    
+Error_t
+FFTForwardInterleavedD(FFTConfigD*  fft,
+                       FFTComplexD* in_buffer,
+                       FFTComplexD* out);
                   
 /** Calculate Real Forward FFT
  *
@@ -117,7 +126,11 @@ Error_t
 FFTForwardSplit(FFTConfig*          fft,
                 FFTComplex*         in_buffer,
                 FFTSplitComplex*    out);
-    
+   
+Error_t
+FFTForwardSplitD(FFTConfigD*        fft,
+                 FFTComplexD*       in_buffer,
+                 FFTSplitComplexD*  out);
              
 /** Calculate Real Inverse FFT
  *
@@ -135,6 +148,12 @@ FFTInverse(FFTConfig*       fft,
            const float*     inMag,
            const float*     inPhase,
            float*           outBuffer);
+    
+Error_t
+FFTInverseD(FFTConfigD*     fft,
+            const double*   inMag,
+            const double*   inPhase,
+            double*         outBuffer);
 
 
 /** Calculate Real Inverse FFT
@@ -151,7 +170,13 @@ Error_t
 FFTInverseInterleaved(FFTConfig*     fft,
                       const float*   inBuffer,
                       float*         outBuffer);
+    
+Error_t
+FFTInverseInterleavedD(FFTConfigD*      fft,
+                       const double*    inBuffer,
+                       double*          outBuffer);
 
+    
 /** Calculate Real Inverse FFT
 *
 * @details Calculates the real inverse FFT of the split-complex data in in_buffer
@@ -166,6 +191,11 @@ Error_t
 FFTInverseSplit(FFTConfig*          fft,
                 FFTSplitComplex*    in_buffer,
                 FFTComplex*         out_buffer);
+    
+Error_t
+FFTInverseSplitD(FFTConfigD*        fft,
+                 FFTSplitComplexD*  in_buffer,
+                 FFTComplexD*       out_buffer);
     
     
 /** Perform Convolution using FFT*
@@ -185,6 +215,14 @@ FFTConvolve(FFTConfig* fft,
             float       *in2,
             unsigned    in2_length,
             float       *dest);
+    
+Error_t
+FFTConvolveD(FFTConfigD*    fft,
+             const double*  in1,
+             unsigned       in1_length,
+             const double*  in2,
+             unsigned       in2_length,
+             double*        dest);
 
                    
 /** Perform Convolution using FFT*
@@ -201,12 +239,17 @@ FFTConvolve(FFTConfig* fft,
  */
 Error_t
 FFTFilterConvolve(FFTConfig*        fft,
-                  float*            in1,
-                  unsigned          in1_length,
+                  float*            in,
+                  unsigned          in_length,
                   FFTSplitComplex   fft_ir,
                   float*            dest);
 
-    
+Error_t
+FFTFilterConvolveD(FFTConfigD*      fft,
+                   double*          in,
+                   unsigned         in_length,
+                   FFTSplitComplexD fft_ir,
+                   double*          dest);
     
 /** Just prints the complex output
  *

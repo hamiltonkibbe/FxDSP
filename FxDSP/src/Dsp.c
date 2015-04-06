@@ -540,6 +540,55 @@ Convolve(float       *in1,
 }
 
 
+Error_t
+ConvolveD(double    *in1,
+          unsigned  in1_length,
+          double    *in2,
+          unsigned  in2_length,
+          double    *dest)
+{
+    
+    unsigned resultLength = in1_length + (in2_length - 1);
+    
+#ifdef __APPLE__
+    //Use Native vectorized convolution function if available
+    double    *in2_end = in2 + (in2_length - 1);
+    double signalLength = (in2_length + resultLength);
+    
+    // So there's some hella weird requirement that the signal input to
+    //vDSP_conv has to be larger than (result_length + filter_length - 1),
+    // (the output vector length) and it has to be zero-padded. What. The. Fuck!
+    double padded[(unsigned)ceil(signalLength)];
+    
+    //float zero = 0.0;
+    FillBufferD(padded, signalLength, 0.0);
+    
+    // Pad the input signal with (filter_length - 1) zeros.
+    cblas_dcopy(in1_length, in1, 1, (padded + (in2_length - 1)), 1);
+    vDSP_convD(padded, 1, in2_end, -1, dest, 1, resultLength, in2_length);
+    
+#else
+    // Use (boring, slow) canonical implementation
+    unsigned i;
+    for (i = 0; i <resultLength; ++i)
+    {
+        unsigned kmin, kmax, k;
+        dest[i] = 0;
+        
+        kmin = (i >= (in2_length - 1)) ? i - (in2_length - 1) : 0;
+        kmax = (i < in1_length - 1) ? i : in1_length - 1;
+        for (k = kmin; k <= kmax; k++)
+        {
+            dest[i] += in1[k] * in2[i - k];
+        }
+    }
+    
+    
+#endif
+    return NOERR;
+}
+
+
 
 /*******************************************************************************
  VectorPower */
