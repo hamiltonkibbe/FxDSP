@@ -5,7 +5,9 @@
  */
 
 #include "Dsp.h"
+#include "Utilities.h"
 #include <string.h>
+#include <math.h>
 #ifdef __APPLE__
 #include <Accelerate/Accelerate.h>
 #endif
@@ -652,7 +654,7 @@ VectorPowerD(double* dest, const double* in, double power, unsigned length)
  VectorDbConvert */
 Error_t
 VectorDbConvert(float* dest,
-                const float* in1,
+                const float* in,
                 unsigned amplitude_flag,
                 unsigned length)
 {

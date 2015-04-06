@@ -28,6 +28,11 @@ extern "C" {
     typedef struct FFTSplitComplex FFTSplitComplex;
     typedef struct FFTComplexD FFTComplexD;
     typedef struct FFTSplitComplexD FFTSplitComplexD;
+#else
+    typedef struct { float realp; float imagp;} FFTComplex;
+    typedef struct { float* realp; float* imagp;} FFTSplitComplex;
+    typedef struct { double realp; double imagp;} FFTComplexD;
+    typedef struct { double* realp; double* imagp;} FFTSplitComplexD;
 #endif
 
 

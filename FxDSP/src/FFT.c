@@ -31,7 +31,13 @@ typedef struct {
     fftw_plan inverse_plan;
 } FFT_SETUP_D;
 
+#else
+
+typedef struct {} FFT_SETUP;
+typedef struct {} FFT_SETUP_D;
 #endif
+
+
 
 struct FFTConfig
 {
@@ -55,7 +61,7 @@ struct FFTConfigD
 
 
 
-
+#ifdef __APPLE__
 
 FFTConfig*
 FFTInit(unsigned length)
@@ -686,4 +692,4 @@ FFTdemo(FFTConfig * fft, float* buffer)
     
 }
 
-
+#endif
