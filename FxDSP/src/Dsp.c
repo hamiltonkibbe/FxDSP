@@ -660,7 +660,7 @@ VectorDbConvert(float* dest,
 {
 #ifdef __APPLE__
     float one = 1.0;
-    vDSP_vdbcon(in1, 1, &one, dest, 1, length, amplitude_flag);
+    vDSP_vdbcon(in, 1, &one, dest, 1, length, amplitude_flag);
 #else
     float scale = 10.0 + 10 * amplitude_flag;
     for (unsigned i = 0; i < length; ++i)

@@ -22,10 +22,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		3706641518232CDB00C716B0 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37EAC18C1818B09A00736C52 /* XCTest.framework */; };
-		375E0C671AC1011D00CF9209 /* testUpsampler.m in Sources */ = {isa = PBXBuildFile; fileRef = 375E0C661AC1011D00CF9209 /* testUpsampler.m */; };
-		378C785F18232DE60003E5F7 /* libFxDSP.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 37EAC0E71818AE2F00736C52 /* libFxDSP.dylib */; };
-		37B9928D1AC2415100236C2F /* testOnePole.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B9928C1AC2415100236C2F /* testOnePole.m */; };
 		37BC9E071AC71F0A008718DC /* libFxDSP.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C0317A1ABB7E0200ABB47B /* libFxDSP.a */; };
 		37BC9E221AC71FD7008718DC /* BiquadFilter.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C0309A1ABB5EA800ABB47B /* BiquadFilter.h */; };
 		37BC9E231AC71FD7008718DC /* CircularBuffer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C0309B1ABB5EA800ABB47B /* CircularBuffer.h */; };
@@ -100,20 +96,6 @@
 		37C030F31ABB5EBF00ABB47B /* Waveshaper.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030DE1ABB5EBF00ABB47B /* Waveshaper.c */; };
 		37C030F41ABB5EBF00ABB47B /* Wavetable.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030DF1ABB5EBF00ABB47B /* Wavetable.c */; };
 		37C030F51ABB5EBF00ABB47B /* WindowFunction.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030E01ABB5EBF00ABB47B /* WindowFunction.c */; };
-		37C031451ABB65EB00ABB47B /* TestBiquadFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C031381ABB65EB00ABB47B /* TestBiquadFilter.m */; };
-		37C031461ABB65EB00ABB47B /* TestCircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C031391ABB65EB00ABB47B /* TestCircularBuffer.m */; };
-		37C031471ABB65EB00ABB47B /* TestDSP.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C0313A1ABB65EB00ABB47B /* TestDSP.m */; };
-		37C031481ABB65EB00ABB47B /* TestFFT.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C0313B1ABB65EB00ABB47B /* TestFFT.m */; };
-		37C031491ABB65EB00ABB47B /* TestFIRFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C0313C1ABB65EB00ABB47B /* TestFIRFilter.m */; };
-		37C0314A1ABB65EB00ABB47B /* testMidiUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C0313D1ABB65EB00ABB47B /* testMidiUtils.m */; };
-		37C0314B1ABB65EB00ABB47B /* TestMultibandBank.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C0313E1ABB65EB00ABB47B /* TestMultibandBank.m */; };
-		37C0314C1ABB65EB00ABB47B /* TestOptocoupler.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C0313F1ABB65EB00ABB47B /* TestOptocoupler.m */; };
-		37C0314D1ABB65EB00ABB47B /* testPolySaturator.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C031401ABB65EB00ABB47B /* testPolySaturator.m */; };
-		37C0314E1ABB65EB00ABB47B /* TestRBJFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C031411ABB65EB00ABB47B /* TestRBJFilter.m */; };
-		37C0314F1ABB65EB00ABB47B /* TestRMSEstimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C031421ABB65EB00ABB47B /* TestRMSEstimator.m */; };
-		37C031501ABB65EB00ABB47B /* TestTapeSaturator.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C031431ABB65EB00ABB47B /* TestTapeSaturator.m */; };
-		37C031511ABB65EB00ABB47B /* TestWindowFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C031441ABB65EB00ABB47B /* TestWindowFunction.m */; };
-		37C031541ABB65F500ABB47B /* Tests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37C031521ABB65F500ABB47B /* Tests-Info.plist */; };
 		37C031751ABB7D8000ABB47B /* libFxDSP.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37EAC0E71818AE2F00736C52 /* libFxDSP.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		37C0317E1ABB7E3500ABB47B /* BiquadFilter.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030CC1ABB5EBF00ABB47B /* BiquadFilter.c */; };
 		37C0317F1ABB7E3500ABB47B /* CircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030CD1ABB5EBF00ABB47B /* CircularBuffer.c */; };
@@ -164,17 +146,15 @@
 		37C031AC1ABB7E4D00ABB47B /* WindowFunction.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C030B21ABB5EA800ABB47B /* WindowFunction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37CDDD8D1AC9C82F001B96BA /* PanLaw.h in Headers */ = {isa = PBXBuildFile; fileRef = 37CDDD8C1AC9C82F001B96BA /* PanLaw.h */; };
 		37CDDD8F1AC9C83C001B96BA /* PanLaw.c in Sources */ = {isa = PBXBuildFile; fileRef = 37CDDD8E1AC9C83C001B96BA /* PanLaw.c */; };
+		37D3CBCA1AD4D6DB001E598C /* TestBiquadFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37D3CBBD1AD4D654001E598C /* TestBiquadFilter.cpp */; };
+		37D3CBCD1AD4D74D001E598C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37D3CBCB1AD4D747001E598C /* main.cpp */; };
+		37D3CBCF1AD4D82C001E598C /* libgtest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D3CBCE1AD4D82C001E598C /* libgtest.a */; };
+		37D3CBD21AD4D96E001E598C /* libFxDSP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C0317A1ABB7E0200ABB47B /* libFxDSP.a */; };
+		37D3CBD51AD4DCC2001E598C /* TestCircularBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37D3CBD31AD4DCC2001E598C /* TestCircularBuffer.cpp */; };
 		37EAC1291818AEE000736C52 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37EAC1281818AEE000736C52 /* Accelerate.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3706641F18232CDB00C716B0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 37EAC0DF1818AE2F00736C52 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 37EAC0E61818AE2F00736C52;
-			remoteInfo = FutureTechAudio;
-		};
 		37B8EC851AC7316400EBD2E3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 37EAC0DF1818AE2F00736C52 /* Project object */;
@@ -188,6 +168,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 37C031791ABB7E0200ABB47B;
 			remoteInfo = "FxDSP Static";
+		};
+		37D3CBD01AD4D969001E598C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37EAC0DF1818AE2F00736C52 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 37EAC0E61818AE2F00736C52;
+			remoteInfo = FxDSP;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -247,10 +234,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		37D3CBC11AD4D67D001E598C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3706641418232CDB00C716B0 /* Test FxDSP.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Test FxDSP.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		375E0C661AC1011D00CF9209 /* testUpsampler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = testUpsampler.m; path = FxDSP/test/src/testUpsampler.m; sourceTree = SOURCE_ROOT; };
 		37B9928C1AC2415100236C2F /* testOnePole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = testOnePole.m; path = FxDSP/test/src/testOnePole.m; sourceTree = SOURCE_ROOT; };
 		37B9928E1AC2441000236C2F /* testOnePole.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = testOnePole.h; path = FxDSP/test/include/testOnePole.h; sourceTree = SOURCE_ROOT; };
@@ -308,7 +303,6 @@
 		37C031191ABB65AC00ABB47B /* testPolySat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testPolySat.h; path = FxDSP/test/include/testPolySat.h; sourceTree = "<group>"; };
 		37C0311A1ABB65AC00ABB47B /* testRBJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testRBJ.h; path = FxDSP/test/include/testRBJ.h; sourceTree = "<group>"; };
 		37C0311B1ABB65AC00ABB47B /* testWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testWindow.h; path = FxDSP/test/include/testWindow.h; sourceTree = "<group>"; };
-		37C031381ABB65EB00ABB47B /* TestBiquadFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestBiquadFilter.m; path = FxDSP/test/src/TestBiquadFilter.m; sourceTree = SOURCE_ROOT; };
 		37C031391ABB65EB00ABB47B /* TestCircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestCircularBuffer.m; path = FxDSP/test/src/TestCircularBuffer.m; sourceTree = SOURCE_ROOT; };
 		37C0313A1ABB65EB00ABB47B /* TestDSP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestDSP.m; path = FxDSP/test/src/TestDSP.m; sourceTree = SOURCE_ROOT; };
 		37C0313B1ABB65EB00ABB47B /* TestFFT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestFFT.m; path = FxDSP/test/src/TestFFT.m; sourceTree = SOURCE_ROOT; };
@@ -326,26 +320,31 @@
 		37C0317A1ABB7E0200ABB47B /* libFxDSP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFxDSP.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		37CDDD8C1AC9C82F001B96BA /* PanLaw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PanLaw.h; path = FxDSP/include/PanLaw.h; sourceTree = SOURCE_ROOT; };
 		37CDDD8E1AC9C83C001B96BA /* PanLaw.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = PanLaw.c; path = FxDSP/src/PanLaw.c; sourceTree = SOURCE_ROOT; };
+		37D3CBBD1AD4D654001E598C /* TestBiquadFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestBiquadFilter.cpp; path = FxDSP/test/src/TestBiquadFilter.cpp; sourceTree = SOURCE_ROOT; };
+		37D3CBC31AD4D67D001E598C /* Test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Test; sourceTree = BUILT_PRODUCTS_DIR; };
+		37D3CBCB1AD4D747001E598C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = FxDSP/test/src/main.cpp; sourceTree = SOURCE_ROOT; };
+		37D3CBCE1AD4D82C001E598C /* libgtest.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgtest.a; path = ../../../../../usr/local/lib/libgtest.a; sourceTree = "<group>"; };
+		37D3CBD31AD4DCC2001E598C /* TestCircularBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestCircularBuffer.cpp; path = FxDSP/test/src/TestCircularBuffer.cpp; sourceTree = SOURCE_ROOT; };
 		37EAC0E71818AE2F00736C52 /* libFxDSP.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libFxDSP.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		37EAC1281818AEE000736C52 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		37EAC18C1818B09A00736C52 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		3706641118232CDB00C716B0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				378C785F18232DE60003E5F7 /* libFxDSP.dylib in Frameworks */,
-				3706641518232CDB00C716B0 /* XCTest.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		37C031771ABB7E0200ABB47B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				37C031931ABB7E3F00ABB47B /* Accelerate.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37D3CBC01AD4D67D001E598C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37D3CBD21AD4D96E001E598C /* libFxDSP.a in Frameworks */,
+				37D3CBCF1AD4D82C001E598C /* libgtest.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,7 +461,7 @@
 		37C0311C1ABB65B900ABB47B /* src */ = {
 			isa = PBXGroup;
 			children = (
-				37C031381ABB65EB00ABB47B /* TestBiquadFilter.m */,
+				37D3CBCB1AD4D747001E598C /* main.cpp */,
 				37C031391ABB65EB00ABB47B /* TestCircularBuffer.m */,
 				37C0313A1ABB65EB00ABB47B /* TestDSP.m */,
 				37C0313B1ABB65EB00ABB47B /* TestFFT.m */,
@@ -477,6 +476,8 @@
 				37C031441ABB65EB00ABB47B /* TestWindowFunction.m */,
 				375E0C661AC1011D00CF9209 /* testUpsampler.m */,
 				37B9928C1AC2415100236C2F /* testOnePole.m */,
+				37D3CBBD1AD4D654001E598C /* TestBiquadFilter.cpp */,
+				37D3CBD31AD4DCC2001E598C /* TestCircularBuffer.cpp */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -503,8 +504,8 @@
 			isa = PBXGroup;
 			children = (
 				37EAC0E71818AE2F00736C52 /* libFxDSP.dylib */,
-				3706641418232CDB00C716B0 /* Test FxDSP.xctest */,
 				37C0317A1ABB7E0200ABB47B /* libFxDSP.a */,
+				37D3CBC31AD4D67D001E598C /* Test */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -512,6 +513,7 @@
 		37EAC18B1818B09A00736C52 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				37D3CBCE1AD4D82C001E598C /* libgtest.a */,
 				37EAC1281818AEE000736C52 /* Accelerate.framework */,
 				37EAC18C1818B09A00736C52 /* XCTest.framework */,
 			);
@@ -590,24 +592,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		3706641318232CDB00C716B0 /* Test FxDSP */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3706642118232CDB00C716B0 /* Build configuration list for PBXNativeTarget "Test FxDSP" */;
-			buildPhases = (
-				3706641018232CDB00C716B0 /* Sources */,
-				3706641118232CDB00C716B0 /* Frameworks */,
-				3706641218232CDB00C716B0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3706642018232CDB00C716B0 /* PBXTargetDependency */,
-			);
-			name = "Test FxDSP";
-			productName = Tests;
-			productReference = 3706641418232CDB00C716B0 /* Test FxDSP.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		37C031791ABB7E0200ABB47B /* FxDSP Static */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 37C0317B1ABB7E0200ABB47B /* Build configuration list for PBXNativeTarget "FxDSP Static" */;
@@ -626,6 +610,24 @@
 			productName = "FxDSP Static";
 			productReference = 37C0317A1ABB7E0200ABB47B /* libFxDSP.a */;
 			productType = "com.apple.product-type.library.static";
+		};
+		37D3CBC21AD4D67D001E598C /* Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 37D3CBC71AD4D67D001E598C /* Build configuration list for PBXNativeTarget "Test" */;
+			buildPhases = (
+				37D3CBBF1AD4D67D001E598C /* Sources */,
+				37D3CBC01AD4D67D001E598C /* Frameworks */,
+				37D3CBC11AD4D67D001E598C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				37D3CBD11AD4D969001E598C /* PBXTargetDependency */,
+			);
+			name = Test;
+			productName = Test;
+			productReference = 37D3CBC31AD4D67D001E598C /* Test */;
+			productType = "com.apple.product-type.tool";
 		};
 		37EAC0E61818AE2F00736C52 /* FxDSP */ = {
 			isa = PBXNativeTarget;
@@ -660,6 +662,9 @@
 					37C031791ABB7E0200ABB47B = {
 						CreatedOnToolsVersion = 6.2;
 					};
+					37D3CBC21AD4D67D001E598C = {
+						CreatedOnToolsVersion = 6.2;
+					};
 				};
 			};
 			buildConfigurationList = 37EAC0E21818AE2F00736C52 /* Build configuration list for PBXProject "FxDSP" */;
@@ -676,47 +681,14 @@
 			projectRoot = "";
 			targets = (
 				37EAC0E61818AE2F00736C52 /* FxDSP */,
-				3706641318232CDB00C716B0 /* Test FxDSP */,
 				37C031791ABB7E0200ABB47B /* FxDSP Static */,
 				37B8EC811AC7315300EBD2E3 /* All */,
+				37D3CBC21AD4D67D001E598C /* Test */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		3706641218232CDB00C716B0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				37C031541ABB65F500ABB47B /* Tests-Info.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		3706641018232CDB00C716B0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				37C031511ABB65EB00ABB47B /* TestWindowFunction.m in Sources */,
-				37C0314F1ABB65EB00ABB47B /* TestRMSEstimator.m in Sources */,
-				37C0314E1ABB65EB00ABB47B /* TestRBJFilter.m in Sources */,
-				37C0314D1ABB65EB00ABB47B /* testPolySaturator.m in Sources */,
-				37C0314C1ABB65EB00ABB47B /* TestOptocoupler.m in Sources */,
-				37C0314A1ABB65EB00ABB47B /* testMidiUtils.m in Sources */,
-				375E0C671AC1011D00CF9209 /* testUpsampler.m in Sources */,
-				37B9928D1AC2415100236C2F /* testOnePole.m in Sources */,
-				37C031501ABB65EB00ABB47B /* TestTapeSaturator.m in Sources */,
-				37C031481ABB65EB00ABB47B /* TestFFT.m in Sources */,
-				37C031471ABB65EB00ABB47B /* TestDSP.m in Sources */,
-				37C031461ABB65EB00ABB47B /* TestCircularBuffer.m in Sources */,
-				37C031491ABB65EB00ABB47B /* TestFIRFilter.m in Sources */,
-				37C0314B1ABB65EB00ABB47B /* TestMultibandBank.m in Sources */,
-				37C031451ABB65EB00ABB47B /* TestBiquadFilter.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		37C031761ABB7E0200ABB47B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -742,6 +714,16 @@
 				37C031901ABB7E3500ABB47B /* Waveshaper.c in Sources */,
 				37C031911ABB7E3500ABB47B /* Wavetable.c in Sources */,
 				37C031921ABB7E3500ABB47B /* WindowFunction.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37D3CBBF1AD4D67D001E598C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37D3CBCD1AD4D74D001E598C /* main.cpp in Sources */,
+				37D3CBD51AD4DCC2001E598C /* TestCircularBuffer.cpp in Sources */,
+				37D3CBCA1AD4D6DB001E598C /* TestBiquadFilter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -777,11 +759,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3706642018232CDB00C716B0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 37EAC0E61818AE2F00736C52 /* FxDSP */;
-			targetProxy = 3706641F18232CDB00C716B0 /* PBXContainerItemProxy */;
-		};
 		37B8EC861AC7316400EBD2E3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 37EAC0E61818AE2F00736C52 /* FxDSP */;
@@ -792,62 +769,14 @@
 			target = 37C031791ABB7E0200ABB47B /* FxDSP Static */;
 			targetProxy = 37B8EC871AC7316400EBD2E3 /* PBXContainerItemProxy */;
 		};
+		37D3CBD11AD4D969001E598C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 37EAC0E61818AE2F00736C52 /* FxDSP */;
+			targetProxy = 37D3CBD01AD4D969001E598C /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		3706642218232CDB00C716B0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FxDSP/test/support/Tests-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					FxDSP/test/include,
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-				);
-				INFOPLIST_FILE = "FxDSP/test/support/Tests-info.plist";
-				LLVM_LTO = NO;
-				OTHER_CFLAGS = "";
-				"OTHER_CFLAGS[arch=*]" = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		3706642318232CDB00C716B0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FxDSP/test/support/Tests-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					FxDSP/test/include,
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-				);
-				INFOPLIST_FILE = "FxDSP/test/support/Tests-info.plist";
-				LLVM_LTO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 		37B8EC821AC7315300EBD2E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -895,6 +824,51 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = FxDSP;
+			};
+			name = Release;
+		};
+		37D3CBC81AD4D67D001E598C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		37D3CBC91AD4D67D001E598C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -1004,15 +978,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3706642118232CDB00C716B0 /* Build configuration list for PBXNativeTarget "Test FxDSP" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3706642218232CDB00C716B0 /* Debug */,
-				3706642318232CDB00C716B0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		37B8EC841AC7315300EBD2E3 /* Build configuration list for PBXAggregateTarget "All" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1030,6 +995,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		37D3CBC71AD4D67D001E598C /* Build configuration list for PBXNativeTarget "Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37D3CBC81AD4D67D001E598C /* Debug */,
+				37D3CBC91AD4D67D001E598C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		37EAC0E21818AE2F00736C52 /* Build configuration list for PBXProject "FxDSP" */ = {
 			isa = XCConfigurationList;
