@@ -263,9 +263,9 @@ FIRFilterProcess(FIRFilter* filter,
             VectorVectorAdd(buffer, filter->overlap, buffer, filter->overlap_length);
             CopyBuffer(filter->overlap, buffer + n_samples, filter->overlap_length);
             CopyBuffer(outBuffer, buffer, n_samples);
+#ifdef __APPLE__
         }
     
-#ifdef __APPLE__
         // Otherwise do FFT Convolution
         else
         {
@@ -344,8 +344,9 @@ FIRFilterProcessD(FIRFilterD*   filter,
             VectorVectorAddD(buffer, filter->overlap, buffer, filter->overlap_length);
             CopyBufferD(filter->overlap, buffer + n_samples, filter->overlap_length);
             CopyBufferD(outBuffer, buffer, n_samples);
-        }
 #ifdef __APPLE__
+        }
+
         // Otherwise do FFT Convolution
         else
         {
