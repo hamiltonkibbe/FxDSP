@@ -1,14 +1,71 @@
+*************
 FxDSP Library
-=============
+*************
+
 .. image:: https://travis-ci.org/hamiltonkibbe/FxDSP.svg?branch=master
     :target: https://travis-ci.org/hamiltonkibbe/FxDSP
 A Fast DSP library for effect and synthesizer development in C. Optimized for 
 iOS/OSX using the Accelerate framework but should run using non-vectorized 
 implementations for use on any platform. 
 
+============
+Installation
+============
+FxDSP can be built and installed on most platforms using CMake
+
+.. code-block:: bash
     
+    mkdir build
+    cd build
+    cmake ../FxDSP
+    make && make install
+
+On **Mac OS X**, FxDSP can be built and installed using the included Xcode Project
+
+==============
+Useage Example
+==============
+
+Create a low-shelf filter and use it to process some samples:
+
+.. code-block:: c
+    
+    #include "FxDSP/RBJFilter.h"    
+
+    unsigned num_samples;
+
+    // Single Precision example ------------------------------------------
+    float* input_samples;
+    float* output_samples;
+
+    // Initialize the Filter
+    RBJFilter *filter = RBJFilterInit(LOW_SHELF, 44100, 100);
+
+    // Process some data
+    RBJFilterProcess(filter, output_samples, input_samples, num_samples);
+
+    // Cleanup
+    RBJFilterFree(filter);
+    
+    // Double Precision example ------------------------------------------
+    double* input_samplesD;
+    double* output_samplesD;
+
+    // Initialize the Filter
+    RBJFilterD *filter = RBJFilterInitD(LOW_SHELF, 44100, 100);
+
+    // Process some data
+    RBJFilterProcessD(filter, output_samplesD, input_samplesD, num_samples);
+
+    // Cleanup
+    RBJFilterFreeD(filter);
+
+=======
+Modules
+=======
+
 CircularBuffer
-------------------
+--------------
 A Circular buffer with fast wrapping. 
 
 
@@ -29,17 +86,8 @@ with larger kernels.
 RBJFilter
 ----------------
 Biquad EQ stages, implements shelves, low/high-pass, bandpass, and notch filters
-with adjustable cutoff and Q. Each stage is a single biquad section.
-Ex.
-```C
-	RBJFilter *filter = RBJFilterInit(LOW_SHELF, 100, 44100);
-```
-creates a low shelf filter with a cutoff at 100Hz, which you would use to 
-process a 2048-sample audio buffer like:
-```C
-	RBJFilterProcess(filter, destP, sourceP, 2048);
-```
-Chain a few of these stages together to create a parametric EQ.
+with adjustable cutoff and Q. Each stage is a single biquad section. Chain a few 
+of these stages together to create a parametric EQ.
  
 
 OnePoleFilter
@@ -76,6 +124,16 @@ LadderFilter
 -------------------
 Digital implementation of a MOOG Ladder filter with adjustable cutoff and 
 resonance. 
+
+
+
+
+
+
+
+
+
+
 
 
 
