@@ -1,11 +1,16 @@
 language: c
+
 install:
   - sudo apt-get update -qq
   - sudo apt-get install --upgrade -y -qq libfftw3-dev cmake
+
+env:
+  - CTEST_OUTPUT_ON_FAILURE=1
+
 script:
   - mkdir build
   - cd build
   - cmake ../FxDSP
   - cmake --build . 
-  - env CTEST_OUTPUT_ON_FAILURE=1 make test
+  - make test
 
