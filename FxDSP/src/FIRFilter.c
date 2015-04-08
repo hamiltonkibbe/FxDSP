@@ -247,9 +247,11 @@ FIRFilterProcess(FIRFilter* filter,
 
     if (filter)
     {
+#ifdef __APPLE__
         // Do direct convolution
         if (filter->conv_mode == DIRECT)
         {
+#endif
             unsigned resultLength = n_samples + (filter->kernel_length - 1);
         
             // Temporary buffer to store full result of filtering..
@@ -262,7 +264,8 @@ FIRFilterProcess(FIRFilter* filter,
             CopyBuffer(filter->overlap, buffer + n_samples, filter->overlap_length);
             CopyBuffer(outBuffer, buffer, n_samples);
         }
-        
+    
+#ifdef __APPLE__
         // Otherwise do FFT Convolution
         else
         {
@@ -305,7 +308,7 @@ FIRFilterProcess(FIRFilter* filter,
             CopyBuffer(outBuffer, buffer, n_samples);
             
         }
-            
+#endif
         return NOERR;
     }
     
@@ -325,9 +328,11 @@ FIRFilterProcessD(FIRFilterD*   filter,
     
     if (filter)
     {
+#ifdef __APPLE__
         // Do direct convolution
         if (filter->conv_mode == DIRECT)
         {
+#endif
             unsigned resultLength = n_samples + (filter->kernel_length - 1);
             
             // Temporary buffer to store full result of filtering..
@@ -340,7 +345,7 @@ FIRFilterProcessD(FIRFilterD*   filter,
             CopyBufferD(filter->overlap, buffer + n_samples, filter->overlap_length);
             CopyBufferD(outBuffer, buffer, n_samples);
         }
-        
+#ifdef __APPLE__
         // Otherwise do FFT Convolution
         else
         {
@@ -381,7 +386,7 @@ FIRFilterProcessD(FIRFilterD*   filter,
             CopyBufferD(outBuffer, buffer, n_samples);
             
         }
-        
+#endif
         return NOERR;
     }
     
