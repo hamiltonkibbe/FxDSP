@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #include "WindowFunction.h"
-#include "testWindow.h"
+#include "TestWindowFunctions.h"
 
 @interface FxDSPWindowFunction_Tests : XCTestCase
 
