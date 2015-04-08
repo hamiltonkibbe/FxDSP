@@ -10,6 +10,10 @@
 #ifndef SIGNALS_H
 #define SIGNALS_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 
 static const float MatlabSignal[] = 
 {
@@ -115,6 +119,8 @@ static const double rampD[10] =
     -1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.2, 0.4, 0.6, 0.8
 };
 
-
+#ifdef __cplusplus
+}
+#endif
 
 #endif // SIGNALS_H
