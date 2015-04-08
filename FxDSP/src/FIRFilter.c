@@ -169,11 +169,13 @@ FIRFilterFree(FIRFilter * filter)
             free(filter->overlap);
             filter->overlap = NULL;
         }
+#ifdef __APPLE__
         if (filter->fft_config)
         {
             FFTFree(filter->fft_config);
             filter->fft_config = NULL;
         }
+#endif
         if (filter->fft_kernel.realp)
         {
             free(filter->fft_kernel.realp);
@@ -200,11 +202,13 @@ FIRFilterFreeD(FIRFilterD * filter)
             free(filter->overlap);
             filter->overlap = NULL;
         }
+#ifdef __APPLE__
         if (filter->fft_config)
         {
             FFTFreeD(filter->fft_config);
             filter->fft_config = NULL;
         }
+#endif
         if (filter->fft_kernel.realp)
         {
             free(filter->fft_kernel.realp);
