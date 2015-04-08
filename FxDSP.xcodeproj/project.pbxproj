@@ -22,6 +22,18 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		3775E0801AD4EF3B00930665 /* Signals.h in Headers */ = {isa = PBXBuildFile; fileRef = 3775E0771AD4EF3B00930665 /* Signals.h */; };
+		3775E0811AD4EF3B00930665 /* TestBiquadFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3775E0781AD4EF3B00930665 /* TestBiquadFilter.h */; };
+		3775E0821AD4EF3B00930665 /* testFFT.h in Headers */ = {isa = PBXBuildFile; fileRef = 3775E0791AD4EF3B00930665 /* testFFT.h */; };
+		3775E0831AD4EF3B00930665 /* TestFIRFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3775E07A1AD4EF3B00930665 /* TestFIRFilter.h */; };
+		3775E0841AD4EF3B00930665 /* TestOnePole.h in Headers */ = {isa = PBXBuildFile; fileRef = 3775E07B1AD4EF3B00930665 /* TestOnePole.h */; };
+		3775E0851AD4EF3B00930665 /* testOptocoupler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3775E07C1AD4EF3B00930665 /* testOptocoupler.h */; };
+		3775E0861AD4EF3B00930665 /* testPolySat.h in Headers */ = {isa = PBXBuildFile; fileRef = 3775E07D1AD4EF3B00930665 /* testPolySat.h */; };
+		3775E0871AD4EF3B00930665 /* testRBJ.h in Headers */ = {isa = PBXBuildFile; fileRef = 3775E07E1AD4EF3B00930665 /* testRBJ.h */; };
+		3775E0881AD4EF3B00930665 /* testWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 3775E07F1AD4EF3B00930665 /* testWindow.h */; };
+		3775E08B1AD4F1E500930665 /* TestOnePole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3775E0891AD4F05800930665 /* TestOnePole.cpp */; };
+		3775E08E1AD4F4EE00930665 /* TestDSP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3775E08C1AD4F4EE00930665 /* TestDSP.cpp */; };
+		3775E0901AD4F8A500930665 /* TestFIRFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3775E08F1AD4F8A500930665 /* TestFIRFilter.cpp */; };
 		37BC9E071AC71F0A008718DC /* libFxDSP.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C0317A1ABB7E0200ABB47B /* libFxDSP.a */; };
 		37BC9E221AC71FD7008718DC /* BiquadFilter.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C0309A1ABB5EA800ABB47B /* BiquadFilter.h */; };
 		37BC9E231AC71FD7008718DC /* CircularBuffer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C0309B1ABB5EA800ABB47B /* CircularBuffer.h */; };
@@ -247,8 +259,18 @@
 
 /* Begin PBXFileReference section */
 		375E0C661AC1011D00CF9209 /* testUpsampler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = testUpsampler.m; path = FxDSP/test/src/testUpsampler.m; sourceTree = SOURCE_ROOT; };
-		37B9928C1AC2415100236C2F /* testOnePole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = testOnePole.m; path = FxDSP/test/src/testOnePole.m; sourceTree = SOURCE_ROOT; };
-		37B9928E1AC2441000236C2F /* testOnePole.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = testOnePole.h; path = FxDSP/test/include/testOnePole.h; sourceTree = SOURCE_ROOT; };
+		3775E0771AD4EF3B00930665 /* Signals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Signals.h; path = FxDSP/test/src/Signals.h; sourceTree = SOURCE_ROOT; };
+		3775E0781AD4EF3B00930665 /* TestBiquadFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestBiquadFilter.h; path = FxDSP/test/src/TestBiquadFilter.h; sourceTree = SOURCE_ROOT; };
+		3775E0791AD4EF3B00930665 /* testFFT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testFFT.h; path = FxDSP/test/src/testFFT.h; sourceTree = SOURCE_ROOT; };
+		3775E07A1AD4EF3B00930665 /* TestFIRFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestFIRFilter.h; path = FxDSP/test/src/TestFIRFilter.h; sourceTree = SOURCE_ROOT; };
+		3775E07B1AD4EF3B00930665 /* TestOnePole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestOnePole.h; path = FxDSP/test/src/TestOnePole.h; sourceTree = SOURCE_ROOT; };
+		3775E07C1AD4EF3B00930665 /* testOptocoupler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testOptocoupler.h; path = FxDSP/test/src/testOptocoupler.h; sourceTree = SOURCE_ROOT; };
+		3775E07D1AD4EF3B00930665 /* testPolySat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testPolySat.h; path = FxDSP/test/src/testPolySat.h; sourceTree = SOURCE_ROOT; };
+		3775E07E1AD4EF3B00930665 /* testRBJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testRBJ.h; path = FxDSP/test/src/testRBJ.h; sourceTree = SOURCE_ROOT; };
+		3775E07F1AD4EF3B00930665 /* testWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testWindow.h; path = FxDSP/test/src/testWindow.h; sourceTree = SOURCE_ROOT; };
+		3775E0891AD4F05800930665 /* TestOnePole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestOnePole.cpp; path = FxDSP/test/src/TestOnePole.cpp; sourceTree = SOURCE_ROOT; };
+		3775E08C1AD4F4EE00930665 /* TestDSP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestDSP.cpp; path = FxDSP/test/src/TestDSP.cpp; sourceTree = SOURCE_ROOT; };
+		3775E08F1AD4F8A500930665 /* TestFIRFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestFIRFilter.cpp; path = FxDSP/test/src/TestFIRFilter.cpp; sourceTree = SOURCE_ROOT; };
 		37C0309A1ABB5EA800ABB47B /* BiquadFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BiquadFilter.h; path = FxDSP/include/BiquadFilter.h; sourceTree = SOURCE_ROOT; };
 		37C0309B1ABB5EA800ABB47B /* CircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CircularBuffer.h; path = FxDSP/include/CircularBuffer.h; sourceTree = SOURCE_ROOT; };
 		37C0309C1ABB5EA800ABB47B /* Compressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Compressor.h; path = FxDSP/include/Compressor.h; sourceTree = SOURCE_ROOT; };
@@ -295,18 +317,7 @@
 		37C030DE1ABB5EBF00ABB47B /* Waveshaper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Waveshaper.c; path = FxDSP/src/Waveshaper.c; sourceTree = SOURCE_ROOT; };
 		37C030DF1ABB5EBF00ABB47B /* Wavetable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Wavetable.c; path = FxDSP/src/Wavetable.c; sourceTree = SOURCE_ROOT; };
 		37C030E01ABB5EBF00ABB47B /* WindowFunction.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = WindowFunction.c; path = FxDSP/src/WindowFunction.c; sourceTree = SOURCE_ROOT; };
-		37C031141ABB65AC00ABB47B /* signals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = signals.h; path = FxDSP/test/include/signals.h; sourceTree = "<group>"; };
-		37C031151ABB65AC00ABB47B /* testBiquad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testBiquad.h; path = FxDSP/test/include/testBiquad.h; sourceTree = "<group>"; };
-		37C031161ABB65AC00ABB47B /* testFFT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testFFT.h; path = FxDSP/test/include/testFFT.h; sourceTree = "<group>"; };
-		37C031171ABB65AC00ABB47B /* testFIR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testFIR.h; path = FxDSP/test/include/testFIR.h; sourceTree = "<group>"; };
-		37C031181ABB65AC00ABB47B /* testOptocoupler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testOptocoupler.h; path = FxDSP/test/include/testOptocoupler.h; sourceTree = "<group>"; };
-		37C031191ABB65AC00ABB47B /* testPolySat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testPolySat.h; path = FxDSP/test/include/testPolySat.h; sourceTree = "<group>"; };
-		37C0311A1ABB65AC00ABB47B /* testRBJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testRBJ.h; path = FxDSP/test/include/testRBJ.h; sourceTree = "<group>"; };
-		37C0311B1ABB65AC00ABB47B /* testWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testWindow.h; path = FxDSP/test/include/testWindow.h; sourceTree = "<group>"; };
-		37C031391ABB65EB00ABB47B /* TestCircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestCircularBuffer.m; path = FxDSP/test/src/TestCircularBuffer.m; sourceTree = SOURCE_ROOT; };
-		37C0313A1ABB65EB00ABB47B /* TestDSP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestDSP.m; path = FxDSP/test/src/TestDSP.m; sourceTree = SOURCE_ROOT; };
 		37C0313B1ABB65EB00ABB47B /* TestFFT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestFFT.m; path = FxDSP/test/src/TestFFT.m; sourceTree = SOURCE_ROOT; };
-		37C0313C1ABB65EB00ABB47B /* TestFIRFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestFIRFilter.m; path = FxDSP/test/src/TestFIRFilter.m; sourceTree = SOURCE_ROOT; };
 		37C0313D1ABB65EB00ABB47B /* testMidiUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = testMidiUtils.m; path = FxDSP/test/src/testMidiUtils.m; sourceTree = SOURCE_ROOT; };
 		37C0313E1ABB65EB00ABB47B /* TestMultibandBank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestMultibandBank.m; path = FxDSP/test/src/TestMultibandBank.m; sourceTree = SOURCE_ROOT; };
 		37C0313F1ABB65EB00ABB47B /* TestOptocoupler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestOptocoupler.m; path = FxDSP/test/src/TestOptocoupler.m; sourceTree = SOURCE_ROOT; };
@@ -315,8 +326,6 @@
 		37C031421ABB65EB00ABB47B /* TestRMSEstimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestRMSEstimator.m; path = FxDSP/test/src/TestRMSEstimator.m; sourceTree = SOURCE_ROOT; };
 		37C031431ABB65EB00ABB47B /* TestTapeSaturator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestTapeSaturator.m; path = FxDSP/test/src/TestTapeSaturator.m; sourceTree = SOURCE_ROOT; };
 		37C031441ABB65EB00ABB47B /* TestWindowFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestWindowFunction.m; path = FxDSP/test/src/TestWindowFunction.m; sourceTree = SOURCE_ROOT; };
-		37C031521ABB65F500ABB47B /* Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Tests-Info.plist"; path = "FxDSP/test/support/Tests-Info.plist"; sourceTree = SOURCE_ROOT; };
-		37C031531ABB65F500ABB47B /* Tests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Tests-Prefix.pch"; path = "FxDSP/test/support/Tests-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		37C0317A1ABB7E0200ABB47B /* libFxDSP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFxDSP.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		37CDDD8C1AC9C82F001B96BA /* PanLaw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PanLaw.h; path = FxDSP/include/PanLaw.h; sourceTree = SOURCE_ROOT; };
 		37CDDD8E1AC9C83C001B96BA /* PanLaw.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = PanLaw.c; path = FxDSP/src/PanLaw.c; sourceTree = SOURCE_ROOT; };
@@ -435,37 +444,25 @@
 		37C031121ABB659400ABB47B /* test */ = {
 			isa = PBXGroup;
 			children = (
-				37C031371ABB65D900ABB47B /* support */,
 				37C0311C1ABB65B900ABB47B /* src */,
-				37C031131ABB659C00ABB47B /* include */,
 			);
 			name = test;
-			sourceTree = "<group>";
-		};
-		37C031131ABB659C00ABB47B /* include */ = {
-			isa = PBXGroup;
-			children = (
-				37C031141ABB65AC00ABB47B /* signals.h */,
-				37C031151ABB65AC00ABB47B /* testBiquad.h */,
-				37C031161ABB65AC00ABB47B /* testFFT.h */,
-				37C031171ABB65AC00ABB47B /* testFIR.h */,
-				37C031181ABB65AC00ABB47B /* testOptocoupler.h */,
-				37C031191ABB65AC00ABB47B /* testPolySat.h */,
-				37C0311A1ABB65AC00ABB47B /* testRBJ.h */,
-				37C0311B1ABB65AC00ABB47B /* testWindow.h */,
-				37B9928E1AC2441000236C2F /* testOnePole.h */,
-			);
-			name = include;
 			sourceTree = "<group>";
 		};
 		37C0311C1ABB65B900ABB47B /* src */ = {
 			isa = PBXGroup;
 			children = (
+				3775E0771AD4EF3B00930665 /* Signals.h */,
+				3775E0781AD4EF3B00930665 /* TestBiquadFilter.h */,
+				3775E0791AD4EF3B00930665 /* testFFT.h */,
+				3775E07A1AD4EF3B00930665 /* TestFIRFilter.h */,
+				3775E07B1AD4EF3B00930665 /* TestOnePole.h */,
+				3775E07C1AD4EF3B00930665 /* testOptocoupler.h */,
+				3775E07D1AD4EF3B00930665 /* testPolySat.h */,
+				3775E07E1AD4EF3B00930665 /* testRBJ.h */,
+				3775E07F1AD4EF3B00930665 /* testWindow.h */,
 				37D3CBCB1AD4D747001E598C /* main.cpp */,
-				37C031391ABB65EB00ABB47B /* TestCircularBuffer.m */,
-				37C0313A1ABB65EB00ABB47B /* TestDSP.m */,
 				37C0313B1ABB65EB00ABB47B /* TestFFT.m */,
-				37C0313C1ABB65EB00ABB47B /* TestFIRFilter.m */,
 				37C0313D1ABB65EB00ABB47B /* testMidiUtils.m */,
 				37C0313E1ABB65EB00ABB47B /* TestMultibandBank.m */,
 				37C0313F1ABB65EB00ABB47B /* TestOptocoupler.m */,
@@ -475,20 +472,13 @@
 				37C031431ABB65EB00ABB47B /* TestTapeSaturator.m */,
 				37C031441ABB65EB00ABB47B /* TestWindowFunction.m */,
 				375E0C661AC1011D00CF9209 /* testUpsampler.m */,
-				37B9928C1AC2415100236C2F /* testOnePole.m */,
 				37D3CBBD1AD4D654001E598C /* TestBiquadFilter.cpp */,
 				37D3CBD31AD4DCC2001E598C /* TestCircularBuffer.cpp */,
+				3775E0891AD4F05800930665 /* TestOnePole.cpp */,
+				3775E08C1AD4F4EE00930665 /* TestDSP.cpp */,
+				3775E08F1AD4F8A500930665 /* TestFIRFilter.cpp */,
 			);
 			name = src;
-			sourceTree = "<group>";
-		};
-		37C031371ABB65D900ABB47B /* support */ = {
-			isa = PBXGroup;
-			children = (
-				37C031521ABB65F500ABB47B /* Tests-Info.plist */,
-				37C031531ABB65F500ABB47B /* Tests-Prefix.pch */,
-			);
-			name = support;
 			sourceTree = "<group>";
 		};
 		37EAC0DE1818AE2F00736C52 = {
@@ -563,27 +553,36 @@
 				37C030B71ABB5EA800ABB47B /* Dsp.h in Headers */,
 				37C030B31ABB5EA800ABB47B /* BiquadFilter.h in Headers */,
 				37C030B91ABB5EA800ABB47B /* FFT.h in Headers */,
+				3775E0851AD4EF3B00930665 /* testOptocoupler.h in Headers */,
 				37C030BB1ABB5EA800ABB47B /* FIRFilter.h in Headers */,
 				37C030BF1ABB5EA800ABB47B /* MultibandBank.h in Headers */,
 				37C030CB1ABB5EA800ABB47B /* WindowFunction.h in Headers */,
 				37C030B41ABB5EA800ABB47B /* CircularBuffer.h in Headers */,
 				37C030C41ABB5EA800ABB47B /* RBJFilter.h in Headers */,
+				3775E0831AD4EF3B00930665 /* TestFIRFilter.h in Headers */,
 				37C030C91ABB5EA800ABB47B /* Waveshaper.h in Headers */,
 				37C030BE1ABB5EA800ABB47B /* MidiUtils.h in Headers */,
 				37C030BD1ABB5EA800ABB47B /* LinkwitzRileyFilter.h in Headers */,
+				3775E0861AD4EF3B00930665 /* testPolySat.h in Headers */,
 				37C030C51ABB5EA800ABB47B /* RMSEstimator.h in Headers */,
+				3775E0811AD4EF3B00930665 /* TestBiquadFilter.h in Headers */,
 				37C030C21ABB5EA800ABB47B /* PolyphaseCoeffs.h in Headers */,
 				37C030C31ABB5EA800ABB47B /* PolySaturator.h in Headers */,
 				37C030B51ABB5EA800ABB47B /* Compressor.h in Headers */,
 				37C030BC1ABB5EA800ABB47B /* LadderFilter.h in Headers */,
 				37C030BA1ABB5EA800ABB47B /* FilterTypes.h in Headers */,
+				3775E0881AD4EF3B00930665 /* testWindow.h in Headers */,
 				37C030CA1ABB5EA800ABB47B /* Wavetable.h in Headers */,
 				37C030B61ABB5EA800ABB47B /* DiodeRectifier.h in Headers */,
+				3775E0801AD4EF3B00930665 /* Signals.h in Headers */,
 				37C030C01ABB5EA800ABB47B /* OnePole.h in Headers */,
+				3775E0871AD4EF3B00930665 /* testRBJ.h in Headers */,
 				37C030C61ABB5EA800ABB47B /* Tape.h in Headers */,
 				37C030C81ABB5EA800ABB47B /* Utilities.h in Headers */,
+				3775E0821AD4EF3B00930665 /* testFFT.h in Headers */,
 				37C030B81ABB5EA800ABB47B /* Error.h in Headers */,
 				37CDDD8D1AC9C82F001B96BA /* PanLaw.h in Headers */,
+				3775E0841AD4EF3B00930665 /* TestOnePole.h in Headers */,
 				37C030C71ABB5EA800ABB47B /* Upsampler.h in Headers */,
 				37C030C11ABB5EA800ABB47B /* Optocoupler.h in Headers */,
 			);
@@ -721,9 +720,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3775E08B1AD4F1E500930665 /* TestOnePole.cpp in Sources */,
 				37D3CBCD1AD4D74D001E598C /* main.cpp in Sources */,
 				37D3CBD51AD4DCC2001E598C /* TestCircularBuffer.cpp in Sources */,
+				3775E0901AD4F8A500930665 /* TestFIRFilter.cpp in Sources */,
 				37D3CBCA1AD4D6DB001E598C /* TestBiquadFilter.cpp in Sources */,
+				3775E08E1AD4F4EE00930665 /* TestDSP.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1003,6 +1005,7 @@
 				37D3CBC91AD4D67D001E598C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		37EAC0E21818AE2F00736C52 /* Build configuration list for PBXProject "FxDSP" */ = {
 			isa = XCConfigurationList;
