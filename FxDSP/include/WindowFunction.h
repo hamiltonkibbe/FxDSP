@@ -16,6 +16,7 @@ extern "C" {
 
 /** WindowFunction type */
 typedef struct WindowFunction WindowFunction;
+typedef struct WindowFunctionD WindowFunctionD;
 
 /** Window function type */
 typedef enum _FtWindow_t
@@ -85,12 +86,11 @@ typedef enum _FtWindow_t
  * @return      Error code, 0 on success
  */
 Error_t 
-boxcar(unsigned n, 
-       float*   dest);
+boxcar(unsigned n, float* dest);
 Error_t
-boxcarD(unsigned    n,
-        double*     dest);
+boxcarD(unsigned n, double* dest);
 
+    
 /** Generate a Hann window of length n
  *
  * @details Create an n-point Hann window in the supplied buffer. Does not
@@ -103,11 +103,9 @@ boxcarD(unsigned    n,
  * @return      Error code, 0 on success
  */
 Error_t
-hann(unsigned   n, 
-     float*     dest);
+hann(unsigned n, float* dest);
 Error_t
-hannD(unsigned  n,
-      double*   dest);
+hannD(unsigned n, double* dest);
 
 /** Generate a Hamming window of length n
  *
@@ -121,8 +119,10 @@ hannD(unsigned  n,
  * @return      Error code, 0 on success
  */
 Error_t 
-hamming(unsigned    n, 
-        float*      dest);
+hamming(unsigned n, float* dest);
+    
+Error_t
+hammingD(unsigned n, double* dest);
 
 
 /** Generate a Blackman window of length n for given alpha
@@ -138,10 +138,10 @@ hamming(unsigned    n,
  * @return      Error code, 0 on success
  */
 Error_t 
-blackman(unsigned   n, 
-         float      a, 
-         float*     dest);
+blackman(unsigned n, float a, float* dest);
 
+Error_t
+blackmanD(unsigned n, double a, double* dest);
 
 /** Generate a Tukey window of length n for given alpha
  *
@@ -156,11 +156,12 @@ blackman(unsigned   n,
  * @return      Error code, 0 on success
  */
 Error_t
-tukey(unsigned  n, 
-      float     a, 
-      float*    dest);
+tukey(unsigned n, float a, float* dest);
 
+Error_t
+tukeyD(unsigned n, double a, double* dest);
 
+    
 /** Generate a cosine window of length n
  *
  * @details Create an n-point Cosine window in the supplied buffer. Does not
@@ -173,10 +174,12 @@ tukey(unsigned  n,
  * @return      Error code, 0 on success
  */
 Error_t 
-cosine(unsigned n, 
-       float*   dest);
+cosine(unsigned n, float* dest);
 
+Error_t
+cosineD(unsigned n, double* dest);
 
+    
 /** Generate a Lanczos window of length n
  *
  * @details Creates an n-point Lanczos window in the supplied buffer. Does not
@@ -189,10 +192,12 @@ cosine(unsigned n,
  * @return      Error code, 0 on success
  */
 Error_t 
-lanczos(unsigned    n, 
-        float*      dest);
+lanczos(unsigned n, float* dest);
 
+Error_t
+lanczosD(unsigned n, double* dest);
 
+    
 /** Generate a Bartlett window of length n
  *
  * @details Creates an n-point Bartlett window in the supplied buffer. Does not
@@ -205,9 +210,12 @@ lanczos(unsigned    n,
  * @return      Error code, 0 on success
  */
 Error_t 
-bartlett(unsigned   n, 
-         float*     dest);
+bartlett(unsigned n, float* dest);
 
+Error_t
+bartlettD(unsigned n, double* dest);
+    
+    
 /** Generate a Gaussian window of length n for given sigma
  *
  * @details Creates an n-point Gaussian window in the supplied buffer. Does not
@@ -221,11 +229,12 @@ bartlett(unsigned   n,
  * @return      Error code, 0 on success
  */
 Error_t 
-gaussian(unsigned   n, 
-         float      sigma, 
-         float*     dest);
+gaussian(unsigned n, float sigma, float* dest);
 
-
+Error_t
+gaussianD(unsigned n, double sigma, double* dest);
+    
+    
 /** Generate a Bartlett-Hann window of length n
  *
  * @details Creates an n-point Bartlett-Hann window in the supplied buffer.
@@ -238,9 +247,10 @@ gaussian(unsigned   n,
  * @return      Error code, 0 on success
  */
 Error_t 
-bartlett_hann(unsigned  n, 
-              float*    dest);
+bartlett_hann(unsigned n, float* dest);
 
+Error_t
+bartlett_hannD(unsigned n, double* dest);
 
 /** Generate a Kaiser window of length n for given alpha
  *
@@ -255,10 +265,11 @@ bartlett_hann(unsigned  n,
  * @return      Error code, 0 on success
  */
 Error_t 
-kaiser(unsigned n, 
-       float    a, 
-       float*   dest);
+kaiser(unsigned n, float a, float* dest);
 
+Error_t
+kaiserD(unsigned n, double a, double* dest);
+    
 
 /** Generate a Nuttall window of length n
  *
@@ -272,10 +283,12 @@ kaiser(unsigned n,
  * @return      Error code, 0 on success
  */
 Error_t 
-nuttall(unsigned    n, 
-        float*      dest);
+nuttall(unsigned n, float* dest);
+    
+Error_t
+nuttallD(unsigned n, double* dest);
 
-
+    
 /** Generate a Blackman-Harris window of length n
  *
  * @details Create an n-point Blackman-Harris window in the supplied buffer.
@@ -288,9 +301,11 @@ nuttall(unsigned    n,
  * @return      Error code, 0 on success
  */
 Error_t 
-blackman_harris(unsigned    n, 
-                float*      dest);
+blackman_harris(unsigned n, float* dest);
 
+Error_t
+blackman_harrisD(unsigned n, double* dest);
+    
 
 /** Generate a Blackman-Nuttall window of length n
  *
@@ -304,10 +319,12 @@ blackman_harris(unsigned    n,
  * @return      Error code, 0 on success
  */
 Error_t 
-blackman_nuttall(unsigned   n, 
-                 float*     dest);
+blackman_nuttall(unsigned n, float* dest);
 
-
+Error_t
+blackman_nuttallD(unsigned n, double* dest);
+    
+    
 /** Generate a flat top window of length n
  *
  * @details Create an n-point flat top window in the supplied buffer. Does not
@@ -320,8 +337,10 @@ blackman_nuttall(unsigned   n,
  * @return      Error code, 0 on success
  */
 Error_t 
-flat_top(unsigned   n, 
-         float*     dest);
+flat_top(unsigned n, float* dest);
+    
+Error_t
+flat_topD(unsigned n, double* dest);
 
 
 /** Generate a Poisson window of length n and given D
@@ -337,20 +356,20 @@ flat_top(unsigned   n,
  * @return      Error code, 0 on success
  */
 Error_t 
-poisson(unsigned    n, 
-        float       D, 
-        float*      dest);
-
+poisson(unsigned n, float D, float* dest);
     
 Error_t
-chebyshev(unsigned  n,
-          float     A,
-          float*    dest);
-    
+poissonD(unsigned n, double D, double* dest);
 
     
-float
-chebyshev_poly(int n, float x);
+    
+    
+Error_t
+chebyshev(unsigned n, float A, float* dest);
+    
+Error_t
+chebyshevD(unsigned n, double A, double* dest);
+    
     
     
 /** Create a new WindowFunction
@@ -363,8 +382,12 @@ chebyshev_poly(int n, float x);
  * @param type  Type of window function to generate.
  * @return          Error code, 0 on success
  */
-WindowFunction* WindowFunctionInit(unsigned   n, 
-                                                 FtWindow_t type);
+WindowFunction*
+WindowFunctionInit(unsigned n, FtWindow_t type);
+    
+WindowFunctionD*
+WindowFunctionInitD(unsigned n, FtWindow_t type);
+    
 
 /** Free memory associated with a WindowFunction
  *  
@@ -374,7 +397,11 @@ WindowFunction* WindowFunctionInit(unsigned   n,
  * @param window    The window to free
  * @return          Error code, 0 on success
  */
-Error_t WindowFunctionFree(WindowFunction* window);
+Error_t
+WindowFunctionFree(WindowFunction* window);
+    
+Error_t
+WindowFunctionFreeD(WindowFunctionD* window);
 
 
 /** Window a buffer of samples
@@ -387,12 +414,19 @@ Error_t WindowFunctionFree(WindowFunction* window);
  * @param n_samples The number of samples to window
  * @return          Error code, 0 on success
  */
-Error_t WindowFunctionProcess(WindowFunction*   window,
-                              float*            outBuffer,
-                              float*            inBuffer,
-                              unsigned          n_samples);
+Error_t
+WindowFunctionProcess(WindowFunction*   window,
+                      float*            outBuffer,
+                      const float*      inBuffer,
+                      unsigned          n_samples);
 
-
+Error_t
+WindowFunctionProcessD(WindowFunctionD* window,
+                       double*          outBuffer,
+                       const double*    inBuffer,
+                       unsigned         n_samples);
+    
+    
 #ifdef __cplusplus
 }
 #endif

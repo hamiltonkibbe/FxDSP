@@ -61,36 +61,10 @@
     MultibandFilterFree(filter);
     
     
-    // Print Matlab-readable values for each band
-    /*printf("\n\nlow = 20*log10(abs(fft([ ");
-    for (unsigned i = 0; i < 64; ++i)
-    {
-        printf("%f\n", low[i]);
-    }
-    printf("])));\n\n");
-    
-    // ...
-    printf("\n\nmid = 20*log10(abs(fft([ ");
-    for (unsigned i = 0; i < 64; ++i)
-    {
-        printf("%f\n", mid[i]);
-    }
-    printf("])));\n\n");
-    
-    // ...
-    printf("\n\nhigh = 20*log10(abs(fft([ ");
-    for (unsigned i = 0; i < 64; ++i)
-    {
-        printf("%f\n", high[i]);
-    }
-    printf("])));\n\n");
-    */
-    
-    
     // Verify output
     for (unsigned i = 0; i < 32; ++i)
     {
-        XCTAssertEqualWithAccuracy(outSpectrum[i], inSpectrum[i], 0.05, @"[%s FAILED] Buffer Compare failed at index %d. Got: %0.10f  Expected: %0.10f\n", __PRETTY_FUNCTION__,i, outSpectrum[i], inSpectrum[i]);
+        XCTAssertEqualWithAccuracy(outSpectrum[i], inSpectrum[i], 0.01, @"[%s FAILED] Buffer Compare failed at index %d. Got: %0.10f  Expected: %0.10f\n", __PRETTY_FUNCTION__,i, outSpectrum[i], inSpectrum[i]);
     }
 }
 
