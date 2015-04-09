@@ -6,7 +6,7 @@ SPHINXOPTS	  =
 SPHINXBUILD	  = sphinx-build
 PAPER		  =
 BUILDDIR	  = build
-DOXYGEN		  = doxygen
+
 
 # User-friendly check for sphinx-build
 ifeq ($(shell which $(SPHINXBUILD) >/dev/null 2>&1; echo $$?), 1)
@@ -176,9 +176,3 @@ pseudoxml:
 	$(SPHINXBUILD) -b pseudoxml $(ALLSPHINXOPTS) $(BUILDDIR)/pseudoxml
 	@echo
 	@echo "Build finished. The pseudo-XML files are in $(BUILDDIR)/pseudoxml."
-
-doxygen:
-	$(DOXYGEN) Doxyfile
-	@echo
-	@echo "Generating Doxygen XML"
-	

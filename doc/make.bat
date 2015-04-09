@@ -61,7 +61,6 @@ if errorlevel 9009 (
 )
 
 if "%1" == "html" (
-	make doxygen
 	%SPHINXBUILD% -b html %ALLSPHINXOPTS% %BUILDDIR%/html
 	if errorlevel 1 exit /b 1
 	echo.
@@ -240,11 +239,4 @@ if "%1" == "pseudoxml" (
 	goto end
 )
 
-if "%1" == "doxygen" (
-	doxygen Doxyfile
-	if errorlevel 1 exit /b 1
-	echo.
-	echo.Generated Doxygen XML
-	goto end
-)
 :end
