@@ -20,8 +20,8 @@ import sphinx_rtd_theme
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 if on_rtd:
-  from subprocess import call 
-  call('doxygen')
+    from subprocess import call
+    call('doxygen')
 
 # -- General configuration ------------------------------------------------
 

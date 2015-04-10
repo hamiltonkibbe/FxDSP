@@ -29,9 +29,9 @@ typedef struct BiquadFilterD BiquadFilterD;
  *          Play nice and call BiquadFilterFree on the filter when 
  *          you're done with it.
  *
- * @param bCoeff    Numerator coefficients (b0, b1, b2).
- * @param aCoeff    Denominator coefficients (a1, a2).
- * @return          An initialized BiquadFilter.
+ * @param bCoeff    Numerator coefficients [b0, b1, b2]
+ * @param aCoeff    Denominator coefficients [a1, a2]
+ * @return          An initialized BiquadFilter
  */
 BiquadFilter* 
 BiquadFilterInit(const float* bCoeff, const float* aCoeff);
@@ -67,7 +67,7 @@ BiquadFilterFlushD(BiquadFilterD* filter);
 
     
 /** Filter a buffer of samples
- * @details Uses a DF-I biquad implementation to filter input samples
+ * @details Uses a DF-II biquad implementation to filter input samples
  *
  * @param filter    The BiquadFilter to use.
  * @param outBuffer The buffer to write the output to.
@@ -88,7 +88,7 @@ BiquadFilterProcessD(BiquadFilterD  *filter,
                      unsigned       n_samples);
 
 /** Filter a single samples
- * @details Uses a DF-I biquad implementation to filter input sample
+ * @details Uses a DF-II biquad implementation to filter input sample
  *
  * @param filter    The BiquadFilter to use.
  * @param in_sample The sample to process.
@@ -104,8 +104,8 @@ BiquadFilterTickD(BiquadFilterD* filter, double in_sample);
 /** Update the filter kernel for a given filter
  *
  * @param filter    The filter to update
- * @param bCoeff    Numerator coefficients
- * @param aCoeff    Denominator coefficients
+ * @param bCoeff    Numerator coefficients [b0, b1, b2]
+ * @param aCoeff    Denominator coefficients [a1, a2]
  */
 Error_t
 BiquadFilterUpdateKernel(BiquadFilter*  filter,
