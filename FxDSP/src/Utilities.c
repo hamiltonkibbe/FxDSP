@@ -148,50 +148,17 @@ floatToInt16(float sample)
 }
 
 
-
-
-/* intBufferToFloat ***********************************************************/
-void
-intBufferToFloat(const signed short* inBuffer, float* outBuffer, unsigned nSamples)
-{
-    const signed short *src = inBuffer;
-    const signed short *end = inBuffer + nSamples;
-    float *dst = outBuffer;
-        
-    // Convert and write to output buffer
-    while(src < end)
-    {
-        *dst++ = int16ToFloat(*src++);
-    }
-}
-
-/* floatBufferToInt ***********************************************************/
-void
-floatBufferToInt(const float* inBuffer, signed short* outBuffer, unsigned nSamples)
-{
-    const float *src = inBuffer;
-    const float *end = inBuffer + nSamples;
-    signed short *dst = outBuffer;
-        
-    // Convert and write to output buffer
-    while(src < end)
-    {
-        *dst++ = floatToInt16(*src++);
-    }
-        
-}
-
 /* ratioToDb ******************************************************************/
 inline float
-ratioToDb(float ratio)
+AmpToDb(float amplitude)
 {
-    return 20.0*log10f(ratio);
+    return 20.0*log10f(amplitude);
 }
 
 
 /* dbToRatio ******************************************************************/
 inline float
-dbToRatio(float dB)
+DbToAmp(float dB)
 {
     return (dB > -90.0f ? powf(10.0, dB * 0.05f): 0.0f);
 }

@@ -81,6 +81,23 @@ RMSEstimatorFreeD(RMSEstimatorD* rms)
     return NOERR;
 }
 
+/*******************************************************************************
+ RMSEstimatorSetAvgTime */
+Error_t
+RMSEstimatorSetAvgTime(RMSEstimator* rms, float avgTime)
+{
+    rms->avgTime = avgTime;
+    rms->avgCoeff = 0.5 * (1.0 - expf( -1.0 / (rms->sampleRate * rms->avgTime)));
+    return NOERR;
+}
+
+Error_t
+RMSEstimatorSetAvgTimeD(RMSEstimatorD* rms, double avgTime)
+{
+    rms->avgTime = avgTime;
+    rms->avgCoeff = 0.5 * (1.0 - expf( -1.0 / (rms->sampleRate * rms->avgTime)));
+    return NOERR;
+}
 
 /*******************************************************************************
  RMSEstimatorProcess */

@@ -6,6 +6,8 @@ FxDSP API Reference
    
    DSP Utilities <dsp>
    Biquad Filters <biquad>
+   Pan Laws <pan>
+   
    
    
 

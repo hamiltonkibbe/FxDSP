@@ -24,7 +24,7 @@ typedef struct RMSEstimatorD RMSEstimatorD;
  *
  * @details allocates memory and returns an initialized RMS Estimator
  *
- * @param avgTime       averaging time/ sliding window length
+ * @param avgTime       Averaging time/ sliding window length
  # @param sampleRate    Sample rate.
  *
  */
@@ -45,11 +45,30 @@ RMSEstimatorFree(RMSEstimator* rms);
   
 Error_t
 RMSEstimatorFreeD(RMSEstimatorD* rms);
+
     
+/** Set the RMSEstimator Window Time
+ *
+ *
+ * @param rms       RMSEstimator to update
+ * @param avgTime   Averaging time.
+ */
+Error_t
+RMSEstimatorSetAvgTime(RMSEstimator* rms, float avgTime);
+
+Error_t
+RMSEstimatorSetAvgTimeD(RMSEstimatorD* rms, double avgTime);
+
+
 /** Calculate sliding RMS of a signal
  *
  * @details Uses an algorithm based on Newton's method for fast square-root
  *          calculation to estimate RMS power of a signal.
+ *
+ * @param rms       RMSEstimator to use.
+ * @param outBuffer Destination to write RMS values to.
+ * @param inBuffer  Samples to process
+ * @param n_samples Number of samples to process
  */
 Error_t 
 RMSEstimatorProcess(RMSEstimator*   rms,
@@ -69,6 +88,10 @@ RMSEstimatorProcessD(RMSEstimatorD* rms,
  *
  * @details Uses an algorithm based on Newton's method for fast square-root 
  *          calculation to estimate RMS power of a signal.
+ *
+ * @param rms       RMSEstimator to use
+ * @param inSample  Sample to process
+ * @return          RMS estimate.
  */
 float
 RMSEstimatorTick(RMSEstimator* rms, float inSample);

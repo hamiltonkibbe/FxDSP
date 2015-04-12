@@ -41,10 +41,19 @@
 extern "C" {
 #endif
 
+/**  Find the nearest power of two
+ * @details     Fast fabs() implementation
+ * @param f     Value to process
+ * @return      Absolute value of f.
+ */
 int
 next_pow2(int x);
 
-	
+/**  Fast absolute value
+ * @details     Fast fabs() implementation
+ * @param f     Value to process
+ * @return      Absolute value of f.
+ */
 float
 f_abs(float f);
 	
@@ -130,40 +139,22 @@ signed short
 floatToInt16(float sample);
     
 	
-/** Convert a buffer of 16 bit audio to float
- * @param inBuffer  The buffer of 16-bit samples to convert
- * @param outBuffer The buffer to write the samples to.
- * @param nSamples  The number of samples to convert.
- */
-void
-intBufferToFloat(const signed short* inBuffer, float* outBuffer, unsigned nSamples);
-    
-	
-/** Convert a buffer floating point samples to 16-bit
- * @param inBuffer   The buffer of floating point samples to convert
- * @param outBuffer  The buffer to write the samples to.
- * @param nSamples   The number of samples to convert.
- */
-void
-floatBufferToInt(const float* inBuffer, signed short* outBuffer, unsigned nSamples); 
-    
-	
-/** Convert a ratio to dB
- * @details convert a voltage ratio to dB.
- * @param ratio     The ratio to convert.
- * @return          Ratio value in dB.  
+/** Convert an amplitude to dB
+ * @details     Convert a voltage amplitude to dB.
+ * @param amp   The amplitude to convert.
+ * @return      Amplitude value in dB.
  */
 float
-ratioToDb(float ratio);
+AmpToDb(float ratio);
 
 	
-/** Convert a value in dB to a ratio
- * @details convert a dBFS value to a voltage ratio.
+/** Convert a value in dB to an amplitude
+ * @details convert a dBFS value to a voltage amplitude
  * @param dB        The value in dB to convert.
- * @return          dB value as a voltage ratio.
+ * @return          dB value as a voltage amplitude.
  */
 float
-dbToRatio(float dB);
+DbToAmp(float dB);
 
 #ifdef __cplusplus
 }

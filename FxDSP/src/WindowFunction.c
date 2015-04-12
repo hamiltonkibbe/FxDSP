@@ -647,6 +647,44 @@ chebyshev(unsigned n, float A, float *dest)
     return NOERR;
 }
 
+
+
+Error_t
+chebyshevD(unsigned n, double A, double *dest)
+{
+    double max=0;
+    double N = n - 1.0;
+    double M = N / 2;
+    if(n % 2 == 0)
+    {
+        M = M + 0.5; /* handle even length windows */
+    }
+    double tg = pow(10, A / 20.0);
+    double x0 = cosh((1.0 / N) * acosh(tg));
+    
+    unsigned buf_idx;
+    for(buf_idx=0; buf_idx<(n/2+1); ++buf_idx)
+    {
+        double sum = 0;
+        for(unsigned i=1; i<=M; i++){
+            sum += chebyshev_polyD(N, x0 * cos(M_PI * i / n)) *
+            cosf( 2.0 * n * M_PI * i / n);
+        }
+        dest[buf_idx] = tg + 2 * sum;
+        dest[(unsigned)N - buf_idx] = dest[buf_idx];
+        if(dest[buf_idx] > max)
+        {
+            max = dest[buf_idx];
+        }
+    }
+    
+    for(buf_idx = 0; buf_idx < n; ++buf_idx)
+    {
+        dest[buf_idx] /= max; /* normalise everything */
+    }
+    return NOERR;
+}
+
 /* Modified Bessel function of the first kind */
 static float
 modZeroBessel(float x)
@@ -708,7 +746,7 @@ static double
 chebyshev_polyD(int n, double x)
 {
     float y;
-    if (fabsf(x) <= 1)
+    if (fabs(x) <= 1)
     {
         y = cos(n * acos(x));
     }
