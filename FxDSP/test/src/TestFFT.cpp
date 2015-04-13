@@ -11,6 +11,8 @@
 #include "FFT.h"
 #include "Dsp.h"
 
+#ifdef __APPLE__
+
 #define EPSILON (0.000001)
 
 #pragma mark -
@@ -215,3 +217,5 @@ TEST(FFTDouble, TestFFTFilterConvolution)
         }
     }
 }
+
+#endif

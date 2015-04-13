@@ -12,6 +12,8 @@
 #include "Dsp.h"
 
 
+#ifdef __APPLE__
+
 #define EPSILON (0.006)
 
 #pragma mark -
@@ -110,3 +112,6 @@ TEST(MultibandBankDouble, TestMixBackFlat)
         ASSERT_NEAR(inSpectrum[i], outSpectrum[i], EPSILON);
     }
 }
+
+
+#endif
