@@ -15,24 +15,23 @@
  RMSEstimator */
 struct RMSEstimator
 {
-    float       avgTime;
-    long long   sampleRate;
-    float       avgCoeff;
-    float       RMS;
+    float   avgTime;
+    float   sampleRate;
+    float   avgCoeff;
+    float   RMS;
 };
 
 struct RMSEstimatorD
 {
-    double      avgTime;
-    long long   sampleRate;
-    double      avgCoeff;
-    double      RMS;
+    double  avgTime;
+    double  sampleRate;
+    double  avgCoeff;
+    double  RMS;
 };
 /*******************************************************************************
  RMSEstimatorInit */
 RMSEstimator*
-RMSEstimatorInit(float      avgTime,
-                 long long  sampleRate)
+RMSEstimatorInit(float avgTime, float sampleRate)
 {
     RMSEstimator* rms = (RMSEstimator*) malloc(sizeof(RMSEstimator));
     rms->avgTime = avgTime;
@@ -45,8 +44,7 @@ RMSEstimatorInit(float      avgTime,
 
 
 RMSEstimatorD*
-RMSEstimatorInitD(double     avgTime,
-                  long long  sampleRate)
+RMSEstimatorInitD(double avgTime, double sampleRate)
 {
     RMSEstimatorD* rms = (RMSEstimatorD*) malloc(sizeof(RMSEstimatorD));
     rms->avgTime = avgTime;

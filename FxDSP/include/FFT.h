@@ -10,7 +10,9 @@
 #define FFT_H
 
 #include "Error.h"
-
+#ifdef __APPLE__
+#include <Accelerate/Accelerate.h>
+#endif
 
 
 #ifdef __cplusplus
@@ -18,7 +20,6 @@ extern "C" {
 #endif
 
 #ifdef __APPLE__
-#include <Accelerate/Accelerate.h>
     typedef DSPComplex              FFTComplex;
     typedef DSPSplitComplex         FFTSplitComplex;
     typedef DSPDoubleComplex        FFTComplexD;

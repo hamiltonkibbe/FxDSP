@@ -34,6 +34,7 @@ CircularBufferInit(unsigned length);
 CircularBufferD*
 CircularBufferInitD(unsigned length);
 
+    
 /** Free Heap Memory associated with CircularBuffer
 *
 * @details Frees memory allocated by CircularBufferInit
@@ -44,6 +45,7 @@ CircularBufferFree(CircularBuffer* cb);
 void
 CircularBufferFreeD(CircularBufferD* cb);
 
+    
 /** Write samples to circular buffer
 */
 void

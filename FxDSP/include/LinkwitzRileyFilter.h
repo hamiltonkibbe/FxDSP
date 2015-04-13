@@ -39,16 +39,16 @@ typedef struct LRFilterD LRFilterD;
  * @return 				An initialized LRFilterFilter
  */
 LRFilter*
-LRFilterInit(Filter_t       type,
-                 float 		cutoff,
-                 float      Q,
-                 long long 	sampleRate);
+LRFilterInit(Filter_t   type,
+             float 		cutoff,
+             float      Q,
+             float      sampleRate);
     
 LRFilterD*
 LRFilterInitD(Filter_t  type,
               double 	cutoff,
               double    Q,
-              long long sampleRate);
+              double    sampleRate);
 
 
 /** Free memory associated with a LRFilter

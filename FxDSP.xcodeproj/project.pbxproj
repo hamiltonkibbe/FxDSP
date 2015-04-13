@@ -22,6 +22,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		376CF3781ADB56BF001486B7 /* TestFFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 376CF3771ADB56BF001486B7 /* TestFFT.cpp */; };
+		376CF37A1ADB6849001486B7 /* TestMultibandFilterBank.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 376CF3791ADB6849001486B7 /* TestMultibandFilterBank.cpp */; };
 		3775E0801AD4EF3B00930665 /* Signals.h in Headers */ = {isa = PBXBuildFile; fileRef = 3775E0771AD4EF3B00930665 /* Signals.h */; };
 		3775E0811AD4EF3B00930665 /* TestBiquadFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3775E0781AD4EF3B00930665 /* TestBiquadFilter.h */; };
 		3775E0821AD4EF3B00930665 /* testFFT.h in Headers */ = {isa = PBXBuildFile; fileRef = 3775E0791AD4EF3B00930665 /* testFFT.h */; };
@@ -262,6 +264,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		376CF3771ADB56BF001486B7 /* TestFFT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestFFT.cpp; path = FxDSP/test/src/TestFFT.cpp; sourceTree = SOURCE_ROOT; };
+		376CF3791ADB6849001486B7 /* TestMultibandFilterBank.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestMultibandFilterBank.cpp; path = FxDSP/test/src/TestMultibandFilterBank.cpp; sourceTree = SOURCE_ROOT; };
 		3775E0771AD4EF3B00930665 /* Signals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Signals.h; path = FxDSP/test/src/Signals.h; sourceTree = SOURCE_ROOT; };
 		3775E0781AD4EF3B00930665 /* TestBiquadFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestBiquadFilter.h; path = FxDSP/test/src/TestBiquadFilter.h; sourceTree = SOURCE_ROOT; };
 		3775E0791AD4EF3B00930665 /* testFFT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testFFT.h; path = FxDSP/test/src/testFFT.h; sourceTree = SOURCE_ROOT; };
@@ -323,8 +327,6 @@
 		37C030DE1ABB5EBF00ABB47B /* Waveshaper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Waveshaper.c; path = FxDSP/src/Waveshaper.c; sourceTree = SOURCE_ROOT; };
 		37C030DF1ABB5EBF00ABB47B /* Wavetable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Wavetable.c; path = FxDSP/src/Wavetable.c; sourceTree = SOURCE_ROOT; };
 		37C030E01ABB5EBF00ABB47B /* WindowFunction.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = WindowFunction.c; path = FxDSP/src/WindowFunction.c; sourceTree = SOURCE_ROOT; };
-		37C0313B1ABB65EB00ABB47B /* TestFFT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestFFT.m; path = FxDSP/test/src/TestFFT.m; sourceTree = SOURCE_ROOT; };
-		37C0313E1ABB65EB00ABB47B /* TestMultibandBank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestMultibandBank.m; path = FxDSP/test/src/TestMultibandBank.m; sourceTree = SOURCE_ROOT; };
 		37C031421ABB65EB00ABB47B /* TestRMSEstimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestRMSEstimator.m; path = FxDSP/test/src/TestRMSEstimator.m; sourceTree = SOURCE_ROOT; };
 		37C031431ABB65EB00ABB47B /* TestTapeSaturator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestTapeSaturator.m; path = FxDSP/test/src/TestTapeSaturator.m; sourceTree = SOURCE_ROOT; };
 		37C0317A1ABB7E0200ABB47B /* libFxDSP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFxDSP.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -463,8 +465,6 @@
 				3775E07E1AD4EF3B00930665 /* TestRBJFilter.h */,
 				3775E07F1AD4EF3B00930665 /* TestWindowFunctions.h */,
 				37D3CBCB1AD4D747001E598C /* main.cpp */,
-				37C0313B1ABB65EB00ABB47B /* TestFFT.m */,
-				37C0313E1ABB65EB00ABB47B /* TestMultibandBank.m */,
 				37C031421ABB65EB00ABB47B /* TestRMSEstimator.m */,
 				37C031431ABB65EB00ABB47B /* TestTapeSaturator.m */,
 				37D3CBBD1AD4D654001E598C /* TestBiquadFilter.cpp */,
@@ -475,6 +475,8 @@
 				3775E0911AD501BB00930665 /* TestRBJFilter.cpp */,
 				3775E0941AD605CA00930665 /* TestMidiUtils.cpp */,
 				3775E09E1AD60A5100930665 /* TestWindowFunctions.cpp */,
+				376CF3771ADB56BF001486B7 /* TestFFT.cpp */,
+				376CF3791ADB6849001486B7 /* TestMultibandFilterBank.cpp */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -726,7 +728,9 @@
 				37D3CBCA1AD4D6DB001E598C /* TestBiquadFilter.cpp in Sources */,
 				3775E09F1AD60A5100930665 /* TestWindowFunctions.cpp in Sources */,
 				3775E0951AD605CA00930665 /* TestMidiUtils.cpp in Sources */,
+				376CF3781ADB56BF001486B7 /* TestFFT.cpp in Sources */,
 				3775E08E1AD4F4EE00930665 /* TestDSP.cpp in Sources */,
+				376CF37A1ADB6849001486B7 /* TestMultibandFilterBank.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

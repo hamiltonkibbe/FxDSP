@@ -33,10 +33,10 @@ typedef struct RBJFilterD RBJFilterD;
  * @return 				An initialized RBJFilter	
  */
 RBJFilter* 
-RBJFilterInit(Filter_t type, float cutoff, long long sampleRate);
+RBJFilterInit(Filter_t type, float cutoff, float sampleRate);
 
 RBJFilterD*
-RBJFilterInitD(Filter_t type, double cutoff,long long sampleRate);
+RBJFilterInitD(Filter_t type, double cutoff,double sampleRate);
     
     
 /** Free memory associated with a RBJFilter

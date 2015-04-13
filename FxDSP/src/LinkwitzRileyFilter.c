@@ -15,28 +15,28 @@ struct LRFilter
 {
     RBJFilter*  filterA;
     RBJFilter*  filterB;
-    Filter_t        type;
-    float           cutoff;
-    float           Q;
-    long long       sampleRate;
+    Filter_t    type;
+    float       cutoff;
+    float       Q;
+    float       sampleRate;
 };
 
 struct LRFilterD
 {
-    RBJFilterD*  filterA;
-    RBJFilterD*  filterB;
+    RBJFilterD* filterA;
+    RBJFilterD* filterB;
     Filter_t    type;
     double      cutoff;
     double      Q;
-    long long   sampleRate;
+    double      sampleRate;
 };
 
 /* LRFilterInit ***********************************************************/
 LRFilter*
-LRFilterInit(Filter_t 	type,
-                 float 		cutoff,
-                 float      Q,
-                 long long 	sampleRate)
+LRFilterInit(Filter_t   type,
+             float 		cutoff,
+             float      Q,
+             float      sampleRate)
 {
     LRFilter *filter = (LRFilter*) malloc(sizeof(LRFilter));
     filter->type = type;
@@ -54,7 +54,7 @@ LRFilterD*
 LRFilterInitD(Filter_t  type,
               double 	cutoff,
               double    Q,
-              long long sampleRate)
+              double    sampleRate)
 {
     LRFilterD *filter = (LRFilterD*) malloc(sizeof(LRFilterD));
     filter->type = type;

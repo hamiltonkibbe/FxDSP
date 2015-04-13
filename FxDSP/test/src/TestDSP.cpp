@@ -117,7 +117,8 @@ TEST(DSPSingle, TestConvolve)
 }
 
 
-
+#pragma mark -
+#pragma mark Double Precision Tests
 
 TEST(DSPDouble, TestFillBuffer)
 {

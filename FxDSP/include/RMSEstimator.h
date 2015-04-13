@@ -29,12 +29,10 @@ typedef struct RMSEstimatorD RMSEstimatorD;
  *
  */
 RMSEstimator*
-RMSEstimatorInit(float      avgTime,
-                 long long  sampleRate);
+RMSEstimatorInit(float avgTime, float sampleRate);
 
 RMSEstimatorD*
-RMSEstimatorInitD(double    avgTime,
-                  long long ampleRate);
+RMSEstimatorInitD(double avgTime, double sampleRate);
     
     
 /** Free memory allocated by RMSEstimatorInit

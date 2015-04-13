@@ -29,8 +29,8 @@ extern "C" {
 
 
 
-typedef struct Diode Diode;
-typedef struct DiodeD DiodeD;
+typedef struct DiodeRectifier DiodeRectifier;
+typedef struct DiodeRectifierD DiodeRectifierD;
 
 typedef enum _bias_t
 {
@@ -39,88 +39,88 @@ typedef enum _bias_t
 }bias_t;
 
 
-/** Create a new Diode
+/** Create a new DiodeRectifier
  *
- * @details Allocates memory and returns an initialized Diode.
- *			Play nice and call DiodeFree when you're done with it.
+ * @details Allocates memory and returns an initialized DiodeRectifier.
+ *			Play nice and call DiodeRectifierFree when you're done with it.
  *
  * @param threshold         Normalized voltage threshold
- * @param bias              Diode bias, FORWARD_BIAS or REVERSE_BIAS
+ * @param bias              DiodeRectifier bias, FORWARD_BIAS or REVERSE_BIAS
  *                          Forward-bias will pass positive signals and clamp
  *                          negative signals to 0.
- * @return                  An initialized Diode
+ * @return                  An initialized DiodeRectifier
  */
-Diode*
-DiodeInit(bias_t bias, float threshold);
+DiodeRectifier*
+DiodeRectifierInit(bias_t bias, float threshold);
 
-DiodeD*
-DiodeInitD(bias_t bias, double threshold);
+DiodeRectifierD*
+DiodeRectifierInitD(bias_t bias, double threshold);
 
 
-/** Free memory associated with a Diode
+/** Free memory associated with a DiodeRectifier
  *
- * @details release all memory allocated by DiodeInit for the
- *			given diode.
+ * @details release all memory allocated by DiodeRectifierInit for the
+ *			given DiodeRectifier.
  *
- * @param diode     Diode to free
+ * @param DiodeRectifier     DiodeRectifier to free
  * @return			Error code, 0 on success
  */
 Error_t
-DiodeFree(Diode* diode);
+DiodeRectifierFree(DiodeRectifier* diode);
 
 Error_t
-DiodeFreeD(DiodeD* diode);
+DiodeRectifierFreeD(DiodeRectifierD* diode);
 
 
-/** Update Diode threshold voltage
+/** Update DiodeRectifier threshold voltage
  *
  * @details Update the diode model's threshold voltage
  *
- * @param diode     Diode to update
+ * @param diode     DiodeRectifier instance to update
  * @param threshold	New diode threshold [0 1]
  * @return			Error code, 0 on success
  */
 Error_t
-DiodeSetThreshold(Diode* diode, float threshold);
+DiodeRectifierSetThreshold(DiodeRectifier* diode, float threshold);
 
 Error_t
-DiodeSetThresholdD(DiodeD* diode, double threshold);
+DiodeRectifierSetThresholdD(DiodeRectifierD* diode, double threshold);
 
 
 /** Process a buffer of samples
- * @details Uses a diode clipper model to process input samples
+ * @details Uses a diode rectifier to process input samples.
  *
- * @param diode     The Diode to use.
+ * @param diode     The DiodeRectifier instance to use.
  * @param outBuffer	The buffer to write the output to.
  * @param inBuffer	The buffer to filter.
  * @param n_samples The number of samples to filter.
  * @return			Error code, 0 on success
  */
 Error_t
-DiodeProcess(Diode*         diode,
-             float*         out_buffer,
-             const float*   in_buffer,
-             unsigned       n_samples);
+DiodeRectifierProcess(DiodeRectifier*   diode,
+                      float*            out_buffer,
+                      const float*      in_buffer,
+                      unsigned          n_samples);
 
 Error_t
-DiodeProcessD(DiodeD*       diode,
-              double*       out_buffer,
-              const double* in_buffer,
-              unsigned      n_samples);
+DiodeRectifierProcessD(DiodeRectifierD* diode,
+                       double*          out_buffer,
+                       const double*    in_buffer,
+                       unsigned         n_samples);
 
     
 /** Process a single sample
- * @details Uses a diode clipper model to process an input sample
+ * @details Uses a diode rectifier model to process an input sample
  *
- * @param diode     The Diode to use.
+ * @param diode     The DiodeRectifier instance to use.
  * @param in_sample	The sample to process.
  * @return			A processed sample.
  */
 float
-DiodeTick(Diode* diode, float in_sample);
+DiodeRectifierTick(DiodeRectifier* diode, float in_sample);
     
 double
-DiodeTickD(DiodeD* diode, double in_sample);
+DiodeRectifierTickD(DiodeRectifierD* diode, double in_sample);
     
 #ifdef __cplusplus
 }

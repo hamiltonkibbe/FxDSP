@@ -27,7 +27,7 @@ struct RBJFilter
 	float dbGain;
 	float b[3];
 	float a[3];
-	long long sampleRate;
+	float sampleRate;
 };
 
 struct RBJFilterD
@@ -43,7 +43,7 @@ struct RBJFilterD
     double dbGain;
     double b[3];
     double a[3];
-    long long sampleRate;
+    double sampleRate;
 };
 
 
@@ -293,7 +293,7 @@ RBJFilterUpdateD(RBJFilterD* filter)
 
 /* RBJFilterInit **********************************************************/
 RBJFilter* 
-RBJFilterInit(Filter_t type, float cutoff,long long sampleRate)
+RBJFilterInit(Filter_t type, float cutoff, float sampleRate)
 {	
 	// Create the filter
 	RBJFilter* filter = (RBJFilter*)malloc(sizeof(RBJFilter));
@@ -322,7 +322,7 @@ RBJFilterInit(Filter_t type, float cutoff,long long sampleRate)
 }
 
 RBJFilterD*
-RBJFilterInitD(Filter_t type, double cutoff,long long sampleRate)
+RBJFilterInitD(Filter_t type, double cutoff, double sampleRate)
 {
     // Create the filter
     RBJFilterD* filter = (RBJFilterD*)malloc(sizeof(RBJFilterD));

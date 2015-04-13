@@ -13,8 +13,8 @@
 
 
 /*******************************************************************************
- Diode */
-struct Diode
+ DiodeRectifier */
+struct DiodeRectifier
 {
     bias_t  bias;
     float   threshold;
@@ -22,8 +22,7 @@ struct Diode
     float   scale;
 };
 
-
-struct DiodeD
+struct DiodeRectifierD
 {
     bias_t  bias;
     double  threshold;
@@ -33,38 +32,38 @@ struct DiodeD
 
 
 /*******************************************************************************
- DiodeInit */
-Diode*
-DiodeInit(bias_t bias, float threshold)
+ DiodeRectifierInit */
+DiodeRectifier*
+DiodeRectifierInit(bias_t bias, float threshold)
 {
     // Create opto struct
-    Diode* diode = (Diode*)malloc(sizeof(Diode));
+    DiodeRectifier* diode = (DiodeRectifier*)malloc(sizeof(DiodeRectifier));
     
     // Initialization
     diode->bias = bias;
     diode->threshold = threshold;
-    DiodeSetThreshold(diode, threshold);
+    DiodeRectifierSetThreshold(diode, threshold);
     return diode;
 }
 
-DiodeD*
-DiodeInitD(bias_t bias, double threshold)
+DiodeRectifierD*
+DiodeRectifierInitD(bias_t bias, double threshold)
 {
     // Create opto struct
-    DiodeD* diode = (DiodeD*)malloc(sizeof(DiodeD));
+    DiodeRectifierD* diode = (DiodeRectifierD*)malloc(sizeof(DiodeRectifierD));
     
     // Initialization
     diode->bias = bias;
     diode->threshold = threshold;
-    DiodeSetThresholdD(diode, threshold);
+    DiodeRectifierSetThresholdD(diode, threshold);
     return diode;
 }
 
 
 /*******************************************************************************
- DiodeFree */
+ DiodeRectifierFree */
 Error_t
-DiodeFree(Diode* diode)
+DiodeRectifierFree(DiodeRectifier* diode)
 {
     if(diode)
         free(diode);
@@ -73,7 +72,7 @@ DiodeFree(Diode* diode)
 }
 
 Error_t
-DiodeFreeD(DiodeD* diode)
+DiodeRectifierFreeD(DiodeRectifierD* diode)
 {
     if(diode)
         free(diode);
@@ -83,9 +82,9 @@ DiodeFreeD(DiodeD* diode)
 
 
 /*******************************************************************************
- DiodeSetThreshold */
+ DiodeRectifierSetThreshold */
 Error_t
-DiodeSetThreshold(Diode* diode, float threshold)
+DiodeRectifierSetThreshold(DiodeRectifier* diode, float threshold)
 {
     float scale = 1.0;
     if (diode->bias== REVERSE_BIAS)
@@ -99,7 +98,7 @@ DiodeSetThreshold(Diode* diode, float threshold)
 }
 
 Error_t
-DiodeSetThresholdD(DiodeD* diode, double threshold)
+DiodeRectifierSetThresholdD(DiodeRectifierD* diode, double threshold)
 {
     double scale = 1.0;
     if (diode->bias == REVERSE_BIAS)
@@ -114,12 +113,12 @@ DiodeSetThresholdD(DiodeD* diode, double threshold)
 
 
 /*******************************************************************************
- DiodeProcess */
+ DiodeRectifierProcess */
 Error_t
-DiodeProcess(Diode*         diode,
-            float*          out_buffer,
-            const float*    in_buffer,
-            unsigned        n_samples)
+DiodeRectifierProcess(DiodeRectifier*   diode,
+                      float*            out_buffer,
+                      const float*      in_buffer,
+                      unsigned          n_samples)
 {
     float vt = diode->vt;
     float scale = diode->scale;
@@ -131,10 +130,10 @@ DiodeProcess(Diode*         diode,
 }
 
 Error_t
-DiodeProcessD(DiodeD*       diode,
-              double*       out_buffer,
-              const double* in_buffer,
-              unsigned      n_samples)
+DiodeRectifierProcessD(DiodeRectifierD* diode,
+                       double*          out_buffer,
+                       const double*    in_buffer,
+                       unsigned         n_samples)
 {
     double vt = diode->vt;
     double scale = diode->scale;
@@ -146,15 +145,15 @@ DiodeProcessD(DiodeD*       diode,
 }
 
 /*******************************************************************************
- DiodeTick */
+ DiodeRectifierTick */
 float
-DiodeTick(Diode* diode, float in_sample)
+DiodeRectifierTick(DiodeRectifier* diode, float in_sample)
 {
     return f_exp((in_sample/diode->vt)-1) * diode->scale;
 }
 
 double
-DiodeTickD(DiodeD* diode, double in_sample)
+DiodeRectifierTickD(DiodeRectifierD* diode, double in_sample)
 {
     return f_expD((in_sample/diode->vt)-1) * diode->scale;
 }

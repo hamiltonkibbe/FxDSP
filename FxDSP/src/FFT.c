@@ -613,12 +613,6 @@ FFTFilterConvolve(FFTConfig*        fft,
     float scale = (fft->scale / 4.0);
     vDSP_vsmul(dest, 1, &scale, dest, 1, fft->length/2);
     
-
-    // So fast convolution.
-    // Wow.
-    // Such N log N.
-    // Much aglorithm.
-    
     return NOERR;
 }
     
