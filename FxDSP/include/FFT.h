@@ -8,7 +8,7 @@
 
 #ifndef FFT_H
 #define FFT_H
-.
+
 #include "Error.h"
 
 #ifdef USE_FFTW
