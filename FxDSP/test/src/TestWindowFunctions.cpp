@@ -9,6 +9,7 @@
 #include "gtest/gtest.h"
 #include "TestWindowFunctions.h"
 #include "WindowFunction.h"
+#include "Dsp.h"
 #include "Signals.h"
 
 #define EPSILON (0.000001)
@@ -142,12 +143,13 @@ TEST(WindowFunctionSingle, TestFlatTopWindow)
 TEST(WindowFunctionSingle, TestWindowFunctionProcess)
 {
     float output[TEST_WINDOW_LENGTH] = {0.0};
-    WindowFunction* window = WindowFunctionInit(TEST_WINDOW_LENGTH, BLACKMAN);
+    ClearBuffer(output, TEST_WINDOW_LENGTH);
+    WindowFunction* window = WindowFunctionInit(TEST_WINDOW_LENGTH, HAMMING);
     WindowFunctionProcess(window , output, ones, TEST_WINDOW_LENGTH);
     WindowFunctionFree(window);
     for (unsigned i = 0; i < TEST_WINDOW_LENGTH; ++i)
     {
-        ASSERT_NEAR(matlabBlackman[i], output[i], EPSILON);
+        ASSERT_NEAR(matlabHamming[i], output[i], EPSILON);
     }
 }
 
@@ -282,11 +284,12 @@ TEST(WindowFunctionDouble, TestFlatTopWindow)
 TEST(WindowFunctionDouble, TestWindowFunctionProcess)
 {
     double output[TEST_WINDOW_LENGTH] = {0.0};
-    WindowFunctionD* window = WindowFunctionInitD(TEST_WINDOW_LENGTH, BLACKMAN);
+    ClearBufferD(output, TEST_WINDOW_LENGTH);
+    WindowFunctionD* window = WindowFunctionInitD(TEST_WINDOW_LENGTH, HAMMING);
     WindowFunctionProcessD(window , output, onesD, TEST_WINDOW_LENGTH);
     WindowFunctionFreeD(window);
     for (unsigned i = 0; i < TEST_WINDOW_LENGTH; ++i)
     {
-        ASSERT_NEAR(matlabBlackmanD[i], output[i], EPSILON);
+        ASSERT_NEAR(matlabHammingD[i], output[i], EPSILON);
     }
 }

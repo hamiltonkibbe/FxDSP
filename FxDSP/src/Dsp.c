@@ -671,3 +671,4 @@ VectorDbConvert(float* dest,
 #endif
     return NOERR;
 }
+

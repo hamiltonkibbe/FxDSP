@@ -24,6 +24,10 @@
 /* Begin PBXBuildFile section */
 		376CF3781ADB56BF001486B7 /* TestFFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 376CF3771ADB56BF001486B7 /* TestFFT.cpp */; };
 		376CF37A1ADB6849001486B7 /* TestMultibandFilterBank.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 376CF3791ADB6849001486B7 /* TestMultibandFilterBank.cpp */; };
+		376CF37C1ADB7444001486B7 /* libfftw3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 376CF37B1ADB7444001486B7 /* libfftw3.3.dylib */; };
+		376CF37E1ADB747D001486B7 /* libfftw3f.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 376CF37D1ADB747D001486B7 /* libfftw3f.3.dylib */; };
+		376CF3801ADB7492001486B7 /* libfftw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 376CF37F1ADB7492001486B7 /* libfftw3.a */; };
+		376CF3821ADB74A0001486B7 /* libfftw3f.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 376CF3811ADB74A0001486B7 /* libfftw3f.a */; };
 		3775E0801AD4EF3B00930665 /* Signals.h in Headers */ = {isa = PBXBuildFile; fileRef = 3775E0771AD4EF3B00930665 /* Signals.h */; };
 		3775E0811AD4EF3B00930665 /* TestBiquadFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3775E0781AD4EF3B00930665 /* TestBiquadFilter.h */; };
 		3775E0821AD4EF3B00930665 /* testFFT.h in Headers */ = {isa = PBXBuildFile; fileRef = 3775E0791AD4EF3B00930665 /* testFFT.h */; };
@@ -266,6 +270,10 @@
 /* Begin PBXFileReference section */
 		376CF3771ADB56BF001486B7 /* TestFFT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestFFT.cpp; path = FxDSP/test/src/TestFFT.cpp; sourceTree = SOURCE_ROOT; };
 		376CF3791ADB6849001486B7 /* TestMultibandFilterBank.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestMultibandFilterBank.cpp; path = FxDSP/test/src/TestMultibandFilterBank.cpp; sourceTree = SOURCE_ROOT; };
+		376CF37B1ADB7444001486B7 /* libfftw3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfftw3.3.dylib; path = ../../../../../usr/local/Cellar/fftw/3.3.4_1/lib/libfftw3.3.dylib; sourceTree = "<group>"; };
+		376CF37D1ADB747D001486B7 /* libfftw3f.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfftw3f.3.dylib; path = ../../../../../usr/local/Cellar/fftw/3.3.4_1/lib/libfftw3f.3.dylib; sourceTree = "<group>"; };
+		376CF37F1ADB7492001486B7 /* libfftw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfftw3.a; path = ../../../../../usr/local/Cellar/fftw/3.3.4_1/lib/libfftw3.a; sourceTree = "<group>"; };
+		376CF3811ADB74A0001486B7 /* libfftw3f.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfftw3f.a; path = ../../../../../usr/local/Cellar/fftw/3.3.4_1/lib/libfftw3f.a; sourceTree = "<group>"; };
 		3775E0771AD4EF3B00930665 /* Signals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Signals.h; path = FxDSP/test/src/Signals.h; sourceTree = SOURCE_ROOT; };
 		3775E0781AD4EF3B00930665 /* TestBiquadFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestBiquadFilter.h; path = FxDSP/test/src/TestBiquadFilter.h; sourceTree = SOURCE_ROOT; };
 		3775E0791AD4EF3B00930665 /* testFFT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testFFT.h; path = FxDSP/test/src/testFFT.h; sourceTree = SOURCE_ROOT; };
@@ -347,6 +355,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				376CF3821ADB74A0001486B7 /* libfftw3f.a in Frameworks */,
+				376CF3801ADB7492001486B7 /* libfftw3.a in Frameworks */,
 				37C031931ABB7E3F00ABB47B /* Accelerate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,6 +374,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				376CF37E1ADB747D001486B7 /* libfftw3f.3.dylib in Frameworks */,
+				376CF37C1ADB7444001486B7 /* libfftw3.3.dylib in Frameworks */,
 				37EAC1291818AEE000736C52 /* Accelerate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -503,6 +515,10 @@
 		37EAC18B1818B09A00736C52 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				376CF3811ADB74A0001486B7 /* libfftw3f.a */,
+				376CF37F1ADB7492001486B7 /* libfftw3.a */,
+				376CF37D1ADB747D001486B7 /* libfftw3f.3.dylib */,
+				376CF37B1ADB7444001486B7 /* libfftw3.3.dylib */,
 				37D3CBCE1AD4D82C001E598C /* libgtest.a */,
 				37EAC1281818AEE000736C52 /* Accelerate.framework */,
 				37EAC18C1818B09A00736C52 /* XCTest.framework */,
@@ -788,6 +804,11 @@
 		37B8EC821AC7315300EBD2E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -795,6 +816,11 @@
 		37B8EC831AC7315300EBD2E3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -812,6 +838,15 @@
 					"$(inherited)",
 				);
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/fftw/3.3.4_1/lib,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
@@ -829,6 +864,15 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_PREFIX = lib;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/fftw/3.3.4_1/lib,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = FxDSP;
@@ -959,7 +1003,11 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					Tests/include/,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/fftw/3.3.4_1/lib,
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = FxDSP;
@@ -976,7 +1024,11 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					Tests/include/,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/fftw/3.3.4_1/lib,
 				);
 				PRODUCT_NAME = FxDSP;
 				TEST_HOST = XCTest;

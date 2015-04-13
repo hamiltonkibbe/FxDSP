@@ -10,7 +10,7 @@ env:
 script:
   - mkdir build
   - cd build
-  - cmake ../FxDSP
+  - cmake -DUSE_FFTW=True ../FxDSP
   - cmake --build . 
   - make test
 

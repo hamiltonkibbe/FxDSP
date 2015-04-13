@@ -8,31 +8,37 @@
 
 #ifndef FFT_H
 #define FFT_H
-
+.
 #include "Error.h"
+
+#ifdef USE_FFTW
+#include <fftw3.h>
+#endif
+
 #ifdef __APPLE__
 #include <Accelerate/Accelerate.h>
 #endif
-
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#ifdef __APPLE__
+
+#ifdef USE_FFTW
+    typedef fftwf_complex    FFTComplex;
+    typedef struct { float* realp; float* imagp;}  FFTSplitComplex;
+    typedef fftw_complex     FFTComplexD;
+    typedef struct { double* realp; double* imagp;} FFTSplitComplexD;
+    
+#elif defined(__APPLE__)
     typedef DSPComplex              FFTComplex;
     typedef DSPSplitComplex         FFTSplitComplex;
     typedef DSPDoubleComplex        FFTComplexD;
     typedef DSPDoubleSplitComplex   FFTSplitComplexD;
-#elif defined(__USE_FFTW__)
-    typedef struct FFTComplex FFTComplex;
-    typedef struct FFTSplitComplex FFTSplitComplex;
-    typedef struct FFTComplexD FFTComplexD;
-    typedef struct FFTSplitComplexD FFTSplitComplexD;
 #else
-    typedef struct { float realp; float imagp;} FFTComplex;
+    typedef struct { float real; float imag;} FFTComplex;
     typedef struct { float* realp; float* imagp;} FFTSplitComplex;
-    typedef struct { double realp; double imagp;} FFTComplexD;
+    typedef struct { double real; double imag;} FFTComplexD;
     typedef struct { double* realp; double* imagp;} FFTSplitComplexD;
 #endif
 
@@ -72,6 +78,51 @@ Error_t
 FFTFreeD(FFTConfigD* fft);
 
     
+/** Calculate Real to Real Forward FFT
+ *
+ * @details Calculates the magnitude of the real forward FFT of the data in
+ *          inBuffer.
+ *
+ * @param fft       Pointer to the FFT configuration.
+ * @param inBuffer  Input data. should be the same size as the fft.
+ * @param outBuffer Allocated buffer where the magnitude will be written. length
+ *                  should be (fft length / 2).
+ * @return          Error code, 0 on success.
+ */
+Error_t
+RFFT(FFTConfig*     fft,
+     const float*   inBuffer,
+     float*         outBuffer);
+
+Error_t
+RFFTD(FFTConfigD*    fft,
+      const double*  inBuffer,
+      double*        outBuffer);
+
+
+/** Calculate Real to Real Inverse FFT
+ *
+ * @details Calculates the magnitude of the real inverse FFT of the data in
+ *          inBuffer.
+ *
+ * @param fft       Pointer to the FFT configuration.
+ * @param inBuffer  Input data. should be the same size as the fft.
+ * @param outBuffer Allocated buffer where the signal will be written. length
+ *                  should be (fft length / 2).
+ * @return          Error code, 0 on success.
+ */
+Error_t
+RIFFT(FFTConfig*    fft,
+      const float*  inBuffer,
+      float*        outBuffer);
+
+Error_t
+RIFFTD(FFTConfigD*   fft,
+       const double* inBuffer,
+       double*       outBuffer);
+    
+    
+    
 /** Calculate Real Forward FFT
  *
  * @details Calculates the magnitude and phase of the real forward FFT of the
@@ -96,7 +147,8 @@ FFTForwardD(FFTConfigD*     fft,
             const double*   inBuffer,
             double*         outMag,
             double*         outPhase);
-                  
+    
+    
 /** Calculate Real Forward FFT
  *
  * @details Calculates the magnitude and phase of the real forward FFT of the
@@ -131,12 +183,12 @@ FFTForwardInterleavedD(FFTConfigD*  fft,
 Error_t
 FFTForwardSplit(FFTConfig*          fft,
                 FFTComplex*         in_buffer,
-                FFTSplitComplex*    out);
+                FFTSplitComplex     out);
    
 Error_t
 FFTForwardSplitD(FFTConfigD*        fft,
                  FFTComplexD*       in_buffer,
-                 FFTSplitComplexD*  out);
+                 FFTSplitComplexD   out);
              
 /** Calculate Real Inverse FFT
  *
@@ -173,14 +225,14 @@ FFTInverseD(FFTConfigD*     fft,
  * @return          Error code, 0 on success.
  */
 Error_t
-FFTInverseInterleaved(FFTConfig*     fft,
-                      const float*   inBuffer,
-                      float*         outBuffer);
+FFTInverseInterleaved(FFTConfig*        fft,
+                      const FFTComplex* inBuffer,
+                      FFTComplex*       outBuffer);
     
 Error_t
-FFTInverseInterleavedD(FFTConfigD*      fft,
-                       const double*    inBuffer,
-                       double*          outBuffer);
+FFTInverseInterleavedD(FFTConfigD*          fft,
+                       const FFTComplexD*   inBuffer,
+                       FFTComplexD*         outBuffer);
 
     
 /** Calculate Real Inverse FFT
@@ -195,12 +247,12 @@ FFTInverseInterleavedD(FFTConfigD*      fft,
 */
 Error_t
 FFTInverseSplit(FFTConfig*          fft,
-                FFTSplitComplex*    in_buffer,
+                FFTSplitComplex     in_buffer,
                 FFTComplex*         out_buffer);
     
 Error_t
 FFTInverseSplitD(FFTConfigD*        fft,
-                 FFTSplitComplexD*  in_buffer,
+                 FFTSplitComplexD   in_buffer,
                  FFTComplexD*       out_buffer);
     
     

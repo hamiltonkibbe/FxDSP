@@ -156,6 +156,28 @@ AmpToDb(float ratio);
 float
 DbToAmp(float dB);
 
+    
+void
+RectToPolar(float real, float imag, float* outMag, float* outPhase);
+    
+void
+RectToPolarD(double real, double imag, double* outMag, double* outPhase);
+
+void
+PolarToRect(float mag, float phase, float* outReal, float* outImag);
+    
+void
+PolarToRectD(double mag, double phase, double* outReal, double* outImag);
+    
+    
+    
+    
+void
+ComplexMultiply(float re1, float im1, float re2, float im2, float* re_out, float* im_out);
+
+
+void
+ComplexMultiplyD(double re1, double im1, double re2, double im2, double* re_out, double* im_out);
 #ifdef __cplusplus
 }
 #endif
