@@ -770,7 +770,7 @@ FFTFilterConvolve(FFTConfig*        fft,
     
     // Zero pad the input to FFT length
     ClearBuffer(in_padded + in_length, (fft->length - in_length));
-    cblas_scopy(in_length, in, 1, in_padded, 1);
+    CopyBuffer(in_padded, in, in_length);
     
     // Calculate FFT of the input
     FFTForwardSplit(fft, (FFTComplex*)in_padded, fft->split);
@@ -818,7 +818,7 @@ FFTFilterConvolveD(FFTConfigD*      fft,
     
     // Zero pad the input to FFT length
     ClearBufferD(in_padded + in_length, (fft->length - in_length));
-    cblas_dcopy(in_length, in, 1, in_padded, 1);
+    CopyBufferD(in_padded, in, in_length);
     
     // Calculate FFT of the input
     FFTForwardSplitD(fft, (FFTComplexD*)in_padded, fft->split);
