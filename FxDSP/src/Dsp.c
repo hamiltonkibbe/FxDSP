@@ -8,8 +8,11 @@
 #include "Utilities.h"
 #include <string.h>
 #include <math.h>
+
 #ifdef __APPLE__
 #include <Accelerate/Accelerate.h>
+#elif defined(USE_BLAS)
+#include <cblas.h>
 #endif
 
 /*******************************************************************************
@@ -183,7 +186,7 @@ ClearBufferD(double *dest, unsigned length)
 Error_t
 CopyBuffer(float* dest, const float* src, unsigned length)
 {
-#ifdef __APPLE__
+#if defined(__APPLE__) || defined(USE_BLAS)
     // Use the Accelerate framework if we have it
     cblas_scopy(length, src, 1, dest, 1);
 #else
@@ -199,7 +202,7 @@ CopyBuffer(float* dest, const float* src, unsigned length)
 Error_t
 CopyBufferD(double* dest, const double* src, unsigned length)
 {
-#ifdef __APPLE__
+#if defined(__APPLE__) || defined(USE_BLAS)
     // Use the Accelerate framework if we have it
     cblas_dcopy(length, src, 1, dest, 1);
 #else

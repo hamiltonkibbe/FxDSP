@@ -11,8 +11,6 @@
 
 #include "Error.h"
 
-//#define USE_OOURA_FFT
-//#define USE_FFTW_FFT
 #ifdef USE_FFTW_FFT
 #include <fftw3.h>
 #endif
