@@ -8,9 +8,9 @@ env:
   - CTEST_OUTPUT_ON_FAILURE=1
 
 script:
-  - mkdir build
-  - cd build
-  - cmake -DUSE_FFTW=True ../FxDSP
-  - cmake --build . 
-  - make test
+  - mkdir build && cd build
+  - cmake -DUSE_FFTW_FFT=True ../FxDSP && make && ./test/testFxDSP
+  - make clean
+  - cmake -DUSE_OOURA_FFT=True ../FxDSP && make && ./test/testFxDSP
+  
 

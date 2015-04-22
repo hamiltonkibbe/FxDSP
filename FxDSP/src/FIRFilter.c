@@ -172,7 +172,7 @@ FIRFilterFree(FIRFilter * filter)
 #ifdef __APPLE__
         if (filter->fft_config)
         {
-            FFTFree(filter->fft_config);
+            //FFTFree(filter->fft_config);
             filter->fft_config = NULL;
         }
 #endif
@@ -208,12 +208,13 @@ FIRFilterFreeD(FIRFilterD * filter)
             FFTFreeD(filter->fft_config);
             filter->fft_config = NULL;
         }
-#endif
+
         if (filter->fft_kernel.realp)
         {
             free(filter->fft_kernel.realp);
             filter->fft_kernel.realp = NULL;
         }
+#endif
         free(filter);
         filter = NULL;
     }
@@ -295,7 +296,7 @@ FIRFilterProcess(FIRFilter* filter,
                 ClearBuffer((padded_kernel + filter->kernel_length), (filter->fft_length - filter->kernel_length));
                 
                 // Calculate FFT of filter kernel
-                FFTForwardSplit(filter->fft_config, (FFTComplex*)padded_kernel, filter->fft_kernel);
+                FFT_R2C(filter->fft_config, padded_kernel, filter->fft_kernel.realp, filter->fft_kernel.imagp);
             }
             
             // Buffer for transformed input
@@ -376,7 +377,7 @@ FIRFilterProcessD(FIRFilterD*   filter,
                 ClearBufferD((padded_kernel + filter->kernel_length), (filter->fft_length - filter->kernel_length));
                 
                 // Calculate FFT of filter kernel
-                FFTForwardSplitD(filter->fft_config, (FFTComplexD*)padded_kernel, filter->fft_kernel);
+                FFT_R2CD(filter->fft_config, padded_kernel, filter->fft_kernel.realp, filter->fft_kernel.imagp);
             }
             
             // Buffer for transformed input

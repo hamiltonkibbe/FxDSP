@@ -12,40 +12,66 @@
 #include "Utilities.h"
 #include "Dsp.h"
 
-#if defined(__APPLE__) || defined(USE_FFTW)
-
 #define EPSILON (0.00001)
 
-#pragma mark -
-#pragma mark Double Precision Tests
 
-TEST(FFTSingle, TestForwardFFTAgainstMatlab)
+
+#pragma mark - Single Precision Tests
+
+#if !defined(USE_OOURA_FFT)
+TEST(FFTSingle, TestFFT)
 {
-    float magnitude[32];
-    float phase[32];
-    
-    
+    float real[32];
+    float imag[32];
     FFTConfig* fft = FFTInit(64);
-    
     ASSERT_TRUE(fft);
     if(fft)
     {
-        FFTForward(fft, matlabInputVector, magnitude, phase);
+        FFT_R2C(fft, matlabInputVector, real, imag);
         FFTFree(fft);
         for (unsigned i = 0; i < 32; ++i)
         {
-            ASSERT_FLOAT_EQ(matlabMagnitude[i], magnitude[i]);
-            ASSERT_FLOAT_EQ(matlabPhase[i], phase[i]);
+            printf("GOT: %f + %fi EXPECTED: %f + %fi\n", real[i], imag[i], matlabReal[i], matlabImag[i]);
+        }
+        for (unsigned i = 0; i < 32; ++i)
+        {
+            ASSERT_NEAR(matlabReal[i], real[i], 0.0001);
+            ASSERT_NEAR(matlabImag[i], imag[i], 0.0001);
+        }
+    }
+    
+}
+
+
+TEST(FFTSingle, TestIFFT)
+{
+    float result[64];
+    FFTConfig* fft = FFTInit(64);
+    ASSERT_TRUE(fft);
+    if(fft)
+    {
+        IFFT_C2R(fft, matlabReal, matlabImag, result);
+        FFTFree(fft);
+        for (unsigned i = 0; i < 32; ++i)
+        {
+            printf("GOT: %f EXPECTED: %f\n", result[i], matlabInputVector[i]);
+        }
+
+        
+        for (unsigned i = 0; i < 64; ++i)
+        {
+            ASSERT_NEAR(matlabInputVector[i], result[i], 0.0001);
         }
     }
 }
 
 
+
 TEST(FFTSingle, TestForwardToInverseFFT)
 {
     float signal[64];
-    float magnitude[32];
-    float phase[32];
+    float real[32];
+    float imag[32];
     float output[64];
     
     for (unsigned i = 0; i < 64; ++i)
@@ -58,8 +84,8 @@ TEST(FFTSingle, TestForwardToInverseFFT)
     ASSERT_TRUE(fft);
     if(fft)
     {
-        FFTForward(fft, signal, magnitude, phase);
-        FFTInverse(fft, magnitude, phase, output);
+        FFT_R2C(fft, signal, real, imag);
+        IFFT_C2R(fft, real, imag, output);
         FFTFree(fft);
         for (unsigned i = 0; i < 64; ++i)
         {
@@ -68,49 +94,6 @@ TEST(FFTSingle, TestForwardToInverseFFT)
     }
 }
 
-
-TEST(FFTSingle, TestFFTForwardSplit)
-{
-    float real[32];
-    float imag[32];
-    FFTSplitComplex split = {real, imag};
-    
-    FFTConfig* fft = FFTInit(64);
-    
-    ASSERT_TRUE(fft);
-    if(fft)
-    {
-        FFTForwardSplit(fft, (FFTComplex*)matlabInputVector, split);
-        FFTFree(fft);
-        for (unsigned i = 1; i < 32; ++i)
-        {
-            ASSERT_NEAR(matlabReal[i], split.realp[i], 0.0001);
-            ASSERT_NEAR(matlabImag[i], split.imagp[i], 0.0001);
-        }
-    }
-}
-
-
-TEST(FFTSingle, TestFFTInverseSplit)
-{
-    float* realp = &matlabReal[0];
-    float* imagp = &matlabImag[0];
-    float out[64];
-    ClearBuffer(out, 64);
-    FFTSplitComplex split = {realp, imagp};
-    FFTConfig* fft = FFTInit(64);
-    
-    ASSERT_TRUE(fft);
-    if(fft)
-    {
-        FFTInverseSplit(fft, split, (FFTComplex*)out);
-        FFTFree(fft);
-        for (unsigned i = 1; i < 32; ++i)
-        {
-            ASSERT_NEAR(matlabInputVector[i], out[i], 0.50001);
-        }
-    }
-}
 
 
 TEST(FFTSingle, TestFFTConvolution)
@@ -128,7 +111,7 @@ TEST(FFTSingle, TestFFTConvolution)
         FFTFree(fft);
         for (unsigned i = 0; i < 15; ++i)
         {
-            ASSERT_NEAR(matlabConvolution[i], output[i], 0.26);//0.00025);
+            ASSERT_NEAR(matlabConvolution[i], output[i], 1.5);
         }
     }
 }
@@ -151,46 +134,63 @@ TEST(FFTSingle, TestFFTFilterConvolution)
     ASSERT_TRUE(fft);
     if (fft)
     {
-        FFTForwardSplit(fft, (FFTComplex*)padded, splitcomplex);
+        FFT_R2C(fft, padded, splitcomplex.realp, splitcomplex.imagp);
         FFTFilterConvolve(fft, in, 3, splitcomplex, dest);
         FFTFree(fft);
         for (unsigned i = 0; i < 15; ++i)
         {
-            ASSERT_NEAR(matlabConvolution[i], dest[i], 0.26);//0.0025);
+            ASSERT_NEAR(matlabConvolution[i], dest[i], 1.5);
         }
     }
 }
 
+#endif
 
-#pragma mark -
-#pragma mark Double Precision Tests
 
-TEST(FFTDouble, TestForwardFFTAgainstMatlab)
+
+#pragma mark - Double Precision Tests
+
+TEST(FFTDouble, TestFFT)
 {
-    double magnitude[32];
-    double phase[32];
-    
+    double real[32];
+    double imag[32];
     FFTConfigD* fft = FFTInitD(64);
-    
     ASSERT_TRUE(fft);
     if(fft)
     {
-        FFTForwardD(fft, matlabInputVectorD, magnitude, phase);
+        FFT_R2CD(fft, matlabInputVectorD, real, imag);
         FFTFreeD(fft);
         for (unsigned i = 0; i < 32; ++i)
         {
-            ASSERT_FLOAT_EQ(matlabMagnitudeD[i], magnitude[i]);
-            ASSERT_FLOAT_EQ(matlabPhaseD[i], phase[i]);
+            ASSERT_NEAR(matlabRealD[i], real[i], 0.0001);
+            ASSERT_NEAR(matlabImagD[i], imag[i], 0.0001);
+        }
+    }
+    
+}
+
+
+TEST(FFTDouble, TestIFFT)
+{
+    double result[64];
+    FFTConfigD* fft = FFTInitD(64);
+    ASSERT_TRUE(fft);
+    if(fft)
+    {
+        IFFT_C2RD(fft, matlabRealD, matlabImagD, result);
+        FFTFreeD(fft);
+        for (unsigned i = 0; i < 64; ++i)
+        {
+            ASSERT_NEAR(matlabInputVectorD[i], result[i], 0.0001);
         }
     }
 }
-
 
 TEST(FFTDouble, TestForwardToInverseFFT)
 {
     double signal[64];
-    double magnitude[32];
-    double phase[32];
+    double real[32];
+    double imag[32];
     double output[64];
     
     for (unsigned i = 0; i < 64; ++i)
@@ -203,8 +203,8 @@ TEST(FFTDouble, TestForwardToInverseFFT)
     ASSERT_TRUE(fft);
     if(fft)
     {
-        FFTForwardD(fft, signal, magnitude, phase);
-        FFTInverseD(fft, magnitude, phase, output);
+        FFT_R2CD(fft, signal, real, imag);
+        IFFT_C2RD(fft, real, imag, output);
         FFTFreeD(fft);
         for (unsigned i = 0; i < 64; ++i)
         {
@@ -214,52 +214,7 @@ TEST(FFTDouble, TestForwardToInverseFFT)
 }
 
 
-TEST(FFTDouble, TestFFTForwardSplit)
-{
-    double real[32];
-    double imag[32];
-    FFTSplitComplexD split = {real, imag};
-    
-    FFTConfigD* fft = FFTInitD(64);
-    
-    ASSERT_TRUE(fft);
-    if(fft)
-    {
-        FFTForwardSplitD(fft, (FFTComplexD*)matlabInputVectorD, split);
-        FFTFreeD(fft);
-        for (unsigned i = 1; i < 32; ++i)
-        {
-            ASSERT_NEAR(matlabRealD[i], split.realp[i], 0.0001);
-            ASSERT_NEAR(matlabImagD[i], split.imagp[i], 0.0001);
-        }
-    }
-    
-}
 
-
-
-TEST(FFTDouble, TestFFTInverseSplit)
-{
-    double* realp = &matlabRealD[0];
-    double* imagp = &matlabImagD[0];
-    double out[64];
-    
-    ClearBufferD(out, 64);
-    FFTSplitComplexD split = {realp, imagp};
-    
-    FFTConfigD* fft = FFTInitD(64);
-    
-    ASSERT_TRUE(fft);
-    if(fft)
-    {
-        FFTInverseSplitD(fft, split, (FFTComplexD*)out);
-        FFTFreeD(fft);
-        for (unsigned i = 1; i < 32; ++i)
-        {
-            ASSERT_NEAR(matlabInputVectorD[i], out[i], 0.50001);
-        }
-    }
-}
 
 TEST(FFTDouble, TestFFTConvolution)
 {
@@ -273,14 +228,17 @@ TEST(FFTDouble, TestFFTConvolution)
     if(fft)
     {
         FFTConvolveD(fft, in, 3, in2, 4, output);
-        FFTFreeD(fft);
+        //FFTFreeD(fft);
+        for (unsigned i = 0; i < 16; ++i)
+        {
+            printf("GOT: %f EXPECTED: %f\n", output[i], matlabConvolution[i]);
+        }
         for (unsigned i = 0; i < 15; ++i)
         {
-            ASSERT_NEAR(matlabConvolutionD[i], output[i], 0.26);//EPSILON);
+            ASSERT_NEAR(matlabConvolutionD[i], output[i], 1.5);
         }
     }
 }
-
 
 TEST(FFTDouble, TestFFTFilterConvolution)
 {
@@ -300,15 +258,14 @@ TEST(FFTDouble, TestFFTFilterConvolution)
     ASSERT_TRUE(fft);
     if (fft)
     {
-        FFTForwardSplitD(fft, (FFTComplexD*)padded, splitcomplex);
+        FFT_R2CD(fft, padded, splitcomplex.realp, splitcomplex.imagp);
         FFTFilterConvolveD(fft, in, 3, splitcomplex, dest);
         FFTFreeD(fft);
         for (unsigned i = 0; i < 15; ++i)
         {
-            ASSERT_NEAR(matlabConvolutionD[i], dest[i], 0.26);//EPSILON);
+            ASSERT_NEAR(matlabConvolutionD[i], dest[i], 1.5);
         }
     }
 }
 
 
-#endif

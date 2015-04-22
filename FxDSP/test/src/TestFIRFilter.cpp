@@ -32,6 +32,7 @@ TEST(FIRFilterSingle, TestDirectAgainstMatlab)
     }
 }
 
+#ifndef USE_OOURA_FFT
 TEST(FIRFilterSingle, TestFFTAgainstMatlab)
 {
     float output[100];
@@ -73,7 +74,7 @@ TEST(FIRFilterSingle, TestBestModeAgainstMatlab)
     }
     
 }
-
+#endif
 
 
 TEST(FIRFilterDouble, TestDirectAgainstMatlab)

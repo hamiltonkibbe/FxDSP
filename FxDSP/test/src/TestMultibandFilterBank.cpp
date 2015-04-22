@@ -10,15 +10,18 @@
 #include "MultibandBank.h"
 #include "FFT.h"
 #include "Dsp.h"
+#include "Utilities.h"
+#include <cmath>
 
 
 #ifdef __APPLE__
 
-#define EPSILON (0.006)
+#define EPSILON (0.02)
 
 #pragma mark -
 #pragma mark Single Precision Tests
 
+#ifndef USE_OOURA_FFT
 TEST(MultibandBankSingle, TestMixBackFlat)
 {
     float signal[64];
@@ -39,7 +42,13 @@ TEST(MultibandBankSingle, TestMixBackFlat)
     
     // Spectrum of input
     fft = FFTInit(64);
-    FFTForward(fft, signal, inSpectrum, phase);
+    FFT_R2C(fft, signal, inSpectrum, phase);
+    for (unsigned i = 0; i < 32; ++i)
+    {
+        float real = inSpectrum[i];
+        float imag = phase[i];
+        RectToPolar(real, imag, &inSpectrum[i], &phase[i]);
+    }
     
     // process data
     filter = MultibandFilterInit(1000, 12000, 44100);
@@ -50,8 +59,13 @@ TEST(MultibandBankSingle, TestMixBackFlat)
     VectorVectorAdd(out, out, high, 64);
     
     // Calculate spectrum of output
-    FFTForward(fft, out, outSpectrum, phase);
-    
+    FFT_R2C(fft, out, outSpectrum, phase);
+    for (unsigned i = 0; i < 32; ++i)
+    {
+        float real = outSpectrum[i];
+        float imag = phase[i];
+        RectToPolar(real, imag, &outSpectrum[i], &phase[i]);
+    }
     // Cleanup
     FFTFree(fft);
     MultibandFilterFree(filter);
@@ -63,7 +77,7 @@ TEST(MultibandBankSingle, TestMixBackFlat)
         ASSERT_NEAR(inSpectrum[i], outSpectrum[i], EPSILON);
     }
 }
-
+#endif
 
 #pragma mark -
 #pragma mark Double Precision Tests
@@ -88,7 +102,13 @@ TEST(MultibandBankDouble, TestMixBackFlat)
     
     // Spectrum of input
     fft = FFTInitD(64);
-    FFTForwardD(fft, signal, inSpectrum, phase);
+    FFT_R2CD(fft, signal, inSpectrum, phase);
+    for (unsigned i = 0; i < 32; ++i)
+    {
+        double real = inSpectrum[i];
+        double imag = phase[i];
+        RectToPolarD(real, imag, &inSpectrum[i], &phase[i]);
+    }
     
     // process data
     filter = MultibandFilterInitD(1000, 12000, 44100);
@@ -99,7 +119,13 @@ TEST(MultibandBankDouble, TestMixBackFlat)
     VectorVectorAddD(out, out, high, 64);
     
     // Calculate spectrum of output
-    FFTForwardD(fft, out, outSpectrum, phase);
+    FFT_R2CD(fft, out, outSpectrum, phase);
+    for (unsigned i = 0; i < 32; ++i)
+    {
+        double real = outSpectrum[i];
+        double imag = phase[i];
+        RectToPolarD(real, imag, &outSpectrum[i], &phase[i]);
+    }
     
     // Cleanup
     FFTFreeD(fft);

@@ -11,7 +11,9 @@
 
 #include "Error.h"
 
-#ifdef USE_FFTW
+//#define USE_OOURA_FFT
+//#define USE_FFTW_FFT
+#ifdef USE_FFTW_FFT
 #include <fftw3.h>
 #endif
 
@@ -19,27 +21,38 @@
 #include <Accelerate/Accelerate.h>
 #endif
 
+
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+#if defined(__APPLE__)
+#define USE_APPLE_FFT
+#endif
+    
+#if !defined(USE_FFTW_FFT) && !defined(__APPLE__) && !defined(USE_OOURA_FFT)
+#define USE_OOURA_FFT
+#undef USE_APPLE_FFT
+#endif
 
-#ifdef USE_FFTW
+
+#ifdef USE_FFTW_FFT
     typedef fftwf_complex    FFTComplex;
     typedef struct { float* realp; float* imagp;}  FFTSplitComplex;
     typedef fftw_complex     FFTComplexD;
     typedef struct { double* realp; double* imagp;} FFTSplitComplexD;
-    
-#elif defined(__APPLE__)
-    typedef DSPComplex              FFTComplex;
-    typedef DSPSplitComplex         FFTSplitComplex;
-    typedef DSPDoubleComplex        FFTComplexD;
-    typedef DSPDoubleSplitComplex   FFTSplitComplexD;
-#else
+#elif defined(USE_OOURA_FFT)
     typedef struct { float real; float imag;} FFTComplex;
     typedef struct { float* realp; float* imagp;} FFTSplitComplex;
     typedef struct { double real; double imag;} FFTComplexD;
     typedef struct { double* realp; double* imagp;} FFTSplitComplexD;
+#elif defined(USE_APPLE_FFT)
+    typedef DSPComplex              FFTComplex;
+    typedef DSPSplitComplex         FFTSplitComplex;
+    typedef DSPDoubleComplex        FFTComplexD;
+    typedef DSPDoubleSplitComplex   FFTSplitComplexD;
 #endif
 
 
@@ -85,175 +98,47 @@ FFTFreeD(FFTConfigD* fft);
  *
  * @param fft       Pointer to the FFT configuration.
  * @param inBuffer  Input data. should be the same size as the fft.
- * @param outBuffer Allocated buffer where the magnitude will be written. length
- *                  should be (fft length / 2).
+ * @param real      Allocated buffer where the real part will be written. length
+ *                  should be (fft->length/2).
+ * @param imag      Allocated buffer where the imaginary part will be written. l
+ *                  length should be (fft->length/2).
  * @return          Error code, 0 on success.
  */
 Error_t
-RFFT(FFTConfig*     fft,
-     const float*   inBuffer,
-     float*         outBuffer);
+FFT_R2C(FFTConfig*      fft,
+        const float*    inBuffer,
+        float*          real,
+        float*          imag);
 
 Error_t
-RFFTD(FFTConfigD*    fft,
-      const double*  inBuffer,
-      double*        outBuffer);
+FFT_R2CD(FFTConfigD*    fft,
+         const double*  inBuffer,
+         double*        real,
+         double*        imag);
 
 
-/** Calculate Real to Real Inverse FFT
+/** Calculate Complex to Real Inverse FFT
  *
- * @details Calculates the magnitude of the real inverse FFT of the data in
- *          inBuffer.
+ * @details Calculates the inverse FFT of the data in inBuffer.
  *
  * @param fft       Pointer to the FFT configuration.
- * @param inBuffer  Input data. should be the same size as the fft.
- * @param outBuffer Allocated buffer where the signal will be written. length
- *                  should be (fft length / 2).
+ * @param inReal    Input real part. Length fft->length/2
+ * @param inImag    Input imaginary part. Length fft->length/2
+ * @param out       Allocated buffer where the signal will be written. length
+ *                  should be fft->length.
  * @return          Error code, 0 on success.
  */
 Error_t
-RIFFT(FFTConfig*    fft,
-      const float*  inBuffer,
-      float*        outBuffer);
+IFFT_C2R(FFTConfig*    fft,
+         const float*  inReal,
+         const float*  inImag,
+         float*        out);
 
 Error_t
-RIFFTD(FFTConfigD*   fft,
-       const double* inBuffer,
-       double*       outBuffer);
-    
-    
-    
-/** Calculate Real Forward FFT
- *
- * @details Calculates the magnitude and phase of the real forward FFT of the
- *          data in inBuffer.
- *
- * @param fft       Pointer to the FFT configuration.
- * @param inBuffer  Input data. should be the same size as the fft.
- * @param outMag    Allocated buffer where the magnitude will be written. length
- *                  should be (fft length / 2).
- * @param outPhase  Allocated buffer where the phase will be written. length 
- *                  should be (fft length / 2).
- * @return          Error code, 0 on success.
- */
-Error_t
-FFTForward(FFTConfig*       fft,
-           const float*     inBuffer,
-           float*           outMag,
-           float*           outPhase);
-
-Error_t
-FFTForwardD(FFTConfigD*     fft,
-            const double*   inBuffer,
-            double*         outMag,
-            double*         outPhase);
-    
-    
-/** Calculate Real Forward FFT
- *
- * @details Calculates the magnitude and phase of the real forward FFT of the
- *          data in inBuffer.
- *
- * @param fft       Pointer to the FFT configuration.
- * @param inBuffer  Input data. should be the same size as the fft.
- * @param out       Allocated buffer where the transform will be written. length
- *                  should be the same as the fft length
- * @return          Error code, 0 on success.
- */
-Error_t
-FFTForwardInterleaved(FFTConfig*    fft,
-                      FFTComplex*   in_buffer,
-                      FFTComplex*   out);
-    
-Error_t
-FFTForwardInterleavedD(FFTConfigD*  fft,
-                       FFTComplexD* in_buffer,
-                       FFTComplexD* out);
-                  
-/** Calculate Real Forward FFT
- *
- * @details Calculates the magnitude and phase of the real forward FFT of the
- *          data in inBuffer. 
- *
- * @param fft       Pointer to the FFT configuration.
- * @param inBuffer  Input data. should be the same size as the fft.
- * @param out       Allocated DSPSPlitComplex
- * @return          Error code, 0 on success.
- */
-Error_t
-FFTForwardSplit(FFTConfig*          fft,
-                FFTComplex*         in_buffer,
-                FFTSplitComplex     out);
-   
-Error_t
-FFTForwardSplitD(FFTConfigD*        fft,
-                 FFTComplexD*       in_buffer,
-                 FFTSplitComplexD   out);
-             
-/** Calculate Real Inverse FFT
- *
- * @details Calculates the real inverse FFT of the data in inMag and inPhase.        
- *
- * @param fft       Pointer to the FFT configuration.
- * @param inMag     FFT magnitude data. length should be (fft length / 2).
- * @param inPhase   FFT phase data. length should be (fft length / 2).
- * @param outBuffer Allocated buffer where the ifft will be written. length
- *                  should be the same as the fft size.
- * @return          Error code, 0 on success.
- */
-Error_t
-FFTInverse(FFTConfig*       fft,
-           const float*     inMag,
-           const float*     inPhase,
-           float*           outBuffer);
-    
-Error_t
-FFTInverseD(FFTConfigD*     fft,
-            const double*   inMag,
-            const double*   inPhase,
-            double*         outBuffer);
-
-
-/** Calculate Real Inverse FFT
- *
- * @details Calculates the real inverse FFT of the data in inBuffer
- *
- * @param fft       Pointer to the FFT configuration.
- * @param inBuffer  interleaved real/imaginary input buffer. length same as fft.
- * @param outBuffer Allocated buffer where the ifft will be written. length
- *                  should be the same as the fft size.
- * @return          Error code, 0 on success.
- */
-Error_t
-FFTInverseInterleaved(FFTConfig*        fft,
-                      const FFTComplex* inBuffer,
-                      FFTComplex*       outBuffer);
-    
-Error_t
-FFTInverseInterleavedD(FFTConfigD*          fft,
-                       const FFTComplexD*   inBuffer,
-                       FFTComplexD*         outBuffer);
-
-    
-/** Calculate Real Inverse FFT
-*
-* @details Calculates the real inverse FFT of the split-complex data in in_buffer
-*
-* @param fft       Pointer to the FFT configuration.
-* @param in_buffer  interleaved real/imaginary input buffer. length same as fft.
-* @param out_buffer Allocated buffer where the ifft will be written. length
-*                  should be the same as the fft size.
-* @return          Error code, 0 on success.
-*/
-Error_t
-FFTInverseSplit(FFTConfig*          fft,
-                FFTSplitComplex     in_buffer,
-                FFTComplex*         out_buffer);
-    
-Error_t
-FFTInverseSplitD(FFTConfigD*        fft,
-                 FFTSplitComplexD   in_buffer,
-                 FFTComplexD*       out_buffer);
+IFFT_C2RD(FFTConfigD*   fft,
+          const double* inreal,
+          const double* inImag,
+          double*       out);
     
     
 /** Perform Convolution using FFT*
