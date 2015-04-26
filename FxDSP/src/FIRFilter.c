@@ -169,13 +169,13 @@ FIRFilterFree(FIRFilter * filter)
             free(filter->overlap);
             filter->overlap = NULL;
         }
-#ifdef __APPLE__
+
         if (filter->fft_config)
         {
             //FFTFree(filter->fft_config);
             filter->fft_config = NULL;
         }
-#endif
+
         if (filter->fft_kernel.realp)
         {
             free(filter->fft_kernel.realp);
@@ -202,7 +202,7 @@ FIRFilterFreeD(FIRFilterD * filter)
             free(filter->overlap);
             filter->overlap = NULL;
         }
-#ifdef __APPLE__
+
         if (filter->fft_config)
         {
             FFTFreeD(filter->fft_config);
@@ -214,7 +214,7 @@ FIRFilterFreeD(FIRFilterD * filter)
             free(filter->fft_kernel.realp);
             filter->fft_kernel.realp = NULL;
         }
-#endif
+
         free(filter);
         filter = NULL;
     }
@@ -252,11 +252,9 @@ FIRFilterProcess(FIRFilter* filter,
 
     if (filter)
     {
-#ifdef __APPLE__
         // Do direct convolution
         if (filter->conv_mode == DIRECT)
         {
-#endif
             unsigned resultLength = n_samples + (filter->kernel_length - 1);
         
             // Temporary buffer to store full result of filtering..
@@ -268,7 +266,6 @@ FIRFilterProcess(FIRFilter* filter,
             VectorVectorAdd(buffer, filter->overlap, buffer, filter->overlap_length);
             CopyBuffer(filter->overlap, buffer + n_samples, filter->overlap_length);
             CopyBuffer(outBuffer, buffer, n_samples);
-#ifdef __APPLE__
         }
     
         // Otherwise do FFT Convolution
@@ -296,7 +293,7 @@ FIRFilterProcess(FIRFilter* filter,
                 ClearBuffer((padded_kernel + filter->kernel_length), (filter->fft_length - filter->kernel_length));
                 
                 // Calculate FFT of filter kernel
-                FFT_R2C(filter->fft_config, padded_kernel, filter->fft_kernel.realp, filter->fft_kernel.imagp);
+                FFT_IR_R2C(filter->fft_config, padded_kernel, filter->fft_kernel);
             }
             
             // Buffer for transformed input
@@ -313,7 +310,6 @@ FIRFilterProcess(FIRFilter* filter,
             CopyBuffer(outBuffer, buffer, n_samples);
             
         }
-#endif
         return NOERR;
     }
     
@@ -333,11 +329,10 @@ FIRFilterProcessD(FIRFilterD*   filter,
     
     if (filter)
     {
-#ifdef __APPLE__
+
         // Do direct convolution
         if (filter->conv_mode == DIRECT)
         {
-#endif
             unsigned resultLength = n_samples + (filter->kernel_length - 1);
             
             // Temporary buffer to store full result of filtering..
@@ -349,7 +344,6 @@ FIRFilterProcessD(FIRFilterD*   filter,
             VectorVectorAddD(buffer, filter->overlap, buffer, filter->overlap_length);
             CopyBufferD(filter->overlap, buffer + n_samples, filter->overlap_length);
             CopyBufferD(outBuffer, buffer, n_samples);
-#ifdef __APPLE__
         }
 
         // Otherwise do FFT Convolution
@@ -377,7 +371,7 @@ FIRFilterProcessD(FIRFilterD*   filter,
                 ClearBufferD((padded_kernel + filter->kernel_length), (filter->fft_length - filter->kernel_length));
                 
                 // Calculate FFT of filter kernel
-                FFT_R2CD(filter->fft_config, padded_kernel, filter->fft_kernel.realp, filter->fft_kernel.imagp);
+                FFT_IR_R2CD(filter->fft_config, padded_kernel, filter->fft_kernel);
             }
             
             // Buffer for transformed input
@@ -392,7 +386,6 @@ FIRFilterProcessD(FIRFilterD*   filter,
             CopyBufferD(outBuffer, buffer, n_samples);
             
         }
-#endif
         return NOERR;
     }
     

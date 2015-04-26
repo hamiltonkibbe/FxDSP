@@ -21,7 +21,6 @@
 #pragma mark -
 #pragma mark Single Precision Tests
 
-#ifndef USE_OOURA_FFT
 TEST(MultibandBankSingle, TestMixBackFlat)
 {
     float signal[64];
@@ -77,7 +76,7 @@ TEST(MultibandBankSingle, TestMixBackFlat)
         ASSERT_NEAR(inSpectrum[i], outSpectrum[i], EPSILON);
     }
 }
-#endif
+
 
 #pragma mark -
 #pragma mark Double Precision Tests

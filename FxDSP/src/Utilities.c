@@ -198,17 +198,3 @@ PolarToRectD(double mag, double phase, double* outReal, double* outImag)
     *outReal = mag * cos(phase);
     *outImag = mag * sin(phase);
 }
-
-void
-ComplexMultiply(float re1, float im1, float re2, float im2, float* re_out, float *im_out)
-{
-    *re_out = (re1 * re2 - im1 * im2);
-    *im_out = (re1 * im2 + im1 * re2);
-}
-
-void
-ComplexMultiplyD(double re1, double im1, double re2, double im2, double* re_out, double *im_out)
-{
-    *re_out = (re1 * re2 - im1 * im2);
-    *im_out = (re1 * im2 + im1 * re2);
-}

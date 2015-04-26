@@ -30,9 +30,17 @@ FloatBufferToInt16(signed short* dest, const float* src, unsigned length)
 #else
     // Otherwise do it manually
     unsigned i;
-    for (i = 0; i < length; ++i)
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
     {
-        *dest++ = floatToInt16(*src++);
+        dest[i] = floatToInt16(*src++);
+        dest[i + 1] = floatToInt16(*src++);
+        dest[i + 2] = floatToInt16(*src++);
+        dest[i + 3] = floatToInt16(*src++);
+    }
+    for (i = end; i < length; ++i)
+    {
+        dest[i] = floatToInt16(*src++);
     }
 #endif
     return NOERR;
@@ -53,9 +61,17 @@ DoubleBufferToInt16(signed short* dest, const double* src, unsigned length)
 #else
     // Otherwise do it manually
     unsigned i;
-    for (i = 0; i < length; ++i)
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
     {
-        *dest++ = floatToInt16(*src++);
+        dest[i] = floatToInt16(*src++);
+        dest[i + 1] = floatToInt16(*src++);
+        dest[i + 2] = floatToInt16(*src++);
+        dest[i + 3] = floatToInt16(*src++);
+    }
+    for (i = end; i < length; ++i)
+    {
+        dest[i] = floatToInt16(*src++);
     }
 #endif
     return NOERR;
@@ -76,14 +92,21 @@ Int16BufferToFloat(float* dest, const signed short* src, unsigned length)
 #else
     // Otherwise do it manually
     unsigned i;
-    for (i = 0; i < length; ++i)
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
     {
-        *dest++ = int16ToFloat(*src++);
+        dest[i] = int16ToFloat(*src++);
+        dest[i + 1] = int16ToFloat(*src++);
+        dest[i + 2] = int16ToFloat(*src++);
+        dest[i + 3] = int16ToFloat(*src++);
+    }
+    for (i = end; i < length; ++i)
+    {
+        dest[i] = int16ToFloat(*src++);
     }
 #endif
     return NOERR;
 }
-
 
 /*******************************************************************************
  Int16BufferToDouble */
@@ -100,13 +123,75 @@ Int16BufferToDouble(double* dest, const signed short* src, unsigned length)
 #else
     // Otherwise do it manually
     unsigned i;
-    for (i = 0; i < length; ++i)
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
     {
-        *dest++ = int16ToFloat(*src++);
+        dest[i] = int16ToFloat(*src++);
+        dest[i + 1] = int16ToFloat(*src++);
+        dest[i + 2] = int16ToFloat(*src++);
+        dest[i + 3] = int16ToFloat(*src++);
+    }
+    for (i = end; i < length; ++i)
+    {
+        dest[i] = int16ToFloat(*src++);
     }
 #endif
     return NOERR;
 }
+
+
+/*******************************************************************************
+ DoubleToFloat */
+Error_t
+DoubleToFloat(float* dest, const double* src, unsigned length)
+{
+#ifdef __APPLE__
+    vDSP_vdpsp(src, 1, dest, 1, length);
+#else
+    // Otherwise do it manually
+    unsigned i;
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
+    {
+        dest[i] = (float)src[i];
+        dest[i + 1] = (float)src[i + 1];
+        dest[i + 2] = (float)src[i + 2];
+        dest[i + 3] = (float)src[i + 3];
+    }
+    for (i = end; i < length; ++i)
+    {
+        dest[i] = (float)src[i];
+    }
+#endif
+    return NOERR;
+}
+
+Error_t
+FloatToDouble(double* dest, const float* src, unsigned length)
+{
+#ifdef __APPLE__
+    vDSP_vspdp(src, 1, dest, 1, length);
+#else
+    // Otherwise do it manually
+    unsigned i;
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
+    {
+        dest[i] = (double)src[i];
+        dest[i + 1] = (double)src[i + 1];
+        dest[i + 2] = (double)src[i + 2];
+        dest[i + 3] = (double)src[i + 3];
+    }
+    for (i = end; i < length; ++i)
+    {
+        dest[i] = (double)src[i];
+    }
+#endif
+    return NOERR;
+}
+
+
+
 
 /*******************************************************************************
  FillBuffer */
@@ -119,10 +204,18 @@ FillBuffer(float *dest, unsigned length, float value)
     
 #else
     // Otherwise do it manually
-    unsigned i;
-    for (i = 0; i < length; ++i)
+    unsigned i = 0;
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
     {
-        *dest++ = value;
+        dest[i] = value;
+        dest[i + 1] = value;
+        dest[i + 2] = value;
+        dest[i + 3] = value;
+    }
+    for (i = end; i < length; ++i)
+    {
+        dest[i] = value;
     }
 #endif
     return NOERR;
@@ -139,10 +232,18 @@ FillBufferD(double *dest, unsigned length, double value)
     
 #else
     // Otherwise do it manually
-    unsigned i;
-    for (i = 0; i < length; ++i)
+    unsigned i = 0;
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
     {
-        *dest++ = value;
+        dest[i] = value;
+        dest[i + 1] = value;
+        dest[i + 2] = value;
+        dest[i + 3] = value;
+    }
+    for (i = end; i < length; ++i)
+    {
+        dest[i] = value;
     }
 #endif
     return NOERR;
@@ -221,7 +322,17 @@ VectorAbs(float *dest, const float *in, unsigned length)
 #ifdef __APPLE__
     vDSP_vabs(in, 1, dest, 1, length);
 #else
-    for (unsigned i = 0; i < length; ++i)
+    // Otherwise do it manually
+    unsigned i = 0;
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
+    {
+        dest[i] = fabsf(in[i]);
+        dest[i + 1] = fabsf(in[i + 1]);
+        dest[i + 2] = fabsf(in[i + 2]);
+        dest[i + 3] = fabsf(in[i + 3]);
+    }
+    for (unsigned i = end; i < length; ++i)
         
     {
         dest[i] = fabsf(in[i]);
@@ -238,10 +349,20 @@ VectorAbsD(double *dest, const double *in, unsigned length)
 #ifdef __APPLE__
     vDSP_vabsD(in, 1, dest, 1, length);
 #else
-    for (unsigned i = 0; i < length; ++i)
+    // Otherwise do it manually
+    unsigned i = 0;
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
+    {
+        dest[i] = fabs(in[i]);
+        dest[i + 1] = fabs(in[i + 1]);
+        dest[i + 2] = fabs(in[i + 2]);
+        dest[i + 3] = fabs(in[i + 3]);
+    }
+    for (unsigned i = end; i < length; ++i)
         
     {
-        dest[i] = fabsf(in[i]);
+        dest[i] = fabs(in[i]);
     }
 #endif
     return NOERR;
@@ -254,19 +375,27 @@ VectorAbsD(double *dest, const double *in, unsigned length)
  VectorNegate */
 Error_t
 VectorNegate(float          *dest,
-             const float    *in1,
+             const float    *in,
              unsigned       length)
 {
 #ifdef __APPLE__
     // Use the Accelerate framework if we have it
-    vDSP_vneg(in1, 1, dest, 1, length);
+    vDSP_vneg(in, 1, dest, 1, length);
     
 #else
     // Otherwise do it manually
     unsigned i;
-    for (i = 0; i < length; ++i)
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
     {
-        *dest++ = -(*in1++);
+        dest[i] = -in[i];
+        dest[i + 1] = -in[i + 1];
+        dest[i + 2] = -in[i + 2];
+        dest[i + 3] = -in[i + 3];
+    }
+    for (i = end; i < length; ++i)
+    {
+        dest[i] = -in[i];
     }
     
 #endif
@@ -277,21 +406,28 @@ VectorNegate(float          *dest,
  VectorNegateD */
 Error_t
 VectorNegateD(double          *dest,
-              const double    *in1,
+              const double    *in,
               unsigned       length)
 {
 #ifdef __APPLE__
     // Use the Accelerate framework if we have it
-    vDSP_vnegD(in1, 1, dest, 1, length);
+    vDSP_vnegD(in, 1, dest, 1, length);
     
 #else
     // Otherwise do it manually
     unsigned i;
-    for (i = 0; i < length; ++i)
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
     {
-        *dest++ = -(*in1++);
+        dest[i] = -in[i];
+        dest[i + 1] = -in[i + 1];
+        dest[i + 2] = -in[i + 2];
+        dest[i + 3] = -in[i + 3];
     }
-    
+    for (i = end; i < length; ++i)
+    {
+        dest[i] = -in[i];
+    }
 #endif
     return NOERR;
 }
@@ -312,9 +448,17 @@ VectorVectorAdd(float         *dest,
 #else
     // Otherwise do it manually
     unsigned i;
-    for (i = 0; i < length; ++i)
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
     {
-        *dest++ = (*in1++) + (*in2++);
+        dest[i] = in1[i] + in2[i];
+        dest[i + 1] = in1[i + 1] + in2[i + 1];
+        dest[i + 2] = in1[i + 2] + in2[i + 2];
+        dest[i + 3] = in1[i + 3] + in2[i + 3];
+    }
+    for (i = end; i < length; ++i)
+    {
+        dest[i] = in1[i] + in2[i];
     }
     
 #endif
@@ -337,9 +481,17 @@ VectorVectorAddD(double           *dest,
 #else
     // Otherwise do it manually
     unsigned i;
-    for (i = 0; i < length; ++i)
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
     {
-        *dest++ = (*in1++) + (*in2++);
+        dest[i] = in1[i] + in2[i];
+        dest[i + 1] = in1[i + 1] + in2[i + 1];
+        dest[i + 2] = in1[i + 2] + in2[i + 2];
+        dest[i + 3] = in1[i + 3] + in2[i + 3];
+    }
+    for (i = end; i < length; ++i)
+    {
+        dest[i] = in1[i] + in2[i];
     }
     
 #endif
@@ -361,9 +513,17 @@ VectorScalarAdd(float           *dest,
 #else
     // Otherwise do it manually
     unsigned i;
-    for (i = 0; i < length; ++i)
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
     {
-        *dest++ = (*in1++) + scalar;
+        dest[i] = in1[i] + scalar;
+        dest[i + 1] = in1[i + 1] + scalar;
+        dest[i + 2] = in1[i + 2] + scalar;
+        dest[i + 3] = in1[i + 3] + scalar;
+    }
+    for (i = end; i < length; ++i)
+    {
+        dest[i] = in1[i] + scalar;
     }
     
 #endif
@@ -385,9 +545,17 @@ VectorScalarAddD(double         *dest,
 #else
     // Otherwise do it manually
     unsigned i;
-    for (i = 0; i < length; ++i)
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
     {
-        *dest++ = (*in1++) + scalar;
+        dest[i] = in1[i] + scalar;
+        dest[i + 1] = in1[i + 1] + scalar;
+        dest[i + 2] = in1[i + 2] + scalar;
+        dest[i + 3] = in1[i + 3] + scalar;
+    }
+    for (i = end; i < length; ++i)
+    {
+        dest[i] = in1[i] + scalar;
     }
     
 #endif
@@ -410,9 +578,17 @@ VectorVectorMultiply(float          *dest,
 #else
     // Otherwise do it manually
     unsigned i;
-    for (i = 0; i < length; ++i)
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
     {
-        *dest++ = (*in1++) * (*in2++);
+        dest[i] = in1[i] * in2[i];
+        dest[i + 1] = in1[i + 1] * in2[i + 1];
+        dest[i + 2] = in1[i + 2] * in2[i + 2];
+        dest[i + 3] = in1[i + 3] * in2[i + 3];
+    }
+    for (i = end; i < length; ++i)
+    {
+        dest[i] = in1[i] * in2[i];
     }
     
 #endif
@@ -435,9 +611,17 @@ VectorVectorMultiplyD(double        *dest,
 #else
     // Otherwise do it manually
     unsigned i;
-    for (i = 0; i < length; ++i)
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
     {
-        *dest++ = (*in1++) * (*in2++);
+        dest[i] = in1[i] * in2[i];
+        dest[i + 1] = in1[i + 1] * in2[i + 1];
+        dest[i + 2] = in1[i + 2] * in2[i + 2];
+        dest[i + 3] = in1[i + 3] * in2[i + 3];
+    }
+    for (i = end; i < length; ++i)
+    {
+        dest[i] = in1[i] * in2[i];
     }
     
 #endif
@@ -460,11 +644,18 @@ VectorScalarMultiply(float          *dest,
 #else
     // Otherwise do it manually
     unsigned i;
-    for (i = 0; i < length; ++i)
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
     {
-        *dest++ = (*in1++) * scalar;
+        dest[i] = in1[i] * scalar;
+        dest[i + 1] = in1[i + 1] * scalar;
+        dest[i + 2] = in1[i + 2] * scalar;
+        dest[i + 3] = in1[i + 3] * scalar;
     }
-    
+    for (i = end; i < length; ++i)
+    {
+        dest[i] = in1[i] * scalar;
+    }
 #endif
     return NOERR;
 }
@@ -484,9 +675,17 @@ VectorScalarMultiplyD(double        *dest,
 #else
     // Otherwise do it manually
     unsigned i;
-    for (i = 0; i < length; ++i)
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
     {
-        *dest++ = (*in1++) * scalar;
+        dest[i] = in1[i] * scalar;
+        dest[i + 1] = in1[i + 1] * scalar;
+        dest[i + 2] = in1[i + 2] * scalar;
+        dest[i + 3] = in1[i + 3] * scalar;
+    }
+    for (i = end; i < length; ++i)
+    {
+        dest[i] = in1[i] * scalar;
     }
     
 #endif
@@ -608,13 +807,31 @@ VectorPower(float* dest, const float* in, float power, unsigned length)
     
     else
     {
-        for (unsigned i = 0; i < length; ++i)
+        unsigned i;
+        const unsigned end = 4 * (length / 4);
+        for (i = 0; i < end; i+=4)
+        {
+            dest[i] = powf(in[i], power);
+            dest[i + 1] = powf(in[i + 1], power);
+            dest[i + 2] = powf(in[i + 2], power);
+            dest[i + 3] = powf(in[i + 3], power);
+        }
+        for (i = end; i < length; ++i)
         {
             dest[i] = powf(in[i], power);
         }
     }
 #else
-    for (unsigned i = 0; i < length; ++i)
+    unsigned i;
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
+    {
+        dest[i] = powf(in[i], power);
+        dest[i + 1] = powf(in[i + 1], power);
+        dest[i + 2] = powf(in[i + 2], power);
+        dest[i + 3] = powf(in[i + 3], power);
+    }
+    for (i = end; i < length; ++i)
     {
         dest[i] = powf(in[i], power);
     }
@@ -638,13 +855,31 @@ VectorPowerD(double* dest, const double* in, double power, unsigned length)
     
     else
     {
-        for (unsigned i = 0; i < length; ++i)
+        unsigned i;
+        const unsigned end = 4 * (length / 4);
+        for (i = 0; i < end; i+=4)
+        {
+            dest[i] = pow(in[i], power);
+            dest[i + 1] = pow(in[i + 1], power);
+            dest[i + 2] = pow(in[i + 2], power);
+            dest[i + 3] = pow(in[i + 3], power);
+        }
+        for (i = end; i < length; ++i)
         {
             dest[i] = pow(in[i], power);
         }
     }
 #else
-    for (unsigned i = 0; i < length; ++i)
+    unsigned i;
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
+    {
+        dest[i] = pow(in[i], power);
+        dest[i + 1] = pow(in[i + 1], power);
+        dest[i + 2] = pow(in[i + 2], power);
+        dest[i + 3] = pow(in[i + 3], power);
+    }
+    for (i = end; i < length; ++i)
     {
         dest[i] = pow(in[i], power);
     }
@@ -670,6 +905,58 @@ VectorDbConvert(float* dest,
         
     {
         dest[i] = scale * log10f(in[i]);
+    }
+#endif
+    return NOERR;
+}
+
+
+
+Error_t
+ComplexMultiply(float*          re,
+                float*          im,
+                const float*    re1,
+                const float*    im1,
+                const float*    re2,
+                const float*    im2,
+                unsigned        length)
+{
+#if defined(__APPLE__)
+    DSPSplitComplex in1 = {.realp = (float*)re1, .imagp = (float*)im1};
+    DSPSplitComplex in2 = {.realp = (float*)re2, .imagp = (float*)im2};
+    DSPSplitComplex out = {.realp = re, .imagp = im};
+    vDSP_zvmul(&in1, 1, &in2, 1, &out, 1, length, 1);
+#else
+    
+    for (unsigned i = 0; i < length; ++i)
+    {
+        re[i] = (re1[i] * re2[i] - im1[i] * im2[i]);
+        im[i] = (re1[i] * im2[i] + im1[i] * re2[i]);
+    }
+#endif
+    return NOERR;
+}
+
+Error_t
+ComplexMultiplyD(double*        re,
+                 double*        im,
+                 const double*  re1,
+                 const double*  im1,
+                 const double*  re2,
+                 const double*  im2,
+                 unsigned       length)
+{
+#if defined(__APPLE__)
+    DSPDoubleSplitComplex in1 = {.realp = (double*)re1, .imagp = (double*)im1};
+    DSPDoubleSplitComplex in2 = {.realp = (double*)re2, .imagp = (double*)im2};
+    DSPDoubleSplitComplex out = {.realp = re, .imagp = im};
+    vDSP_zvmulD(&in1, 1, &in2, 1, &out, 1, length, 1);
+#else
+    
+    for (unsigned i = 0; i < length; ++i)
+    {
+        re[i] = (re1[i] * re2[i] - im1[i] * im2[i]);
+        im[i] = (re1[i] * im2[i] + im1[i] * re2[i]);
     }
 #endif
     return NOERR;

@@ -19,17 +19,23 @@
 #include <Accelerate/Accelerate.h>
 #endif
 
-
-
-
 #ifdef __cplusplus
 extern "C" {
 #endif
-
+    
+    
+// Prefer Accelerate
 #if defined(__APPLE__)
 #define USE_APPLE_FFT
 #endif
-    
+
+// Prefer FFTW over OOURA
+#if defined(USE_FFTW_FFT)
+#undef USE_APPLE_FFT
+#undef USE_OOURA_FFT
+#endif
+
+// Fallback to OOURA
 #if !defined(USE_FFTW_FFT) && !defined(__APPLE__) && !defined(USE_OOURA_FFT)
 #define USE_OOURA_FFT
 #undef USE_APPLE_FFT
@@ -114,7 +120,17 @@ FFT_R2CD(FFTConfigD*    fft,
          double*        real,
          double*        imag);
 
-
+Error_t
+FFT_IR_R2C(FFTConfig*       fft,
+           const float*     inBuffer,
+           FFTSplitComplex  out);
+    
+Error_t
+FFT_IR_R2CD(FFTConfigD*         fft,
+            const double*       inBuffer,
+            FFTSplitComplexD    out);
+    
+    
 /** Calculate Complex to Real Inverse FFT
  *
  * @details Calculates the inverse FFT of the data in inBuffer.
@@ -180,14 +196,14 @@ FFTConvolveD(FFTConfigD*    fft,
  */
 Error_t
 FFTFilterConvolve(FFTConfig*        fft,
-                  float*            in,
+                  const float*      in,
                   unsigned          in_length,
                   FFTSplitComplex   fft_ir,
                   float*            dest);
 
 Error_t
 FFTFilterConvolveD(FFTConfigD*      fft,
-                   double*          in,
+                   const double*    in,
                    unsigned         in_length,
                    FFTSplitComplexD fft_ir,
                    double*          dest);

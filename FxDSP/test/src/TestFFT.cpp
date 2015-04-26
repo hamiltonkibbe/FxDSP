@@ -9,16 +9,14 @@
 #include "gtest/gtest.h"
 #include "testFFT.h"
 #include "FFT.h"
-#include "Utilities.h"
 #include "Dsp.h"
 
 #define EPSILON (0.00001)
 
 
-
 #pragma mark - Single Precision Tests
 
-#if !defined(USE_OOURA_FFT)
+
 TEST(FFTSingle, TestFFT)
 {
     float real[32];
@@ -31,17 +29,12 @@ TEST(FFTSingle, TestFFT)
         FFTFree(fft);
         for (unsigned i = 0; i < 32; ++i)
         {
-            printf("GOT: %f + %fi EXPECTED: %f + %fi\n", real[i], imag[i], matlabReal[i], matlabImag[i]);
-        }
-        for (unsigned i = 0; i < 32; ++i)
-        {
             ASSERT_NEAR(matlabReal[i], real[i], 0.0001);
             ASSERT_NEAR(matlabImag[i], imag[i], 0.0001);
         }
     }
     
 }
-
 
 TEST(FFTSingle, TestIFFT)
 {
@@ -52,11 +45,6 @@ TEST(FFTSingle, TestIFFT)
     {
         IFFT_C2R(fft, matlabReal, matlabImag, result);
         FFTFree(fft);
-        for (unsigned i = 0; i < 32; ++i)
-        {
-            printf("GOT: %f EXPECTED: %f\n", result[i], matlabInputVector[i]);
-        }
-
         
         for (unsigned i = 0; i < 64; ++i)
         {
@@ -111,10 +99,11 @@ TEST(FFTSingle, TestFFTConvolution)
         FFTFree(fft);
         for (unsigned i = 0; i < 15; ++i)
         {
-            ASSERT_NEAR(matlabConvolution[i], output[i], 1.5);
+            ASSERT_NEAR(matlabConvolution[i], output[i], EPSILON);
         }
     }
 }
+
 
 TEST(FFTSingle, TestFFTFilterConvolution)
 {
@@ -134,17 +123,16 @@ TEST(FFTSingle, TestFFTFilterConvolution)
     ASSERT_TRUE(fft);
     if (fft)
     {
-        FFT_R2C(fft, padded, splitcomplex.realp, splitcomplex.imagp);
+        FFT_IR_R2C(fft, padded, splitcomplex);
         FFTFilterConvolve(fft, in, 3, splitcomplex, dest);
         FFTFree(fft);
         for (unsigned i = 0; i < 15; ++i)
         {
-            ASSERT_NEAR(matlabConvolution[i], dest[i], 1.5);
+            ASSERT_NEAR(matlabConvolution[i], dest[i], EPSILON);
         }
     }
 }
 
-#endif
 
 
 
@@ -228,17 +216,15 @@ TEST(FFTDouble, TestFFTConvolution)
     if(fft)
     {
         FFTConvolveD(fft, in, 3, in2, 4, output);
-        //FFTFreeD(fft);
-        for (unsigned i = 0; i < 16; ++i)
-        {
-            printf("GOT: %f EXPECTED: %f\n", output[i], matlabConvolution[i]);
-        }
+        FFTFreeD(fft);
         for (unsigned i = 0; i < 15; ++i)
         {
-            ASSERT_NEAR(matlabConvolutionD[i], output[i], 1.5);
+            ASSERT_NEAR(matlabConvolutionD[i], output[i], EPSILON);
         }
     }
 }
+
+
 
 TEST(FFTDouble, TestFFTFilterConvolution)
 {
@@ -258,12 +244,13 @@ TEST(FFTDouble, TestFFTFilterConvolution)
     ASSERT_TRUE(fft);
     if (fft)
     {
-        FFT_R2CD(fft, padded, splitcomplex.realp, splitcomplex.imagp);
+        FFT_IR_R2CD(fft, padded, splitcomplex);
         FFTFilterConvolveD(fft, in, 3, splitcomplex, dest);
         FFTFreeD(fft);
+        
         for (unsigned i = 0; i < 15; ++i)
         {
-            ASSERT_NEAR(matlabConvolutionD[i], dest[i], 1.5);
+            ASSERT_NEAR(matlabConvolutionD[i], dest[i], EPSILON);
         }
     }
 }

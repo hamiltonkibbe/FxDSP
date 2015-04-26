@@ -52,6 +52,15 @@ Int16BufferToFloat(float* dest, const signed short* src, unsigned length);
 Error_t
 Int16BufferToDouble(double* dest, const signed short* src, unsigned length);
 
+    
+Error_t
+DoubleToFloat(float* dest, const double* src, unsigned length);
+
+Error_t
+FloatToDouble(double* dest, const float* src, unsigned length);
+    
+    
+    
 #pragma mark Fill Buffer
 /** Fill an array with a given value
  * @details Fill the passed array with the value passed in as value. Uses
@@ -310,6 +319,25 @@ VectorDbConvert(float* dest,
                 unsigned length);
 
 
+Error_t
+ComplexMultiply(float*          re,
+                float*          im,
+                const float*    re1,
+                const float*    im1,
+                const float*    re2,
+                const float*    im2,
+                unsigned        length);
+    
+Error_t
+ComplexMultiplyD(double*        re,
+                 double*        im,
+                 const double*  re1,
+                 const double*  im1,
+                 const double*  re2,
+                 const double*  im2,
+                 unsigned       length);
+   
+    
 #ifdef __cplusplus
 }
 #endif
