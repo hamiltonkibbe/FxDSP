@@ -116,6 +116,26 @@ TEST(DSPSingle, TestConvolve)
     }
 }
 
+TEST(DSPSingle, TestComplexMultiply)
+{
+    float re1[10] = {1, 2, 3, 4, 5, -1, -2, -3, -4, -5};
+    float im1[10] = {1, 2, 3, 4, 5, 1, 2, 3, 4, 5};
+    float re2[10] = {1, 2, 4, 8, 16, -1, -2, -4, -8, -16};
+    float im2[10] = {-1, -2, 4, 8, 16, 1, 2, -4, -8, -16};
+    float result_re[10];
+    float result_im[10];
+    float expected_re[10] = {2., 8., 0., 0., 0., 0., 0., 24., 64., 160.};
+    float expected_im[10] = {0., 0., 24., 64., 160., -2., -8., 0., 0., 0.};
+    ComplexMultiply(result_re, result_im, re1, im1, re2, im2, 10);
+    for(unsigned i = 0; i < 10; ++i)
+    {
+        //printf("GOT %f + j%f\n", result_re[i], result_im[i]);
+        ASSERT_FLOAT_EQ(expected_re[i], result_re[i]);
+        ASSERT_FLOAT_EQ(expected_im[i], result_im[i]);
+    }
+    
+}
+
 
 #pragma mark -
 #pragma mark Double Precision Tests
@@ -223,4 +243,25 @@ TEST(DSPDouble, TestConvolve)
     {
         ASSERT_DOUBLE_EQ(res[i], out[i]);
     }
+}
+
+
+TEST(DSPDouble, TestComplexMultiply)
+{
+    double re1[10] = {1, 2, 3, 4, 5, -1, -2, -3, -4, -5};
+    double im1[10] = {1, 2, 3, 4, 5, 1, 2, 3, 4, 5};
+    double re2[10] = {1, 2, 4, 8, 16, -1, -2, -4, -8, -16};
+    double im2[10] = {-1, -2, 4, 8, 16, 1, 2, -4, -8, -16};
+    double result_re[10];
+    double result_im[10];
+    double expected_re[10] = {2., 8., 0., 0., 0., 0., 0., 24., 64., 160.};
+    double expected_im[10] = {0., 0., 24., 64., 160., -2., -8., 0., 0., 0.};
+    ComplexMultiplyD(result_re, result_im, re1, im1, re2, im2, 10);
+    for(unsigned i = 0; i < 10; ++i)
+    {
+       // printf("GOT %f + j%f\n", result_re[i], result_im[i]);
+        ASSERT_FLOAT_EQ(expected_re[i], result_re[i]);
+        ASSERT_FLOAT_EQ(expected_im[i], result_im[i]);
+    }
+    
 }

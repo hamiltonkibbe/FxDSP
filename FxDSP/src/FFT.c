@@ -1044,7 +1044,6 @@ FFTFilterConvolveD(FFTConfigD*      fft,
     double* re = fft->split.realp;
     double* im = fft->split.imagp;
 
-    
     // Zero pad the input to FFT length
     ClearBufferD(fft->setup.buffer, fft->length);
     CopyBufferD(fft->setup.buffer, in, in_length);
@@ -1055,12 +1054,16 @@ FFTFilterConvolveD(FFTConfigD*      fft,
         *re++ = *buf++;
         *im++ = -(*buf++);
     }
-
+    
     
     double nyquist_out = fft->split.imagp[0] * fft_ir.imagp[0];
     fft->split.imagp[0] = 0.0;
-    ComplexMultiplyD(fft->split.realp, fft->split.imagp, fft->split.realp, fft->split.imagp, fft_ir.realp, fft_ir.imagp, fft->length/2);
+
+    ComplexMultiplyD(fft->split.realp, fft->split.imagp, fft->split.realp,
+                     fft->split.imagp, fft_ir.realp, fft_ir.imagp,
+                     fft->length/2);
     fft->split.imagp[0] = -nyquist_out;
+    
     
     re = fft->split.realp;
     im = fft->split.imagp;

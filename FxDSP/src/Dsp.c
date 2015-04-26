@@ -15,6 +15,7 @@
 #include <cblas.h>
 #endif
 
+
 /*******************************************************************************
  FloatBufferToInt16 */
 Error_t
@@ -177,20 +178,18 @@ FloatToDouble(double* dest, const float* src, unsigned length)
     const unsigned end = 4 * (length / 4);
     for (i = 0; i < end; i+=4)
     {
-        dest[i] = (double)src[i];
-        dest[i + 1] = (double)src[i + 1];
-        dest[i + 2] = (double)src[i + 2];
-        dest[i + 3] = (double)src[i + 3];
+        dest[i] = (double)(src[i]);
+        dest[i + 1] = (double)(src[i + 1]);
+        dest[i + 2] = (double)(src[i + 2]);
+        dest[i + 3] = (double)(src[i + 3]);
     }
     for (i = end; i < length; ++i)
     {
-        dest[i] = (double)src[i];
+        dest[i] = (double)(src[i]);
     }
 #endif
     return NOERR;
 }
-
-
 
 
 /*******************************************************************************
@@ -465,7 +464,6 @@ VectorVectorAdd(float         *dest,
     return NOERR;
 }
 
-
 /*******************************************************************************
  VectorVectorAddD */
 Error_t
@@ -710,9 +708,6 @@ Convolve(float       *in1,
     float    *in2_end = in2 + (in2_length - 1);
     unsigned signalLength = (in2_length + resultLength);
     
-    // So there's some hella weird requirement that the signal input to
-    //vDSP_conv has to be larger than (result_length + filter_length - 1),
-    // (the output vector length) and it has to be zero-padded. What. The. Fuck!
     float padded[signalLength];
     
     //float zero = 0.0;
@@ -911,7 +906,6 @@ VectorDbConvert(float* dest,
 }
 
 
-
 Error_t
 ComplexMultiply(float*          re,
                 float*          im,
@@ -930,12 +924,17 @@ ComplexMultiply(float*          re,
     
     for (unsigned i = 0; i < length; ++i)
     {
-        re[i] = (re1[i] * re2[i] - im1[i] * im2[i]);
-        im[i] = (re1[i] * im2[i] + im1[i] * re2[i]);
+        float ire1 = re1[i];
+        float iim1 = im1[i];
+        float ire2 = re2[i];
+        float iim2 = im2[i];
+        re[i] = (ire1 * ire2 - iim1 * iim2);
+        im[i] = (iim1 * ire2 + iim2 * ire1);
     }
 #endif
     return NOERR;
 }
+
 
 Error_t
 ComplexMultiplyD(double*        re,
@@ -952,11 +951,14 @@ ComplexMultiplyD(double*        re,
     DSPDoubleSplitComplex out = {.realp = re, .imagp = im};
     vDSP_zvmulD(&in1, 1, &in2, 1, &out, 1, length, 1);
 #else
-    
     for (unsigned i = 0; i < length; ++i)
     {
-        re[i] = (re1[i] * re2[i] - im1[i] * im2[i]);
-        im[i] = (re1[i] * im2[i] + im1[i] * re2[i]);
+        double ire1 = re1[i];
+        double iim1 = im1[i];
+        double ire2 = re2[i];
+        double iim2 = im2[i];
+        re[i] = (ire1 * ire2 - iim1 * iim2);
+        im[i] = (iim1 * ire2 + iim2 * ire1);
     }
 #endif
     return NOERR;
