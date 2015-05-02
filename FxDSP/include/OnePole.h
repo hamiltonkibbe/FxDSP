@@ -78,6 +78,17 @@ OnePoleTickD(OnePoleD*  filter,
 
 
     
+float
+OnePoleAlpha(OnePole* filter);
+
+double
+OnePoleAlphaD(OnePoleD* filter);
+ 
+float
+OnePoleBeta(OnePole* filter);
+
+double
+OnePoleBetaD(OnePoleD* filter);
     
 #ifdef __cplusplus
 }

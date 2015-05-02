@@ -11,13 +11,15 @@
 #include "FIRFilter.h"
 #include "Signals.h"
 
+#define EPSILON (0.000001)
+
 
 TEST(FIRFilterSingle, TestDirectAgainstMatlab)
 {
     float output[100];
     
     // Set up
-    FIRFilter *theFilter = FIRFilterInit(MatlabFilter, 21, DIRECT);
+    FIRFilter *theFilter = FIRFilterInit(MatlabFilter, 22, DIRECT);
     
     // Process
     FIRFilterProcess(theFilter, output, MatlabSignal, 100);
@@ -26,9 +28,9 @@ TEST(FIRFilterSingle, TestDirectAgainstMatlab)
     FIRFilterFree(theFilter);
     
     // Check results
-    for (unsigned i = 0; i < 32; ++i)
+    for (unsigned i = 0; i < 100; ++i)
     {
-        ASSERT_NEAR(MatlabLowpassOutput[i], output[i], 0.01);
+        ASSERT_NEAR(MatlabLowpassOutput[i], output[i], EPSILON);
     }
 }
 
@@ -37,7 +39,7 @@ TEST(FIRFilterSingle, TestFFTAgainstMatlab)
     float output[100];
     
     // Set up
-    FIRFilter *theFilter = FIRFilterInit(MatlabFilter, 21, FFT);
+    FIRFilter *theFilter = FIRFilterInit(MatlabFilter, 22, FFT);
     
     // Process
     FIRFilterProcess(theFilter, output, MatlabSignal, 100);
@@ -46,9 +48,9 @@ TEST(FIRFilterSingle, TestFFTAgainstMatlab)
     FIRFilterFree(theFilter);
     
     // Check results
-    for (unsigned i = 0; i < 32; ++i)
+    for (unsigned i = 0; i < 100; ++i)
     {
-        ASSERT_NEAR(MatlabLowpassOutput[i], output[i], 0.01);
+        ASSERT_NEAR(MatlabLowpassOutput[i], output[i],  EPSILON);
     }
     
 }
@@ -58,7 +60,7 @@ TEST(FIRFilterSingle, TestBestModeAgainstMatlab)
     float output[100];
     
     // Set up
-    FIRFilter *theFilter = FIRFilterInit(MatlabFilter, 21, BEST);
+    FIRFilter *theFilter = FIRFilterInit(MatlabFilter, 22, BEST);
     
     // Process
     FIRFilterProcess(theFilter, output, MatlabSignal, 100);
@@ -67,12 +69,45 @@ TEST(FIRFilterSingle, TestBestModeAgainstMatlab)
     FIRFilterFree(theFilter);
     
     // Check results
-    for (unsigned i = 0; i < 32; ++i)
+    for (unsigned i = 0; i < 100; ++i)
     {
-        ASSERT_NEAR(MatlabLowpassOutput[i], output[i], 0.01);
+        ASSERT_NEAR(MatlabLowpassOutput[i], output[i], EPSILON);
     }
     
 }
+
+
+TEST(FIRFilterSingle, TestOverlapAdd)
+{
+    
+    float output[100];
+    unsigned block_size[6] = {4, 5, 10, 20, 25, 50};
+    
+    // Set up
+    FIRFilter *theFilter = FIRFilterInit(MatlabFilter, 22, DIRECT);
+    
+    for (unsigned i = 0; i < 6; ++i)
+    {
+        unsigned bs = block_size[i];
+        unsigned bc = 100 / bs;
+        for (unsigned block = 0; block < bc; ++block)
+        {
+            // Process
+            FIRFilterProcess(theFilter, output + (block * bs), MatlabSignal + (block * bs), bs);;
+        }
+        // Check results
+        for (unsigned i = 0; i < 100; ++i)
+        {
+            ASSERT_NEAR(MatlabLowpassOutput[i], output[i], EPSILON);
+        }
+        FIRFilterFlush(theFilter);
+    }
+        
+    // Tear down
+    FIRFilterFree(theFilter);
+}
+
+
 
 
 
@@ -81,7 +116,7 @@ TEST(FIRFilterDouble, TestDirectAgainstMatlab)
     double output[100];
     
     // Set up
-    FIRFilterD *theFilter = FIRFilterInitD(MatlabFilterD, 21, DIRECT);
+    FIRFilterD *theFilter = FIRFilterInitD(MatlabFilterD, 22, DIRECT);
     
     // Process
     FIRFilterProcessD(theFilter, output, MatlabSignalD,100);
@@ -90,9 +125,9 @@ TEST(FIRFilterDouble, TestDirectAgainstMatlab)
     FIRFilterFreeD(theFilter);
     
     // Check results
-    for (unsigned i = 0; i < 32; ++i)
+    for (unsigned i = 0; i < 100; ++i)
     {
-        ASSERT_NEAR(MatlabLowpassOutputD[i], output[i], 0.01);
+        ASSERT_NEAR(MatlabLowpassOutputD[i], output[i], EPSILON);
     }
 }
 
@@ -101,7 +136,7 @@ TEST(FIRFilterDouble, TestFFTAgainstMatlab)
     double output[100];
     
     // Set up
-    FIRFilterD *theFilter = FIRFilterInitD(MatlabFilterD, 21, FFT);
+    FIRFilterD *theFilter = FIRFilterInitD(MatlabFilterD, 22, FFT);
     
     // Process
     FIRFilterProcessD(theFilter, output, MatlabSignalD, 100);
@@ -110,9 +145,9 @@ TEST(FIRFilterDouble, TestFFTAgainstMatlab)
     FIRFilterFreeD(theFilter);
     
     // Check results
-    for (unsigned i = 0; i < 32; ++i)
+    for (unsigned i = 0; i < 100; ++i)
     {
-        ASSERT_NEAR(MatlabLowpassOutputD[i], output[i], 0.01);
+        ASSERT_NEAR(MatlabLowpassOutputD[i], output[i], EPSILON);
     }
     
 }
@@ -122,7 +157,7 @@ TEST(FIRFilterDouble, TestBestModeAgainstMatlab)
     double output[100];
     
     // Set up
-    FIRFilterD *theFilter = FIRFilterInitD(MatlabFilterD, 21, BEST);
+    FIRFilterD *theFilter = FIRFilterInitD(MatlabFilterD, 22, BEST);
     
     // Process
     FIRFilterProcessD(theFilter, output, MatlabSignalD, 100);
@@ -131,9 +166,40 @@ TEST(FIRFilterDouble, TestBestModeAgainstMatlab)
     FIRFilterFreeD(theFilter);
     
     // Check results
-    for (unsigned i = 0; i < 32; ++i)
+    for (unsigned i = 0; i < 100; ++i)
     {
-        ASSERT_NEAR(MatlabLowpassOutputD[i], output[i], 0.01);
+        ASSERT_NEAR(MatlabLowpassOutputD[i], output[i], EPSILON);
     }
     
+}
+
+
+TEST(FIRFilterDouble, TestOverlapAdd)
+{
+    
+    double output[100];
+    unsigned block_size[6] = {4, 5, 10, 20, 25, 50};
+    
+    // Set up
+    FIRFilterD *theFilter = FIRFilterInitD(MatlabFilterD, 22, DIRECT);
+    
+    for (unsigned i = 0; i < 6; ++i)
+    {
+        unsigned bs = block_size[i];
+        unsigned bc = 100 / bs;
+        for (unsigned block = 0; block < bc; ++block)
+        {
+            // Process
+            FIRFilterProcessD(theFilter, output + (block * bs), MatlabSignalD + (block * bs), bs);;
+        }
+        // Check results
+        for (unsigned i = 0; i < 100; ++i)
+        {
+            ASSERT_NEAR(MatlabLowpassOutputD[i], output[i], EPSILON);
+        }
+        FIRFilterFlushD(theFilter);
+    }
+    
+    // Tear down
+    FIRFilterFreeD(theFilter);
 }

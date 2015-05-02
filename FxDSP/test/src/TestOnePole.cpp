@@ -13,6 +13,36 @@
 #include "Signals.h"
 
 
+TEST(OnePoleSingle, TestLPCoefficientCalculation)
+{
+    
+    OnePole *filter = OnePoleInit(25, 100, LOWPASS);
+    float alpha = OnePoleAlpha(filter);
+    float beta = OnePoleBeta(filter);
+    
+    // Clean up
+    OnePoleFree(filter);
+    
+    // Check results
+    ASSERT_FLOAT_EQ(MatlabLpAlpha, alpha);
+    ASSERT_FLOAT_EQ(MatlabLpBeta, beta);
+}
+
+TEST(OnePoleSingle, TestHPCoefficientCalculation)
+{
+    
+    OnePole *filter = OnePoleInit(25, 100, HIGHPASS);
+    float alpha = OnePoleAlpha(filter);
+    float beta = OnePoleBeta(filter);
+    
+    // Clean up
+    OnePoleFree(filter);
+    
+    // Check results
+    ASSERT_FLOAT_EQ(MatlabHpAlpha, alpha);
+    ASSERT_FLOAT_EQ(MatlabHpBeta, beta);
+}
+
 TEST(OnePoleSingle, TestLowpassAgainstMatlab)
 {
     // Set up
@@ -134,6 +164,36 @@ TEST(OnePoleSingle, TestTypeValidation)
 }
 
 
+TEST(OnePoleDouble, TestLPCoefficientCalculation)
+{
+    
+    OnePoleD *filter = OnePoleInitD(25, 100, LOWPASS);
+    double alpha = OnePoleAlphaD(filter);
+    double beta = OnePoleBetaD(filter);
+    
+    // Clean up
+    OnePoleFreeD(filter);
+    
+    // Check results
+    ASSERT_DOUBLE_EQ(MatlabLpAlphaD, alpha);
+    ASSERT_DOUBLE_EQ(MatlabLpBetaD, beta);
+}
+
+TEST(OnePoleDouble, TestHPCoefficientCalculation)
+{
+    
+    OnePoleD *filter = OnePoleInitD(25, 100, HIGHPASS);
+    double alpha = OnePoleAlphaD(filter);
+    double beta = OnePoleBetaD(filter);
+    
+    // Clean up
+    OnePoleFreeD(filter);
+    
+    // Check results
+    ASSERT_DOUBLE_EQ(MatlabHpAlphaD, alpha);
+    ASSERT_DOUBLE_EQ(MatlabHpBetaD, beta);
+}
+
 TEST(OnePoleDouble, TestLowpassAgainstMatlab)
 {
     // Set up
@@ -151,7 +211,7 @@ TEST(OnePoleDouble, TestLowpassAgainstMatlab)
     // Check results
     for (unsigned i = 0; i < 50; ++i)
     {
-        ASSERT_FLOAT_EQ(output[i], MatlabLPOutputD[i]);
+        ASSERT_FLOAT_EQ(MatlabLPOutputD[i], output[i]);
     }
 }
 

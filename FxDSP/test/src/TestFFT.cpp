@@ -134,8 +134,6 @@ TEST(FFTSingle, TestFFTFilterConvolution)
 }
 
 
-
-
 #pragma mark - Double Precision Tests
 
 TEST(FFTDouble, TestFFT)

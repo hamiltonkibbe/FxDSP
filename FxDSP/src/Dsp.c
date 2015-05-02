@@ -377,10 +377,9 @@ VectorNegate(float          *dest,
              const float    *in,
              unsigned       length)
 {
-#ifdef __APPLE__
+#if defined(__APPLE__)
     // Use the Accelerate framework if we have it
     vDSP_vneg(in, 1, dest, 1, length);
-    
 #else
     // Otherwise do it manually
     unsigned i;
@@ -702,7 +701,6 @@ Convolve(float       *in1,
 {
     
     unsigned resultLength = in1_length + (in2_length - 1);
-    
 #ifdef __APPLE__
     //Use Native vectorized convolution function if available
     float    *in2_end = in2 + (in2_length - 1);
@@ -711,7 +709,7 @@ Convolve(float       *in1,
     float padded[signalLength];
     
     //float zero = 0.0;
-    FillBuffer(padded, signalLength, 0.0);
+    ClearBuffer(padded, signalLength);
     
     // Pad the input signal with (filter_length - 1) zeros.
     cblas_scopy(in1_length, in1, 1, (padded + (in2_length - 1)), 1);
@@ -795,11 +793,10 @@ Error_t
 VectorPower(float* dest, const float* in, float power, unsigned length)
 {
 #ifdef __APPLE__
-    if (power == 2)
+    if (power == 2.0)
     {
         vDSP_vsq(in, 1, dest, 1, length);
     }
-    
     else
     {
         unsigned i;
@@ -843,25 +840,24 @@ Error_t
 VectorPowerD(double* dest, const double* in, double power, unsigned length)
 {
 #ifdef __APPLE__
-    if (power == 2)
+    if (power == 2.0)
     {
         vDSP_vsqD(in, 1, dest, 1, length);
     }
-    
     else
     {
         unsigned i;
         const unsigned end = 4 * (length / 4);
         for (i = 0; i < end; i+=4)
         {
-            dest[i] = pow(in[i], power);
-            dest[i + 1] = pow(in[i + 1], power);
-            dest[i + 2] = pow(in[i + 2], power);
-            dest[i + 3] = pow(in[i + 3], power);
+            dest[i] = powf(in[i], power);
+            dest[i + 1] = powf(in[i + 1], power);
+            dest[i + 2] = powf(in[i + 2], power);
+            dest[i + 3] = powf(in[i + 3], power);
         }
         for (i = end; i < length; ++i)
         {
-            dest[i] = pow(in[i], power);
+            dest[i] = powf(in[i], power);
         }
     }
 #else
@@ -950,6 +946,16 @@ ComplexMultiplyD(double*        re,
     DSPDoubleSplitComplex in2 = {.realp = (double*)re2, .imagp = (double*)im2};
     DSPDoubleSplitComplex out = {.realp = re, .imagp = im};
     vDSP_zvmulD(&in1, 1, &in2, 1, &out, 1, length, 1);
+#elif defined(USE_BLAS)
+    double int1[2*length];
+    double int2[2*length];
+    double destint[2*length];
+    cblas_dcopy(length, re1, 1, int1, 2);
+    cblas_dcopy(length, im1, 1, int1+1, 2);
+    cblas_dcopy(length, re2, 1, int1, 2);
+    cblas_dcopy(length, im2, 1, int1+1, 2);
+    
+    cblas_zdotu_sub(length, <#const void *__X#>, 1, <#const void *__Y#>, 1, <#void *__dotu#>)
 #else
     for (unsigned i = 0; i < length; ++i)
     {
@@ -960,6 +966,170 @@ ComplexMultiplyD(double*        re,
         re[i] = (ire1 * ire2 - iim1 * iim2);
         im[i] = (iim1 * ire2 + iim2 * ire1);
     }
+#endif
+    return NOERR;
+}
+
+
+/*******************************************************************************
+ SplitToInterleaved */
+Error_t
+SplitToInterleaved(float* dest, const float* real, const float* imag, unsigned length)
+{
+#if defined(__APPLE__)
+    DSPSplitComplex in = {.realp = (float*)real, .imagp = (float*)imag};
+    vDSP_ztoc(&in, 1, (DSPComplex*)dest, 2, length);
+    
+#elif defined(USE_BLAS)
+    cblas_scopy(length, real, 1, dest, 2);
+    cblas_scopy(length, imag, 1, dest + 1, 2);
+#else
+    unsigned i;
+    unsigned i2;
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
+    {
+        i2 = i * 2;
+        dest[i2] = real[i];
+        dest[i2 + 2] = real[i + 1];
+        dest[i2 + 4] = real[i + 2];
+        dest[i2 + 6] = real[i + 3];
+        
+        dest[i2 + 1] = imag[i];
+        dest[i2 + 3] = imag[i + 1];
+        dest[i2 + 5] = imag[i + 2];
+        dest[i2 + 7] = imag[i + 3];
+    }
+    for (i = end; i < length; ++i)
+    {
+        i2 = i * 2;
+        dest[i2] = real[i];
+        dest[i2 + 1] = imag[i];
+    }
+#endif
+    return NOERR;
+}
+
+
+
+Error_t
+SplitToInterleavedD(double* dest, const double* real, const double* imag, unsigned length)
+{
+#if defined(__APPLE__)
+    DSPDoubleSplitComplex in = {.realp = (double*)real, .imagp = (double*)imag};
+    vDSP_ztocD(&in, 1, (DSPDoubleComplex*)dest, 2, length);
+    
+#elif defined(USE_BLAS)
+    cblas_dcopy(length, real, 1, dest, 2);
+    cblas_dcopy(length, imag, 1, dest + 1, 2);
+#else
+    unsigned i;
+    unsigned i2;
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
+    {
+        i2 = i * 2;
+        dest[i2] = real[i];
+        dest[i2 + 2] = real[i + 1];
+        dest[i2 + 4] = real[i + 2];
+        dest[i2 + 6] = real[i + 3];
+        
+        dest[i2 + 1] = imag[i];
+        dest[i2 + 3] = imag[i + 1];
+        dest[i2 + 5] = imag[i + 2];
+        dest[i2 + 7] = imag[i + 3];
+    }
+    for (i = end; i < length; ++i)
+    {
+        i2 = i * 2;
+        dest[i2] = real[i];
+        dest[i2 + 1] = imag[i];
+    }
+#endif
+    return NOERR;
+}
+
+/*******************************************************************************
+ InterleavedToSplit */
+Error_t
+InterleavedToSplit(float*       real,
+                   float*       imag,
+                   const float* input,
+                   unsigned     length)
+{
+#if defined(__APPLE__)
+    DSPSplitComplex out = {.realp = real, .imagp = imag};
+    vDSP_ctoz((const DSPComplex*)input, 2, &out, 1, length);
+    
+#elif defined(USE_BLAS)
+    cblas_scopy(length, input, 2, real, 1);
+    cblas_scopy(length, input + 1, 2, imag, 2);
+#else
+    unsigned i;
+    unsigned i2;
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
+    {
+        i2 = i * 2;
+        real[i] = input[i2];
+        real[i + 1] = input[i2 + 2];
+        real[i + 2] = input[i2 + 4];
+        real[i + 3] = input[i2 + 6];
+        
+        imag[i] = input[i2 + 1];
+        imag[i + 1] = input[i2 + 3];
+        imag[i + 2] = input[i2 + 5];
+        imag[i + 3] = input[i2 + 7];
+    }
+    for (i = end; i < length; ++i)
+    {
+        i2 = i * 2;
+        real[i] = input[i2];
+        imag[i] = input[i2 + 1];
+    }
+    
+#endif
+    return NOERR;
+}
+
+Error_t
+InterleavedToSplitD(double*         real,
+                    double*         imag,
+                    const double*   input,
+                    unsigned        length)
+{
+#if defined(__APPLE__)
+    DSPDoubleSplitComplex out = {.realp = real, .imagp = imag};
+    vDSP_ctozD((const DSPDoubleComplex*)input, 2, &out, 1, length);
+    
+#elif defined(USE_BLAS)
+    cblas_dcopy(length, input, 2, real, 1);
+    cblas_dcopy(length, input + 1, 2, imag, 2);
+#else
+    
+    unsigned i;
+    unsigned i2;
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
+    {
+        i2 = i * 2;
+        real[i] = input[i2];
+        real[i + 1] = input[i2 + 2];
+        real[i + 2] = input[i2 + 4];
+        real[i + 3] = input[i2 + 6];
+        
+        imag[i] = input[i2 + 1];
+        imag[i + 1] = input[i2 + 3];
+        imag[i + 2] = input[i2 + 5];
+        imag[i + 3] = input[i2 + 7];
+    }
+    for (i = end; i < length; ++i)
+    {
+        i2 = i * 2;
+        real[i] = input[i2];
+        imag[i] = input[i2 + 1];
+    }
+
 #endif
     return NOERR;
 }

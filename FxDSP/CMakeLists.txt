@@ -1,6 +1,8 @@
 CMAKE_MINIMUM_REQUIRED (VERSION 2.8)
 PROJECT (FxDSP)
 
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
+
 ADD_SUBDIRECTORY(test)
 ENABLE_TESTING()
 
@@ -10,7 +12,6 @@ FILE (GLOB FXDSP_SRCS "${PROJECT_SOURCE_DIR}/src/*.c")
 
 SET (CMAKE_C_FLAGS "-std=c99")
 ADD_DEFINITIONS(-D_XOPEN_SOURCE)
-
 
 IF ((USE_FFTW_FFT) OR ($ENV{USE_FFTW_FFT}))
 MESSAGE ("Using FFTW3 for FFT")
@@ -45,6 +46,11 @@ IF (APPLE AND ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     
 ENDIF (APPLE AND ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -g -O0 -Wall -W -fprofile-arcs -ftest-coverage")
+#set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -O0 -Wall -W -Wshadow -Wunused-variable -Wunused-parameter -Wunused-function -Wunused -Wno-system-headers -Wno-deprecated -Woverloaded-virtual -Wwrite-strings -fprofile-arcs -ftest-coverage")
+SET(CMAKE_SHARED_LINKER_FLAGS="-fprofile-arcs -ftest-coverage")
+
+
 
 # Build Libraries
 ADD_LIBRARY (FxDSP SHARED ${FXDSP_SRCS} ${FXDSP_HEADERS})
@@ -53,10 +59,8 @@ ADD_LIBRARY (FxDSPStatic STATIC  ${FXDSP_SRCS} ${FXDSP_HEADERS})
 SET_TARGET_PROPERTIES(FxDSP PROPERTIES LINKER_LANGUAGE C)
 SET_TARGET_PROPERTIES(FxDSPStatic PROPERTIES LINKER_LANGUAGE C)
 
-
-TARGET_LINK_LIBRARIES (FxDSP ${ACCELERATE_LIB} ${FFTW3_LIB} ${FFTW3F_LIB})
-TARGET_LINK_LIBRARIES (FxDSPStatic ${ACCELERATE_LIB} ${FFTW3_LIB} ${FFTW3F_LIB})
-
+TARGET_LINK_LIBRARIES (FxDSP ${ACCELERATE_LIB} ${FFTW3_LIB} ${FFTW3F_LIB} ${BLAS_LIBRARIES})
+TARGET_LINK_LIBRARIES (FxDSPStatic ${ACCELERATE_LIB} ${FFTW3_LIB} ${FFTW3F_LIB} ${BLAS_LIBRARIES})
 
 
 
@@ -67,3 +71,12 @@ INSTALL (DIRECTORY "${PROJECT_SOURCE_DIR}/include/"
          FILES_MATCHING PATTERN "*.h")
 
 
+add_custom_target (test-coverage
+COMMAND [ -d coverage ] && rm -rf coverage/ || echo "No folder"
+COMMAND mkdir coverage
+COMMAND make test
+COMMAND cp CMakeFiles/FxDSP.dir/src/*.gcno coverage/
+COMMAND mv CMakeFiles/FxDSP.dir/src/*.gcda coverage/
+#COMMAND cd Coverage && lcov -t "result" -o cppagent_coverage.info -c -d .
+#COMMAND cd Coverage && genhtml -o coverage cppagent_coverage.info
+)

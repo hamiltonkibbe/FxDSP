@@ -121,7 +121,7 @@ FIRFilterInitD(const double*        filter_kernel,
         
         // Set up the struct
         filter->kernel = kernel;
-        filter->kernel_end = filter_kernel + (kernel_length - 1);
+        filter->kernel_end = filter_kernel + (kernel_length); //- 1);
         filter->overlap = overlap;
         filter->kernel_length = kernel_length;
         filter->overlap_length = overlap_length;
@@ -244,10 +244,10 @@ FIRFilterFlushD(FIRFilterD* filter)
 
 /* FIRFilterProcess ****************************************************/
 Error_t
-FIRFilterProcess(FIRFilter* filter,
-                        float*  outBuffer, 
-                        const float* inBuffer, 
-                        unsigned n_samples)
+FIRFilterProcess(FIRFilter*     filter,
+                 float*         outBuffer,
+                 const float*   inBuffer,
+                 unsigned       n_samples)
 {
 
     if (filter)
@@ -256,12 +256,12 @@ FIRFilterProcess(FIRFilter* filter,
         if (filter->conv_mode == DIRECT)
         {
             unsigned resultLength = n_samples + (filter->kernel_length - 1);
-        
             // Temporary buffer to store full result of filtering..
             float buffer[resultLength];
         
             Convolve((float*)inBuffer, n_samples, 
                             filter->kernel, filter->kernel_length, buffer);
+            
             // Add in the overlap from the last block
             VectorVectorAdd(buffer, filter->overlap, buffer, filter->overlap_length);
             CopyBuffer(filter->overlap, buffer + n_samples, filter->overlap_length);
@@ -278,7 +278,7 @@ FIRFilterProcess(FIRFilter* filter,
             if(filter->fft_config == 0)
             {
                 // Calculate FFT Length
-                filter->fft_length = next_pow2(n_samples + filter->kernel_length - 1); //2 * next_pow2(n_samples + filter->kernel_length - 1);
+                filter->fft_length = next_pow2(n_samples + filter->kernel_length - 1);
                 filter->fft_config = FFTInit(filter->fft_length);
             
                 // fft kernel buffers
@@ -298,8 +298,6 @@ FIRFilterProcess(FIRFilter* filter,
             
             // Buffer for transformed input
             float buffer[filter->fft_length];
-            //FillBuffer(buffer, filter->fft_length, 0.0);
-            //CopyBuffer(buffer, inBuffer, n_samples);
             
             // Convolve
             FFTFilterConvolve(filter->fft_config, (float*)inBuffer, n_samples, filter->fft_kernel, buffer);

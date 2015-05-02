@@ -119,7 +119,7 @@ TEST(CircularBufferDouble, TestWrap)
     }
 }
 
-TEST(CircularBufferDOUBLE, TestFlush)
+TEST(CircularBufferDouble, TestFlush)
 {
     const double data[4] = {1,2,3,4};
     double out[4] = {0,0,0,0};

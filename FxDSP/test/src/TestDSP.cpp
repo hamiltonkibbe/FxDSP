@@ -9,6 +9,7 @@
 #include "gtest/gtest.h"
 #include "Dsp.h"
 #include "Signals.h"
+#include "TestFIRFilter.h"
 #include "Utilities.h"
 
 
@@ -46,6 +47,55 @@ TEST(DSPSingle, TestCopyBuffer)
         ASSERT_FLOAT_EQ(ones[i], out[i]);
     }
 }
+
+
+TEST(DSPSingle, TestSplitToInterleaved)
+{
+    float out[10];
+    float real[5] = {-1.0, -0.6, -0.2, 0.2, 0.6};
+    float imag[5] = {-0.8, -0.4, 0.0, 0.4, 0.8};
+    SplitToInterleaved(out, real, imag, 5);
+    
+    for (unsigned i = 0; i < 10; ++i)
+    {
+        ASSERT_FLOAT_EQ(ramp[i], out[i]);
+    }
+}
+
+TEST(DSPSingle, TestInterleavedToSplit)
+{
+    float real[5];
+    float imag[5];
+    InterleavedToSplit(real, imag, ramp, 5);
+    
+    for (unsigned i = 0; i < 5; ++i)
+    {
+        ASSERT_FLOAT_EQ(ramp[2*i], real[i]);
+        ASSERT_FLOAT_EQ(ramp[2 * i + 1], imag[i]);
+    }
+}
+
+
+TEST(DSPSingle, TestVectorAbs)
+{
+    float out[10];
+    VectorAbs(out, ramp, 10);
+    for (unsigned i = 0; i < 10; ++i)
+    {
+        ASSERT_FLOAT_EQ(fabsf(ramp[i]), out[i]);
+    }
+}
+
+TEST(DSPSingle, TestVectorNegate)
+{
+    float out[10];
+    VectorNegate(out, ramp, 10);
+    for (unsigned i = 0; i < 10; ++i)
+    {
+        ASSERT_FLOAT_EQ(-ramp[i], out[i]);
+    }
+}
+
 
 TEST(DSPSingle, TestVectorVectorAdd)
 {
@@ -90,9 +140,22 @@ TEST(DSPSingle, TestVectorScalarMultiply)
     }
 }
 
-TEST(DSPSingle, TestConvolve)
+
+TEST(DSPSingle, TestVectorPower)
 {
     float out[10];
+    VectorPower(out, ramp, 2.0, 10);
+    for (unsigned i = 0; i < 10; ++i)
+    {
+        ASSERT_FLOAT_EQ(powf(ramp[i], 2.0), out[i]);
+    }
+}
+
+
+
+TEST(DSPSingle, TestConvolve)
+{
+    float out[121];
     float in1[5] =
     {
         0.0, 0.5, 1.0, 0.5, 0.0
@@ -175,6 +238,55 @@ TEST(DSPDouble, TestCopyBuffer)
     }
 }
 
+
+TEST(DSPDouble, TestSplitToInterleaved)
+{
+    double out[10];
+    double real[5] = {rampD[0], rampD[2], rampD[4], rampD[6], rampD[8]};
+    double imag[5] = {rampD[1], rampD[3], rampD[5], rampD[7], rampD[9]};
+    SplitToInterleavedD(out, real, imag, 5);
+    
+    for (unsigned i = 0; i < 10; ++i)
+    {
+        ASSERT_DOUBLE_EQ(rampD[i], out[i]);
+    }
+}
+
+
+TEST(DSPDouble , TestInterleavedToSplit)
+{
+    double real[5];
+    double imag[5];
+    InterleavedToSplitD(real, imag, rampD, 5);
+    
+    for (unsigned i = 0; i < 5; ++i)
+    {
+        ASSERT_FLOAT_EQ(rampD[2 * i], real[i]);
+        ASSERT_FLOAT_EQ(rampD[2 * i + 1], imag[i]);
+    }
+}
+
+TEST(DSPDouble, TestVectorAbs)
+{
+    double out[10];
+    VectorAbsD(out, rampD, 10);
+    for (unsigned i = 0; i < 10; ++i)
+    {
+        ASSERT_FLOAT_EQ(fabs(rampD[i]), out[i]);
+    }
+}
+
+TEST(DSPDouble, TestVectorNegate)
+{
+    double out[10];
+    VectorNegateD(out, rampD, 10);
+    for (unsigned i = 0; i < 10; ++i)
+    {
+        ASSERT_FLOAT_EQ(-rampD[i], out[i]);
+    }
+}
+
+
 TEST(DSPDouble, TestVectorVectorAdd)
 {
     double out[10];
@@ -218,6 +330,16 @@ TEST(DSPDouble, TestVectorScalarMultiply)
     }
 }
 
+
+TEST(DSPDouble, TestVectorPower)
+{
+    double out[10];
+    VectorPowerD(out, rampD, 2.0, 10);
+    for (unsigned i = 0; i < 10; ++i)
+    {
+        ASSERT_DOUBLE_EQ(pow(rampD[i], 2.0), out[i]);
+    }
+}
 
 TEST(DSPDouble, TestConvolve)
 {

@@ -21,8 +21,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-#pragma mark Sample Type Conversion
+//#undef __APPLE__
+#pragma mark - Sample Type Conversion
 /** Convert an array of float samples to 16-bit signed
 * @details Converts array of floating point samples in [-1, 1] to signed 16-bit 
  * samples
@@ -61,7 +61,7 @@ FloatToDouble(double* dest, const float* src, unsigned length);
     
     
     
-#pragma mark Fill Buffer
+#pragma mark - Fill Buffer
 /** Fill an array with a given value
  * @details Fill the passed array with the value passed in as value. Uses
  * a vectorized implementation if available.
@@ -78,7 +78,7 @@ Error_t
 FillBufferD(double *dest, unsigned length, double value);
     
     
-#pragma mark Clear Buffer
+#pragma mark - Clear Buffer
 /** Set array to zero
  * @details Fill the passed array with zeros.
  *
@@ -94,7 +94,7 @@ Error_t
 ClearBufferD(double *dest, unsigned length);
 
     
-#pragma mark Copy Buffer
+#pragma mark - Copy Buffer
 /** Copy an array
  * @details copy an array from src to dest
  *
@@ -110,7 +110,63 @@ CopyBuffer(float* dest, const float* src, unsigned length);
 Error_t
 CopyBufferD(double* dest, const double* src, unsigned length);
 
-#pragma mark Vector Absolute Value
+    
+#pragma mark - Split <-> Interleaved conversion
+/** Split To Interleaved Complex Vector conversion
+ *
+ * @details Convert `length` complex values from split to interleaved-complex
+ *  format
+ * @code
+ *      dest[i] = real[i], dest[i+1] = imag[i]| i = [0 : 2 : length]
+ * @endcode
+ *
+ * @param dest          Interleaved complex destination buffer
+ * @param real          Buffer of real values
+ * @param imag          Buffer of imaginary values
+ * @param length        Number of complex values to convert
+ * @return              Error code.
+ */
+Error_t
+SplitToInterleaved(float*       dest,
+                   const float* real,
+                   const float* imag,
+                   unsigned     length);
+    
+    
+Error_t
+SplitToInterleavedD(double*         dest,
+                    const double*   real,
+                    const double*   imag,
+                    unsigned        length);
+
+/** Interleaved to split Complex Vector conversion
+ *
+ * @details Convert `length` complex values from interleaved to split-complex
+ *  format
+ * @code
+ *      real[i] = input[2*i], imag[i] = input[2*i + 1] | i = [0 - length]
+ * @endcode
+ *
+ * @param real          Destination buffer for real values
+ * @param imag          Destination buffer for imaginary values
+ * @param input         Interleaved complex input buffer
+ * @param length        Number of complex values to convert
+ * @return              Error code.
+ */
+Error_t
+InterleavedToSplit(float*       real,
+                   float*       imag,
+                   const float* input,
+                   unsigned     length);
+    
+Error_t
+InterleavedToSplitD(double*         real,
+                    double*         imag,
+                    const double*   input,
+                    unsigned        length);
+    
+    
+#pragma mark - Vector Absolute Value
 /** Vector Absolute Value
  * @details Calculate absolute value of elements in in1 and write the
  * results to dest:
@@ -130,7 +186,7 @@ Error_t
 VectorAbsD(double *dest, const double *in, unsigned length);
 
 
-#pragma mark Vector Negation
+#pragma mark - Vector Negation
 /** Negate a vector
  * @details Negate every element in in and write the
  * results to dest:
@@ -154,7 +210,7 @@ VectorNegateD(double        *dest,
               unsigned      length);
 
 
-#pragma mark Vector Addition
+#pragma mark - Vector Addition
 /** Add two buffers
  * @details Add values in in1  to values in in2 element-by-element and write 
  * results to dest:
@@ -208,7 +264,7 @@ VectorScalarAddD(double         *dest,
                  unsigned       length);
 
     
-#pragma mark Vector Multiplication
+#pragma mark - Vector Multiplication
 /** Multiply two buffers
  * @details Multiply values in in1 by values in in2 element by element and write
  * results to dest:
@@ -263,7 +319,7 @@ VectorScalarMultiplyD(double        *dest,
                       unsigned      length);
 
 
-#pragma mark Vector Power
+#pragma mark - Vector Power
 /** Raise elements of vector to a power
  * @details Raise values in in to power of 'power' and write results to dest:
  * @code
@@ -284,7 +340,7 @@ VectorPowerD(double* dest, const double* in, double power, unsigned length);
     
     
     
-#pragma mark Convolution
+#pragma mark - Convolution
 /** Perform Convolution *
  * @details convolve in1 with in2 and write results to dest
  * @param in1           First input to convolve.

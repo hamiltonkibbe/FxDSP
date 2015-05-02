@@ -218,14 +218,45 @@ OnePoleProcessD(OnePoleD*   filter,
 /* OnePoleFilterTick ***************************************************/
 float
 OnePoleTick(OnePole*    filter,
-              float         inSample)
+            float       inSample)
 {
     return  filter->y1 = inSample * filter->a0 + filter->y1 * filter->b1;
 }
 
 double
 OnePoleTickD(OnePoleD*  filter,
-               double       inSample)
+             double     inSample)
 {
     return  filter->y1 = inSample * filter->a0 + filter->y1 * filter->b1;
+}
+
+
+/*******************************************************************************
+ OnePoleAlpha */
+
+float
+OnePoleAlpha(OnePole* filter)
+{
+    return filter->a0;
+}
+
+double
+OnePoleAlphaD(OnePoleD* filter)
+{
+    return filter->a0;
+}
+
+/*******************************************************************************
+ OnePoleBeta */
+
+float
+OnePoleBeta(OnePole* filter)
+{
+    return filter->b1;
+}
+
+double
+OnePoleBetaD(OnePoleD* filter)
+{
+    return filter->b1;
 }
