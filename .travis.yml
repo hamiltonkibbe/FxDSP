@@ -3,7 +3,7 @@ language: c
 install:
   - sudo apt-get update -qq
   - sudo apt-get install --upgrade -y -qq libfftw3-dev cmake
-  - pip install cpp-coveralls
+  - sudo pip install cpp-coveralls
 
 env:
   global:
