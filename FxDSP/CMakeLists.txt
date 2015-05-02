@@ -76,7 +76,6 @@ COMMAND [ -d coverage ] && rm -rf coverage/ || echo "No folder"
 COMMAND mkdir coverage
 COMMAND make test
 COMMAND cp CMakeFiles/FxDSP.dir/src/*.gcno coverage/
+COMMAND cp CMakeFiles/FxDSP.dir/src/*.o coverage/
 COMMAND mv CMakeFiles/FxDSP.dir/src/*.gcda coverage/
-#COMMAND cd Coverage && lcov -t "result" -o cppagent_coverage.info -c -d .
-#COMMAND cd Coverage && genhtml -o coverage cppagent_coverage.info
 )
