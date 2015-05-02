@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 Hamilton Kibbe. All rights reserved.
 //
 
-#include "gtest/gtest.h"
 #include "TestFIRFilter.h"
 #include "FIRFilter.h"
 #include "Signals.h"
+#include <gtest/gtest.h>
 
 #define EPSILON (0.000001)
 

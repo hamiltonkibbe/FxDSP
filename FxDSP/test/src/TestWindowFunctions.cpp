@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 Hamilton Kibbe. All rights reserved.
 //
 
-#include "gtest/gtest.h"
 #include "TestWindowFunctions.h"
 #include "WindowFunction.h"
 #include "Dsp.h"
 #include "Signals.h"
+#include <gtest/gtest.h>
 
 #define EPSILON (0.000001)
 

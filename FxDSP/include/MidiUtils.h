@@ -12,12 +12,13 @@
 #define MIDIUTILS_H
 
 //includes
+#include "Utilities.h"
 #include <math.h>
-
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 
 static inline float
 midiNoteToFrequency(unsigned note)

@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 Hamilton Kibbe. All rights reserved.
 //
 
-#include "gtest/gtest.h"
 #include "RBJFilter.h"
 #include "TestRBJFilter.h"
 #include "Signals.h"
 #include "Dsp.h"
+#include <gtest/gtest.h>
 
 #define EPSILON (0.00001)
 

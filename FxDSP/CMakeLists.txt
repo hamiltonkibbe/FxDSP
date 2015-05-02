@@ -14,18 +14,18 @@ SET (CMAKE_C_FLAGS "-std=c99")
 ADD_DEFINITIONS(-D_XOPEN_SOURCE)
 
 IF ((USE_FFTW_FFT) OR ($ENV{USE_FFTW_FFT}))
-MESSAGE ("Using FFTW3 for FFT")
+MESSAGE ("-- Using FFTW3 for FFT")
 ADD_DEFINITIONS(-DUSE_FFTW_FFT)
 
 FIND_PATH (FFTW_INCLUDE_DIR fftw3.h /usr/include /usr/local/include)
 FIND_LIBRARY(FFTW3_LIB NAMES libfftw3.a fftw3)
 FIND_LIBRARY(FFTW3F_LIB NAMES libfftw3f.a fftw3f)
-MESSAGE ("Found Accelerate framework at ${FFTW3_LIB}")
+MESSAGE ("-- Found Accelerate framework at ${FFTW3_LIB}")
 ENDIF ((USE_FFTW_FFT) OR ($ENV{USE_FFTW_FFT}))
 
 
 IF ((USE_OOURA_FFT) OR ($ENV{USE_OOURA_FFT}))
-MESSAGE ("Using Ooura fallback for FFT")
+MESSAGE ("-- Using Ooura fallback for FFT")
 ADD_DEFINITIONS(-DUSE_OOURA_FFT)
 ENDIF ((USE_OOURA_FFT) OR ($ENV{USE_OOURA_FFT}))
 
@@ -38,7 +38,7 @@ IF (APPLE AND ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
                /System/Library/Frameworks/vecLib.framework/Versions/A/Headers/ )
     FIND_LIBRARY (ACCELERATE_FRAMEWORK Accelerate )
     #    MARK_AS_ADVANCED (ACCELERATE_FRAMEWORK ACCELERATE_INCLUDE_DIR)
-    MESSAGE ("Found Accelerate framework at ${ACCELERATE_FRAMEWORK}") 
+    MESSAGE ("-- Found Accelerate framework at ${ACCELERATE_FRAMEWORK}") 
     # Add Accelerate to project
     INCLUDE_DIRECTORIES (${ACCELERATE_INCLUDE_DIR})
     SET (ACCELERATE_LIB "${ACCELERATE_FRAMEWORK}")
@@ -46,8 +46,8 @@ IF (APPLE AND ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     
 ENDIF (APPLE AND ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
-set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -g -O0 -Wall -W -fprofile-arcs -ftest-coverage")
-#set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -O0 -Wall -W -Wshadow -Wunused-variable -Wunused-parameter -Wunused-function -Wunused -Wno-system-headers -Wno-deprecated -Woverloaded-virtual -Wwrite-strings -fprofile-arcs -ftest-coverage")
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -g -O0 -W -Wall -fprofile-arcs -ftest-coverage")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -W -O0 -Wall -fprofile-arcs -ftest-coverage")
 SET(CMAKE_SHARED_LINKER_FLAGS="-fprofile-arcs -ftest-coverage")
 
 
@@ -71,11 +71,12 @@ INSTALL (DIRECTORY "${PROJECT_SOURCE_DIR}/include/"
          FILES_MATCHING PATTERN "*.h")
 
 
-add_custom_target (test-coverage
+ADD_CUSTOM_TARGET (NAME test-coverage
+COMMAND make test
 COMMAND [ -d coverage ] && rm -rf coverage/ || echo "No folder"
 COMMAND mkdir coverage
-COMMAND make test
 COMMAND cp CMakeFiles/FxDSP.dir/src/*.gcno coverage/
 COMMAND cp CMakeFiles/FxDSP.dir/src/*.o coverage/
 COMMAND mv CMakeFiles/FxDSP.dir/src/*.gcda coverage/
+DEPENDS test 
 )

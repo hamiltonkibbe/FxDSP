@@ -8,7 +8,23 @@
  */
 
 #include "Utilities.h"
-#include <math.h>
+
+/* Define log2 and log2f for MSVC */
+#ifdef _USE_FXDSP_LOG
+
+double 
+log2(double n)
+{
+	return log(n) / M_LOG2;
+}
+
+float 
+log2f(float n)
+{
+	return logf(n) / (float)M_LOG2;
+}
+
+#endif
 
 
 /* 32 bit "pointer cast" union */

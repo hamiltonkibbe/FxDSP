@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 Hamilton Kibbe. All rights reserved.
 //
 
-#include "gtest/gtest.h"
 #include "TestOnePole.h"
 #include "OnePole.h"
 #include "Dsp.h"
 #include "Signals.h"
+#include <gtest/gtest.h>
 
 
 TEST(OnePoleSingle, TestLPCoefficientCalculation)

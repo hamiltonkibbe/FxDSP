@@ -7,6 +7,9 @@
 #ifndef UTILITIES_H
 #define UTILITIES_H
 
+#include <math.h>
+
+
 /* Scalar for converting int to float samples (1/32768.0) */
 #define INT16_TO_FLOAT_SCALAR (0.000030517578125f)
 
@@ -40,6 +43,22 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+/* Define log2 and log2f for MSVC */
+#if !defined(log2) || !defined(log2f)
+#define _USE_FXDSP_LOG
+
+static const double M_LOG2 = log(2.);
+
+double 
+log2(double n);
+
+float 
+log2f(float n);
+
+#endif
+
+
 
 /**  Find the nearest power of two
  * @details     Fast fabs() implementation

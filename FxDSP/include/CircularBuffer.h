@@ -28,8 +28,7 @@ typedef struct CircularBufferD CircularBufferD;
  *
  * @param length		The number of elements in the circular buffer
  */
-CircularBuffer* 
-CircularBufferInit(unsigned length);
+CircularBuffer*  CircularBufferInit(unsigned length);
 
 CircularBufferD*
 CircularBufferInitD(unsigned length);

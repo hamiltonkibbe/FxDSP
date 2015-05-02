@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 Hamilton Kibbe. All rights reserved.
 //
 
-#include "gtest/gtest.h"
-#include "Dsp.h"
 #include "Signals.h"
 #include "TestFIRFilter.h"
-#include "Utilities.h"
+#include <Dsp.h>
+#include <Utilities.h>
+#include <gtest/gtest.h>
 
 
 TEST(DSPSingle, TestFillBuffer)

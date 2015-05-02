@@ -6,8 +6,9 @@
 //  Copyright (c) 2015 Hamilton Kibbe. All rights reserved.
 //
 
-#include "gtest/gtest.h"
-#include "CircularBuffer.h"
+#include <CircularBuffer.h>
+#include <gtest/gtest.h>
+
 
 #pragma mark Single-Precision Tests
 TEST(CircularBufferSingle, TestWriteRead)

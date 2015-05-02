@@ -6,10 +6,12 @@
 //  Copyright (c) 2015 Hamilton Kibbe. All rights reserved.
 //
 
-#include "gtest/gtest.h"
+#define _USE_MATH_DEFINES
 #include "testFFT.h"
 #include "FFT.h"
 #include "Dsp.h"
+#include <gtest/gtest.h>
+#include <cmath>
 
 #define EPSILON (0.00001)
 
