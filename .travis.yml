@@ -3,7 +3,7 @@ language: c
 install:
   - sudo apt-get update -qq
   - sudo apt-get install --upgrade -y -qq libfftw3-dev cmake
-  - sudo pip install cpp-coveralls
+  - pip install cpp-coveralls
 
 env:
   global:
@@ -13,7 +13,7 @@ env:
     - USE_OOURA_FFT=1
 
 script:
-  - mkdir build && cd build && cmake ../FxDSP && make && make test-coverage
+  - mkdir build && cd build && -DCMAKE_BUILD_TYPE=Debug cmake ../FxDSP && make && make test-coverage
 
 after_success:
   - coveralls -i coverage/
