@@ -78,5 +78,4 @@ COMMAND mkdir coverage
 COMMAND cp CMakeFiles/FxDSP.dir/src/*.gcno coverage/
 COMMAND cp CMakeFiles/FxDSP.dir/src/*.o coverage/
 COMMAND mv CMakeFiles/FxDSP.dir/src/*.gcda coverage/
-DEPENDS test 
 )
