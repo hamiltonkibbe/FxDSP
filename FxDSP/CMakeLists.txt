@@ -71,7 +71,7 @@ INSTALL (DIRECTORY "${PROJECT_SOURCE_DIR}/include/"
          FILES_MATCHING PATTERN "*.h")
 
 
-ADD_CUSTOM_TARGET (NAME test-coverage
+ADD_CUSTOM_TARGET (test-coverage
 COMMAND make test
 COMMAND [ -d coverage ] && rm -rf coverage/ || echo "No folder"
 COMMAND mkdir coverage
