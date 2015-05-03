@@ -8,9 +8,57 @@
 
 #include "Signals.h"
 #include "TestFIRFilter.h"
-#include <Dsp.h>
-#include <Utilities.h>
+#include "Dsp.h"
+#include "Utilities.h"
 #include <gtest/gtest.h>
+
+
+TEST(DSP, FloatDoubleConversion)
+{
+    float in[10] = {1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0};
+    double out[10];
+    float fout[10];
+    
+    FloatToDouble(out, in, 10);
+    for (unsigned i = 0; i < 10; ++i)
+    {
+        ASSERT_DOUBLE_EQ((double)in[i], out[i]);
+    }
+    
+    DoubleToFloat(fout, out, 10);
+    for (unsigned i = 0; i < 10; ++i)
+    {
+        ASSERT_FLOAT_EQ(in[i], fout[i]);
+    }
+}
+
+TEST(DSPSingle, FloatIntConversion)
+{
+    short out[10];
+    float in[10] = {1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0};
+    
+    FloatBufferToInt16(out, in, 10);
+    
+    for (unsigned i = 0; i < 5; i+=2)
+    {
+        ASSERT_EQ(32767, out[i]);
+        ASSERT_EQ(-32767, out[i+1]);
+    }
+}
+
+TEST(DSPSingle, IntFloatConversion)
+{
+    float out[10];
+    short in[10] = {32767, -32767, 32767, -32767, 32767, -32767, 32767, -32767, 32767, -32767};
+    
+    Int16BufferToFloat(out, in, 10);
+    
+    for (unsigned i = 0; i < 5; i+=2)
+    {
+        ASSERT_FLOAT_EQ(1.0, out[i]);
+        ASSERT_FLOAT_EQ(-1.0, out[i+1]);
+    }
+}
 
 
 TEST(DSPSingle, TestFillBuffer)
@@ -179,6 +227,19 @@ TEST(DSPSingle, TestConvolve)
     }
 }
 
+TEST(DSPSingle, TestDBConversion)
+{
+    float out[5];
+    float in[5] = {1.0, 0.5, 0.25, 0.125, 0.0625};
+    float expected[5] = {0.0, -6.0206003, -12.041201, -18.061801, -24.082401};
+    VectorDbConvert(out, in, 1, 5);
+    for (unsigned i = 0; i < 5; ++i)
+    {
+        ASSERT_FLOAT_EQ(expected[i], out[i]);
+    }
+}
+
+
 TEST(DSPSingle, TestComplexMultiply)
 {
     float re1[10] = {1, 2, 3, 4, 5, -1, -2, -3, -4, -5};
@@ -202,6 +263,37 @@ TEST(DSPSingle, TestComplexMultiply)
 
 #pragma mark -
 #pragma mark Double Precision Tests
+
+
+TEST(DSPDouble, DoubleIntConversion)
+{
+    short out[10];
+    double in[10] = {1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0};
+    
+    DoubleBufferToInt16(out, in, 10);
+    
+    for (unsigned i = 0; i < 5; i+=2)
+    {
+        ASSERT_EQ(32767, out[i]);
+        ASSERT_EQ(-32767, out[i+1]);
+    }
+}
+
+TEST(DSPDouble, IntDoubleConversion)
+{
+    double out[10];
+    short in[10] = {32767, -32767, 32767, -32767, 32767, -32767, 32767, -32767, 32767, -32767};
+    
+    Int16BufferToDouble(out, in, 10);
+    
+    for (unsigned i = 0; i < 5; i+=2)
+    {
+        ASSERT_DOUBLE_EQ(1.0, out[i]);
+        ASSERT_DOUBLE_EQ(-1.0, out[i+1]);
+    }
+}
+
+
 
 TEST(DSPDouble, TestFillBuffer)
 {

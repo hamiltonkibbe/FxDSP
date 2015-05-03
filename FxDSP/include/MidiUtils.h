@@ -11,26 +11,18 @@
 #ifndef MIDIUTILS_H
 #define MIDIUTILS_H
 
-//includes
-#include "Utilities.h"
-#include <math.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+float
+midiNoteToFrequency(unsigned note);
 
-static inline float
-midiNoteToFrequency(unsigned note)
-{
-    return powf(2.0, ((note - 69.0)/12.)) * 440.0;
-}
 
-static inline unsigned
-frequencyToMidiNote(float f)
-{
-    return (unsigned)(69 + (12 * log2f(f / 440.0)));
-}
+unsigned
+frequencyToMidiNote(float f);
+
 
 #ifdef __cplusplus
 }

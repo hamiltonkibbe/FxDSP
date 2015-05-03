@@ -28,6 +28,9 @@
 		376CF37E1ADB747D001486B7 /* libfftw3f.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 376CF37D1ADB747D001486B7 /* libfftw3f.3.dylib */; };
 		376CF3801ADB7492001486B7 /* libfftw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 376CF37F1ADB7492001486B7 /* libfftw3.a */; };
 		376CF3821ADB74A0001486B7 /* libfftw3f.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 376CF3811ADB74A0001486B7 /* libfftw3f.a */; };
+		376ED3CA1AF666980054BA36 /* MidiUtils.c in Sources */ = {isa = PBXBuildFile; fileRef = 376ED3C91AF666980054BA36 /* MidiUtils.c */; };
+		376ED3CB1AF6672E0054BA36 /* MidiUtils.c in Sources */ = {isa = PBXBuildFile; fileRef = 376ED3C91AF666980054BA36 /* MidiUtils.c */; };
+		376ED3CE1AF6683E0054BA36 /* TestRMS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 376ED3CC1AF667B80054BA36 /* TestRMS.cpp */; };
 		3775E0801AD4EF3B00930665 /* Signals.h in Headers */ = {isa = PBXBuildFile; fileRef = 3775E0771AD4EF3B00930665 /* Signals.h */; };
 		3775E0811AD4EF3B00930665 /* TestBiquadFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3775E0781AD4EF3B00930665 /* TestBiquadFilter.h */; };
 		3775E0821AD4EF3B00930665 /* testFFT.h in Headers */ = {isa = PBXBuildFile; fileRef = 3775E0791AD4EF3B00930665 /* testFFT.h */; };
@@ -274,6 +277,8 @@
 		376CF37D1ADB747D001486B7 /* libfftw3f.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfftw3f.3.dylib; path = ../../../../../usr/local/Cellar/fftw/3.3.4_1/lib/libfftw3f.3.dylib; sourceTree = "<group>"; };
 		376CF37F1ADB7492001486B7 /* libfftw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfftw3.a; path = ../../../../../usr/local/Cellar/fftw/3.3.4_1/lib/libfftw3.a; sourceTree = "<group>"; };
 		376CF3811ADB74A0001486B7 /* libfftw3f.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfftw3f.a; path = ../../../../../usr/local/Cellar/fftw/3.3.4_1/lib/libfftw3f.a; sourceTree = "<group>"; };
+		376ED3C91AF666980054BA36 /* MidiUtils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = MidiUtils.c; path = FxDSP/src/MidiUtils.c; sourceTree = SOURCE_ROOT; };
+		376ED3CC1AF667B80054BA36 /* TestRMS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestRMS.cpp; path = FxDSP/test/src/TestRMS.cpp; sourceTree = SOURCE_ROOT; };
 		3775E0771AD4EF3B00930665 /* Signals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Signals.h; path = FxDSP/test/src/Signals.h; sourceTree = SOURCE_ROOT; };
 		3775E0781AD4EF3B00930665 /* TestBiquadFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestBiquadFilter.h; path = FxDSP/test/src/TestBiquadFilter.h; sourceTree = SOURCE_ROOT; };
 		3775E0791AD4EF3B00930665 /* testFFT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testFFT.h; path = FxDSP/test/src/testFFT.h; sourceTree = SOURCE_ROOT; };
@@ -454,6 +459,7 @@
 				37C030DE1ABB5EBF00ABB47B /* Waveshaper.c */,
 				37C030DF1ABB5EBF00ABB47B /* Wavetable.c */,
 				37C030E01ABB5EBF00ABB47B /* WindowFunction.c */,
+				376ED3C91AF666980054BA36 /* MidiUtils.c */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -489,6 +495,7 @@
 				3775E09E1AD60A5100930665 /* TestWindowFunctions.cpp */,
 				376CF3771ADB56BF001486B7 /* TestFFT.cpp */,
 				376CF3791ADB6849001486B7 /* TestMultibandFilterBank.cpp */,
+				376ED3CC1AF667B80054BA36 /* TestRMS.cpp */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -706,6 +713,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				376ED3CB1AF6672E0054BA36 /* MidiUtils.c in Sources */,
 				3775E09A1AD6075600930665 /* DiodeSaturator.c in Sources */,
 				3775E09B1AD6075600930665 /* PanLaw.c in Sources */,
 				37C0317E1ABB7E3500ABB47B /* BiquadFilter.c in Sources */,
@@ -736,6 +744,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				376ED3CE1AF6683E0054BA36 /* TestRMS.cpp in Sources */,
 				3775E0931AD501DE00930665 /* TestRBJFilter.cpp in Sources */,
 				3775E08B1AD4F1E500930665 /* TestOnePole.cpp in Sources */,
 				37D3CBCD1AD4D74D001E598C /* main.cpp in Sources */,
@@ -754,6 +763,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				376ED3CA1AF666980054BA36 /* MidiUtils.c in Sources */,
 				3775E0991AD6074B00930665 /* DiodeSaturator.c in Sources */,
 				37C030E61ABB5EBF00ABB47B /* FFT.c in Sources */,
 				37C030F01ABB5EBF00ABB47B /* Tape.c in Sources */,

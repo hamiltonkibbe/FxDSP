@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Hamilton Kibbe. All rights reserved.
 //
 
-#include <CircularBuffer.h>
+#include "CircularBuffer.h"
 #include <gtest/gtest.h>
 
 

@@ -10,8 +10,8 @@
 #include <math.h>
 
 
-/* Scalar for converting int to float samples (1/32768.0) */
-#define INT16_TO_FLOAT_SCALAR (0.000030517578125f)
+/* Scalar for converting int to float samples (1/32767.0) */
+#define INT16_TO_FLOAT_SCALAR (0.00003051850947599719f)
 
 /* Limit value v to the range (l, u) */
 #define LIMIT(v,l,u) ((v)<(l)?(l):((v)>(u)?(u):(v)))

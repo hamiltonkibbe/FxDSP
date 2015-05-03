@@ -7,8 +7,8 @@
 //
 
 #include "TestBiquadFilter.h"
-#include <BiquadFilter.h>
-#include <Dsp.h>
+#include "BiquadFilter.h"
+#include "Dsp.h"
 #include <gtest/gtest.h>
 
 TEST(BiquadFilterSingle, TestResultsAgainstMatlab)

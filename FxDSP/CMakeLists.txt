@@ -77,5 +77,13 @@ COMMAND [ -d coverage ] && rm -rf coverage/ || echo "No folder"
 COMMAND mkdir coverage
 COMMAND cp CMakeFiles/FxDSP.dir/src/*.gcno coverage/
 COMMAND cp CMakeFiles/FxDSP.dir/src/*.o coverage/
-COMMAND mv CMakeFiles/FxDSP.dir/src/*.gcda coverage/
+COMMAND mv CMakeFiles/FxDSP.dir/src/*.gcda coverage
+DEPENDS testFxDSP FxDSP FxDSPStatic
+)
+
+ADD_CUSTOM_TARGET(coverage-report
+COMMAND make test-coverage
+COMMAND lcov --capture --directory coverage --output-file coverage/coverage.info
+COMMAND genhtml coverage/coverage.info --output-directory coverage/html
+DEPENDS test-coverage
 )

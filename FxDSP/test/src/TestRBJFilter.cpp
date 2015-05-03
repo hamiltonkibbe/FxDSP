@@ -217,6 +217,27 @@ TEST(RBJFilterSingle, TestSetQ)
 
 
 
+TEST(RBJFilterSingle, TestSetParams)
+{
+    
+    float output[10];
+    ClearBuffer(output, 10);
+    
+    
+    RBJFilter *filter = RBJFilterInit(HIGHPASS, 0, 44100);
+    RBJFilterSetParams(filter, LOWPASS, 3000, 1);
+    RBJFilterProcess(filter, output, ones, 10);
+    RBJFilterFree(filter);
+    
+    for (unsigned i = 0; i < 10; ++i)
+    {
+        ASSERT_NEAR(lowpassOutput[i], output[i], EPSILON);
+    }
+}
+
+
+
+
 #pragma mark -
 #pragma mark Double-Precision Filter Calculation
 TEST(RBJFilterDouble, TestLowpassAgainstMatlab)
@@ -405,4 +426,23 @@ TEST(RBJFilterDouble, TestSetQ)
         ASSERT_NEAR(lowpassOutput[i], output[i], EPSILON);
     }
     
+}
+
+
+TEST(RBJFilterDouble, TestSetParams)
+{
+    
+    double output[10];
+    ClearBufferD(output, 10);
+    
+    
+    RBJFilterD *filter = RBJFilterInitD(HIGHPASS, 0, 44100);
+    RBJFilterSetParamsD(filter, LOWPASS, 3000, 1);
+    RBJFilterProcessD(filter, output, onesD, 10);
+    RBJFilterFreeD(filter);
+    
+    for (unsigned i = 0; i < 10; ++i)
+    {
+        ASSERT_NEAR(lowpassOutputD[i], output[i], EPSILON);
+    }
 }

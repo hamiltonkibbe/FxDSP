@@ -275,7 +275,7 @@ FFTFree(FFTConfig* fft)
         if (fft->split.realp)
         {
             free(fft->split.realp);
-            fft->split2.realp = NULL;
+            fft->split.realp = NULL;
         }
         if (fft->split2.realp)
         {
@@ -313,7 +313,7 @@ FFTFreeD(FFTConfigD* fft)
         if (fft->split.realp)
         {
             free(fft->split.realp);
-            fft->split2.realp = NULL;
+            fft->split.realp = NULL;
         }
         if (fft->split2.realp)
         {

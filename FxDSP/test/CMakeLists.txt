@@ -6,12 +6,12 @@ FIND_PACKAGE(GTest)
 
 
 IF(GTEST_FOUND)
-    MESSAGE("-- Found gtest. Using existing gtest installation")
+    MESSAGE("-- Using existing GTest installation")
     
 ELSE(GTEST_FOUND)
     
     # No existing GTEST installation. Build it here.
-    MESSAGE("-- Couldn't find gtest. Will build gtest from source.")
+    MESSAGE("-- Will build GTest from source.")
     
     # Required stuff to build
     FIND_PACKAGE(Threads REQUIRED)

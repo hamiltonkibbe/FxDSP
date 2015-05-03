@@ -15,6 +15,7 @@
 #include <cblas.h>
 #endif
 
+#undef __APPLE__
 
 /*******************************************************************************
  FloatBufferToInt16 */
@@ -86,7 +87,7 @@ Int16BufferToFloat(float* dest, const signed short* src, unsigned length)
 #ifdef __APPLE__
     // Use the Accelerate framework if we have it
     float temp[length];
-    float scale = -1.0 / (float)INT16_MIN;
+    float scale = 1.0 / (float)INT16_MAX;
     vDSP_vflt16(src,1,temp,1,length);
     vDSP_vsmul(temp, 1, &scale, dest, 1, length);
     
@@ -117,7 +118,7 @@ Int16BufferToDouble(double* dest, const signed short* src, unsigned length)
 #ifdef __APPLE__
     // Use the Accelerate framework if we have it
     double temp[length];
-    double scale = -1.0 / (double)INT16_MIN;
+    double scale = 1.0 / (double)INT16_MAX;
     vDSP_vflt16D(src,1,temp,1,length);
     vDSP_vsmulD(temp, 1, &scale, dest, 1, length);
     
