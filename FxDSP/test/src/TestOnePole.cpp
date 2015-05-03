@@ -64,6 +64,29 @@ TEST(OnePoleSingle, TestLowpassAgainstMatlab)
     }
 }
 
+TEST(OnePoleSingle, TestSetSampleRate)
+{
+    // Set up
+    float output[50];
+    ClearBuffer(output, 50);
+    
+    OnePole *filter = OnePoleInit(25, 500, LOWPASS);
+    OnePoleSetSampleRate(filter, 100);
+    
+    // Process
+    OnePoleProcess(filter, output, MatlabSignal, 50);
+    
+    // Clean up
+    OnePoleFree(filter);
+    
+    // Check results
+    for (unsigned i = 0; i < 50; ++i)
+    {
+        ASSERT_FLOAT_EQ(output[i], MatlabLPOutput[i]);
+    }
+}
+
+
 TEST(OnePoleSingle, TestLowpassTick)
 {
     // Set up
@@ -201,6 +224,28 @@ TEST(OnePoleDouble, TestLowpassAgainstMatlab)
     ClearBufferD(output, 50);
     
     OnePoleD *filter = OnePoleInitD(25, 100, LOWPASS);
+    
+    // Process
+    OnePoleProcessD(filter, output, MatlabSignalD, 50);
+    
+    // Clean up
+    OnePoleFreeD(filter);
+    
+    // Check results
+    for (unsigned i = 0; i < 50; ++i)
+    {
+        ASSERT_FLOAT_EQ(MatlabLPOutputD[i], output[i]);
+    }
+}
+
+TEST(OnePoleDouble, TestSetSampleRate)
+{
+    // Set up
+    double output[50];
+    ClearBufferD(output, 50);
+    
+    OnePoleD *filter = OnePoleInitD(25, 500, LOWPASS);
+    OnePoleSetSampleRateD(filter, 100);
     
     // Process
     OnePoleProcessD(filter, output, MatlabSignalD, 50);

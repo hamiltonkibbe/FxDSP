@@ -9,7 +9,9 @@
 #include "TestFIRFilter.h"
 #include "FIRFilter.h"
 #include "Signals.h"
+#include "Dsp.h"
 #include <gtest/gtest.h>
+
 
 #define EPSILON (0.000001)
 
@@ -108,6 +110,38 @@ TEST(FIRFilterSingle, TestOverlapAdd)
 }
 
 
+TEST(FIRFilterSingle, TestUpdateKernel)
+{
+    float kernel[22];
+    float output[100];
+    ClearBuffer(kernel, 22);
+    
+    // Set up
+    FIRFilter *theFilter = FIRFilterInit(kernel, 22, DIRECT);
+    
+    // Process
+    FIRFilterProcess(theFilter, output, MatlabSignal, 100);
+    
+    // Check results
+    for (unsigned i = 0; i < 100; ++i)
+    {
+        ASSERT_NEAR(0, output[i], EPSILON);
+    }
+    
+    FIRFilterUpdateKernel(theFilter, MatlabFilter);
+    FIRFilterProcess(theFilter, output, MatlabSignal, 100);
+    
+    // Check results
+    for (unsigned i = 0; i < 100; ++i)
+    {
+        ASSERT_NEAR(MatlabLowpassOutput[i], output[i], EPSILON);
+    }
+
+    
+    // Tear down
+    FIRFilterFree(theFilter);
+}
+
 
 
 
@@ -198,6 +232,41 @@ TEST(FIRFilterDouble, TestOverlapAdd)
             ASSERT_NEAR(MatlabLowpassOutputD[i], output[i], EPSILON);
         }
         FIRFilterFlushD(theFilter);
+    }
+    
+    // Tear down
+    FIRFilterFreeD(theFilter);
+}
+
+
+TEST(FIRFilterDouble, TestUpdateKernel)
+{
+    double kernel[22];
+    double output[100];
+    
+    ClearBufferD(kernel, 22);
+    
+    // Set up
+    FIRFilterD *theFilter = FIRFilterInitD(kernel, 22, DIRECT);
+    
+    // Process
+    FIRFilterProcessD(theFilter, output, MatlabSignalD,100);
+    
+    // Check results
+    for (unsigned i = 0; i < 100; ++i)
+    {
+        ASSERT_NEAR(0, output[i], EPSILON);
+    }
+    
+    
+    FIRFilterUpdateKernelD(theFilter, MatlabFilterD);
+    // Process
+    FIRFilterProcessD(theFilter, output, MatlabSignalD,100);
+    
+    // Check results
+    for (unsigned i = 0; i < 100; ++i)
+    {
+        ASSERT_NEAR(MatlabLowpassOutputD[i], output[i], EPSILON);
     }
     
     // Tear down

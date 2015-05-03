@@ -48,7 +48,6 @@ extern "C" {
 #if !defined(log2) || !defined(log2f)
 #define _USE_FXDSP_LOG
 
-static const double M_LOG2 = log(2.);
 
 double 
 log2(double n);

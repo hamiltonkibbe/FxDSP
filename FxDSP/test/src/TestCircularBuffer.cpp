@@ -18,6 +18,7 @@ TEST(CircularBufferSingle, TestWriteRead)
     CircularBuffer *buffer = CircularBufferInit(7);
     CircularBufferWrite(buffer, data, 4);
     CircularBufferRead(buffer, out, 4);
+    CircularBufferFree(buffer);
     
     for (unsigned i = 0; i < 4; ++i)
     {
@@ -33,6 +34,7 @@ TEST(CircularBufferSingle, TestMultiWriteRead)
     CircularBufferWrite(buffer, data, 2);
     CircularBufferWrite(buffer, data + 2, 2);
     CircularBufferRead(buffer, out, 4);
+    CircularBufferFree(buffer);
     
     for (unsigned i = 0; i < 4; ++i)
     {
@@ -51,6 +53,7 @@ TEST(CircularBufferSingle, TestWrap)
     CircularBufferRead(buffer, out, 4);
     CircularBufferRead(buffer, out, 4);
     CircularBufferRead(buffer, out, 4);
+    CircularBufferFree(buffer);
     
     for (unsigned i = 0; i < 4; ++i)
     {
@@ -65,6 +68,7 @@ TEST(CircularBufferSingle, TestFlush)
     CircularBuffer *buffer = CircularBufferInit(7);
     CircularBufferWrite(buffer, data, 4);
     CircularBufferFlush(buffer);
+    CircularBufferFree(buffer);
     
     for (unsigned i = 0; i < 4; ++i)
     {
@@ -80,6 +84,8 @@ TEST(CircularBufferDouble, TestWriteRead)
     CircularBufferD *buffer = CircularBufferInitD(7);
     CircularBufferWriteD(buffer, data, 4);
     CircularBufferReadD(buffer, out, 4);
+    CircularBufferFreeD(buffer);
+    
     
     for (unsigned i = 0; i < 4; ++i)
     {
@@ -95,6 +101,7 @@ TEST(CircularBufferDouble, TestMultiWriteRead)
     CircularBufferWriteD(buffer, data, 2);
     CircularBufferWriteD(buffer, data + 2, 2);
     CircularBufferReadD(buffer, out, 4);
+    CircularBufferFreeD(buffer);
     
     for (unsigned i = 0; i < 4; ++i)
     {
@@ -113,6 +120,8 @@ TEST(CircularBufferDouble, TestWrap)
     CircularBufferReadD(buffer, out, 4);
     CircularBufferReadD(buffer, out, 4);
     CircularBufferReadD(buffer, out, 4);
+    CircularBufferFreeD(buffer);
+    
     
     for (unsigned i = 0; i < 4; ++i)
     {
@@ -127,6 +136,8 @@ TEST(CircularBufferDouble, TestFlush)
     CircularBufferD *buffer = CircularBufferInitD(7);
     CircularBufferWriteD(buffer, data, 4);
     CircularBufferFlushD(buffer);
+    CircularBufferFreeD(buffer);
+    
     
     for (unsigned i = 0; i < 4; ++i)
     {

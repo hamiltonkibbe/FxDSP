@@ -15,13 +15,13 @@
 double 
 log2(double n)
 {
-	return log(n) / M_LOG2;
+	return log(n) / M_LN2;
 }
 
 float 
 log2f(float n)
 {
-	return logf(n) / (float)M_LOG2;
+	return logf(n) / (float)M_LN2;
 }
 
 #endif

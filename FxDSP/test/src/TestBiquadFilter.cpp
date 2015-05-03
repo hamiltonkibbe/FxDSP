@@ -31,6 +31,31 @@ TEST(BiquadFilterSingle, TestResultsAgainstMatlab)
     }
 }
 
+
+TEST(BiquadFilterSingle, TestTick)
+{
+    // Set up
+    float output[10];
+    ClearBuffer(output, 10);
+    BiquadFilter *filter = BiquadFilterInit(b, a);
+    
+    for (unsigned i = 0; i < 10; ++i)
+    {;
+        output[i] = BiquadFilterTick(filter, input[i]);
+    }
+    
+    // Clean up
+    BiquadFilterFree(filter);
+    
+    // Check results
+    for (unsigned i = 0; i < 10; ++i)
+    {
+        
+        ASSERT_NEAR(output[i], MatlabOutput[i], 0.00001);
+    }
+}
+
+
 TEST(BiquadFilterSingle, TestOverlaps)
 {
     // Set up
@@ -73,6 +98,31 @@ TEST(BiquadFilterDouble, TestResultsAgainstMatlab)
         ASSERT_NEAR(output[i], MatlabOutputD[i], 0.00001);
     }
 }
+
+
+TEST(BiquadFilterDouble, TestTick)
+{
+    // Set up
+    double output[10];
+    ClearBufferD(output, 10);
+    BiquadFilterD *filter = BiquadFilterInitD(bD, aD);
+    
+    for (unsigned i = 0; i < 10; ++i)
+    {;
+        output[i] = BiquadFilterTickD(filter, input[i]);
+    }
+    
+    // Clean up
+    BiquadFilterFreeD(filter);
+    
+    // Check results
+    for (unsigned i = 0; i < 10; ++i)
+    {
+        
+        ASSERT_NEAR(output[i], MatlabOutputD[i], 0.00001);
+    }
+}
+
 
 TEST(BiquadFilterDouble, TestOverlaps)
 {

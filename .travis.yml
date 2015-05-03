@@ -3,7 +3,6 @@ language: c
 install:
   - sudo apt-get update -qq
   - sudo apt-get install --upgrade -y -qq libfftw3-dev cmake
-  - sudo pip install cpp-coveralls
 
 env:
   global:
@@ -16,6 +15,8 @@ script:
   - mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Debug ../FxDSP && make && make test-coverage
 
 after_success:
-  - coveralls --verbose -b coverage -r . -i coverage --gcov-options '\-lp'
+  - cd ..
+  - sudo pip install --upgrade pip cpp-coveralls
+  - coveralls --verbose -r . -e doc -e FxDSP/test -e build/test --gcov-options '\-lp'
 
 
