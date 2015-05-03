@@ -16,6 +16,6 @@ script:
   - mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Debug ../FxDSP && make && make test-coverage
 
 after_success:
-  - coveralls -i coverage/
+  - coveralls --verbose -b . -i coverage  -gcov-options '\-lp'
   
 
