@@ -35,10 +35,11 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.intersphinx',
     'sphinx.ext.coverage',
-    #'sphinx.ext.mathjax',
-    'sphinx.ext.pngmath',
+    'sphinx.ext.mathjax',
     'breathe',
 ]
+
+mathjax_path = 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
 
 breathe_projects = { "FxDSP" : os.path.abspath('../doxyxml')}
 breathe_default_project = "FxDSP"
