@@ -22,6 +22,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		373CBAAE1AF71F3F00B488E8 /* TestPanLaw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 373CBAAD1AF71F3F00B488E8 /* TestPanLaw.cpp */; };
+		373CBAB01AF722D600B488E8 /* TestUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 373CBAAF1AF722D600B488E8 /* TestUtilities.cpp */; };
 		376CF3781ADB56BF001486B7 /* TestFFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 376CF3771ADB56BF001486B7 /* TestFFT.cpp */; };
 		376CF37A1ADB6849001486B7 /* TestMultibandFilterBank.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 376CF3791ADB6849001486B7 /* TestMultibandFilterBank.cpp */; };
 		376CF37C1ADB7444001486B7 /* libfftw3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 376CF37B1ADB7444001486B7 /* libfftw3.3.dylib */; };
@@ -271,6 +273,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		373CBAAD1AF71F3F00B488E8 /* TestPanLaw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestPanLaw.cpp; path = FxDSP/test/src/TestPanLaw.cpp; sourceTree = SOURCE_ROOT; };
+		373CBAAF1AF722D600B488E8 /* TestUtilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestUtilities.cpp; path = FxDSP/test/src/TestUtilities.cpp; sourceTree = SOURCE_ROOT; };
 		376CF3771ADB56BF001486B7 /* TestFFT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestFFT.cpp; path = FxDSP/test/src/TestFFT.cpp; sourceTree = SOURCE_ROOT; };
 		376CF3791ADB6849001486B7 /* TestMultibandFilterBank.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestMultibandFilterBank.cpp; path = FxDSP/test/src/TestMultibandFilterBank.cpp; sourceTree = SOURCE_ROOT; };
 		376CF37B1ADB7444001486B7 /* libfftw3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfftw3.3.dylib; path = ../../../../../usr/local/Cellar/fftw/3.3.4_1/lib/libfftw3.3.dylib; sourceTree = "<group>"; };
@@ -496,6 +500,8 @@
 				376CF3771ADB56BF001486B7 /* TestFFT.cpp */,
 				376CF3791ADB6849001486B7 /* TestMultibandFilterBank.cpp */,
 				376ED3CC1AF667B80054BA36 /* TestRMS.cpp */,
+				373CBAAD1AF71F3F00B488E8 /* TestPanLaw.cpp */,
+				373CBAAF1AF722D600B488E8 /* TestUtilities.cpp */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -744,9 +750,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				373CBAB01AF722D600B488E8 /* TestUtilities.cpp in Sources */,
 				376ED3CE1AF6683E0054BA36 /* TestRMS.cpp in Sources */,
 				3775E0931AD501DE00930665 /* TestRBJFilter.cpp in Sources */,
 				3775E08B1AD4F1E500930665 /* TestOnePole.cpp in Sources */,
+				373CBAAE1AF71F3F00B488E8 /* TestPanLaw.cpp in Sources */,
 				37D3CBCD1AD4D74D001E598C /* main.cpp in Sources */,
 				37D3CBD51AD4DCC2001E598C /* TestCircularBuffer.cpp in Sources */,
 				3775E0901AD4F8A500930665 /* TestFIRFilter.cpp in Sources */,
