@@ -180,7 +180,6 @@ DbToAmp(float dB)
 }
 
 
-
 void
 RectToPolar(float real, float imag, float* outMag, float* outPhase)
 {
