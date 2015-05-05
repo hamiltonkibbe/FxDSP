@@ -17,6 +17,6 @@ script:
 after_success:
   - cd ..
   - sudo pip install --upgrade pip cpp-coveralls
-  - coveralls -r . -e doc -e FxDSP/test -e build/test -E build/CMakeFiles/CompilerId* --gcov-options '\-lp'
+  - coveralls -r . -e doc -e FxDSP/test -e build/test -E build/CMakeFiles/CompilerId*/ --gcov-options '\-lp'
 
 
