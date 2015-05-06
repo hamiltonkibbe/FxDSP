@@ -81,3 +81,49 @@ TEST(Utilities, TestExpD)
     }
 }
 
+TEST(Utilities, TestNextPow2)
+{
+    int in[11] = {-2, 2, 3, 6, 12, 30, 33, 127, 129, 500, 1000};
+    int expect[11] = {0, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024};
+    
+    for (unsigned i = 0; i < 10; ++i)
+    {
+        ASSERT_EQ(expect[i], next_pow2(in[i]));
+    }
+}
+
+
+TEST(Utilities, TestPolarRectangularConversion)
+{
+    double mag[10] = {0.0, 0.1, 0.2, 0.3, 0.4, -0.5, -0.6, -0.7, -0.8, -0.9};
+    double phase[10] = {0.9, 0.8, 0.7, -0.6, -0.5, -0.4, -0.3, -0.2, 0.1, 0.0};
+    float real[10];
+    float im[10];
+    double realD[10];
+    double imD[10];
+    
+    for (unsigned i = 0; i < 10; ++i)
+    {
+        PolarToRect((float)mag[i], (float)phase[i], real+i, im+i);
+        PolarToRectD(mag[i], phase[i], realD+i, imD + i);
+    }
+    for (unsigned i = 0; i < 10; ++i)
+    {
+        
+        ASSERT_FLOAT_EQ(mag[i] * cosf(phase[i]), real[i]);
+        ASSERT_FLOAT_EQ(mag[i] * sinf(phase[i]), im[i]);
+        ASSERT_DOUBLE_EQ(mag[i] * cos(phase[i]), realD[i]);
+        ASSERT_DOUBLE_EQ(mag[i] * sin(phase[i]), imD[i]);
+    }
+}
+
+
+TEST(Utilities, TestFastTanh)
+{
+    float in[10] = {-1.0, -0.5, -0.25, -0.125, -0.0625, 0.0625, 0.125, 0.25, 0.5, 1.0};
+    for (unsigned i = 0; i < 10; ++i)
+    {
+        
+        ASSERT_NEAR(tanhf(in[i]), f_tanh(in[i]), 0.0005);
+    }
+}

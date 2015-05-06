@@ -1380,11 +1380,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FxDSP/include/Utilities.h"
-            timestampString = "452490966.942472"
+            timestampString = "452604314.947998"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173">
+            startingLineNumber = "172"
+            endingLineNumber = "172">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

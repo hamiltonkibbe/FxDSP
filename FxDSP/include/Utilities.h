@@ -60,8 +60,7 @@ log2f(float n);
 
 
 /**  Find the nearest power of two
- * @details     Fast fabs() implementation
- * @param f     Value to process
+ * @param x     number to process
  * @return      Absolute value of f.
  */
 int

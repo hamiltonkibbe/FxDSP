@@ -182,8 +182,19 @@ TEST(OnePoleSingle, TestTypeValidation)
     val = OnePoleSetType(filter, ALLPASS);
     ASSERT_EQ(val, VALUE_ERROR);
     
+    val = OnePoleSetType(filter, LOWPASS);
+    ASSERT_EQ(val, NOERR);
+    
+    val = OnePoleSetType(filter, HIGHPASS);
+    ASSERT_EQ(val, NOERR);
+    
+    
     // Clean up
     OnePoleFree(filter);
+    filter = 0;
+    
+    val = OnePoleSetType(filter, HIGHPASS);
+    ASSERT_EQ(val, NULL_PTR_ERROR);
 }
 
 
@@ -354,6 +365,18 @@ TEST(OnePoleDouble, TestTypeValidation)
     val = OnePoleSetTypeD(filter, ALLPASS);
     ASSERT_EQ(val, VALUE_ERROR);
     
+    val = OnePoleSetTypeD(filter, LOWPASS);
+    ASSERT_EQ(val, NOERR);
+    
+    val = OnePoleSetTypeD(filter, HIGHPASS);
+    ASSERT_EQ(val, NOERR);
+    
     // Clean up
     OnePoleFreeD(filter);
+    
+    filter = 0;
+    
+    val = OnePoleSetTypeD(filter, HIGHPASS);
+    ASSERT_EQ(val, NULL_PTR_ERROR);
+    
 }
