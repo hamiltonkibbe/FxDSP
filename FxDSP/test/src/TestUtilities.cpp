@@ -134,6 +134,10 @@ TEST(Utilities, TestRectangularPolarConversion)
         {
             RectToPolar((float)re[i], (float)im[j], &mag, &phase);
             RectToPolarD(re[i], im[j], &magD, &phaseD);
+            if (phase < 0)
+                phase += M_PI;
+            if (phaseD < 0)
+                phase += M_PI;
             ASSERT_FLOAT_EQ(sqrtf(re[i]*re[i] + im[j]*im[j]), mag);
             ASSERT_FLOAT_EQ(atanf(im[j]/re[i]), phase);
             ASSERT_DOUBLE_EQ(sqrt(re[i]*re[i] + im[j]*im[j]), magD);
