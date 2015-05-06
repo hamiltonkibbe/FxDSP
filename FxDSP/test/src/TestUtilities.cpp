@@ -120,7 +120,7 @@ TEST(Utilities, TestPolarRectangularConversion)
 
 TEST(Utilities, TestRectangularPolarConversion)
 {
-    double real[7] = {-1.0, -0.5, -0.25, 0, 0.25, 0.5, 1.0};
+    double re[7] = {-1.0, -0.5, -0.25, 0, 0.25, 0.5, 1.0};
     double im[7] = {-1.0, -0.5, -0.25, 0, 0.25, 0.5, 1.0};
     float mag;
     float phase;
@@ -132,8 +132,8 @@ TEST(Utilities, TestRectangularPolarConversion)
     {
         for (unsigned j = 0; j < 7; ++j)
         {
-            RectToPolar((float)real[i], (float)im[j], mag, phase);
-            RectToPolarD(real[i], im[j], magD, phaseD);
+            RectToPolar((float)re[i], (float)im[j], mag, phase);
+            RectToPolarD(re[i], im[j], magD, phaseD);
             ASSERT_FLOAT_EQ(sqrtf(re[i]*re[i] + im[j]*im[j]), mag);
             ASSERT_FLOAT_EQ(atanf(im[j]/re[i]), phase);
             ASSERT_DOUBLE_EQ(sqrt(re[i]*re[i] + im[j]*im[j]), magD);
