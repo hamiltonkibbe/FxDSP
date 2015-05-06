@@ -118,6 +118,31 @@ TEST(Utilities, TestPolarRectangularConversion)
 }
 
 
+TEST(Utilities, TestRectangularPolarConversion)
+{
+    double real[7] = {-1.0, -0.5, -0.25, 0, 0.25, 0.5, 1.0};
+    double im[7] = {-1.0, -0.5, -0.25, 0, 0.25, 0.5, 1.0};
+    float mag;
+    float phase;
+    double magD;
+    double phaseD;
+    
+    //Try points in all 4 quadrants
+    for (unsigned i = 0; i < 7; ++i)
+    {
+        for (unsigned j = 0; j < 7; ++j)
+        {
+            RectToPolar((float)real[i], (float)im[j], mag, phase);
+            RectToPolarD(real[i], im[j], magD, phaseD);
+            ASSERT_FLOAT_EQ(sqrtf(re[i]*re[i] + im[j]+im[j]), mag);
+            ASSERT_FLOAT_EQ(atanf(im[j]/re[i]), phase);
+            ASSERT_DOUBLE_EQ(sqrt(re[i]*re[i] + im[j]+im[j]), magD);
+            ASSERT_DOUBLE_EQ(atan(im[j]/re[i]), phaseD);
+        }
+    }
+}
+
+
 TEST(Utilities, TestFastTanh)
 {
     float in[10] = {-1.0, -0.5, -0.25, -0.125, -0.0625, 0.0625, 0.125, 0.25, 0.5, 1.0};

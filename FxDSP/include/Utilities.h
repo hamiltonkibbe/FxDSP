@@ -7,6 +7,7 @@
 #ifndef UTILITIES_H
 #define UTILITIES_H
 
+#define _USE_MATH_DEFINES
 #include <math.h>
 
 
