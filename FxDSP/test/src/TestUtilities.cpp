@@ -120,17 +120,17 @@ TEST(Utilities, TestPolarRectangularConversion)
 
 TEST(Utilities, TestRectangularPolarConversion)
 {
-    double re[7] = {-1.0, -0.5, -0.25, 0, 0.25, 0.5, 1.0};
-    double im[7] = {-1.0, -0.5, -0.25, 0, 0.25, 0.5, 1.0};
+    double re[6] = {-1.0, -0.5, -0.25, 0.25, 0.5, 1.0};
+    double im[6] = {-1.0, -0.5, -0.25, 0.25, 0.5, 1.0};
     float mag;
     float phase;
     double magD;
     double phaseD;
     
     //Try points in all 4 quadrants
-    for (unsigned i = 0; i < 7; ++i)
+    for (unsigned i = 0; i < 6; ++i)
     {
-        for (unsigned j = 0; j < 7; ++j)
+        for (unsigned j = 0; j < 6; ++j)
         {
             RectToPolar((float)re[i], (float)im[j], &mag, &phase);
             RectToPolarD(re[i], im[j], &magD, &phaseD);
