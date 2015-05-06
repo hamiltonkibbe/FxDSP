@@ -134,14 +134,14 @@ TEST(Utilities, TestRectangularPolarConversion)
         {
             RectToPolar((float)re[i], (float)im[j], &mag, &phase);
             RectToPolarD(re[i], im[j], &magD, &phaseD);
-            if (phase < 0)
-                phase += M_PI;
-            if (phaseD < 0)
-                phase += M_PI;
-            ASSERT_FLOAT_EQ(sqrtf(re[i]*re[i] + im[j]*im[j]), mag);
-            ASSERT_FLOAT_EQ(atanf(im[j]/re[i]), phase);
-            ASSERT_DOUBLE_EQ(sqrt(re[i]*re[i] + im[j]*im[j]), magD);
-            ASSERT_DOUBLE_EQ(atan(im[j]/re[i]), phaseD);
+            double exp_mag = sqrt(re[i]*re[i] + im[j]*im[j]);
+            double exp_phase = atan(im[j]/re[i]);
+            if (exp_phase < 0)
+                exp_phase += M_PI;
+            ASSERT_FLOAT_EQ((float)exp_mag, mag);
+            ASSERT_FLOAT_EQ((float)exp_phase, phase);
+            ASSERT_DOUBLE_EQ(exp_mag, magD);
+            ASSERT_DOUBLE_EQ(exp_phase, phaseD);
         }
     }
 }
