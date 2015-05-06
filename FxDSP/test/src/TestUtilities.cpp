@@ -134,9 +134,9 @@ TEST(Utilities, TestRectangularPolarConversion)
         {
             RectToPolar((float)real[i], (float)im[j], mag, phase);
             RectToPolarD(real[i], im[j], magD, phaseD);
-            ASSERT_FLOAT_EQ(sqrtf(re[i]*re[i] + im[j]+im[j]), mag);
+            ASSERT_FLOAT_EQ(sqrtf(re[i]*re[i] + im[j]*im[j]), mag);
             ASSERT_FLOAT_EQ(atanf(im[j]/re[i]), phase);
-            ASSERT_DOUBLE_EQ(sqrt(re[i]*re[i] + im[j]+im[j]), magD);
+            ASSERT_DOUBLE_EQ(sqrt(re[i]*re[i] + im[j]*im[j]), magD);
             ASSERT_DOUBLE_EQ(atan(im[j]/re[i]), phaseD);
         }
     }
