@@ -355,8 +355,6 @@
 		37C030DE1ABB5EBF00ABB47B /* Waveshaper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Waveshaper.c; path = FxDSP/src/Waveshaper.c; sourceTree = SOURCE_ROOT; };
 		37C030DF1ABB5EBF00ABB47B /* Wavetable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Wavetable.c; path = FxDSP/src/Wavetable.c; sourceTree = SOURCE_ROOT; };
 		37C030E01ABB5EBF00ABB47B /* WindowFunction.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = WindowFunction.c; path = FxDSP/src/WindowFunction.c; sourceTree = SOURCE_ROOT; };
-		37C031421ABB65EB00ABB47B /* TestRMSEstimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestRMSEstimator.m; path = FxDSP/test/src/TestRMSEstimator.m; sourceTree = SOURCE_ROOT; };
-		37C031431ABB65EB00ABB47B /* TestTapeSaturator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestTapeSaturator.m; path = FxDSP/test/src/TestTapeSaturator.m; sourceTree = SOURCE_ROOT; };
 		37C0317A1ABB7E0200ABB47B /* libFxDSP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFxDSP.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		37CDDD8C1AC9C82F001B96BA /* PanLaw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PanLaw.h; path = FxDSP/include/PanLaw.h; sourceTree = SOURCE_ROOT; };
 		37CDDD8E1AC9C83C001B96BA /* PanLaw.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = PanLaw.c; path = FxDSP/src/PanLaw.c; sourceTree = SOURCE_ROOT; };
@@ -501,8 +499,6 @@
 				3775E07E1AD4EF3B00930665 /* TestRBJFilter.h */,
 				3775E07F1AD4EF3B00930665 /* TestWindowFunctions.h */,
 				37D3CBCB1AD4D747001E598C /* main.cpp */,
-				37C031421ABB65EB00ABB47B /* TestRMSEstimator.m */,
-				37C031431ABB65EB00ABB47B /* TestTapeSaturator.m */,
 				37D3CBBD1AD4D654001E598C /* TestBiquadFilter.cpp */,
 				37D3CBD31AD4DCC2001E598C /* TestCircularBuffer.cpp */,
 				3775E0891AD4F05800930665 /* TestOnePole.cpp */,

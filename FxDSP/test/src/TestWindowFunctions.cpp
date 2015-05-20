@@ -149,6 +149,49 @@ TEST(WindowFunctionSingle, TestCosineWindow)
 }
 
 
+TEST(WindowFunctionSingle, TestLanczosWindowBounds)
+{
+    float out[20];
+    for (unsigned i = 2; i < 20; ++i)
+    {
+        lanczos(i, out);
+        for (unsigned j = 0; j < i; ++j)
+        {
+            ASSERT_TRUE(out[j] <= 1.0);
+        }
+    }
+}
+
+TEST(WindowFunctionSingle, TestBlackmanNuttallWindowBounds)
+{
+    float out[20];
+    for (unsigned i = 2; i < 20; ++i)
+    {
+        blackman_nuttall(i, out);
+        for (unsigned j = 0; j < i; ++j)
+        {
+            ASSERT_TRUE(out[j] <= 1.0);
+        }
+    }
+}
+
+
+TEST(WindowFunctionSingle, TestPoissonWindowBounds)
+{
+    float out[20];
+    for (unsigned i = 2; i < 20; ++i)
+    {
+        for (unsigned j = 1; j < 100; ++j)
+        {
+            poisson(i, j, out);
+            for (unsigned k = 0; k < i; ++k)
+            {
+                ASSERT_TRUE(out[k] <= 1.0);
+            }
+        }
+    }
+}
+
 TEST(WindowFunctionSingle, TestChebyshevWindow)
 {
     float out[10];
@@ -172,7 +215,6 @@ TEST(WindowFunctionSingle, TestWindowFunctionProcess)
         ASSERT_NEAR(matlabHamming[i], output[i], EPSILON);
     }
 }
-
 
 
 #pragma mark -
@@ -311,6 +353,7 @@ TEST(WindowFunctionDouble, TestChebyshevWindow)
     }
 }
 
+/* Need a better way to test these... */
 TEST(WindowFunctionDouble, TestCosineWindow)
 {
     double out[10];
@@ -318,6 +361,50 @@ TEST(WindowFunctionDouble, TestCosineWindow)
     ASSERT_NEAR(0.0, out[0], EPSILON);
     ASSERT_NEAR(1.0, out[4], EPSILON);
     ASSERT_NEAR(0.0, out[8], EPSILON);
+}
+
+TEST(WindowFunctionDouble, TestLanczosWindowBounds)
+{
+    double out[20];
+    for (unsigned i = 2; i < 20; ++i)
+    {
+        lanczosD(i, out);
+        for (unsigned j = 0; j < i; ++j)
+        {
+            ASSERT_TRUE(out[j] <= 1.0);
+        }
+    }
+}
+
+
+TEST(WindowFunctionDouble, TestBlackmanNuttallWindowBounds)
+{
+    double out[20];
+    for (unsigned i = 2; i < 20; ++i)
+    {
+        blackman_nuttallD(i, out);
+        for (unsigned j = 0; j < i; ++j)
+        {
+            ASSERT_TRUE(out[j] <= 1.0);
+        }
+    }
+}
+
+
+TEST(WindowFunctionDouble, TestPoissonWindowBounds)
+{
+    double out[20];
+    for (unsigned i = 2; i < 20; ++i)
+    {
+        for (unsigned j = 1; j < 100; ++j)
+        {
+            poissonD(i, j, out);
+            for (unsigned k = 0; k < i; ++k)
+            {
+                ASSERT_TRUE(out[k] <= 1.0);
+            }
+        }
+    }
 }
 
 
