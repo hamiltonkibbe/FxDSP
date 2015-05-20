@@ -69,9 +69,6 @@ TEST(PanLawSingle, Test6dBPan)
 }
 
 
-
-
-
 TEST(PanLawDouble, TestLinearPan)
 {
     double left = 0.0;
@@ -128,3 +125,4 @@ TEST(PanLawDouble, Test6dBPan)
     ASSERT_DOUBLE_EQ(0.0, left);
     ASSERT_DOUBLE_EQ(1.0, right);
 }
+

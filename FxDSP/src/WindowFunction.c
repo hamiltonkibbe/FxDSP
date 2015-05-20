@@ -580,13 +580,13 @@ Error_t
 poisson(unsigned n, float D, float* dest)
 {
     float term = (n - 1) / 2;
-    float tau= (n / 2) * (8.69 / D);
+    float tau_inv = 1. / ((n / 2) * (8.69 / D));
 
     unsigned buf_idx;
     for (buf_idx = 0; buf_idx < n; ++buf_idx)
     {
 
-        *dest++ = expf(-fabs(buf_idx - term) * (1 / tau));
+        *dest++ = expf(-fabs(buf_idx - term) * tau_inv);
     }
     return NOERR;    
 }
@@ -595,13 +595,13 @@ Error_t
 poissonD(unsigned n, double D, double* dest)
 {
     double term = (n - 1) / 2;
-    double tau= (n / 2) * (8.69 / D);
+    double tau_inv = 1. / ((n / 2) * (8.69 / D));
     
     unsigned buf_idx;
     for (buf_idx = 0; buf_idx < n; ++buf_idx)
     {
         
-        *dest++ = exp(-fabs(buf_idx - term) * (1 / tau));
+        *dest++ = exp(-fabs(buf_idx - term) * tau_inv);
     }
     return NOERR;
 }
@@ -613,24 +613,19 @@ poissonD(unsigned n, double D, double* dest)
 Error_t
 chebyshev(unsigned n, float A, float *dest)
 {
-    float max=0;
+    float max = 0;
     float N = n - 1.0;
     float M = N / 2;
-    if(n % 2 == 0)
-    {
-        M = M + 0.5; /* handle even length windows */
-    }
     float tg = powf(10, A / 20.0);
     float x0 = coshf((1.0 / N) * acoshf(tg));
     
-    unsigned buf_idx;
-    for(buf_idx=0; buf_idx<(n/2+1); ++buf_idx)
+    for(unsigned buf_idx=0; buf_idx<(n/2+1); ++buf_idx)
     {
-        //float y = buf_idx - M;
+        float y = buf_idx - M;
         float sum = 0;
         for(unsigned i=1; i<=M; i++){
             sum += chebyshev_poly(N, x0 * cosf(M_PI * i / n)) *
-            cosf( 2.0 * n * M_PI * i / n);
+            cosf( 2.0 * y * M_PI * i / n);
         }
         dest[buf_idx] = tg + 2 * sum;
         dest[(unsigned)N - buf_idx] = dest[buf_idx];
@@ -640,9 +635,9 @@ chebyshev(unsigned n, float A, float *dest)
         }
     }
     
-    for(buf_idx = 0; buf_idx < n; ++buf_idx)
+    for(unsigned buf_idx = 0; buf_idx < n; ++buf_idx)
     {
-        dest[buf_idx] /= max; /* normalise everything */
+        dest[buf_idx] /= max;
     }
     return NOERR;
 }
@@ -655,20 +650,16 @@ chebyshevD(unsigned n, double A, double *dest)
     double max=0;
     double N = n - 1.0;
     double M = N / 2;
-    if(n % 2 == 0)
-    {
-        M = M + 0.5; /* handle even length windows */
-    }
     double tg = pow(10, A / 20.0);
     double x0 = cosh((1.0 / N) * acosh(tg));
-    
-    unsigned buf_idx;
-    for(buf_idx=0; buf_idx<(n/2+1); ++buf_idx)
+
+    for(unsigned buf_idx=0; buf_idx<(n/2+1); ++buf_idx)
     {
+        double y = buf_idx - M;
         double sum = 0;
         for(unsigned i=1; i<=M; i++){
             sum += chebyshev_polyD(N, x0 * cos(M_PI * i / n)) *
-            cosf( 2.0 * n * M_PI * i / n);
+            cos( 2.0 * y * M_PI * i / n);
         }
         dest[buf_idx] = tg + 2 * sum;
         dest[(unsigned)N - buf_idx] = dest[buf_idx];
@@ -677,10 +668,10 @@ chebyshevD(unsigned n, double A, double *dest)
             max = dest[buf_idx];
         }
     }
-    
-    for(buf_idx = 0; buf_idx < n; ++buf_idx)
+
+    for(unsigned buf_idx = 0; buf_idx < n; ++buf_idx)
     {
-        dest[buf_idx] /= max; /* normalise everything */
+        dest[buf_idx] /= max; 
     }
     return NOERR;
 }

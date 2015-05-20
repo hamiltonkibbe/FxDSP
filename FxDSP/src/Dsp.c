@@ -316,6 +316,47 @@ CopyBufferD(double* dest, const double* src, unsigned length)
 }
 
 
+Error_t
+CopyBufferStride(float*         dest,
+                 unsigned       dest_stride,
+                 const float*   src,
+                 unsigned       src_stride,
+                 unsigned       length)
+{
+#if defined(__APPLE__) || defined(USE_BLAS)
+    // Use the Accelerate framework if we have it
+    cblas_scopy(length, src, src_stride, dest, dest_stride);
+#else
+    for (unsigned i = 0; i < length; ++i)
+    {
+        dest[i * dest_stride] = src[i * src_stride];
+    }
+#endif
+    return NOERR;
+}
+
+
+Error_t
+CopyBufferStrideD(double*       dest,
+                  unsigned      dest_stride,
+                  const double* src,
+                  unsigned      src_stride,
+                  unsigned      length)
+{
+#if defined(__APPLE__) || defined(USE_BLAS)
+    // Use the Accelerate framework if we have it
+    cblas_dcopy(length, src, src_stride, dest, dest_stride);
+#else
+    for (unsigned i = 0; i < length; ++i)
+    {
+        dest[i * dest_stride] = src[i * src_stride];
+    }
+#endif
+    return NOERR;
+}
+
+
+
 /*******************************************************************************
  VectorAbs */
 Error_t
@@ -1133,6 +1174,67 @@ InterleavedToSplitD(double*         real,
         imag[i] = input[i2 + 1];
     }
 
+#endif
+    return NOERR;
+}
+
+
+Error_t
+VectorRectToPolar(float*        magnitude,
+                  float*        phase,
+                  const float*  real,
+                  const float*  imaginary,
+                  unsigned      length)
+{
+#ifdef __APPLE__
+    float dest[2*length];
+    SplitToInterleaved(dest, real, imaginary, length);
+    vDSP_polar(dest, 2, dest, 2, length);
+    InterleavedToSplit(magnitude, phase, dest, length);
+#else
+    unsigned i;
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
+    {
+        RectToPolar(real[i], imaginary[i], &magnitude[i], &phase[i]);
+        RectToPolar(real[i+1], imaginary[i+1], &magnitude[i+1], &phase[i+1]);
+        RectToPolar(real[i+2], imaginary[i+2], &magnitude[i+2], &phase[i+2]);
+        RectToPolar(real[i+3], imaginary[i+3], &magnitude[i+3], &phase[i+3]);
+    }
+    for (i = end; i < length; ++i)
+    {
+        RectToPolar(real[i], imaginary[i], &magnitude[i], &phase[i]);
+    }
+#endif
+    return NOERR;
+}
+
+Error_t
+VectorRectToPolarD(double*          magnitude,
+                   double*          phase,
+                   const double*    real,
+                   const double*    imaginary,
+                   unsigned         length)
+{
+#ifdef __APPLE__
+    double dest[2*length];
+    SplitToInterleavedD(dest, real, imaginary, length);
+    vDSP_polarD(dest, 2, dest, 2, length);
+    InterleavedToSplitD(magnitude, phase, dest, length);
+#else
+    unsigned i;
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
+    {
+        RectToPolarD(real[i], imaginary[i], &magnitude[i], &phase[i]);
+        RectToPolarD(real[i+1], imaginary[i+1], &magnitude[i+1], &phase[i+1]);
+        RectToPolarD(real[i+2], imaginary[i+2], &magnitude[i+2], &phase[i+2]);
+        RectToPolarD(real[i+3], imaginary[i+3], &magnitude[i+3], &phase[i+3]);
+    }
+    for (i = end; i < length; ++i)
+    {
+        RectToPolarD(real[i], imaginary[i], &magnitude[i], &phase[i]);
+    }
 #endif
     return NOERR;
 }

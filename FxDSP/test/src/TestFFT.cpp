@@ -133,6 +133,7 @@ TEST(FFTSingle, TestFFTFilterConvolution)
             ASSERT_NEAR(matlabConvolution[i], dest[i], EPSILON);
         }
     }
+    free(splitcomplex.realp);
 }
 
 
@@ -247,7 +248,7 @@ TEST(FFTDouble, TestFFTFilterConvolution)
         FFT_IR_R2CD(fft, padded, splitcomplex);
         FFTFilterConvolveD(fft, in, 3, splitcomplex, dest);
         FFTFreeD(fft);
-        
+        free(splitcomplex.realp);
         for (unsigned i = 0; i < 15; ++i)
         {
             ASSERT_NEAR(matlabConvolutionD[i], dest[i], EPSILON);

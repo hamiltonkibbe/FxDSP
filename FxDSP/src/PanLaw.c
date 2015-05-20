@@ -7,13 +7,13 @@
 //
 
 #include "PanLaw.h"
-
 #include <math.h>
+
 
 Error_t
 linear_pan(float control, float *l_gain, float *r_gain)
 {
-    *l_gain = 1.0 - control;
+    *l_gain = 1.0f - control;
     *r_gain = control;
     return NOERR;
 }

@@ -10,6 +10,7 @@
 #include "TestFIRFilter.h"
 #include "Dsp.h"
 #include "Utilities.h"
+#include <math.h>
 #include <gtest/gtest.h>
 
 
@@ -96,6 +97,29 @@ TEST(DSPSingle, TestCopyBuffer)
     }
 }
 
+
+TEST(DSPSingle, TestStrideCopy)
+{
+    float out[10];
+    float in1[5] = {1.,2.,3.,4.,5.};
+    float in2[10] = {1., 2., 3., 4., 5., 6., 7., 8., 9., 10.};
+    float ex1[10] = {1., 0., 2., 0., 3., 0., 4., 0., 5., 0.};
+    float ex2[5] = {1., 3., 5., 7., 9.};
+    
+    ClearBuffer(out, 10);
+    CopyBufferStride(out, 2, in1, 1, 5);
+    for (unsigned i = 0; i < 10; ++i)
+    {
+        ASSERT_FLOAT_EQ(ex1[i], out[i]);
+    }
+    
+    ClearBuffer(out, 10);
+    CopyBufferStride(out, 1, in2, 2, 5);
+    for (unsigned i = 0; i < 5; ++i)
+    {
+        ASSERT_FLOAT_EQ(ex2[i], out[i]);
+    }
+}
 
 TEST(DSPSingle, TestSplitToInterleaved)
 {
@@ -260,6 +284,23 @@ TEST(DSPSingle, TestComplexMultiply)
     
 }
 
+TEST(DSPSingle, TestRectPolarConversion)
+{
+    float re[6] = {-1.0, -0.5, -0.25, 0.25, 0.5, 1.0};
+    float im[6] = {-1.0, -0.5, -0.25, 0.25, 0.5, 1.0};
+    float mag[6];
+    float phase[6];
+    VectorRectToPolar(mag, phase, re, im, 6);
+    for (unsigned i = 0; i < 6; ++i)
+    {
+        float exp_mag = sqrtf(re[i]*re[i] + im[i]*im[i]);
+        float exp_phase = atanf(im[i]/re[i]);
+        if (exp_phase < 0)
+            exp_phase += M_PI;
+        ASSERT_FLOAT_EQ(exp_mag, mag[i]);
+        ASSERT_FLOAT_EQ(exp_phase, phase[i]);
+    }
+}
 
 #pragma mark -
 #pragma mark Double Precision Tests
@@ -327,6 +368,29 @@ TEST(DSPDouble, TestCopyBuffer)
     for (unsigned i = 0; i < 10; ++i)
     {
         ASSERT_DOUBLE_EQ(onesD[i], out[i]);
+    }
+}
+
+TEST(DSPDouble, TestStrideCopy)
+{
+    double out[10];
+    double in1[5] = {1.,2.,3.,4.,5.};
+    double in2[10] = {1., 2., 3., 4., 5., 6., 7., 8., 9., 10.};
+    double ex1[10] = {1., 0., 2., 0., 3., 0., 4., 0., 5., 0.};
+    double ex2[5] = {1., 3., 5., 7., 9.};
+    
+    ClearBufferD(out, 10);
+    CopyBufferStrideD(out, 2, in1, 1, 5);
+    for (unsigned i = 0; i < 10; ++i)
+    {
+        ASSERT_DOUBLE_EQ(ex1[i], out[i]);
+    }
+    
+    ClearBufferD(out, 10);
+    CopyBufferStrideD(out, 1, in2, 2, 5);
+    for (unsigned i = 0; i < 5; ++i)
+    {
+        ASSERT_DOUBLE_EQ(ex2[i], out[i]);
     }
 }
 
@@ -478,4 +542,23 @@ TEST(DSPDouble, TestComplexMultiply)
         ASSERT_FLOAT_EQ(expected_im[i], result_im[i]);
     }
     
+}
+
+
+TEST(DSPDouble, TestRectPolarConversion)
+{
+    double re[6] = {-1.0, -0.5, -0.25, 0.25, 0.5, 1.0};
+    double im[6] = {-1.0, -0.5, -0.25, 0.25, 0.5, 1.0};
+    double mag[6];
+    double phase[6];
+    VectorRectToPolarD(mag, phase, re, im, 6);
+    for (unsigned i = 0; i < 6; ++i)
+    {
+        double exp_mag = sqrt(re[i]*re[i] + im[i]*im[i]);
+        double exp_phase = atan(im[i]/re[i]);
+        if (exp_phase < 0)
+            exp_phase += M_PI;
+        ASSERT_DOUBLE_EQ(exp_mag, mag[i]);
+        ASSERT_DOUBLE_EQ(exp_phase, phase[i]);
+    }
 }

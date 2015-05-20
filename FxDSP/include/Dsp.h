@@ -110,6 +110,22 @@ CopyBuffer(float* dest, const float* src, unsigned length);
 Error_t
 CopyBufferD(double* dest, const double* src, unsigned length);
 
+ 
+Error_t
+CopyBufferStride(float*         dest,
+                 unsigned       dest_stride,
+                 const float*   src,
+                 unsigned       src_stride,
+                 unsigned       length);
+
+
+Error_t
+CopyBufferStrideD(double*       dest,
+                  unsigned      dest_stride,
+                  const double* src,
+                  unsigned      src_stride,
+                  unsigned      length);
+    
     
 #pragma mark - Split <-> Interleaved conversion
 /** Split To Interleaved Complex Vector conversion
@@ -392,8 +408,23 @@ ComplexMultiplyD(double*        re,
                  const double*  re2,
                  const double*  im2,
                  unsigned       length);
-   
+
+
     
+Error_t
+VectorRectToPolar(float*        magnitude,
+                  float*        phase,
+                  const float*  real,
+                  const float*  imaginary,
+                  unsigned      length);
+    
+Error_t
+VectorRectToPolarD(double*          magnitude,
+                   double*          phase,
+                   const double*    real,
+                   const double*    imaginary,
+                   unsigned         length);
+
 #ifdef __cplusplus
 }
 #endif

@@ -41,7 +41,7 @@ LRFilterInit(Filter_t   type,
     LRFilter *filter = (LRFilter*) malloc(sizeof(LRFilter));
     filter->type = type;
     filter->cutoff = cutoff;
-    filter->Q = 0.7071;
+    filter->Q = Q;
     filter->sampleRate = sampleRate;
     filter->filterA = RBJFilterInit(filter->type, filter->cutoff, filter->sampleRate);
     filter->filterB = RBJFilterInit(filter->type, filter->cutoff, filter->sampleRate);
@@ -59,7 +59,7 @@ LRFilterInitD(Filter_t  type,
     LRFilterD *filter = (LRFilterD*) malloc(sizeof(LRFilterD));
     filter->type = type;
     filter->cutoff = cutoff;
-    filter->Q = 0.7071;
+    filter->Q = Q;
     filter->sampleRate = sampleRate;
     filter->filterA = RBJFilterInitD(filter->type, filter->cutoff, filter->sampleRate);
     filter->filterB = RBJFilterInitD(filter->type, filter->cutoff, filter->sampleRate);

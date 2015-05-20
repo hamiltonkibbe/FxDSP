@@ -139,6 +139,26 @@ TEST(WindowFunctionSingle, TestFlatTopWindow)
     }
 }
 
+TEST(WindowFunctionSingle, TestCosineWindow)
+{
+    float out[10];
+    cosine(9,out);
+    ASSERT_NEAR(0.0, out[0], EPSILON);
+    ASSERT_NEAR(1.0, out[4], EPSILON);
+    ASSERT_NEAR(0.0, out[8], EPSILON);
+}
+
+
+TEST(WindowFunctionSingle, TestChebyshevWindow)
+{
+    float out[10];
+    chebyshev(10, 100, out);
+    for (unsigned i = 0; i < 10; ++i)
+    {
+        ASSERT_NEAR(matlabChebyshev[i], out[i], EPSILON);
+    }
+}
+
 
 TEST(WindowFunctionSingle, TestWindowFunctionProcess)
 {
@@ -278,6 +298,26 @@ TEST(WindowFunctionDouble, TestFlatTopWindow)
     {
         ASSERT_NEAR(matlabFlatTopD[i], window[i], EPSILON);
     }
+}
+
+
+TEST(WindowFunctionDouble, TestChebyshevWindow)
+{
+    double out[10];
+    chebyshevD(10, 100, out);
+    for (unsigned i = 0; i < 10; ++i)
+    {
+        ASSERT_NEAR(matlabChebyshevD[i], out[i], EPSILON);
+    }
+}
+
+TEST(WindowFunctionDouble, TestCosineWindow)
+{
+    double out[10];
+    cosineD(9,out);
+    ASSERT_NEAR(0.0, out[0], EPSILON);
+    ASSERT_NEAR(1.0, out[4], EPSILON);
+    ASSERT_NEAR(0.0, out[8], EPSILON);
 }
 
 

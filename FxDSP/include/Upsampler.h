@@ -8,7 +8,7 @@
 #define UPSAMPLER_H_
 
 #include "Error.h"
-#include "FIRFilter.h"
+#include "PolyphaseCoeffs.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -17,21 +17,6 @@ extern "C" {
 /** Opaque Upsampler object */
 typedef struct Upsampler Upsampler;
 
-/** Upsampling Factor constants */
-typedef enum factors
-{
-    /** 4x upsampling */
-    UP_4X,
-    
-    /** 8x upsampling */
-    UP_8X,
-    
-    /** 16x upsampling */
-    UP_16X,
-    
-    /** number of upsampling factors */
-    N_FACTORS
-}UpsampleFactor_t;
 
 
 /** Create a new Upsampler
@@ -44,7 +29,7 @@ typedef enum factors
  * @return          An initialized Upsampler
  */
 Upsampler*
-UpsamplerInit(UpsampleFactor_t factor);
+UpsamplerInit(ResampleFactor_t factor);
 
 
 /** Free memory associated with a Upsampler

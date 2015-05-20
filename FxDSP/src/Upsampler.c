@@ -5,7 +5,7 @@
  */
 
 #include "Upsampler.h"
-#include "PolyphaseCoeffs.h"
+#include "FIRFilter.h"
 #include "Dsp.h"
 #include <math.h>
 #include <stddef.h>
@@ -21,18 +21,21 @@ struct Upsampler
 
 /* UpsamplerInit *******************************************************/
 Upsampler*
-UpsamplerInit(UpsampleFactor_t factor)
+UpsamplerInit(ResampleFactor_t factor)
 {
     unsigned n_filters = 1;
     switch(factor)
     {
-        case UP_4X:
+        case X2:
+            n_filters = 2;
+            break;
+        case X4:
             n_filters = 4;
             break;
-        case UP_8X:
+        case X8:
             n_filters = 8;
             break;
-        case UP_16X:
+        case X16:
             n_filters = 16;
             break;
         default:
@@ -116,23 +119,33 @@ UpsamplerProcess(Upsampler      *upsampler,
 {
     if (upsampler && outBuffer)
     {
-	unsigned sampleIdx;
-	unsigned filterIdx;
-	unsigned offset;
-	
-	for (sampleIdx = 0; sampleIdx < n_samples; ++sampleIdx)
-	{
-		offset = upsampler->factor * sampleIdx;
-		for(filterIdx = 0; filterIdx < upsampler->factor; ++filterIdx)
-		{
-			FIRFilterProcess(upsampler->polyphase[filterIdx], 
-									&outBuffer[filterIdx + offset], 
-									&inBuffer[sampleIdx], 1);
-		}
-	}
+        
+        unsigned pplen = n_samples / upsampler->factor;
+        float tempbuf[pplen];
+        for (unsigned filt = 0; filt < upsampler->factor; ++ filt)
+        {
+            CopyBufferStride(tempbuf, 1, inBuffer+filt, upsampler->factor, pplen);
+            FIRFilterProcess(upsampler->polyphase[filt], tempbuf, tempbuf, pplen);
+            CopyBufferStride(outBuffer+filt, upsampler->factor, tempbuf, 1, pplen);
+        }
+        
+        /*
+         
+        for (sampleIdx = 0; sampleIdx < n_samples; ++sampleIdx)
+        {
+            offset = upsampler->factor * sampleIdx;
+            for(filterIdx = 0; filterIdx < upsampler->factor; ++filterIdx)
+            {
+                FIRFilterProcess(upsampler->polyphase[filterIdx], 
+                                        &outBuffer[filterIdx + offset], 
+                                        &inBuffer[sampleIdx], 1);
+            }
+        }
+            
+        */
         VectorScalarMultiply(outBuffer, (const float*)outBuffer,
                              upsampler->factor, n_samples * upsampler->factor);
-	return NOERR;
+        return NOERR;
     }
     else
     {
