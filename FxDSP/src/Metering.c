@@ -7,7 +7,10 @@
 //
 
 #include "Metering.h"
+#include "Dsp.h"
+
 #include <math.h>
+#include <float.h>
 
 
 
@@ -76,26 +79,28 @@ phase_correlationD(double* left, double* right, unsigned n_samples)
 float
 balance(float* left, float* right, unsigned n_samples)
 {
-    float bal = 0.0;
-    
-    for (unsigned i = 0; i < n_samples; ++i)
-    {
-        bal += (right[i] - left[i]) / 2.;
-    }
-    
-    return bal / n_samples;
+    float r = 0.0;
+    float l = 0.0;
+    float rbuf[n_samples];
+    float lbuf[n_samples];
+    VectorPower(rbuf, right, 2.0, n_samples);
+    VectorPower(lbuf, left, 2.0, n_samples);
+    r = VectorSum(rbuf, n_samples);
+    l = VectorSum(lbuf, n_samples);
+    return  (r - l) / ((r + l) + FLT_MIN);
 }
 
 
 double
 balanceD(double* left, double* right, unsigned n_samples)
 {
-    double bal = 0.0;
-    
-    for (unsigned i = 0; i < n_samples; ++i)
-    {
-        bal += (right[i] - left[i]) / 2.;
-    }
-    
-    return bal / n_samples;
+    double r = 0.0;
+    double l = 0.0;
+    double rbuf[n_samples];
+    double lbuf[n_samples];
+    VectorPowerD(rbuf, right, 2.0, n_samples);
+    VectorPowerD(lbuf, left, 2.0, n_samples);
+    r = VectorSumD(rbuf, n_samples);
+    l = VectorSumD(lbuf, n_samples);
+    return  (r - l) / ((r + l) + DBL_MIN);
 }

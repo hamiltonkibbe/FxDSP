@@ -225,6 +225,13 @@ VectorNegateD(double        *dest,
               const double  *in,
               unsigned      length);
 
+#pragma mark - Vector Sum
+float
+VectorSum(const float* src, unsigned length);
+    
+double
+VectorSumD(const double* src, unsigned length);
+    
 
 #pragma mark - Vector Addition
 /** Add two buffers

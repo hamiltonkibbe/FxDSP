@@ -168,6 +168,11 @@ TEST(DSPSingle, TestVectorNegate)
     }
 }
 
+TEST(DSPSingle, TestVectorSum)
+{
+    float in[5] = {1.0, 2.0, 3.0, 4.0, 0.0};
+    ASSERT_FLOAT_EQ(10.0, VectorSum(in, 5));
+}
 
 TEST(DSPSingle, TestVectorVectorAdd)
 {
@@ -440,6 +445,13 @@ TEST(DSPDouble, TestVectorNegate)
     {
         ASSERT_FLOAT_EQ(-rampD[i], out[i]);
     }
+}
+
+
+TEST(DSPDouble, TestVectorSum)
+{
+    double in[5] = {1.0, 2.0, 3.0, 4.0, 0.0};
+    ASSERT_DOUBLE_EQ(10.0, VectorSumD(in, 5));
 }
 
 

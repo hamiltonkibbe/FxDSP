@@ -474,6 +474,40 @@ VectorNegateD(double          *dest,
     return NOERR;
 }
 
+/*******************************************************************************
+ VectorSum */
+float
+VectorSum(const float* src, unsigned length)
+{
+    float res = 0.0;
+#ifdef __APPLE__
+    // Use the Accelerate framework if we have it
+    vDSP_sve(src, 1, &res, length);
+#else
+    for (unsigned i = 0; i < length; ++i)
+    {
+        res += src[i];
+    }
+#endif
+    return res;
+}
+
+double
+VectorSumD(const double* src, unsigned length)
+{
+    double res = 0.0;
+#ifdef __APPLE__
+    // Use the Accelerate framework if we have it
+    vDSP_sveD(src, 1, &res, length);
+#else
+    for (unsigned i = 0; i < length; ++i)
+    {
+        res += src[i];
+    }
+#endif
+    return res;
+}
+
 
 /*******************************************************************************
  VectorVectorAdd */
