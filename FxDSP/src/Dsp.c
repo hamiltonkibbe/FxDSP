@@ -17,7 +17,7 @@
 #include <cblas.h>
 #endif
 
-#undef __APPLE__
+//#undef __APPLE__
 
 /*******************************************************************************
  FloatBufferToInt16 */

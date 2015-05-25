@@ -16,7 +16,7 @@ extern "C" {
 
 /** Opaque Upsampler object */
 typedef struct Upsampler Upsampler;
-
+typedef struct UpsamplerD UpsamplerD;
 
 
 /** Create a new Upsampler
@@ -31,7 +31,10 @@ typedef struct Upsampler Upsampler;
 Upsampler*
 UpsamplerInit(ResampleFactor_t factor);
 
+UpsamplerD*
+UpsamplerInitD(ResampleFactor_t factor);
 
+    
 /** Free memory associated with a Upsampler
  *  
  * @details release all memory allocated by Upsampler for the
@@ -42,7 +45,10 @@ UpsamplerInit(ResampleFactor_t factor);
 Error_t
 UpsamplerFree(Upsampler* upsampler);
 
-
+Error_t
+UpsamplerFreeD(UpsamplerD* upsampler);
+    
+    
 /** Flush upsampler state buffers
  *  
  * @param upsampler Upsampler to flush.
@@ -51,6 +57,9 @@ UpsamplerFree(Upsampler* upsampler);
 Error_t
 UpsamplerFlush(Upsampler* upsampler);
 
+Error_t
+UpsamplerFlush(Upsampler* upsampler);
+    
 
 /** Upsample a buffer of samples
  *
@@ -67,7 +76,15 @@ UpsamplerProcess(Upsampler*     upsampler,
                  float*         outBuffer,
                  const float*   inBuffer,
                  unsigned       n_samples);
-                        
+    
+Error_t
+UpsamplerProcessD(UpsamplerD*   upsampler,
+                 double*        outBuffer,
+                 const double*  inBuffer,
+                 unsigned       n_samples);
+    
+    
+    
 #ifdef __cplusplus
 }
 #endif

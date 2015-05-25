@@ -82,6 +82,11 @@
 		37BC9E381AC71FD7008718DC /* Waveshaper.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C030B01ABB5EA800ABB47B /* Waveshaper.h */; };
 		37BC9E391AC71FD7008718DC /* Wavetable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C030B11ABB5EA800ABB47B /* Wavetable.h */; };
 		37BC9E3A1AC71FD7008718DC /* WindowFunction.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C030B21ABB5EA800ABB47B /* WindowFunction.h */; };
+		37BD93011B138C7F009238D4 /* Metering.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37DC0C4E1B0FF83700C20827 /* Metering.h */; };
+		37BD93021B138C7F009238D4 /* DiodeSaturator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3775E0961AD6072200930665 /* DiodeSaturator.h */; };
+		37BD93031B138C7F009238D4 /* Decimator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 373B1C8D1B005D7500B0B40D /* Decimator.h */; };
+		37BD93051B139082009238D4 /* TestUpsampler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37BD93041B139082009238D4 /* TestUpsampler.cpp */; };
+		37BD93071B13A46C009238D4 /* TestDecimator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37BD93061B13A46C009238D4 /* TestDecimator.cpp */; };
 		37BE91AC1ACADE270068DDD5 /* PanLaw.h in Headers */ = {isa = PBXBuildFile; fileRef = 37CDDD8C1AC9C82F001B96BA /* PanLaw.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37BE91AD1ACADE350068DDD5 /* PanLaw.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37CDDD8C1AC9C82F001B96BA /* PanLaw.h */; };
 		37C030B31ABB5EA800ABB47B /* BiquadFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C0309A1ABB5EA800ABB47B /* BiquadFilter.h */; };
@@ -234,6 +239,9 @@
 			dstPath = /usr/local/include/FxDSP;
 			dstSubfolderSpec = 0;
 			files = (
+				37BD93011B138C7F009238D4 /* Metering.h in CopyFiles */,
+				37BD93021B138C7F009238D4 /* DiodeSaturator.h in CopyFiles */,
+				37BD93031B138C7F009238D4 /* Decimator.h in CopyFiles */,
 				37BE91AD1ACADE350068DDD5 /* PanLaw.h in CopyFiles */,
 				37BC9E221AC71FD7008718DC /* BiquadFilter.h in CopyFiles */,
 				37BC9E231AC71FD7008718DC /* CircularBuffer.h in CopyFiles */,
@@ -314,6 +322,8 @@
 		3775E0961AD6072200930665 /* DiodeSaturator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DiodeSaturator.h; path = FxDSP/include/DiodeSaturator.h; sourceTree = SOURCE_ROOT; };
 		3775E0971AD6072C00930665 /* DiodeSaturator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DiodeSaturator.c; path = FxDSP/src/DiodeSaturator.c; sourceTree = SOURCE_ROOT; };
 		3775E09E1AD60A5100930665 /* TestWindowFunctions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestWindowFunctions.cpp; path = FxDSP/test/src/TestWindowFunctions.cpp; sourceTree = SOURCE_ROOT; };
+		37BD93041B139082009238D4 /* TestUpsampler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestUpsampler.cpp; path = FxDSP/test/src/TestUpsampler.cpp; sourceTree = SOURCE_ROOT; };
+		37BD93061B13A46C009238D4 /* TestDecimator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestDecimator.cpp; path = FxDSP/test/src/TestDecimator.cpp; sourceTree = SOURCE_ROOT; };
 		37C0309A1ABB5EA800ABB47B /* BiquadFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BiquadFilter.h; path = FxDSP/include/BiquadFilter.h; sourceTree = SOURCE_ROOT; };
 		37C0309B1ABB5EA800ABB47B /* CircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CircularBuffer.h; path = FxDSP/include/CircularBuffer.h; sourceTree = SOURCE_ROOT; };
 		37C0309C1ABB5EA800ABB47B /* Compressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Compressor.h; path = FxDSP/include/Compressor.h; sourceTree = SOURCE_ROOT; };
@@ -524,6 +534,8 @@
 				373CBAAF1AF722D600B488E8 /* TestUtilities.cpp */,
 				37139B4B1AFB0D8000207A08 /* TestLinkwitzRileyFilter.cpp */,
 				37DC0C511B0FF8CA00C20827 /* TestMetering.cpp */,
+				37BD93041B139082009238D4 /* TestUpsampler.cpp */,
+				37BD93061B13A46C009238D4 /* TestDecimator.cpp */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -780,12 +792,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				37139B4D1AFB269E00207A08 /* TestLinkwitzRileyFilter.cpp in Sources */,
+				37BD93051B139082009238D4 /* TestUpsampler.cpp in Sources */,
 				373CBAB01AF722D600B488E8 /* TestUtilities.cpp in Sources */,
 				376ED3CE1AF6683E0054BA36 /* TestRMS.cpp in Sources */,
 				3775E0931AD501DE00930665 /* TestRBJFilter.cpp in Sources */,
 				3775E08B1AD4F1E500930665 /* TestOnePole.cpp in Sources */,
 				373CBAAE1AF71F3F00B488E8 /* TestPanLaw.cpp in Sources */,
 				37D3CBCD1AD4D74D001E598C /* main.cpp in Sources */,
+				37BD93071B13A46C009238D4 /* TestDecimator.cpp in Sources */,
 				37D3CBD51AD4DCC2001E598C /* TestCircularBuffer.cpp in Sources */,
 				3775E0901AD4F8A500930665 /* TestFIRFilter.cpp in Sources */,
 				37D3CBCA1AD4D6DB001E598C /* TestBiquadFilter.cpp in Sources */,

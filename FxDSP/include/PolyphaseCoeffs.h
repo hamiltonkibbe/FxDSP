@@ -32,7 +32,7 @@ typedef enum factor
 } ResampleFactor_t;
 
 extern const float** PolyphaseCoeffs[N_FACTORS];
-
+extern const double** PolyphaseCoeffsD[N_FACTORS];
 
 #ifdef __cplusplus
 }

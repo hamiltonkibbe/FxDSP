@@ -19,6 +19,7 @@ extern "C" {
     
 /** Opaque Decimator object */
 typedef struct Decimator Decimator;
+typedef struct DecimatorD DecimatorD;
 
 
 
@@ -33,6 +34,8 @@ typedef struct Decimator Decimator;
 Decimator*
 DecimatorInit(ResampleFactor_t factor);
 
+DecimatorD*
+DecimatorInitD(ResampleFactor_t factor);
 
 /** Free memory associated with a Upsampler
  *
@@ -44,6 +47,8 @@ DecimatorInit(ResampleFactor_t factor);
 Error_t
 DecimatorFree(Decimator* decimator);
 
+Error_t
+DecimatorFreeD(DecimatorD* decimator);
 
 /** Flush decimator state buffers
  *
@@ -53,7 +58,9 @@ DecimatorFree(Decimator* decimator);
 Error_t
 DecimatorFlush(Decimator* decimator);
 
-
+Error_t
+DecimatorFlushD(DecimatorD* decimator);
+    
 /** Decimate a buffer of samples
  *
  * @details Decimates given buffer using a polyphase decimator
@@ -68,6 +75,12 @@ Error_t
 DecimatorProcess(Decimator*     decimator,
                  float*         outBuffer,
                  const float*   inBuffer,
+                 unsigned       n_samples);
+    
+Error_t
+DecimatorProcessD(DecimatorD*   decimator,
+                 double*        outBuffer,
+                 const double*  inBuffer,
                  unsigned       n_samples);
     
 #ifdef __cplusplus

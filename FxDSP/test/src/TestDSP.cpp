@@ -282,7 +282,6 @@ TEST(DSPSingle, TestComplexMultiply)
     ComplexMultiply(result_re, result_im, re1, im1, re2, im2, 10);
     for(unsigned i = 0; i < 10; ++i)
     {
-        //printf("GOT %f + j%f\n", result_re[i], result_im[i]);
         ASSERT_FLOAT_EQ(expected_re[i], result_re[i]);
         ASSERT_FLOAT_EQ(expected_im[i], result_im[i]);
     }
@@ -300,8 +299,11 @@ TEST(DSPSingle, TestRectPolarConversion)
     {
         float exp_mag = sqrtf(re[i]*re[i] + im[i]*im[i]);
         float exp_phase = atanf(im[i]/re[i]);
+        /* Map phase into 0-pi */
         if (exp_phase < 0)
             exp_phase += M_PI;
+        if (phase[i] < 0)
+            phase[i] += M_PI;
         ASSERT_FLOAT_EQ(exp_mag, mag[i]);
         ASSERT_FLOAT_EQ(exp_phase, phase[i]);
     }
@@ -568,8 +570,11 @@ TEST(DSPDouble, TestRectPolarConversion)
     {
         double exp_mag = sqrt(re[i]*re[i] + im[i]*im[i]);
         double exp_phase = atan(im[i]/re[i]);
+        /* Map phase into 0-pi */
         if (exp_phase < 0)
             exp_phase += M_PI;
+        if (phase[i] < 0)
+            phase[i] += M_PI;
         ASSERT_DOUBLE_EQ(exp_mag, mag[i]);
         ASSERT_DOUBLE_EQ(exp_phase, phase[i]);
     }
