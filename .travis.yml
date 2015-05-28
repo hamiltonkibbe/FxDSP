@@ -6,7 +6,7 @@ compiler:
 
 install:
   - sudo apt-get update -qq
-  - sudo apt-get install --upgrade -y -qq libfftw3-dev cmake
+  - sudo apt-get install --upgrade -y -qq libfftw3-dev cmake libatlas-base-dev
 
 env:
   global:
@@ -14,6 +14,7 @@ env:
   matrix:
     - USE_FFTW_FFT=1
     - USE_OOURA_FFT=1
+    - USE_BLAS=1
 
 script:
   - mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Debug ../FxDSP && make && make test-coverage
