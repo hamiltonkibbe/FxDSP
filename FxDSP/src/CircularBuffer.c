@@ -64,8 +64,7 @@ CircularBufferInit(unsigned length)
 }
 
 
-/*******************************************************************************
- CircularBufferInitD */
+
 CircularBufferD*
 CircularBufferInitD(unsigned length)
 {
@@ -105,8 +104,7 @@ CircularBufferFree(CircularBuffer* cb)
     }
 }
 
-/*******************************************************************************
- CircularBufferFreeD */
+
 void
 CircularBufferFreeD(CircularBufferD* cb)
 {
@@ -133,8 +131,6 @@ CircularBufferWrite(CircularBuffer* cb, const float* src, unsigned n_samples)
     }
 }
 
-/*******************************************************************************
- CircularBufferWriteD */
 void
 CircularBufferWriteD(CircularBufferD* cb, const double* src, unsigned n_samples)
 {
@@ -157,8 +153,6 @@ CircularBufferRead(CircularBuffer* cb, float* dest, unsigned n_samples)
 }
 
 
-/*******************************************************************************
- CircularBufferReadD */
 void
 CircularBufferReadD(CircularBufferD* cb, double* dest, unsigned n_samples)
 {
@@ -177,10 +171,25 @@ CircularBufferFlush(CircularBuffer* cb)
     ClearBuffer(cb->buffer, cb->length);
 }
 
-/*******************************************************************************
- CircularBufferFlushD */
+
 void
 CircularBufferFlushD(CircularBufferD* cb)
 {
     ClearBufferD(cb->buffer, cb->length);
+}
+
+
+/*******************************************************************************
+ CircularBufferRewind */
+
+void
+CircularBufferRewind(CircularBuffer* cb, unsigned samples)
+{
+    cb->read_index = ((cb->read_index + cb->length) - samples) % cb->length;
+}
+
+void
+CircularBufferRewindD(CircularBufferD* cb, unsigned samples)
+{
+    cb->read_index = ((cb->read_index + cb->length) - samples) % cb->length;
 }

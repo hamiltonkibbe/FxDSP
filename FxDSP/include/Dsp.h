@@ -225,7 +225,14 @@ VectorNegateD(double        *dest,
               const double  *in,
               unsigned      length);
 
+    
 #pragma mark - Vector Sum
+/** Sum all values in an array
+ *
+ * @param src       Data to sum
+ * @param length    Number of samples to sum
+ * @return          Sum of all values in src
+ */
 float
 VectorSum(const float* src, unsigned length);
     
@@ -396,6 +403,11 @@ VectorDbConvert(float* dest,
                 const float* in1,
                 unsigned amplitude_flag,
                 unsigned length);
+Error_t
+VectorDbConvertD(double*        dest,
+                 const double*  in1,
+                 unsigned       amplitude_flag,
+                 unsigned       length);
 
 
 Error_t
@@ -432,6 +444,20 @@ VectorRectToPolarD(double*          magnitude,
                    const double*    imaginary,
                    unsigned         length);
 
+    
+/** Calculate the Mean Square of a vector
+ * @details calculates the sum over i of (data[i]^2)/length
+ 
+ * @param data      Data to process
+ * @param length    Number of samples to sum
+ * @return          Mean Square of data
+ */
+float
+MeanSquare(const float* data, unsigned length);
+    
+double
+MeanSquareD(const double* data, unsigned length);
+    
 #ifdef __cplusplus
 }
 #endif

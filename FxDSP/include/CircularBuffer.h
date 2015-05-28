@@ -70,6 +70,13 @@ CircularBufferFlush(CircularBuffer* cb);
 
 void
 CircularBufferFlushD(CircularBufferD* cb);
+
+    
+void
+CircularBufferRewind(CircularBuffer* cb, unsigned samples);
+    
+void
+CircularBufferRewindD(CircularBufferD* cb, unsigned samples);
     
 #ifdef __cplusplus
 }

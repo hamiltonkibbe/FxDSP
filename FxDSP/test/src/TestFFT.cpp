@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 Hamilton Kibbe. All rights reserved.
 //
 
-#define _USE_MATH_DEFINES
 #include "testFFT.h"
 #include "FFT.h"
 #include "Dsp.h"

@@ -8,7 +8,6 @@
 #include "Utilities.h"
 #include <string.h>
 
-#define _USE_MATH_DEFINES
 #include <math.h>
 
 #ifdef __APPLE__
@@ -17,7 +16,6 @@
 #include <cblas.h>
 #endif
 
-//#undef __APPLE__
 
 /*******************************************************************************
  FloatBufferToInt16 */
@@ -981,6 +979,28 @@ VectorDbConvert(float* dest,
 
 
 Error_t
+VectorDbConvertD(double*        dest,
+                 const double*  in,
+                 unsigned       amplitude_flag,
+                 unsigned       length)
+{
+#ifdef __APPLE__
+    double one = 1.0;
+    vDSP_vdbconD(in, 1, &one, dest, 1, length, amplitude_flag);
+#else
+    double scale = 10.0 + 10 * amplitude_flag;
+    for (unsigned i = 0; i < length; ++i)
+        
+    {
+        dest[i] = scale * log10(in[i]);
+    }
+#endif
+    return NOERR;
+}
+
+
+
+Error_t
 ComplexMultiply(float*          re,
                 float*          im,
                 const float*    re1,
@@ -1024,16 +1044,6 @@ ComplexMultiplyD(double*        re,
     DSPDoubleSplitComplex in2 = {.realp = (double*)re2, .imagp = (double*)im2};
     DSPDoubleSplitComplex out = {.realp = re, .imagp = im};
     vDSP_zvmulD(&in1, 1, &in2, 1, &out, 1, length, 1);
-#elif defined(USE_BLAS)
-    double int1[2*length];
-    double int2[2*length];
-    double destint[2*length];
-    cblas_dcopy(length, re1, 1, int1, 2);
-    cblas_dcopy(length, im1, 1, int1+1, 2);
-    cblas_dcopy(length, re2, 1, int1, 2);
-    cblas_dcopy(length, im2, 1, int1+1, 2);
-    
-    cblas_zdotu_sub(length, <#const void *__X#>, 1, <#const void *__Y#>, 1, <#void *__dotu#>)
 #else
     for (unsigned i = 0; i < length; ++i)
     {
@@ -1141,7 +1151,7 @@ InterleavedToSplit(float*       real,
     
 #elif defined(USE_BLAS)
     cblas_scopy(length, input, 2, real, 1);
-    cblas_scopy(length, input + 1, 2, imag, 2);
+    cblas_scopy(length, input + 1, 2, imag, 1);
 #else
     unsigned i;
     unsigned i2;
@@ -1182,7 +1192,7 @@ InterleavedToSplitD(double*         real,
     
 #elif defined(USE_BLAS)
     cblas_dcopy(length, input, 2, real, 1);
-    cblas_dcopy(length, input + 1, 2, imag, 2);
+    cblas_dcopy(length, input + 1, 2, imag, 1);
 #else
     
     unsigned i;
@@ -1273,3 +1283,32 @@ VectorRectToPolarD(double*          magnitude,
     return NOERR;
 }
 
+float
+MeanSquare(const float* data, unsigned length)
+{
+    float result = 0.;
+#ifdef __APPLE__
+    vDSP_measqv(data, 1, &result, length);
+#else
+    float scratch[length];
+    VectorPower(scratch, data, 2, length);
+    result = VectorSum(scratch, length);
+    
+#endif
+    return result;
+}
+
+double
+MeanSquareD(const double* data, unsigned length)
+{
+    double result = 0.;
+#ifdef __APPLE__
+    vDSP_measqvD(data, 1, &result, length);
+#else
+    double scratch[length];
+    VectorPowerD(scratch, data, 2, length);
+    result = VectorSumD(scratch, length);
+    
+#endif
+    return result;
+}

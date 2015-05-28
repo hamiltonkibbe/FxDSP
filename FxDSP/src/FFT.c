@@ -11,7 +11,6 @@
 #include "Dsp.h"
 #include "Utilities.h"
 
-#define _USE_MATH_DEFINES
 #include <math.h>
 #include <stddef.h>
 #include <stdio.h>

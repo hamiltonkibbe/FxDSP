@@ -14,7 +14,6 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-#define _USE_MATH_DEFINES
 #include <math.h>
 
 /* LadderFilter ********************************************************/
