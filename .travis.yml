@@ -14,7 +14,7 @@ env:
   matrix:
     - USE_FFTW_FFT=1
     - USE_OOURA_FFT=1
-    - USE_BLAS=1
+    - NO_CBLAS=1
 
 script:
   - mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Debug ../FxDSP && make && make test-coverage
