@@ -1334,11 +1334,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FxDSP/test/src/TestDSP.cpp"
-            timestampString = "454270630.116321"
+            timestampString = "454694413.756949"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "446"
-            endingLineNumber = "446"
+            startingLineNumber = "457"
+            endingLineNumber = "457"
             landmarkName = "TEST(DSPDouble, TestVectorNegate)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1350,11 +1350,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FxDSP/test/src/TestDSP.cpp"
-            timestampString = "454270630.116321"
+            timestampString = "454694413.756949"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "508"
-            endingLineNumber = "508"
+            startingLineNumber = "519"
+            endingLineNumber = "519"
             landmarkName = "TEST(DSPDouble, TestVectorPower)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1394,11 +1394,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FxDSP/test/src/TestDSP.cpp"
-            timestampString = "454270630.116321"
+            timestampString = "454694413.756949"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "300"
-            endingLineNumber = "300"
+            startingLineNumber = "304"
+            endingLineNumber = "304"
             landmarkName = "TEST(DSPSingle, TestRectPolarConversion)"
             landmarkType = "7">
          </BreakpointContent>

@@ -23,7 +23,6 @@
 extern "C" {
 #endif
     
-    
 // Prefer Accelerate
 #if defined(__APPLE__)
 #define USE_APPLE_FFT

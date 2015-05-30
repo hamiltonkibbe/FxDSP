@@ -62,8 +62,8 @@ ENDIF(CBLAS_FOUND)
 ENDIF ((NO_CBLAS) OR ($ENV{NO_CBLAS}))
 
 # Set Debug Flags
-set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -g -O0 -W -Wall -fprofile-arcs -ftest-coverage")
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -W -O0 -Wall -fprofile-arcs -ftest-coverage")
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -g -O0 -W -Wall -Wno-unknown-pragmas -fprofile-arcs -ftest-coverage")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -W -O0 -Wall -Wno-unknown-pragmas -fprofile-arcs -ftest-coverage")
 SET(CMAKE_SHARED_LINKER_FLAGS="-fprofile-arcs -ftest-coverage")
 
 

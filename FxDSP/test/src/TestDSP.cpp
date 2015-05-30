@@ -266,6 +266,10 @@ TEST(DSPSingle, TestDBConversion)
     {
         ASSERT_FLOAT_EQ(expected[i], out[i]);
     }
+    VectorDbConvert(out, in, 0, 5);
+    ASSERT_FLOAT_EQ(expected[0], out[0]);
+    ASSERT_FLOAT_EQ(expected[1], out[2]);
+    ASSERT_FLOAT_EQ(expected[2], out[4]);
 }
 
 
@@ -309,8 +313,15 @@ TEST(DSPSingle, TestRectPolarConversion)
     }
 }
 
-#pragma mark -
-#pragma mark Double Precision Tests
+TEST(DSPSin, TestMeanSquare)
+{
+    float sig[5] = {1, 2, 3, 4, 5};
+    float expected = 11.; // (1^2 + 2^2 + 3^2 + 4^2 + 5^2) / 5
+    ASSERT_FLOAT_EQ(expected, MeanSquare(sig, 5));
+}
+
+
+#pragma mark - Double Precision Tests
 
 
 TEST(DSPDouble, DoubleIntConversion)
@@ -537,6 +548,22 @@ TEST(DSPDouble, TestConvolve)
     }
 }
 
+TEST(DSPDouble, TestDBConversion)
+{
+    double out[5];
+    double in[5] = {1.0, 0.5, 0.25, 0.125, 0.0625};
+    double expected[5] = {0.0, -6.0206003, -12.041201, -18.061801, -24.082401};
+    VectorDbConvertD(out, in, 1, 5);
+    for (unsigned i = 0; i < 5; ++i)
+    {
+        ASSERT_FLOAT_EQ(expected[i], out[i]);
+    }
+    VectorDbConvertD(out, in, 0, 5);
+    ASSERT_FLOAT_EQ(expected[0], out[0]);
+    ASSERT_FLOAT_EQ(expected[1], out[2]);
+    ASSERT_FLOAT_EQ(expected[2], out[4]);
+}
+
 
 TEST(DSPDouble, TestComplexMultiply)
 {
@@ -578,4 +605,11 @@ TEST(DSPDouble, TestRectPolarConversion)
         ASSERT_DOUBLE_EQ(exp_mag, mag[i]);
         ASSERT_DOUBLE_EQ(exp_phase, phase[i]);
     }
+}
+
+TEST(DSPDouble, TestMeanSquare)
+{
+    double sig[5] = {1, 2, 3, 4, 5};
+    double expected = 11.; // (1^2 + 2^2 + 3^2 + 4^2 + 5^2) / 5
+    ASSERT_DOUBLE_EQ(expected, MeanSquareD(sig, 5));
 }

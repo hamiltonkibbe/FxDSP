@@ -1126,8 +1126,8 @@ interleave_complex(float*dest, const float* real, const float* imag, unsigned le
 #else
     float* buf = &dest[0];
     float* end = buf + length;
-    float* re = real;
-    float* im = imag;
+    const float* re = real;
+    const float* im = imag;
     while (buf != end)
     {
         *buf++ = *re++;
@@ -1148,8 +1148,8 @@ interleave_complexD(double* dest, const double* real, const double* imag, unsign
 #else
     double* buf = &dest[0];
     double* end = buf + length;
-    double* re = real;
-    double* im = imag;
+    const double* re = real;
+    const double* im = imag;
     while (buf != end)
     {
         *buf++ = *re++;
