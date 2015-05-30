@@ -1292,7 +1292,7 @@ MeanSquare(const float* data, unsigned length)
 #else
     float scratch[length];
     VectorPower(scratch, data, 2, length);
-    result = VectorSum(scratch, length);
+    result = VectorSum(scratch, length) / length;
     
 #endif
     return result;
@@ -1307,8 +1307,7 @@ MeanSquareD(const double* data, unsigned length)
 #else
     double scratch[length];
     VectorPowerD(scratch, data, 2, length);
-    result = VectorSumD(scratch, length);
-    
+    result = VectorSumD(scratch, length) / length;
 #endif
     return result;
 }
