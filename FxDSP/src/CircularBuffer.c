@@ -25,6 +25,7 @@ struct CircularBuffer
     float*      buffer;
     unsigned    read_index;
     unsigned    write_index;
+    int         count;
 };
 
 
@@ -37,6 +38,7 @@ struct CircularBufferD
     double*     buffer;
     unsigned    read_index;
     unsigned    write_index;
+    int         count;
 };
 
 
@@ -59,6 +61,7 @@ CircularBufferInit(unsigned length)
         cb->buffer = buffer;
         cb->read_index = 0;
         cb->write_index = 0;
+        cb->count = 0;
     }
     return cb;
 }
@@ -82,6 +85,7 @@ CircularBufferInitD(unsigned length)
         cb->buffer = buffer;
         cb->read_index = 0;
         cb->write_index = 0;
+        cb->count = 0;
     }
     return cb;
 }
@@ -89,7 +93,7 @@ CircularBufferInitD(unsigned length)
 
 /*******************************************************************************
  CircularBufferFree */
-void
+Error_t
 CircularBufferFree(CircularBuffer* cb)
 {
     if (cb)
@@ -102,10 +106,11 @@ CircularBufferFree(CircularBuffer* cb)
         free(cb);
         cb = NULL;
     }
+    return NOERR;
 }
 
 
-void
+Error_t
 CircularBufferFreeD(CircularBufferD* cb)
 {
     if (cb)
@@ -118,78 +123,157 @@ CircularBufferFreeD(CircularBufferD* cb)
         free(cb);
         cb = NULL;
     }
+    return NOERR;
 }
 
 /*******************************************************************************
  CircularBufferWrite */
-void
+Error_t
 CircularBufferWrite(CircularBuffer* cb, const float* src, unsigned n_samples)
 {
     for (unsigned i=0; i < n_samples; ++i)
     {
         cb->buffer[++cb->write_index & cb->wrap] = *src++;
     }
+    cb->count += n_samples;
+    
+    if ((cb->count <= cb->length) && (cb->count >= 0))
+    {
+        return NOERR;
+    }
+    else
+    {
+        return VALUE_ERROR;
+    }
 }
 
-void
+Error_t
 CircularBufferWriteD(CircularBufferD* cb, const double* src, unsigned n_samples)
 {
     for (unsigned i=0; i < n_samples; ++i)
     {
         cb->buffer[++cb->write_index & cb->wrap] = *src++;
     }
+    cb->count += n_samples;
+    
+    if ((cb->count <= cb->length) && (cb->count >= 0))
+    {
+        return NOERR;
+    }
+    else
+    {
+        return VALUE_ERROR;
+    }
 }
 
 
 /*******************************************************************************
  CircularBufferRead */
-void
+Error_t
 CircularBufferRead(CircularBuffer* cb, float* dest, unsigned n_samples)
 {
     for (unsigned i=0; i < n_samples; ++i)
     {
         *dest++ = cb->buffer[++cb->read_index & cb->wrap];
     }
+    cb->count -= n_samples;
+    
+    if ((cb->count <= cb->length) && (cb->count >= 0))
+    {
+        return NOERR;
+    }
+    else
+    {
+        return VALUE_ERROR;
+    }
 }
 
 
-void
+Error_t
 CircularBufferReadD(CircularBufferD* cb, double* dest, unsigned n_samples)
 {
     for (unsigned i=0; i < n_samples; ++i)
     {
         *dest++ = cb->buffer[++cb->read_index & cb->wrap];
     }
+    cb->count -= n_samples;
+    
+    if ((cb->count <= cb->length) && (cb->count >= 0))
+    {
+        return NOERR;
+    }
+    else
+    {
+        return VALUE_ERROR;
+    }
 }
 
 
 /*******************************************************************************
  CircularBufferFlush */
-void
+Error_t
 CircularBufferFlush(CircularBuffer* cb)
 {
     ClearBuffer(cb->buffer, cb->length);
+    cb->count = 0;
+    return NOERR;
 }
 
 
-void
+Error_t
 CircularBufferFlushD(CircularBufferD* cb)
 {
     ClearBufferD(cb->buffer, cb->length);
+    cb->count = 0;
+    return NOERR;
 }
 
 
 /*******************************************************************************
  CircularBufferRewind */
 
-void
+Error_t
 CircularBufferRewind(CircularBuffer* cb, unsigned samples)
 {
     cb->read_index = ((cb->read_index + cb->length) - samples) % cb->length;
+    cb->count += samples;
+    
+    if ((cb->count <= cb->length) && (cb->count >= 0))
+    {
+        return NOERR;
+    }
+    else
+    {
+        return VALUE_ERROR;
+    }
 }
 
-void
+Error_t
 CircularBufferRewindD(CircularBufferD* cb, unsigned samples)
 {
     cb->read_index = ((cb->read_index + cb->length) - samples) % cb->length;
+    cb->count += samples;
+    
+    if ((cb->count <= cb->length) && (cb->count >= 0))
+    {
+        return NOERR;
+    }
+    else
+    {
+        return VALUE_ERROR;
+    }
+}
+
+/*******************************************************************************
+ CircularBufferCount */
+int
+CircularBufferCount(CircularBuffer* cb)
+{
+    return cb->count;
+}
+
+int
+CircularBufferCountD(CircularBufferD* cb)
+{
+    return cb->count;
 }

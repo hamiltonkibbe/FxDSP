@@ -10,12 +10,15 @@
 #ifndef CIRCULARBUFFER_H_
 #define CIRCULARBUFFER_H_
 
+#include "Error.h"
+
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-
+    
+    
 /** CircularBuffer type */
 typedef struct CircularBuffer CircularBuffer;
 typedef struct CircularBufferD CircularBufferD;
@@ -26,7 +29,7 @@ typedef struct CircularBufferD CircularBufferD;
  *			Play nice and call CircularBuffer Free on the filter when you're
  *          done with it.
  *
- * @param length		The number of elements in the circular buffer
+ * @param length		The minimum number of elements in the circular buffer
  */
 CircularBuffer*  CircularBufferInit(unsigned length);
 
@@ -38,45 +41,59 @@ CircularBufferInitD(unsigned length);
 *
 * @details Frees memory allocated by CircularBufferInit
 */
-void
+Error_t
 CircularBufferFree(CircularBuffer* cb);
     
-void
+Error_t
 CircularBufferFreeD(CircularBufferD* cb);
 
     
 /** Write samples to circular buffer
 */
-void
+Error_t
 CircularBufferWrite(CircularBuffer* cb, const float* src, unsigned n_samples);
 
-void
+Error_t
 CircularBufferWriteD(CircularBufferD*   cb,
                      const double*      src,
                      unsigned           n_samples);
+
     
 /** Read samples from circular buffer
  */
-void
+Error_t
 CircularBufferRead(CircularBuffer* cb, float* dest, unsigned n_samples);
     
-void
+Error_t
 CircularBufferReadD(CircularBufferD* cb, double* dest, unsigned n_samples);
 
+    
 /** Flush circular buffer
  */
-void
+Error_t
 CircularBufferFlush(CircularBuffer* cb);
 
-void
+Error_t
 CircularBufferFlushD(CircularBufferD* cb);
 
     
-void
-CircularBufferRewind(CircularBuffer* cb, unsigned samples);
+/** Rewind the read head of the buffer by `n_samples` samples
+ */
+Error_t
+CircularBufferRewind(CircularBuffer* cb, unsigned n_samples);
     
-void
-CircularBufferRewindD(CircularBufferD* cb, unsigned samples);
+Error_t
+CircularBufferRewindD(CircularBufferD* cb, unsigned n_samples);
+
+    
+/** Return the number of unread samples in the buffer 
+ */
+int
+CircularBufferCount(CircularBuffer* cb);
+    
+int
+CircularBufferCountD(CircularBufferD* cb);
+    
     
 #ifdef __cplusplus
 }
