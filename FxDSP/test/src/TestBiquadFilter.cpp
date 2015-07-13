@@ -12,30 +12,6 @@
 #include <gtest/gtest.h>
 
 
-#include "AudioWeighting.h"
-
-TEST(COEFFZ, TESTCOEFFZZZZ)
-{
-    double b[11];
-    double a[11];
-    AWeightingCoefficientsD(b, a, 48000);
-    
-    printf("b = [");
-    for (unsigned i = 0; i < 11; ++i)
-    {
-        printf("%1.15f ", b[i]);
-    }
-    printf("];\n\n");
-    
-    printf("a = [");
-    for (unsigned i = 0; i < 11; ++i)
-    {
-        printf("%1.15f ", a[i]);
-    }
-    printf("];\n\n");
-}
-
-
 TEST(BiquadFilterSingle, TestResultsAgainstMatlab)
 {
     // Set up
