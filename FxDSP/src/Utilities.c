@@ -171,6 +171,11 @@ AmpToDb(float amplitude)
     return 20.0*log10f(amplitude);
 }
 
+inline double
+AmpToDbD(double amplitude)
+{
+    return 20.0*log10(amplitude);
+}
 
 /* dbToRatio ******************************************************************/
 inline float
@@ -179,6 +184,11 @@ DbToAmp(float dB)
     return (dB > -90.0f ? powf(10.0, dB * 0.05f): 0.0f);
 }
 
+inline double
+DbToAmpD(double dB)
+{
+    return (dB > -90.0 ? pow(10.0, dB * 0.05): 0.0);
+}
 
 void
 RectToPolar(float real, float imag, float* outMag, float* outPhase)

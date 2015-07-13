@@ -14,7 +14,13 @@
 extern "C" {
 #endif
 
-    
+
+void
+sinewave(float* dest, unsigned n, float f, float phase, float amp, float Fs);
+  
+void
+sinewaveD(double* dest, unsigned n, double f, double phase, double amp, double Fs);
+
 // >> sin(linspace(0, 6*pi, 100))
 static const float MatlabSignal[100] =
 {

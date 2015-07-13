@@ -12,7 +12,17 @@
 #include <math.h>
 #include <float.h>
 
+/* pow(10, (-12./20.)); */
+static const double k12_ref = 0.25118864315095801309;
 
+/* pow(10, (-14./20.)); */
+static const double k14_ref = 0.19952623149688797355;
+
+/* pow(10, (-20./20.)); */
+static const double k20_ref = 0.1;
+
+static const float ref[] = {1.0, (float)k12_ref, (float)k14_ref, (float)k20_ref};
+static const double refD[] = {1.0, k12_ref, k14_ref, k20_ref};
 
 float
 phase_correlation(float* left, float* right, unsigned n_samples)
@@ -104,3 +114,21 @@ balanceD(double* left, double* right, unsigned n_samples)
     l = VectorSumD(lbuf, n_samples);
     return  (r - l) / ((r + l) + DBL_MIN);
 }
+
+
+float
+vu_peak(float* signal, unsigned n_samples, MeterScale scale)
+{
+    float peak = VectorMax(signal, n_samples);
+    return 20.0 * log10f(peak / ref[scale]);
+}
+
+double
+vu_peakD(double* signal, unsigned n_samples, MeterScale scale)
+{
+    {
+        double peak = VectorMaxD(signal, n_samples);
+        return 20 * log10(peak / refD[scale]);
+    }
+}
+

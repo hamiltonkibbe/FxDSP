@@ -7,7 +7,7 @@
 #include "Dsp.h"
 #include "Utilities.h"
 #include <string.h>
-
+#include <float.h>
 #include <math.h>
 
 #ifdef __APPLE__
@@ -506,6 +506,174 @@ VectorSumD(const double* src, unsigned length)
     return res;
 }
 
+
+/*******************************************************************************
+ VectorMax */
+float
+VectorMax(const float* src, unsigned length)
+{
+    float res = 0.0;
+#ifdef __APPLE__
+    // Use the Accelerate framework if we have it
+    vDSP_maxv(src, 1, &res, length);
+#else
+    for (unsigned i = 0; i < length; ++i)
+    {
+        if (src[i] > res)
+        {
+            res = src[i];
+        }
+    }
+#endif
+    return res;
+}
+
+double
+VectorMaxD(const double* src, unsigned length)
+{
+    double res = 0.0;
+#ifdef __APPLE__
+    // Use the Accelerate framework if we have it
+    vDSP_maxvD(src, 1, &res, length);
+#else
+    for (unsigned i = 0; i < length; ++i)
+    {
+        if (src[i] > res)
+        {
+            res = src[i];
+        }
+    }
+#endif
+    return res;
+}
+
+
+/*******************************************************************************
+ VectorMaxVI */
+
+Error_t
+VectorMaxVI(float* value, unsigned* index, const float* src, unsigned length)
+{
+#ifdef __APPLE__
+    // Use the Accelerate framework if we have it
+    vDSP_maxvi(src, 1, value, (unsigned long*)index, length);
+#else
+    for (unsigned i = 0; i < length; ++i)
+    {
+        if (src[i] > res)
+        {
+            *value = src[i];
+            *index = i;
+        }
+    }
+#endif
+    return NOERR;
+}
+
+Error_t
+VectorMaxVID(double* value, unsigned* index, const double* src, unsigned length)
+{
+#ifdef __APPLE__
+    // Use the Accelerate framework if we have it
+    vDSP_maxviD(src, 1, value, (unsigned long*)index, length);
+#else
+    for (unsigned i = 0; i < length; ++i)
+    {
+        if (src[i] > res)
+        {
+            *value = src[i];
+            *index = i;
+        }
+    }
+#endif
+    return NOERR;
+}
+
+
+
+/*******************************************************************************
+ VectorMin */
+float
+VectorMin(const float* src, unsigned length)
+{
+    float res = FLT_MAX;
+#ifdef __APPLE__
+    // Use the Accelerate framework if we have it
+    vDSP_minv(src, 1, &res, length);
+#else
+    for (unsigned i = 0; i < length; ++i)
+    {
+        if (src[i] < res)
+        {
+            res = src[i];
+        }
+    }
+#endif
+    return res;
+}
+
+double
+VectorMinD(const double* src, unsigned length)
+{
+    double res = DBL_MAX;
+#ifdef __APPLE__
+    // Use the Accelerate framework if we have it
+    vDSP_minvD(src, 1, &res, length);
+#else
+    for (unsigned i = 0; i < length; ++i)
+    {
+        if (src[i] < res)
+        {
+            res = src[i];
+        }
+    }
+#endif
+    return res;
+}
+
+
+/*******************************************************************************
+ VectorMinVI */
+
+Error_t
+VectorMinVI(float* value, unsigned* index, const float* src, unsigned length)
+{
+    
+#ifdef __APPLE__
+    // Use the Accelerate framework if we have it
+    vDSP_minvi(src, 1, value, (unsigned long*)index, length);
+#else
+    for (unsigned i = 0; i < length; ++i)
+    {
+        if (src[i] < res)
+        {
+            *value = src[i];
+            *index = i;
+        }
+    }
+#endif
+    return NOERR;
+}
+
+Error_t
+VectorMinVID(double* value, unsigned* index, const double* src, unsigned length)
+{
+    
+#ifdef __APPLE__
+    // Use the Accelerate framework if we have it
+    vDSP_minviD(src, 1, value, (unsigned long*)index, length);
+#else
+    for (unsigned i = 0; i < length; ++i)
+    {
+        if (src[i] < res)
+        {
+            *value = src[i];
+            *index = i;
+        }
+    }
+#endif
+    return NOERR;
+}
 
 /*******************************************************************************
  VectorVectorAdd */

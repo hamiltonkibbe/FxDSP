@@ -164,6 +164,9 @@ floatToInt16(float sample);
 float
 AmpToDb(float ratio);
 
+double
+AmpToDbD(double ratio);
+    
 	
 /** Convert a value in dB to an amplitude
  * @details convert a dBFS value to a voltage amplitude
@@ -173,6 +176,9 @@ AmpToDb(float ratio);
 float
 DbToAmp(float dB);
 
+double
+DbToAmpD(double dB);
+    
     
 void
 RectToPolar(float real, float imag, float* outMag, float* outPhase);

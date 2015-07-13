@@ -22,11 +22,11 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		370223321B4F0E5E00750735 /* Signals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 370223311B4F0E5E00750735 /* Signals.cpp */; };
+		370223341B4F31B800750735 /* TestBS1770.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 370223331B4F31B800750735 /* TestBS1770.cpp */; };
 		37139B4D1AFB269E00207A08 /* TestLinkwitzRileyFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37139B4B1AFB0D8000207A08 /* TestLinkwitzRileyFilter.cpp */; };
 		3713FCCF1B16882D002C199A /* bs1770.c in Sources */ = {isa = PBXBuildFile; fileRef = 3713FCCD1B16882D002C199A /* bs1770.c */; };
 		3713FCD01B16882D002C199A /* bs1770.c in Sources */ = {isa = PBXBuildFile; fileRef = 3713FCCD1B16882D002C199A /* bs1770.c */; };
-		3713FCD11B16882D002C199A /* bs1770.h in Headers */ = {isa = PBXBuildFile; fileRef = 3713FCCE1B16882D002C199A /* bs1770.h */; };
-		3713FCD21B16882D002C199A /* bs1770.h in Headers */ = {isa = PBXBuildFile; fileRef = 3713FCCE1B16882D002C199A /* bs1770.h */; };
 		373B1C8E1B005D7500B0B40D /* Decimator.h in Headers */ = {isa = PBXBuildFile; fileRef = 373B1C8D1B005D7500B0B40D /* Decimator.h */; };
 		373B1C8F1B005D7500B0B40D /* Decimator.h in Headers */ = {isa = PBXBuildFile; fileRef = 373B1C8D1B005D7500B0B40D /* Decimator.h */; };
 		373B1C911B0060B900B0B40D /* Decimator.c in Sources */ = {isa = PBXBuildFile; fileRef = 373B1C901B0060B900B0B40D /* Decimator.c */; };
@@ -35,6 +35,8 @@
 		373B1C981B006BAA00B0B40D /* PolyphaseCoeffs.c in Sources */ = {isa = PBXBuildFile; fileRef = 373B1C961B006BAA00B0B40D /* PolyphaseCoeffs.c */; };
 		373CBAAE1AF71F3F00B488E8 /* TestPanLaw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 373CBAAD1AF71F3F00B488E8 /* TestPanLaw.cpp */; };
 		373CBAB01AF722D600B488E8 /* TestUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 373CBAAF1AF722D600B488E8 /* TestUtilities.cpp */; };
+		3769A0EC1B1EA27B00FF9560 /* bs1770.h in Headers */ = {isa = PBXBuildFile; fileRef = 3769A0EB1B1EA27B00FF9560 /* bs1770.h */; };
+		3769A0ED1B1EA27B00FF9560 /* bs1770.h in Headers */ = {isa = PBXBuildFile; fileRef = 3769A0EB1B1EA27B00FF9560 /* bs1770.h */; };
 		376CF3781ADB56BF001486B7 /* TestFFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 376CF3771ADB56BF001486B7 /* TestFFT.cpp */; };
 		376CF37A1ADB6849001486B7 /* TestMultibandFilterBank.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 376CF3791ADB6849001486B7 /* TestMultibandFilterBank.cpp */; };
 		376CF37C1ADB7444001486B7 /* libfftw3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 376CF37B1ADB7444001486B7 /* libfftw3.3.dylib */; };
@@ -297,14 +299,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		370223311B4F0E5E00750735 /* Signals.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Signals.cpp; path = FxDSP/test/src/Signals.cpp; sourceTree = SOURCE_ROOT; };
+		370223331B4F31B800750735 /* TestBS1770.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestBS1770.cpp; path = FxDSP/test/src/TestBS1770.cpp; sourceTree = SOURCE_ROOT; };
 		37139B4B1AFB0D8000207A08 /* TestLinkwitzRileyFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestLinkwitzRileyFilter.cpp; path = FxDSP/test/src/TestLinkwitzRileyFilter.cpp; sourceTree = SOURCE_ROOT; };
 		3713FCCD1B16882D002C199A /* bs1770.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = bs1770.c; path = FxDSP/src/bs1770.c; sourceTree = SOURCE_ROOT; };
-		3713FCCE1B16882D002C199A /* bs1770.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bs1770.h; path = FxDSP/src/bs1770.h; sourceTree = SOURCE_ROOT; };
 		373B1C8D1B005D7500B0B40D /* Decimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Decimator.h; path = FxDSP/include/Decimator.h; sourceTree = SOURCE_ROOT; };
 		373B1C901B0060B900B0B40D /* Decimator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Decimator.c; path = FxDSP/src/Decimator.c; sourceTree = SOURCE_ROOT; };
 		373B1C961B006BAA00B0B40D /* PolyphaseCoeffs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = PolyphaseCoeffs.c; path = FxDSP/src/PolyphaseCoeffs.c; sourceTree = SOURCE_ROOT; };
 		373CBAAD1AF71F3F00B488E8 /* TestPanLaw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestPanLaw.cpp; path = FxDSP/test/src/TestPanLaw.cpp; sourceTree = SOURCE_ROOT; };
 		373CBAAF1AF722D600B488E8 /* TestUtilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestUtilities.cpp; path = FxDSP/test/src/TestUtilities.cpp; sourceTree = SOURCE_ROOT; };
+		3769A0EB1B1EA27B00FF9560 /* bs1770.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bs1770.h; path = FxDSP/include/bs1770.h; sourceTree = SOURCE_ROOT; };
 		376CF3771ADB56BF001486B7 /* TestFFT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestFFT.cpp; path = FxDSP/test/src/TestFFT.cpp; sourceTree = SOURCE_ROOT; };
 		376CF3791ADB6849001486B7 /* TestMultibandFilterBank.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestMultibandFilterBank.cpp; path = FxDSP/test/src/TestMultibandFilterBank.cpp; sourceTree = SOURCE_ROOT; };
 		376CF37B1ADB7444001486B7 /* libfftw3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfftw3.3.dylib; path = ../../../../../usr/local/Cellar/fftw/3.3.4_1/lib/libfftw3.3.dylib; sourceTree = "<group>"; };
@@ -439,13 +443,13 @@
 		37695F84182325FD00EFA54F /* include */ = {
 			isa = PBXGroup;
 			children = (
-				37DC0C4E1B0FF83700C20827 /* Metering.h */,
-				3775E0961AD6072200930665 /* DiodeSaturator.h */,
-				37CDDD8C1AC9C82F001B96BA /* PanLaw.h */,
 				37C0309A1ABB5EA800ABB47B /* BiquadFilter.h */,
+				3769A0EB1B1EA27B00FF9560 /* bs1770.h */,
 				37C0309B1ABB5EA800ABB47B /* CircularBuffer.h */,
 				37C0309C1ABB5EA800ABB47B /* Compressor.h */,
+				373B1C8D1B005D7500B0B40D /* Decimator.h */,
 				37C0309D1ABB5EA800ABB47B /* DiodeRectifier.h */,
+				3775E0961AD6072200930665 /* DiodeSaturator.h */,
 				37C0309E1ABB5EA800ABB47B /* Dsp.h */,
 				37C0309F1ABB5EA800ABB47B /* Error.h */,
 				37C030A01ABB5EA800ABB47B /* FFT.h */,
@@ -453,10 +457,12 @@
 				37C030A21ABB5EA800ABB47B /* FIRFilter.h */,
 				37C030A31ABB5EA800ABB47B /* LadderFilter.h */,
 				37C030A41ABB5EA800ABB47B /* LinkwitzRileyFilter.h */,
+				37DC0C4E1B0FF83700C20827 /* Metering.h */,
 				37C030A51ABB5EA800ABB47B /* MidiUtils.h */,
 				37C030A61ABB5EA800ABB47B /* MultibandBank.h */,
 				37C030A71ABB5EA800ABB47B /* OnePole.h */,
 				37C030A81ABB5EA800ABB47B /* Optocoupler.h */,
+				37CDDD8C1AC9C82F001B96BA /* PanLaw.h */,
 				37C030A91ABB5EA800ABB47B /* PolyphaseCoeffs.h */,
 				37C030AA1ABB5EA800ABB47B /* PolySaturator.h */,
 				37C030AB1ABB5EA800ABB47B /* RBJFilter.h */,
@@ -467,7 +473,6 @@
 				37C030B01ABB5EA800ABB47B /* Waveshaper.h */,
 				37C030B11ABB5EA800ABB47B /* Wavetable.h */,
 				37C030B21ABB5EA800ABB47B /* WindowFunction.h */,
-				373B1C8D1B005D7500B0B40D /* Decimator.h */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -475,21 +480,25 @@
 		37695F95182325FD00EFA54F /* src */ = {
 			isa = PBXGroup;
 			children = (
-				373B1C961B006BAA00B0B40D /* PolyphaseCoeffs.c */,
-				3775E0971AD6072C00930665 /* DiodeSaturator.c */,
-				37CDDD8E1AC9C83C001B96BA /* PanLaw.c */,
 				37C030CC1ABB5EBF00ABB47B /* BiquadFilter.c */,
+				3713FCCD1B16882D002C199A /* bs1770.c */,
 				37C030CD1ABB5EBF00ABB47B /* CircularBuffer.c */,
 				37C030CE1ABB5EBF00ABB47B /* Compressor.c */,
+				373B1C901B0060B900B0B40D /* Decimator.c */,
 				37C030CF1ABB5EBF00ABB47B /* DiodeRectifier.c */,
+				3775E0971AD6072C00930665 /* DiodeSaturator.c */,
 				37C030D01ABB5EBF00ABB47B /* Dsp.c */,
 				37C030D11ABB5EBF00ABB47B /* FFT.c */,
 				37C030D21ABB5EBF00ABB47B /* FIRFilter.c */,
 				37C030D31ABB5EBF00ABB47B /* LadderFilter.c */,
 				37C030D41ABB5EBF00ABB47B /* LinkwitzRileyFilter.c */,
+				37DC0C481B0FF80000C20827 /* Metering.c */,
+				376ED3C91AF666980054BA36 /* MidiUtils.c */,
 				37C030D51ABB5EBF00ABB47B /* MultibandBank.c */,
 				37C030D61ABB5EBF00ABB47B /* OnePole.c */,
 				37C030D71ABB5EBF00ABB47B /* Optocoupler.c */,
+				37CDDD8E1AC9C83C001B96BA /* PanLaw.c */,
+				373B1C961B006BAA00B0B40D /* PolyphaseCoeffs.c */,
 				37C030D81ABB5EBF00ABB47B /* PolySaturator.c */,
 				37C030D91ABB5EBF00ABB47B /* RBJFilter.c */,
 				37C030DA1ABB5EBF00ABB47B /* RMSEstimator.c */,
@@ -499,11 +508,6 @@
 				37C030DE1ABB5EBF00ABB47B /* Waveshaper.c */,
 				37C030DF1ABB5EBF00ABB47B /* Wavetable.c */,
 				37C030E01ABB5EBF00ABB47B /* WindowFunction.c */,
-				376ED3C91AF666980054BA36 /* MidiUtils.c */,
-				373B1C901B0060B900B0B40D /* Decimator.c */,
-				37DC0C481B0FF80000C20827 /* Metering.c */,
-				3713FCCD1B16882D002C199A /* bs1770.c */,
-				3713FCCE1B16882D002C199A /* bs1770.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -519,6 +523,7 @@
 		37C0311C1ABB65B900ABB47B /* src */ = {
 			isa = PBXGroup;
 			children = (
+				370223311B4F0E5E00750735 /* Signals.cpp */,
 				3775E0771AD4EF3B00930665 /* Signals.h */,
 				3775E0781AD4EF3B00930665 /* TestBiquadFilter.h */,
 				3775E0791AD4EF3B00930665 /* testFFT.h */,
@@ -544,6 +549,7 @@
 				37DC0C511B0FF8CA00C20827 /* TestMetering.cpp */,
 				37BD93041B139082009238D4 /* TestUpsampler.cpp */,
 				37BD93061B13A46C009238D4 /* TestDecimator.cpp */,
+				370223331B4F31B800750735 /* TestBS1770.cpp */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -600,7 +606,7 @@
 				37C0319D1ABB7E4D00ABB47B /* LadderFilter.h in Headers */,
 				37C0319E1ABB7E4D00ABB47B /* LinkwitzRileyFilter.h in Headers */,
 				37C0319F1ABB7E4D00ABB47B /* MidiUtils.h in Headers */,
-				3713FCD21B16882D002C199A /* bs1770.h in Headers */,
+				3769A0ED1B1EA27B00FF9560 /* bs1770.h in Headers */,
 				37C031A01ABB7E4D00ABB47B /* MultibandBank.h in Headers */,
 				37C031A11ABB7E4D00ABB47B /* OnePole.h in Headers */,
 				37C031A21ABB7E4D00ABB47B /* Optocoupler.h in Headers */,
@@ -634,7 +640,7 @@
 				37C030C41ABB5EA800ABB47B /* RBJFilter.h in Headers */,
 				3775E0831AD4EF3B00930665 /* TestFIRFilter.h in Headers */,
 				37C030C91ABB5EA800ABB47B /* Waveshaper.h in Headers */,
-				3713FCD11B16882D002C199A /* bs1770.h in Headers */,
+				3769A0EC1B1EA27B00FF9560 /* bs1770.h in Headers */,
 				37C030BE1ABB5EA800ABB47B /* MidiUtils.h in Headers */,
 				37C030BD1ABB5EA800ABB47B /* LinkwitzRileyFilter.h in Headers */,
 				37C030C51ABB5EA800ABB47B /* RMSEstimator.h in Headers */,
@@ -805,6 +811,7 @@
 				37139B4D1AFB269E00207A08 /* TestLinkwitzRileyFilter.cpp in Sources */,
 				37BD93051B139082009238D4 /* TestUpsampler.cpp in Sources */,
 				373CBAB01AF722D600B488E8 /* TestUtilities.cpp in Sources */,
+				370223341B4F31B800750735 /* TestBS1770.cpp in Sources */,
 				376ED3CE1AF6683E0054BA36 /* TestRMS.cpp in Sources */,
 				3775E0931AD501DE00930665 /* TestRBJFilter.cpp in Sources */,
 				3775E08B1AD4F1E500930665 /* TestOnePole.cpp in Sources */,
@@ -818,6 +825,7 @@
 				3775E0951AD605CA00930665 /* TestMidiUtils.cpp in Sources */,
 				37DC0C521B0FF8CA00C20827 /* TestMetering.cpp in Sources */,
 				376CF3781ADB56BF001486B7 /* TestFFT.cpp in Sources */,
+				370223321B4F0E5E00750735 /* Signals.cpp in Sources */,
 				3775E08E1AD4F4EE00930665 /* TestDSP.cpp in Sources */,
 				376CF37A1ADB6849001486B7 /* TestMultibandFilterBank.cpp in Sources */,
 			);

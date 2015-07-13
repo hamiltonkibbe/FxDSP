@@ -21,7 +21,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-//#undef __APPLE__
+
 #pragma mark - Sample Type Conversion
 /** Convert an array of float samples to 16-bit signed
 * @details Converts array of floating point samples in [-1, 1] to signed 16-bit 
@@ -37,7 +37,8 @@ FloatBufferToInt16(signed short* dest, const float* src, unsigned length);
 
 Error_t
 DoubleBufferToInt16(signed short* dest, const double* src, unsigned length);
-    
+
+
 /** Convert an array of 16-bit signed samples to floats
 * @details Converts array of 16-bit integer samples to float samples in [-1,1]
 *
@@ -110,7 +111,17 @@ CopyBuffer(float* dest, const float* src, unsigned length);
 Error_t
 CopyBufferD(double* dest, const double* src, unsigned length);
 
- 
+    
+/** Copy an array with given source and destination strides
+ * @details copy an array from src to dest
+ *
+ * @param dest          Array to fill
+ * @param dest_stride   Destination stride
+ * @param src           source buffer
+ * @param src_stride    Sounrce stride
+ * @param length        Size of array in samples
+ * @return              Error code.
+ */
 Error_t
 CopyBufferStride(float*         dest,
                  unsigned       dest_stride,
@@ -126,7 +137,8 @@ CopyBufferStrideD(double*       dest,
                   unsigned      src_stride,
                   unsigned      length);
     
-    
+  
+
 #pragma mark - Split <-> Interleaved conversion
 /** Split To Interleaved Complex Vector conversion
  *
@@ -154,6 +166,7 @@ SplitToInterleavedD(double*         dest,
                     const double*   real,
                     const double*   imag,
                     unsigned        length);
+
 
 /** Interleaved to split Complex Vector conversion
  *
@@ -238,8 +251,63 @@ VectorSum(const float* src, unsigned length);
     
 double
 VectorSumD(const double* src, unsigned length);
+
+    
+#pragma mark - Vector Min/Max
+/** Find the Maximum value in a vector
+ * 
+ * @param src       Vector to search
+ * @param length    Vector length in samples
+ * @return          Maximum value in vector
+ */
+float
+VectorMax(const float* src, unsigned length);
+
+double
+VectorMaxD(const double* src, unsigned length);
+
+    
+/** Find the index and value of the Maximum value in a vector
+ *
+ * @param value     Maximum value in vector
+ * @param index     Index of maximum value
+ * @param src       Vector to search
+ * @param length    Vector length in samples
+ */
+Error_t
+VectorMaxVI(float* value, unsigned* index, const float* src, unsigned length);
+
+Error_t
+VectorMaxVID(double* value, unsigned* index, const double* src, unsigned length);
     
 
+/** Find the Minimum value in a vector
+ *
+ * @param src       Vector to search
+ * @param length    Vector length in samples
+ * @return          Miminum value in vector
+ */
+float
+VectorMin(const float* src, unsigned length);
+
+double
+VectorMinD(const double* src, unsigned length);
+
+    
+/** Find the index and value of the Maximum value in a vector
+ *
+ * @param value     Minimum value in vector
+ * @param index     Index of minimum value
+ * @param src       Vector to search
+ * @param length    Vector length in samples
+ */
+Error_t
+VectorMinVI(float* value, unsigned* index, const float* src, unsigned length);
+
+Error_t
+VectorMinVID(double* value, unsigned* index, const double* src, unsigned length);
+
+    
 #pragma mark - Vector Addition
 /** Add two buffers
  * @details Add values in in1  to values in in2 element-by-element and write 
