@@ -21,8 +21,8 @@ static const double k14_ref = 0.19952623149688797355;
 /* pow(10, (-20./20.)); */
 static const double k20_ref = 0.1;
 
-static const float ref[] = {1.0, (float)k12_ref, (float)k14_ref, (float)k20_ref};
-static const double refD[] = {1.0, k12_ref, k14_ref, k20_ref};
+static const float ref[] = {1.0, 0.25118864315095801309, 0.19952623149688797355, 0.1};
+static const double refD[] = {1.0, 0.25118864315095801309, 0.19952623149688797355, 0.1};
 
 float
 phase_correlation(float* left, float* right, unsigned n_samples)
