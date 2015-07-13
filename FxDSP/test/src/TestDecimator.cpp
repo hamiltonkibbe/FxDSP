@@ -33,7 +33,7 @@ TEST(DecimatorSingle, TestDecimator)
         expected[i] = sinf(i*M_PI/40.0);
     }
 
-    for (unsigned i = 0; i < 400- 32; ++i)
+    for (unsigned i = 0; i < 400 - 32; ++i)
     {
         ASSERT_NEAR(residx[i], expected[i], 0.1);
         
@@ -53,7 +53,50 @@ TEST(DecimatorSingle, TestDecimator)
     {
         ASSERT_NEAR(residx[i], expected[i], 0.1);
     }
+    
+    ds = DecimatorInit(X8);
+    DecimatorProcess(ds, out, in, 800);
+    DecimatorFree(ds);
+    
+    
+    for(unsigned i = 0; i < 100; ++i)
+    {
+        expected[i] = sinf(i*M_PI/10.0);
+    }
+    
+    for (unsigned i = 0; i < 100 - 32; ++i)
+    {
+        ASSERT_NEAR(residx[i], expected[i], 0.2);
+    }
+    
 }
+
+
+
+TEST(DecimatorSingle, TestDecimatorFlush)
+{
+    float in[800];
+    float out1[400];
+    float out2[400];
+    for (unsigned i = 0; i < 800; ++i)
+    {
+        in[i] = sinf(i * M_PI / 80.0);
+    }
+    
+    
+    Decimator* ds = DecimatorInit(X2);
+    DecimatorProcess(ds, out1, in, 800);
+    DecimatorFlush(ds);
+    DecimatorProcess(ds, out2, in, 800);
+    DecimatorFree(ds);
+    
+    for (unsigned i = 0; i < 400; ++i)
+    {
+        ASSERT_FLOAT_EQ(out1[i], out2[i]);
+        
+    }
+}
+
 
 
 
@@ -100,4 +143,47 @@ TEST(DecimatorDouble, TestDecimator)
     {
         ASSERT_NEAR(residx[i], expected[i], 0.1);
     }
+    
+    ds = DecimatorInitD(X8);
+    DecimatorProcessD(ds, out, in, 800);
+    DecimatorFreeD(ds);
+    
+    
+    for(unsigned i = 0; i < 100; ++i)
+    {
+        expected[i] = sinf(i*M_PI/10.0);
+    }
+    
+    for (unsigned i = 0; i < 100 - 32; ++i)
+    {
+        ASSERT_NEAR(residx[i], expected[i], 0.2);
+    }
+
 }
+
+
+
+TEST(DecimatorDouble, TestDecimatorFlush)
+{
+    double in[800];
+    double out1[400];
+    double out2[400];
+    for (unsigned i = 0; i < 800; ++i)
+    {
+        in[i] = sin(i * M_PI / 80.0);
+    }
+    
+    DecimatorD* ds = DecimatorInitD(X2);
+    DecimatorProcessD(ds, out1, in, 800);
+    DecimatorFlushD(ds);
+    DecimatorProcessD(ds, out2, in, 800);
+    DecimatorFreeD(ds);
+    
+    for (unsigned i = 0; i < 400; ++i)
+    {
+        ASSERT_DOUBLE_EQ(out1[i], out2[i]);
+        
+    }
+}
+
+

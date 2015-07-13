@@ -58,7 +58,7 @@ Error_t
 UpsamplerFlush(Upsampler* upsampler);
 
 Error_t
-UpsamplerFlush(Upsampler* upsampler);
+UpsamplerFlushD(UpsamplerD* upsampler);
     
 
 /** Upsample a buffer of samples

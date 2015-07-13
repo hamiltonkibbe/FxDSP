@@ -25,7 +25,7 @@ typedef enum factor
     X8,
     
     /** 16x resampling */
-    X16,
+    /*X16,*/
     
     /** number of resampling factors */
     N_FACTORS

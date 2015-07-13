@@ -226,6 +226,12 @@ TEST(DSPSingle, TestVectorPower)
     {
         ASSERT_FLOAT_EQ(powf(ramp[i], 2.0), out[i]);
     }
+    
+    VectorPower(out, ramp, 3.0, 10);
+    for (unsigned i = 0; i < 10; ++i)
+    {
+        ASSERT_FLOAT_EQ(powf(ramp[i], 3.0), out[i]);
+    }
 }
 
 
@@ -313,13 +319,39 @@ TEST(DSPSingle, TestRectPolarConversion)
     }
 }
 
-TEST(DSPSin, TestMeanSquare)
+TEST(DSPSingle, TestMeanSquare)
 {
     float sig[5] = {1, 2, 3, 4, 5};
     float expected = 11.; // (1^2 + 2^2 + 3^2 + 4^2 + 5^2) / 5
     ASSERT_FLOAT_EQ(expected, MeanSquare(sig, 5));
 }
 
+
+TEST(DSPSingle, TestVectorMax)
+{
+    float signal[10] = {0.0, -1.0, -0.5, -0.3, 0.0, 1.0, 0.5, 0.3, 0.2, 0.1};
+    float max = VectorMax(signal, 10);
+    ASSERT_FLOAT_EQ(1.0, max);
+    
+    max = 0.0;
+    unsigned index = 0;
+    VectorMaxVI(&max, &index, signal, 10);
+    ASSERT_FLOAT_EQ(1.0, max);
+    ASSERT_EQ(5, index);
+}
+
+TEST(DSPSingle, TestVectorMin)
+{
+    float signal[10] = {0.0, -1.0, -0.5, -0.3, 0.0, 1.0, 0.5, 0.3, 0.2, 0.1};
+    float min = VectorMin(signal, 10);
+    ASSERT_FLOAT_EQ(-1.0, min);
+    
+    min = 0.0;
+    unsigned index = 0;
+    VectorMinVI(&min, &index, signal, 10);
+    ASSERT_FLOAT_EQ(-1.0, min);
+    ASSERT_EQ(1, index);
+}
 
 #pragma mark - Double Precision Tests
 
@@ -520,6 +552,12 @@ TEST(DSPDouble, TestVectorPower)
     {
         ASSERT_DOUBLE_EQ(pow(rampD[i], 2.0), out[i]);
     }
+    
+    VectorPowerD(out, rampD, 3.0, 10);
+    for (unsigned i = 0; i < 10; ++i)
+    {
+        ASSERT_DOUBLE_EQ(pow(rampD[i], 3.0), out[i]);
+    }
 }
 
 TEST(DSPDouble, TestConvolve)
@@ -613,3 +651,33 @@ TEST(DSPDouble, TestMeanSquare)
     double expected = 11.; // (1^2 + 2^2 + 3^2 + 4^2 + 5^2) / 5
     ASSERT_DOUBLE_EQ(expected, MeanSquareD(sig, 5));
 }
+
+
+
+TEST(DSPDouble, TestVectorMax)
+{
+    double signal[10] = {0.0, -1.0, -0.5, -0.3, 0.0, 1.0, 0.5, 0.3, 0.2, 0.1};
+    double max = VectorMaxD(signal, 10);
+    ASSERT_DOUBLE_EQ(1.0, max);
+    
+    max = 0.0;
+    unsigned index = 0;
+    VectorMaxVID(&max, &index, signal, 10);
+    ASSERT_DOUBLE_EQ(1.0, max);
+    ASSERT_EQ(5, index);
+}
+
+TEST(DSPDouble, TestVectorMin)
+{
+    double signal[10] = {0.0, -1.0, -0.5, -0.3, 0.0, 1.0, 0.5, 0.3, 0.2, 0.1};
+    double min = VectorMinD(signal, 10);
+    ASSERT_DOUBLE_EQ(-1.0, min);
+    
+    min = 0.0;
+    unsigned index = 0;
+    VectorMinVID(&min, &index, signal, 10);
+    ASSERT_DOUBLE_EQ(-1.0, min);
+    ASSERT_EQ(1, index);
+}
+
+

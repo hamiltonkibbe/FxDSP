@@ -41,9 +41,11 @@ UpsamplerInit(ResampleFactor_t factor)
         case X8:
             n_filters = 8;
             break;
+        /*
         case X16:
             n_filters = 16;
             break;
+        */
         default:
             break;
     }
@@ -99,9 +101,11 @@ UpsamplerInitD(ResampleFactor_t factor)
         case X8:
             n_filters = 8;
             break;
+        /*
         case X16:
             n_filters = 16;
             break;
+        */
         default:
             break;
     }

@@ -512,7 +512,7 @@ VectorSumD(const double* src, unsigned length)
 float
 VectorMax(const float* src, unsigned length)
 {
-    float res = src[0];
+    float res = FLT_MIN;
 #ifdef __APPLE__
     // Use the Accelerate framework if we have it
     vDSP_maxv(src, 1, &res, length);
@@ -531,7 +531,7 @@ VectorMax(const float* src, unsigned length)
 double
 VectorMaxD(const double* src, unsigned length)
 {
-    double res = src[0];
+    double res = DBL_MIN;
 #ifdef __APPLE__
     // Use the Accelerate framework if we have it
     vDSP_maxvD(src, 1, &res, length);
@@ -558,12 +558,12 @@ VectorMaxVI(float* value, unsigned* index, const float* src, unsigned length)
     // Use the Accelerate framework if we have it
     vDSP_maxvi(src, 1, value, (unsigned long*)index, length);
 #else
-    float res = src[0];
+    float res = FLT_MIN;
     for (unsigned i = 0; i < length; ++i)
     {
         if (src[i] > res)
         {
-            *value = src[i];
+            *value = res = src[i];
             *index = i;
         }
     }
@@ -583,7 +583,7 @@ VectorMaxVID(double* value, unsigned* index, const double* src, unsigned length)
     {
         if (src[i] > res)
         {
-            *value = src[i];
+            *value = res = src[i];
             *index = i;
         }
     }
@@ -650,7 +650,7 @@ VectorMinVI(float* value, unsigned* index, const float* src, unsigned length)
     {
         if (src[i] < res)
         {
-            *value = src[i];
+            *value = res = src[i];
             *index = i;
         }
     }
@@ -671,7 +671,7 @@ VectorMinVID(double* value, unsigned* index, const double* src, unsigned length)
     {
         if (src[i] < res)
         {
-            *value = src[i];
+            *value = res = src[i];
             *index = i;
         }
     }
@@ -1098,14 +1098,14 @@ VectorPowerD(double* dest, const double* in, double power, unsigned length)
         const unsigned end = 4 * (length / 4);
         for (i = 0; i < end; i+=4)
         {
-            dest[i] = powf(in[i], power);
-            dest[i + 1] = powf(in[i + 1], power);
-            dest[i + 2] = powf(in[i + 2], power);
-            dest[i + 3] = powf(in[i + 3], power);
+            dest[i] = pow(in[i], power);
+            dest[i + 1] = pow(in[i + 1], power);
+            dest[i + 2] = pow(in[i + 2], power);
+            dest[i + 3] = pow(in[i + 3], power);
         }
         for (i = end; i < length; ++i)
         {
-            dest[i] = powf(in[i], power);
+            dest[i] = pow(in[i], power);
         }
     }
 #else

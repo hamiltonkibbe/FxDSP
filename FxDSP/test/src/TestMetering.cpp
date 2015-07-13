@@ -9,6 +9,7 @@
 
 #include "Metering.h"
 #include "PanLaw.h"
+#include "Signals.h"
 #include <math.h>
 #include <gtest/gtest.h>
 
@@ -52,7 +53,15 @@ TEST(MeteringSingle, TestBalance)
     }
 }
 
-
+TEST(MeteringSingle, TestVuPeak)
+{
+    float signal[1000];
+    sinewave(signal, 1000, 1000.0, 0.0, 1.0, 48000);
+    
+    ASSERT_FLOAT_EQ(12.0, vu_peak(signal, 1000, K_12));
+    ASSERT_FLOAT_EQ(14.0, vu_peak(signal, 1000, K_14));
+    ASSERT_FLOAT_EQ(20.0, vu_peak(signal, 1000, K_20));
+}
 
 TEST(MeteringDouble, TestPhaseCorrelation)
 {
@@ -89,4 +98,15 @@ TEST(MeteringDouble, TestBalance)
         }
         ASSERT_DOUBLE_EQ(expect[ctrl], balanceD(left, right, 20));
     }
+}
+
+
+TEST(MeteringDouble, TestVuPeak)
+{
+    double signal[1000];
+    sinewaveD(signal, 1000, 1000.0, 0.0, 1.0, 48000);
+    
+    ASSERT_DOUBLE_EQ(12.0, vu_peakD(signal, 1000, K_12));
+    ASSERT_DOUBLE_EQ(14.0, vu_peakD(signal, 1000, K_14));
+    ASSERT_DOUBLE_EQ(20.0, vu_peakD(signal, 1000, K_20));
 }

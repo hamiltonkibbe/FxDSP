@@ -1222,11 +1222,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FxDSP/src/Dsp.c"
-            timestampString = "458444646.48552"
+            timestampString = "458449495.936018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "747"
-            endingLineNumber = "747">
+            startingLineNumber = "749"
+            endingLineNumber = "749">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1284,11 +1284,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FxDSP/src/Dsp.c"
-            timestampString = "458444646.48552"
+            timestampString = "458449495.936018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1221"
-            endingLineNumber = "1221"
+            startingLineNumber = "1223"
+            endingLineNumber = "1223"
             landmarkName = "ComplexMultiplyD()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1300,11 +1300,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FxDSP/src/Dsp.c"
-            timestampString = "458444646.48552"
+            timestampString = "458449495.936018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1222"
-            endingLineNumber = "1222"
+            startingLineNumber = "1224"
+            endingLineNumber = "1224"
             landmarkName = "ComplexMultiplyD()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1316,11 +1316,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FxDSP/src/Dsp.c"
-            timestampString = "458444646.48552"
+            timestampString = "458449495.936018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1216"
-            endingLineNumber = "1216"
+            startingLineNumber = "1218"
+            endingLineNumber = "1218"
             landmarkName = "ComplexMultiplyD()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1332,11 +1332,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FxDSP/test/src/TestDSP.cpp"
-            timestampString = "454694413.756949"
+            timestampString = "458446607.813724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "457"
-            endingLineNumber = "457"
+            startingLineNumber = "489"
+            endingLineNumber = "489"
             landmarkName = "TEST(DSPDouble, TestVectorNegate)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1348,11 +1348,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FxDSP/test/src/TestDSP.cpp"
-            timestampString = "454694413.756949"
+            timestampString = "458446607.813724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "519"
-            endingLineNumber = "519"
+            startingLineNumber = "551"
+            endingLineNumber = "551"
             landmarkName = "TEST(DSPDouble, TestVectorPower)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1392,11 +1392,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FxDSP/test/src/TestDSP.cpp"
-            timestampString = "454694413.756949"
+            timestampString = "458446607.813724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "304"
-            endingLineNumber = "304"
+            startingLineNumber = "310"
+            endingLineNumber = "310"
             landmarkName = "TEST(DSPSingle, TestRectPolarConversion)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1550,11 +1550,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FxDSP/src/Upsampler.c"
-            timestampString = "454268525.764691"
+            timestampString = "458449356.264433"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
             landmarkName = "UpsamplerProcess()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1566,11 +1566,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FxDSP/src/Upsampler.c"
-            timestampString = "454268525.764691"
+            timestampString = "458449356.264433"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
             landmarkName = "UpsamplerProcess()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1582,11 +1582,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FxDSP/src/Upsampler.c"
-            timestampString = "454268525.764691"
+            timestampString = "458449356.264433"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "220"
-            endingLineNumber = "220"
+            startingLineNumber = "224"
+            endingLineNumber = "224"
             landmarkName = "UpsamplerProcess()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1612,11 +1612,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FxDSP/src/bs1770.c"
-            timestampString = "458441566.19306"
+            timestampString = "458448604.696907"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "408"
-            endingLineNumber = "408"
+            startingLineNumber = "395"
+            endingLineNumber = "395"
             landmarkName = "BS1770MeterProcessD()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1628,11 +1628,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FxDSP/src/bs1770.c"
-            timestampString = "458441566.19306"
+            timestampString = "458448604.696907"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "367"
-            endingLineNumber = "367"
+            startingLineNumber = "354"
+            endingLineNumber = "354"
             landmarkName = "BS1770MeterProcess()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1644,11 +1644,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FxDSP/src/bs1770.c"
-            timestampString = "458441566.19306"
+            timestampString = "458448604.696907"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "368"
-            endingLineNumber = "368"
+            startingLineNumber = "355"
+            endingLineNumber = "355"
             landmarkName = "BS1770MeterProcess()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1660,11 +1660,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FxDSP/src/bs1770.c"
-            timestampString = "458441566.19306"
+            timestampString = "458448604.696907"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "400"
-            endingLineNumber = "400"
+            startingLineNumber = "387"
+            endingLineNumber = "387"
             landmarkName = "BS1770MeterProcessD()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1676,11 +1676,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FxDSP/src/bs1770.c"
-            timestampString = "458441566.19306"
+            timestampString = "458448604.696907"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "398"
-            endingLineNumber = "398"
+            startingLineNumber = "385"
+            endingLineNumber = "385"
             landmarkName = "BS1770MeterProcessD()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1692,11 +1692,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FxDSP/src/bs1770.c"
-            timestampString = "458441566.19306"
+            timestampString = "458448604.696907"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "359"
-            endingLineNumber = "359"
+            startingLineNumber = "346"
+            endingLineNumber = "346"
             landmarkName = "BS1770MeterProcess()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1730,6 +1730,86 @@
             startingLineNumber = "233"
             endingLineNumber = "233"
             landmarkName = "BS1770MeterInit()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FxDSP/test/src/TestUpsampler.cpp"
+            timestampString = "458449223.36117"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "TEST(UpsamplerDouble, TestUpsamplerFlush)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FxDSP/test/src/TestUpsampler.cpp"
+            timestampString = "458449223.36117"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "TEST(UpsamplerDouble, TestUpsamplerFlush)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FxDSP/src/Dsp.c"
+            timestampString = "458449808.922623"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "526"
+            endingLineNumber = "526"
+            landmarkName = "VectorMax()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FxDSP/src/Dsp.c"
+            timestampString = "458449871.248548"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "568"
+            endingLineNumber = "568"
+            landmarkName = "VectorMaxVI()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FxDSP/src/Dsp.c"
+            timestampString = "458449873.596691"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "570"
+            endingLineNumber = "570"
+            landmarkName = "VectorMaxVI()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

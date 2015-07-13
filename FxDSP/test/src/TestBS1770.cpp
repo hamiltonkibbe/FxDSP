@@ -67,6 +67,24 @@ TEST(BS1770Single, BS1770Meter1k)
     }
 }
 
+TEST(BS1770Single, KWeightingFlush)
+{
+    float signal[1000];
+    float run1[1000];
+    float run2[1000];
+    sinewave(signal, 1000, 1000.0, 0.0, 1.0, 48000);
+    KWeightingFilter* filter = KWeightingFilterInit(48000);
+    KWeightingFilterProcess(filter, run1, signal, 1000);
+    KWeightingFilterFlush(filter);
+    KWeightingFilterProcess(filter, run2, signal, 1000);
+    KWeightingFilterFree(filter);
+    for (unsigned i = 0; i < 1000; ++i)
+    {
+        ASSERT_FLOAT_EQ(run1[i], run2[i]);
+    }
+    
+}
+
 
 TEST(BS1770Double, BS1770Meter1k)
 {
@@ -112,3 +130,24 @@ TEST(BS1770Double, BS1770Meter1k)
         }
     }
 }
+
+
+TEST(BS1770Double, KWeightingFlush)
+{
+    double signal[1000];
+    double run1[1000];
+    double run2[1000];
+    sinewaveD(signal, 1000, 1000.0, 0.0, 1.0, 48000);
+    KWeightingFilterD* filter = KWeightingFilterInitD(48000);
+    KWeightingFilterProcessD(filter, run1, signal, 1000);
+    KWeightingFilterFlushD(filter);
+    KWeightingFilterProcessD(filter, run2, signal, 1000);
+    KWeightingFilterFreeD(filter);
+    for (unsigned i = 0; i < 1000; ++i)
+    {
+        ASSERT_DOUBLE_EQ(run1[i], run2[i]);
+    }
+    
+}
+
+

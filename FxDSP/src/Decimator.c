@@ -43,9 +43,9 @@ DecimatorInit(ResampleFactor_t factor)
         case X8:
             n_filters = 8;
             break;
-        case X16:
+      /*  case X16:
             n_filters = 16;
-            break;
+            break; */
         default:
             break;
     }
@@ -101,9 +101,11 @@ DecimatorInitD(ResampleFactor_t factor)
         case X8:
             n_filters = 8;
             break;
+        /*
         case X16:
             n_filters = 16;
             break;
+        */
         default:
             break;
     }

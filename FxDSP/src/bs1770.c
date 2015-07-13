@@ -242,27 +242,23 @@ BS1770MeterInit(unsigned n_channels, float sample_rate)
     }
     else
     {
+        if (meter)
+        {
+            free(meter);
+        }
+        
         if (filters)
         {
-            for (unsigned i = 0; i < n_channels; ++i)
-            {
-                KWeightingFilterFree(filters[i]);
-            }
+            free(filters);
         }
         
         if (upsamplers)
         {
-            for (unsigned i = 0; i < n_channels; ++i)
-            {
-                UpsamplerFree(upsamplers[i]);
-            }
+            free(upsamplers);
         }
         if (buffers)
         {
-            for (unsigned i = 0; i < n_channels; ++i)
-            {
-                CircularBufferFree(buffers[i]);
-            }
+            free(buffers);
         }
     }
     return meter;
@@ -303,25 +299,16 @@ BS1770MeterInitD(unsigned n_channels, double sample_rate)
         
         if (filters)
         {
-            for (unsigned i = 0; i < n_channels; ++i)
-            {
-                KWeightingFilterFreeD(filters[i]);
-            }
+            free(filters);
         }
         
         if (upsamplers)
         {
-            for (unsigned i = 0; i < n_channels; ++i)
-            {
-                UpsamplerFreeD(upsamplers[i]);
-            }
+            free(upsamplers);
         }
         if (buffers)
         {
-            for (unsigned i = 0; i < n_channels; ++i)
-            {
-                CircularBufferFreeD(buffers[i]);
-            }
+            free(buffers);
         }
     }
     return meter;
