@@ -10,6 +10,8 @@
 #include <float.h>
 #include <math.h>
 
+#undef __APPLE__
+
 #ifdef __APPLE__
 #include <Accelerate/Accelerate.h>
 #elif defined(USE_BLAS)
@@ -512,7 +514,7 @@ VectorSumD(const double* src, unsigned length)
 float
 VectorMax(const float* src, unsigned length)
 {
-    float res = 0.0;
+    float res = src[0];
 #ifdef __APPLE__
     // Use the Accelerate framework if we have it
     vDSP_maxv(src, 1, &res, length);
@@ -531,7 +533,7 @@ VectorMax(const float* src, unsigned length)
 double
 VectorMaxD(const double* src, unsigned length)
 {
-    double res = 0.0;
+    double res = src[0];
 #ifdef __APPLE__
     // Use the Accelerate framework if we have it
     vDSP_maxvD(src, 1, &res, length);
@@ -558,6 +560,7 @@ VectorMaxVI(float* value, unsigned* index, const float* src, unsigned length)
     // Use the Accelerate framework if we have it
     vDSP_maxvi(src, 1, value, (unsigned long*)index, length);
 #else
+    float res = src[0];
     for (unsigned i = 0; i < length; ++i)
     {
         if (src[i] > res)
@@ -577,6 +580,7 @@ VectorMaxVID(double* value, unsigned* index, const double* src, unsigned length)
     // Use the Accelerate framework if we have it
     vDSP_maxviD(src, 1, value, (unsigned long*)index, length);
 #else
+    double res = src[0];
     for (unsigned i = 0; i < length; ++i)
     {
         if (src[i] > res)
@@ -643,6 +647,7 @@ VectorMinVI(float* value, unsigned* index, const float* src, unsigned length)
     // Use the Accelerate framework if we have it
     vDSP_minvi(src, 1, value, (unsigned long*)index, length);
 #else
+    float res = src[0];
     for (unsigned i = 0; i < length; ++i)
     {
         if (src[i] < res)
@@ -663,6 +668,7 @@ VectorMinVID(double* value, unsigned* index, const double* src, unsigned length)
     // Use the Accelerate framework if we have it
     vDSP_minviD(src, 1, value, (unsigned long*)index, length);
 #else
+    double res = src[0];
     for (unsigned i = 0; i < length; ++i)
     {
         if (src[i] < res)
