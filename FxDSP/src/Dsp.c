@@ -10,8 +10,6 @@
 #include <float.h>
 #include <math.h>
 
-#undef __APPLE__
-
 #ifdef __APPLE__
 #include <Accelerate/Accelerate.h>
 #elif defined(USE_BLAS)
