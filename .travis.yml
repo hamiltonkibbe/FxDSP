@@ -12,7 +12,7 @@ addons:
     - libfftw3-dev
     - cmake
     - libatlas-base-dev
-
+  
 env:
   global:
     - CTEST_OUTPUT_ON_FAILURE=1
@@ -26,7 +26,8 @@ script:
 
 after_success:
   - cd ..
-  - pip install cpp-coveralls
+  - export PATH=$HOME/.local/bin:$PATH
+  - pip install cpp-coveralls --user `whoami`
   - coveralls -r . -e doc -e FxDSP/test -e build/test -e build/CMakeFiles/CompilerIdC -e build/CMakeFiles/CompilerIdCXX --gcov-options '\-lp'
 
 
