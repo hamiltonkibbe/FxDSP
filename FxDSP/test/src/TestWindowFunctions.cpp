@@ -207,6 +207,8 @@ TEST(WindowFunctionSingle, TestWindowFunctionProcess)
 {
     float output[TEST_WINDOW_LENGTH] = {0.0};
     ClearBuffer(output, TEST_WINDOW_LENGTH);
+    
+    
     WindowFunction* window = WindowFunctionInit(TEST_WINDOW_LENGTH, HAMMING);
     WindowFunctionProcess(window , output, ones, TEST_WINDOW_LENGTH);
     WindowFunctionFree(window);
@@ -214,6 +216,90 @@ TEST(WindowFunctionSingle, TestWindowFunctionProcess)
     {
         ASSERT_NEAR(matlabHamming[i], output[i], EPSILON);
     }
+    
+
+    window = WindowFunctionInit(TEST_WINDOW_LENGTH, BOXCAR);
+    WindowFunctionProcess(window , output, ones, TEST_WINDOW_LENGTH);
+    WindowFunctionFree(window);
+    for (unsigned i = 0; i < TEST_WINDOW_LENGTH; ++i)
+    {
+        ASSERT_NEAR(ones[i], output[i], EPSILON);
+    }
+    
+
+    window = WindowFunctionInit(TEST_WINDOW_LENGTH, HANN);
+    WindowFunctionProcess(window ,output, ones, TEST_WINDOW_LENGTH);
+    WindowFunctionFree(window);
+    for (unsigned i = 0; i < TEST_WINDOW_LENGTH-1; ++i)
+    {
+        ASSERT_NEAR(matlabHann[i], output[i], EPSILON);
+    }
+    
+
+    window = WindowFunctionInit(TEST_WINDOW_LENGTH, BLACKMAN);
+    WindowFunctionProcess(window, output, ones, TEST_WINDOW_LENGTH);
+    WindowFunctionFree(window);
+    for (unsigned i = 0; i < TEST_WINDOW_LENGTH-1; ++i)
+    {
+        ASSERT_NEAR(matlabBlackman[i], output[i], EPSILON);
+    }
+    
+    window = WindowFunctionInit(TEST_WINDOW_LENGTH, TUKEY);
+    WindowFunctionProcess(window, output, ones, TEST_WINDOW_LENGTH);
+    WindowFunctionFree(window);
+    for (unsigned i = 0; i < TEST_WINDOW_LENGTH-1; ++i)
+    {
+        ASSERT_NEAR(matlabTukey[i], output[i], EPSILON);
+    }
+    
+    window = WindowFunctionInit(TEST_WINDOW_LENGTH, BARTLETT);
+    WindowFunctionProcess(window, output, ones, TEST_WINDOW_LENGTH);
+    WindowFunctionFree(window);
+    for (unsigned i = 0; i < TEST_WINDOW_LENGTH-1; ++i)
+    {
+        ASSERT_NEAR(matlabBartlett[i], output[i], EPSILON);
+    }
+    
+    window = WindowFunctionInit(TEST_WINDOW_LENGTH, GAUSSIAN);
+    WindowFunctionProcess(window, output, ones, TEST_WINDOW_LENGTH);
+    WindowFunctionFree(window);
+    for (unsigned i = 0; i < TEST_WINDOW_LENGTH-1; ++i)
+    {
+        ASSERT_NEAR(matlabGaussian[i], output[i], EPSILON);
+    }
+    
+    window = WindowFunctionInit(TEST_WINDOW_LENGTH, BARTLETT_HANN);
+    WindowFunctionProcess(window, output, ones, TEST_WINDOW_LENGTH);
+    WindowFunctionFree(window);
+    for (unsigned i = 0; i < TEST_WINDOW_LENGTH-1; ++i)
+    {
+        ASSERT_NEAR(matlabBartlettHann[i], output[i], EPSILON);
+    }
+    
+    window = WindowFunctionInit(TEST_WINDOW_LENGTH, KAISER);
+    WindowFunctionProcess(window, output, ones, TEST_WINDOW_LENGTH);
+    WindowFunctionFree(window);
+    for (unsigned i = 0; i < TEST_WINDOW_LENGTH-1; ++i)
+    {
+        ASSERT_NEAR(matlabKaiser[i], output[i], EPSILON);
+    }
+    
+    window = WindowFunctionInit(TEST_WINDOW_LENGTH, NUTTALL);
+    WindowFunctionProcess(window, output, ones, TEST_WINDOW_LENGTH);
+    WindowFunctionFree(window);
+    for (unsigned i = 0; i < TEST_WINDOW_LENGTH-1; ++i)
+    {
+        ASSERT_NEAR(matlabNuttall[i], output[i], EPSILON);
+    }
+    
+    window = WindowFunctionInit(TEST_WINDOW_LENGTH, BLACKMAN_HARRIS);
+    WindowFunctionProcess(window, output, ones, TEST_WINDOW_LENGTH);
+    WindowFunctionFree(window);
+    for (unsigned i = 0; i < TEST_WINDOW_LENGTH-1; ++i)
+    {
+        ASSERT_NEAR(matlabBlackmanHarris[i], output[i], EPSILON);
+    }
+
 }
 
 
@@ -412,11 +498,92 @@ TEST(WindowFunctionDouble, TestWindowFunctionProcess)
 {
     double output[TEST_WINDOW_LENGTH] = {0.0};
     ClearBufferD(output, TEST_WINDOW_LENGTH);
+    
     WindowFunctionD* window = WindowFunctionInitD(TEST_WINDOW_LENGTH, HAMMING);
     WindowFunctionProcessD(window , output, onesD, TEST_WINDOW_LENGTH);
     WindowFunctionFreeD(window);
     for (unsigned i = 0; i < TEST_WINDOW_LENGTH; ++i)
     {
         ASSERT_NEAR(matlabHammingD[i], output[i], EPSILON);
+    }
+    
+    window = WindowFunctionInitD(TEST_WINDOW_LENGTH, BOXCAR);
+    WindowFunctionProcessD(window , output, onesD, TEST_WINDOW_LENGTH);
+    WindowFunctionFreeD(window);
+    for (unsigned i = 0; i < TEST_WINDOW_LENGTH; ++i)
+    {
+        ASSERT_NEAR(onesD[i], output[i], EPSILON);
+    }
+    
+    window = WindowFunctionInitD(TEST_WINDOW_LENGTH, HANN);
+    WindowFunctionProcessD(window , output, onesD, TEST_WINDOW_LENGTH);
+    WindowFunctionFreeD(window);
+    for (unsigned i = 0; i < TEST_WINDOW_LENGTH-1; ++i)
+    {
+        ASSERT_NEAR(matlabHannD[i], output[i], EPSILON);
+    }
+
+    window = WindowFunctionInitD(TEST_WINDOW_LENGTH, BLACKMAN);
+    WindowFunctionProcessD(window , output, onesD, TEST_WINDOW_LENGTH);
+    WindowFunctionFreeD(window);
+    for (unsigned i = 0; i < TEST_WINDOW_LENGTH-1; ++i)
+    {
+        ASSERT_NEAR(matlabBlackmanD[i], output[i], EPSILON);
+    }
+    
+    window = WindowFunctionInitD(TEST_WINDOW_LENGTH, TUKEY);
+    WindowFunctionProcessD(window , output, onesD, TEST_WINDOW_LENGTH);
+    WindowFunctionFreeD(window);
+    for (unsigned i = 0; i < TEST_WINDOW_LENGTH-1; ++i)
+    {
+        ASSERT_NEAR(matlabTukeyD[i], output[i], EPSILON);
+    }
+    
+    window = WindowFunctionInitD(TEST_WINDOW_LENGTH, BARTLETT);
+    WindowFunctionProcessD(window , output, onesD, TEST_WINDOW_LENGTH);
+    WindowFunctionFreeD(window);
+    for (unsigned i = 0; i < TEST_WINDOW_LENGTH-1; ++i)
+    {
+        ASSERT_NEAR(matlabBartlettD[i], output[i], EPSILON);
+    }
+    
+    window = WindowFunctionInitD(TEST_WINDOW_LENGTH, GAUSSIAN);
+    WindowFunctionProcessD(window , output, onesD, TEST_WINDOW_LENGTH);
+    WindowFunctionFreeD(window);
+    for (unsigned i = 0; i < TEST_WINDOW_LENGTH-1; ++i)
+    {
+        ASSERT_NEAR(matlabGaussianD[i], output[i], EPSILON);
+    }
+    
+    window = WindowFunctionInitD(TEST_WINDOW_LENGTH, BARTLETT_HANN);
+    WindowFunctionProcessD(window , output, onesD, TEST_WINDOW_LENGTH);
+    WindowFunctionFreeD(window);
+    for (unsigned i = 0; i < TEST_WINDOW_LENGTH-1; ++i)
+    {
+        ASSERT_NEAR(matlabBartlettHannD[i], output[i], EPSILON);
+    }
+    
+    window = WindowFunctionInitD(TEST_WINDOW_LENGTH, KAISER);
+    WindowFunctionProcessD(window , output, onesD, TEST_WINDOW_LENGTH);
+    WindowFunctionFreeD(window);
+    for (unsigned i = 0; i < TEST_WINDOW_LENGTH-1; ++i)
+    {
+        ASSERT_NEAR(matlabKaiserD[i], output[i], EPSILON);
+    }
+    
+    window = WindowFunctionInitD(TEST_WINDOW_LENGTH, NUTTALL);
+    WindowFunctionProcessD(window , output, onesD, TEST_WINDOW_LENGTH);
+    WindowFunctionFreeD(window);
+    for (unsigned i = 0; i < TEST_WINDOW_LENGTH-1; ++i)
+    {
+        ASSERT_NEAR(matlabNuttallD[i], output[i], EPSILON);
+    }
+    
+    window = WindowFunctionInitD(TEST_WINDOW_LENGTH, BLACKMAN_HARRIS);
+    WindowFunctionProcessD(window , output, onesD, TEST_WINDOW_LENGTH);
+    WindowFunctionFreeD(window);
+    for (unsigned i = 0; i < TEST_WINDOW_LENGTH-1; ++i)
+    {
+        ASSERT_NEAR(matlabBlackmanHarrisD[i], output[i], EPSILON);
     }
 }

@@ -121,8 +121,13 @@ TEST(FFTSingle, TestFFTFilterConvolution)
     
     FFTConfig* fft = FFTInit(16);
     
-    ASSERT_TRUE(fft);
-    if (fft)
+    if (!fft)
+    {
+        free(splitcomplex.realp);
+        ASSERT_TRUE(fft);   // Still want this test to fail
+    }
+    
+    else
     {
         FFT_IR_R2C(fft, padded, splitcomplex);
         FFTFilterConvolve(fft, in, 3, splitcomplex, dest);
@@ -132,7 +137,7 @@ TEST(FFTSingle, TestFFTFilterConvolution)
             ASSERT_NEAR(matlabConvolution[i], dest[i], EPSILON);
         }
     }
-    free(splitcomplex.realp);
+
 }
 
 
@@ -241,8 +246,12 @@ TEST(FFTDouble, TestFFTFilterConvolution)
 
     FFTConfigD* fft = FFTInitD(16);
     
-    ASSERT_TRUE(fft);
-    if (fft)
+    if (!fft)
+    {
+        free(splitcomplex.realp);
+        ASSERT_TRUE(fft);
+    }
+    else
     {
         FFT_IR_R2CD(fft, padded, splitcomplex);
         FFTFilterConvolveD(fft, in, 3, splitcomplex, dest);

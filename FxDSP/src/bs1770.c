@@ -13,6 +13,7 @@
 #include "Upsampler.h"
 #include "Utilities.h"
 #include <stdlib.h>
+#include <stddef.h>
 #include <math.h>
 
 #define PREFILTER_FC    (1500.12162162162167078350)
@@ -260,6 +261,7 @@ BS1770MeterInit(unsigned n_channels, float sample_rate)
         {
             free(buffers);
         }
+        return NULL;
     }
     return meter;
 }
@@ -310,6 +312,7 @@ BS1770MeterInitD(unsigned n_channels, double sample_rate)
         {
             free(buffers);
         }
+        return NULL;
     }
     return meter;
 }

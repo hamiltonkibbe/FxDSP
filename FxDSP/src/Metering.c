@@ -12,17 +12,18 @@
 #include <math.h>
 #include <float.h>
 
-/* pow(10, (-12./20.)); */
-static const double k12_ref = 0.25118864315095801309;
+/* pow(10, (-12./20.)) */
+#define K12_REF (0.25118864315095801309)
 
-/* pow(10, (-14./20.)); */
-static const double k14_ref = 0.19952623149688797355;
+/* pow(10, (-12./20.)); */
+#define K14_REF (0.19952623149688797355)
 
 /* pow(10, (-20./20.)); */
-static const double k20_ref = 0.1;
+#define K20_REF (0.1)
 
-static const float ref[] = {1.0, 0.25118864315095801309, 0.19952623149688797355, 0.1};
-static const double refD[] = {1.0, 0.25118864315095801309, 0.19952623149688797355, 0.1};
+
+static const float ref[] = {1.0, (float)K12_REF, (float)K14_REF, (float)K20_REF};
+static const double refD[] = {1.0, K12_REF, K14_REF, K20_REF};
 
 float
 phase_correlation(float* left, float* right, unsigned n_samples)

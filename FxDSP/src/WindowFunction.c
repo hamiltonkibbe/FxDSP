@@ -794,7 +794,7 @@ WindowFunctionInit(unsigned n, FtWindow_t type)
             bartlett_hann(window->length, window->window);
             break;
         case KAISER:
-            kaiser(window->length, 3, window->window);
+            kaiser(window->length, 0.5, window->window);
             break;
         case NUTTALL:
             nuttall(window->length, window->window);
@@ -861,7 +861,7 @@ WindowFunctionInitD(unsigned n, FtWindow_t type)
             bartlett_hannD(window->length, window->window);
             break;
         case KAISER:
-            kaiserD(window->length, 3, window->window);
+            kaiserD(window->length, 0.5, window->window);
             break;
         case NUTTALL:
             nuttallD(window->length, window->window);

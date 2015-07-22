@@ -100,3 +100,4 @@ COMMAND lcov --capture --directory coverage --output-file coverage/coverage.info
 COMMAND genhtml coverage/coverage.info --output-directory coverage/html
 DEPENDS test-coverage
 )
+
