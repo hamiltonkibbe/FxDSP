@@ -70,8 +70,18 @@ TEST(Utilities, TestMaxAndMin)
     }
 }
 
+TEST(Utilities, TestFastExp)
+{
+    float in[10] = {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
+    
+    for (unsigned i = 0; i < 10; ++i)
+    {
+        ASSERT_NEAR(expf(in[i]), f_exp(in[i]), 0.001);
+    }
+}
 
-TEST(Utilities, TestExpD)
+
+TEST(Utilities, TestFastExpD)
 {
     double in[10] = {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
     

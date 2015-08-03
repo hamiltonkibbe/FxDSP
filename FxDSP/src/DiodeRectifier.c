@@ -139,7 +139,7 @@ DiodeRectifierProcessD(DiodeRectifierD* diode,
     double scale = diode->scale;
     for (unsigned i = 0; i < n_samples; ++i)
     {
-        out_buffer[i] = f_expD((in_buffer[i]/vt)-1) * scale;
+        out_buffer[i] = exp((in_buffer[i]/vt)-1) * scale;
     }
     return NOERR;
 }
@@ -155,5 +155,5 @@ DiodeRectifierTick(DiodeRectifier* diode, float in_sample)
 double
 DiodeRectifierTickD(DiodeRectifierD* diode, double in_sample)
 {
-    return f_expD((in_sample/diode->vt)-1) * diode->scale;
+    return exp((in_sample/diode->vt)-1) * diode->scale;
 }
