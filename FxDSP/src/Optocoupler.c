@@ -92,6 +92,21 @@ calculate_off_time(double delay, Opto_t opto_type)
 }
 
 
+static inline void
+calculate_clip_coefficients(float* dest, float amount)
+{
+    dest[2] = -2.3819 * amount - 0.7088;
+    dest[1] = 2.4853 * amount + 1.3301;
+    dest[0] = 0.018 * (amount * amount) - 0.0172 * amount - 0.009;
+}
+
+static inline void
+calculate_clip_coefficientsD(double* dest, double amount)
+{
+    dest[2] = -2.3819 * amount - 0.7088;
+    dest[1] = 2.4853 * amount + 1.3301;
+    dest[0] = 0.018 * (amount * amount) - 0.0172 * amount - 0.009;
+}
 
 
 
@@ -107,6 +122,8 @@ struct Opto
     char        delta_sign;     // sign of signal dv/dt
     OnePole*  lp;
 };
+
+
 
 struct OptoD
 {

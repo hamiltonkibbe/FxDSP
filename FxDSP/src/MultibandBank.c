@@ -128,7 +128,7 @@ Error_t
 MultibandFilterFlush(MultibandFilter* filter)
 {
     LRFilterFlush(filter->LPA);
-    LRFilterFlush(filter->LPA);
+    LRFilterFlush(filter->LPB);
     LRFilterFlush(filter->HPA);
     LRFilterFlush(filter->HPB);
     RBJFilterFlush(filter->APF);
@@ -140,7 +140,7 @@ Error_t
 MultibandFilterFlushD(MultibandFilterD* filter)
 {
     LRFilterFlushD(filter->LPA);
-    LRFilterFlushD(filter->LPA);
+    LRFilterFlushD(filter->LPB);
     LRFilterFlushD(filter->HPA);
     LRFilterFlushD(filter->HPB);
     RBJFilterFlushD(filter->APF);

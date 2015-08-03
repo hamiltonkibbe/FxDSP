@@ -11,17 +11,94 @@
 #include "FFT.h"
 #include "Dsp.h"
 #include "Utilities.h"
+#include "Signals.h"
 
 #include <gtest/gtest.h>
 #include <cmath>
 
 
-#ifdef __APPLE__
-
 #define EPSILON (0.02)
 
 #pragma mark -
 #pragma mark Single Precision Tests
+
+
+TEST(MultibandBankSingle, TestFlush)
+{
+    float signal[64];
+    float low1[64];
+    float low2[64];
+    float mid1[64];
+    float mid2[64];
+    float high1[64];
+    float high2[64];
+    sinewave(signal, 64, 2000, 0, 1, 44100);
+    MultibandFilter * filter = MultibandFilterInit(1000, 12000, 44100);
+    MultibandFilterProcess(filter, low1, mid1, high1, signal, 64);
+    MultibandFilterFlush(filter);
+    MultibandFilterProcess(filter, low2, mid2, high2, signal, 64);
+    MultibandFilterFree(filter);
+    
+    for (unsigned i = 0; i < 64; ++i)
+    {
+        ASSERT_FLOAT_EQ(low1[i], low2[i]);
+        ASSERT_FLOAT_EQ(mid1[i], mid2[i]);
+        ASSERT_FLOAT_EQ(high1[i], high2[i]);
+    }
+}
+
+TEST(MultibandBankSingle, TestSetters)
+{
+    float signal[64];
+    float low1[64];
+    float low2[64];
+    float mid1[64];
+    float mid2[64];
+    float high1[64];
+    float high2[64];
+    sinewave(signal, 64, 2000, 0, 1, 44100);
+    MultibandFilter * filter = MultibandFilterInit(1000, 12000, 44100);
+    MultibandFilter * filter2 = MultibandFilterInit(500, 10000, 44100);
+    MultibandFilterSetLowCutoff(filter2, 1000);
+    MultibandFilterSetHighCutoff(filter2, 12000);
+    MultibandFilterProcess(filter, low1, mid1, high1, signal, 64);
+    MultibandFilterProcess(filter2, low2, mid2, high2, signal, 64);
+    MultibandFilterFree(filter);
+    MultibandFilterFree(filter2);
+    
+    for (unsigned i = 0; i < 64; ++i)
+    {
+        ASSERT_FLOAT_EQ(low1[i], low2[i]);
+        ASSERT_FLOAT_EQ(mid1[i], mid2[i]);
+        ASSERT_FLOAT_EQ(high1[i], high2[i]);
+    }}
+
+TEST(MultibandBankSingle, TestUpdate)
+{
+    float signal[64];
+    float low1[64];
+    float low2[64];
+    float mid1[64];
+    float mid2[64];
+    float high1[64];
+    float high2[64];
+    sinewave(signal, 64, 2000, 0, 1, 44100);
+    MultibandFilter * filter = MultibandFilterInit(1000, 12000, 44100);
+    MultibandFilter * filter2 = MultibandFilterInit(500, 10000, 44100);
+    MultibandFilterUpdate(filter2, 1000, 12000);
+    MultibandFilterProcess(filter, low1, mid1, high1, signal, 64);
+    MultibandFilterProcess(filter2, low2, mid2, high2, signal, 64);
+    MultibandFilterFree(filter);
+    MultibandFilterFree(filter2);
+    
+    for (unsigned i = 0; i < 64; ++i)
+    {
+        ASSERT_FLOAT_EQ(low1[i], low2[i]);
+        ASSERT_FLOAT_EQ(mid1[i], mid2[i]);
+        ASSERT_FLOAT_EQ(high1[i], high2[i]);
+    }
+}
+
 
 TEST(MultibandBankSingle, TestMixBackFlat)
 {
@@ -83,6 +160,85 @@ TEST(MultibandBankSingle, TestMixBackFlat)
 #pragma mark -
 #pragma mark Double Precision Tests
 
+
+TEST(MultibandBankDouble, TestFlush)
+{
+    double signal[64];
+    double low1[64];
+    double low2[64];
+    double mid1[64];
+    double mid2[64];
+    double high1[64];
+    double high2[64];
+    sinewaveD(signal, 64, 2000, 0, 1, 44100);
+    MultibandFilterD * filter = MultibandFilterInitD(1000, 12000, 44100);
+    MultibandFilterProcessD(filter, low1, mid1, high1, signal, 64);
+    MultibandFilterFlushD(filter);
+    MultibandFilterProcessD(filter, low2, mid2, high2, signal, 64);
+    MultibandFilterFreeD(filter);
+    
+    for (unsigned i = 0; i < 64; ++i)
+    {
+        ASSERT_DOUBLE_EQ(low1[i], low2[i]);
+        ASSERT_DOUBLE_EQ(mid1[i], mid2[i]);
+        ASSERT_DOUBLE_EQ(high1[i], high2[i]);
+    }
+}
+
+
+TEST(MultibandBankDouble, TestSetters)
+{
+    double signal[64];
+    double low1[64];
+    double low2[64];
+    double mid1[64];
+    double mid2[64];
+    double high1[64];
+    double high2[64];
+    sinewaveD(signal, 64, 2000, 0, 1, 44100);
+    MultibandFilterD * filter = MultibandFilterInitD(1000, 12000, 44100);
+    MultibandFilterD * filter2 = MultibandFilterInitD(500, 10000, 44100);
+    MultibandFilterSetLowCutoffD(filter2, 1000);
+    MultibandFilterSetHighCutoffD(filter2, 12000);
+    MultibandFilterProcessD(filter, low1, mid1, high1, signal, 64);
+    MultibandFilterProcessD(filter2, low2, mid2, high2, signal, 64);
+    MultibandFilterFreeD(filter);
+    MultibandFilterFreeD(filter2);
+    
+    for (unsigned i = 0; i < 64; ++i)
+    {
+        ASSERT_DOUBLE_EQ(low1[i], low2[i]);
+        ASSERT_DOUBLE_EQ(mid1[i], mid2[i]);
+        ASSERT_DOUBLE_EQ(high1[i], high2[i]);
+    }
+}
+
+TEST(MultibandBankDouble, TestUpdate)
+{
+    double signal[64];
+    double low1[64];
+    double low2[64];
+    double mid1[64];
+    double mid2[64];
+    double high1[64];
+    double high2[64];
+    sinewaveD(signal, 64, 2000, 0, 1, 44100);
+    MultibandFilterD * filter = MultibandFilterInitD(1000, 12000, 44100);
+    MultibandFilterD * filter2 = MultibandFilterInitD(500, 10000, 44100);
+    MultibandFilterUpdateD(filter2, 1000, 12000);
+    MultibandFilterProcessD(filter, low1, mid1, high1, signal, 64);
+    MultibandFilterProcessD(filter2, low2, mid2, high2, signal, 64);
+    MultibandFilterFreeD(filter);
+    MultibandFilterFreeD(filter2);
+    
+    for (unsigned i = 0; i < 64; ++i)
+    {
+        ASSERT_DOUBLE_EQ(low1[i], low2[i]);
+        ASSERT_DOUBLE_EQ(mid1[i], mid2[i]);
+        ASSERT_DOUBLE_EQ(high1[i], high2[i]);
+    }
+}
+
 TEST(MultibandBankDouble, TestMixBackFlat)
 {
     double signal[64];
@@ -139,6 +295,3 @@ TEST(MultibandBankDouble, TestMixBackFlat)
         ASSERT_NEAR(inSpectrum[i], outSpectrum[i], EPSILON);
     }
 }
-
-
-#endif
