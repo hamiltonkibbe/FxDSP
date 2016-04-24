@@ -66,7 +66,6 @@
 		37BC9E071AC71F0A008718DC /* libFxDSP.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C0317A1ABB7E0200ABB47B /* libFxDSP.a */; };
 		37BC9E221AC71FD7008718DC /* BiquadFilter.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C0309A1ABB5EA800ABB47B /* BiquadFilter.h */; };
 		37BC9E231AC71FD7008718DC /* CircularBuffer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C0309B1ABB5EA800ABB47B /* CircularBuffer.h */; };
-		37BC9E241AC71FD7008718DC /* Compressor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C0309C1ABB5EA800ABB47B /* Compressor.h */; };
 		37BC9E251AC71FD7008718DC /* DiodeRectifier.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C0309D1ABB5EA800ABB47B /* DiodeRectifier.h */; };
 		37BC9E261AC71FD7008718DC /* Dsp.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C0309E1ABB5EA800ABB47B /* Dsp.h */; };
 		37BC9E271AC71FD7008718DC /* Error.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C0309F1ABB5EA800ABB47B /* Error.h */; };
@@ -86,8 +85,6 @@
 		37BC9E351AC71FD7008718DC /* Tape.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C030AD1ABB5EA800ABB47B /* Tape.h */; };
 		37BC9E361AC71FD7008718DC /* Upsampler.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C030AE1ABB5EA800ABB47B /* Upsampler.h */; };
 		37BC9E371AC71FD7008718DC /* Utilities.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C030AF1ABB5EA800ABB47B /* Utilities.h */; };
-		37BC9E381AC71FD7008718DC /* Waveshaper.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C030B01ABB5EA800ABB47B /* Waveshaper.h */; };
-		37BC9E391AC71FD7008718DC /* Wavetable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C030B11ABB5EA800ABB47B /* Wavetable.h */; };
 		37BC9E3A1AC71FD7008718DC /* WindowFunction.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C030B21ABB5EA800ABB47B /* WindowFunction.h */; };
 		37BD93011B138C7F009238D4 /* Metering.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37DC0C4E1B0FF83700C20827 /* Metering.h */; };
 		37BD93021B138C7F009238D4 /* DiodeSaturator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3775E0961AD6072200930665 /* DiodeSaturator.h */; };
@@ -98,7 +95,6 @@
 		37BE91AD1ACADE350068DDD5 /* PanLaw.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37CDDD8C1AC9C82F001B96BA /* PanLaw.h */; };
 		37C030B31ABB5EA800ABB47B /* BiquadFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C0309A1ABB5EA800ABB47B /* BiquadFilter.h */; };
 		37C030B41ABB5EA800ABB47B /* CircularBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C0309B1ABB5EA800ABB47B /* CircularBuffer.h */; };
-		37C030B51ABB5EA800ABB47B /* Compressor.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C0309C1ABB5EA800ABB47B /* Compressor.h */; };
 		37C030B61ABB5EA800ABB47B /* DiodeRectifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C0309D1ABB5EA800ABB47B /* DiodeRectifier.h */; };
 		37C030B71ABB5EA800ABB47B /* Dsp.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C0309E1ABB5EA800ABB47B /* Dsp.h */; };
 		37C030B81ABB5EA800ABB47B /* Error.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C0309F1ABB5EA800ABB47B /* Error.h */; };
@@ -118,12 +114,9 @@
 		37C030C61ABB5EA800ABB47B /* Tape.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C030AD1ABB5EA800ABB47B /* Tape.h */; };
 		37C030C71ABB5EA800ABB47B /* Upsampler.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C030AE1ABB5EA800ABB47B /* Upsampler.h */; };
 		37C030C81ABB5EA800ABB47B /* Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C030AF1ABB5EA800ABB47B /* Utilities.h */; };
-		37C030C91ABB5EA800ABB47B /* Waveshaper.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C030B01ABB5EA800ABB47B /* Waveshaper.h */; };
-		37C030CA1ABB5EA800ABB47B /* Wavetable.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C030B11ABB5EA800ABB47B /* Wavetable.h */; };
 		37C030CB1ABB5EA800ABB47B /* WindowFunction.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C030B21ABB5EA800ABB47B /* WindowFunction.h */; };
 		37C030E11ABB5EBF00ABB47B /* BiquadFilter.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030CC1ABB5EBF00ABB47B /* BiquadFilter.c */; };
 		37C030E21ABB5EBF00ABB47B /* CircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030CD1ABB5EBF00ABB47B /* CircularBuffer.c */; };
-		37C030E31ABB5EBF00ABB47B /* Compressor.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030CE1ABB5EBF00ABB47B /* Compressor.c */; };
 		37C030E41ABB5EBF00ABB47B /* DiodeRectifier.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030CF1ABB5EBF00ABB47B /* DiodeRectifier.c */; };
 		37C030E51ABB5EBF00ABB47B /* Dsp.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030D01ABB5EBF00ABB47B /* Dsp.c */; };
 		37C030E61ABB5EBF00ABB47B /* FFT.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030D11ABB5EBF00ABB47B /* FFT.c */; };
@@ -139,13 +132,10 @@
 		37C030F01ABB5EBF00ABB47B /* Tape.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030DB1ABB5EBF00ABB47B /* Tape.c */; };
 		37C030F11ABB5EBF00ABB47B /* Upsampler.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030DC1ABB5EBF00ABB47B /* Upsampler.c */; };
 		37C030F21ABB5EBF00ABB47B /* Utilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030DD1ABB5EBF00ABB47B /* Utilities.c */; };
-		37C030F31ABB5EBF00ABB47B /* Waveshaper.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030DE1ABB5EBF00ABB47B /* Waveshaper.c */; };
-		37C030F41ABB5EBF00ABB47B /* Wavetable.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030DF1ABB5EBF00ABB47B /* Wavetable.c */; };
 		37C030F51ABB5EBF00ABB47B /* WindowFunction.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030E01ABB5EBF00ABB47B /* WindowFunction.c */; };
 		37C031751ABB7D8000ABB47B /* libFxDSP.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37EAC0E71818AE2F00736C52 /* libFxDSP.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		37C0317E1ABB7E3500ABB47B /* BiquadFilter.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030CC1ABB5EBF00ABB47B /* BiquadFilter.c */; };
 		37C0317F1ABB7E3500ABB47B /* CircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030CD1ABB5EBF00ABB47B /* CircularBuffer.c */; };
-		37C031801ABB7E3500ABB47B /* Compressor.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030CE1ABB5EBF00ABB47B /* Compressor.c */; };
 		37C031811ABB7E3500ABB47B /* DiodeRectifier.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030CF1ABB5EBF00ABB47B /* DiodeRectifier.c */; };
 		37C031821ABB7E3500ABB47B /* Dsp.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030D01ABB5EBF00ABB47B /* Dsp.c */; };
 		37C031831ABB7E3500ABB47B /* FFT.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030D11ABB5EBF00ABB47B /* FFT.c */; };
@@ -161,13 +151,10 @@
 		37C0318D1ABB7E3500ABB47B /* Tape.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030DB1ABB5EBF00ABB47B /* Tape.c */; };
 		37C0318E1ABB7E3500ABB47B /* Upsampler.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030DC1ABB5EBF00ABB47B /* Upsampler.c */; };
 		37C0318F1ABB7E3500ABB47B /* Utilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030DD1ABB5EBF00ABB47B /* Utilities.c */; };
-		37C031901ABB7E3500ABB47B /* Waveshaper.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030DE1ABB5EBF00ABB47B /* Waveshaper.c */; };
-		37C031911ABB7E3500ABB47B /* Wavetable.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030DF1ABB5EBF00ABB47B /* Wavetable.c */; };
 		37C031921ABB7E3500ABB47B /* WindowFunction.c in Sources */ = {isa = PBXBuildFile; fileRef = 37C030E01ABB5EBF00ABB47B /* WindowFunction.c */; };
 		37C031931ABB7E3F00ABB47B /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37EAC1281818AEE000736C52 /* Accelerate.framework */; };
 		37C031941ABB7E4D00ABB47B /* BiquadFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C0309A1ABB5EA800ABB47B /* BiquadFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37C031951ABB7E4D00ABB47B /* CircularBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C0309B1ABB5EA800ABB47B /* CircularBuffer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		37C031961ABB7E4D00ABB47B /* Compressor.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C0309C1ABB5EA800ABB47B /* Compressor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37C031971ABB7E4D00ABB47B /* DiodeRectifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C0309D1ABB5EA800ABB47B /* DiodeRectifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37C031981ABB7E4D00ABB47B /* Dsp.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C0309E1ABB5EA800ABB47B /* Dsp.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37C031991ABB7E4D00ABB47B /* Error.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C0309F1ABB5EA800ABB47B /* Error.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -187,8 +174,6 @@
 		37C031A71ABB7E4D00ABB47B /* Tape.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C030AD1ABB5EA800ABB47B /* Tape.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37C031A81ABB7E4D00ABB47B /* Upsampler.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C030AE1ABB5EA800ABB47B /* Upsampler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37C031A91ABB7E4D00ABB47B /* Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C030AF1ABB5EA800ABB47B /* Utilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		37C031AA1ABB7E4D00ABB47B /* Waveshaper.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C030B01ABB5EA800ABB47B /* Waveshaper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		37C031AB1ABB7E4D00ABB47B /* Wavetable.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C030B11ABB5EA800ABB47B /* Wavetable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37C031AC1ABB7E4D00ABB47B /* WindowFunction.h in Headers */ = {isa = PBXBuildFile; fileRef = 37C030B21ABB5EA800ABB47B /* WindowFunction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37CDDD8D1AC9C82F001B96BA /* PanLaw.h in Headers */ = {isa = PBXBuildFile; fileRef = 37CDDD8C1AC9C82F001B96BA /* PanLaw.h */; };
 		37CDDD8F1AC9C83C001B96BA /* PanLaw.c in Sources */ = {isa = PBXBuildFile; fileRef = 37CDDD8E1AC9C83C001B96BA /* PanLaw.c */; };
@@ -253,7 +238,6 @@
 				37BE91AD1ACADE350068DDD5 /* PanLaw.h in CopyFiles */,
 				37BC9E221AC71FD7008718DC /* BiquadFilter.h in CopyFiles */,
 				37BC9E231AC71FD7008718DC /* CircularBuffer.h in CopyFiles */,
-				37BC9E241AC71FD7008718DC /* Compressor.h in CopyFiles */,
 				37BC9E251AC71FD7008718DC /* DiodeRectifier.h in CopyFiles */,
 				37BC9E261AC71FD7008718DC /* Dsp.h in CopyFiles */,
 				37BC9E271AC71FD7008718DC /* Error.h in CopyFiles */,
@@ -273,8 +257,6 @@
 				37BC9E351AC71FD7008718DC /* Tape.h in CopyFiles */,
 				37BC9E361AC71FD7008718DC /* Upsampler.h in CopyFiles */,
 				37BC9E371AC71FD7008718DC /* Utilities.h in CopyFiles */,
-				37BC9E381AC71FD7008718DC /* Waveshaper.h in CopyFiles */,
-				37BC9E391AC71FD7008718DC /* Wavetable.h in CopyFiles */,
 				37BC9E3A1AC71FD7008718DC /* WindowFunction.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,7 +321,6 @@
 		37BD93061B13A46C009238D4 /* TestDecimator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestDecimator.cpp; path = FxDSP/test/src/TestDecimator.cpp; sourceTree = SOURCE_ROOT; };
 		37C0309A1ABB5EA800ABB47B /* BiquadFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BiquadFilter.h; path = FxDSP/include/BiquadFilter.h; sourceTree = SOURCE_ROOT; };
 		37C0309B1ABB5EA800ABB47B /* CircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CircularBuffer.h; path = FxDSP/include/CircularBuffer.h; sourceTree = SOURCE_ROOT; };
-		37C0309C1ABB5EA800ABB47B /* Compressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Compressor.h; path = FxDSP/include/Compressor.h; sourceTree = SOURCE_ROOT; };
 		37C0309D1ABB5EA800ABB47B /* DiodeRectifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DiodeRectifier.h; path = FxDSP/include/DiodeRectifier.h; sourceTree = SOURCE_ROOT; };
 		37C0309E1ABB5EA800ABB47B /* Dsp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dsp.h; path = FxDSP/include/Dsp.h; sourceTree = SOURCE_ROOT; };
 		37C0309F1ABB5EA800ABB47B /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Error.h; path = FxDSP/include/Error.h; sourceTree = SOURCE_ROOT; };
@@ -359,12 +340,9 @@
 		37C030AD1ABB5EA800ABB47B /* Tape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tape.h; path = FxDSP/include/Tape.h; sourceTree = SOURCE_ROOT; };
 		37C030AE1ABB5EA800ABB47B /* Upsampler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Upsampler.h; path = FxDSP/include/Upsampler.h; sourceTree = SOURCE_ROOT; };
 		37C030AF1ABB5EA800ABB47B /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utilities.h; path = FxDSP/include/Utilities.h; sourceTree = SOURCE_ROOT; };
-		37C030B01ABB5EA800ABB47B /* Waveshaper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Waveshaper.h; path = FxDSP/include/Waveshaper.h; sourceTree = SOURCE_ROOT; };
-		37C030B11ABB5EA800ABB47B /* Wavetable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Wavetable.h; path = FxDSP/include/Wavetable.h; sourceTree = SOURCE_ROOT; };
 		37C030B21ABB5EA800ABB47B /* WindowFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WindowFunction.h; path = FxDSP/include/WindowFunction.h; sourceTree = SOURCE_ROOT; };
 		37C030CC1ABB5EBF00ABB47B /* BiquadFilter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = BiquadFilter.c; path = FxDSP/src/BiquadFilter.c; sourceTree = SOURCE_ROOT; };
 		37C030CD1ABB5EBF00ABB47B /* CircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = CircularBuffer.c; path = FxDSP/src/CircularBuffer.c; sourceTree = SOURCE_ROOT; };
-		37C030CE1ABB5EBF00ABB47B /* Compressor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Compressor.c; path = FxDSP/src/Compressor.c; sourceTree = SOURCE_ROOT; };
 		37C030CF1ABB5EBF00ABB47B /* DiodeRectifier.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DiodeRectifier.c; path = FxDSP/src/DiodeRectifier.c; sourceTree = SOURCE_ROOT; };
 		37C030D01ABB5EBF00ABB47B /* Dsp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Dsp.c; path = FxDSP/src/Dsp.c; sourceTree = SOURCE_ROOT; };
 		37C030D11ABB5EBF00ABB47B /* FFT.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = FFT.c; path = FxDSP/src/FFT.c; sourceTree = SOURCE_ROOT; };
@@ -380,8 +358,6 @@
 		37C030DB1ABB5EBF00ABB47B /* Tape.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Tape.c; path = FxDSP/src/Tape.c; sourceTree = SOURCE_ROOT; };
 		37C030DC1ABB5EBF00ABB47B /* Upsampler.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Upsampler.c; path = FxDSP/src/Upsampler.c; sourceTree = SOURCE_ROOT; };
 		37C030DD1ABB5EBF00ABB47B /* Utilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Utilities.c; path = FxDSP/src/Utilities.c; sourceTree = SOURCE_ROOT; };
-		37C030DE1ABB5EBF00ABB47B /* Waveshaper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Waveshaper.c; path = FxDSP/src/Waveshaper.c; sourceTree = SOURCE_ROOT; };
-		37C030DF1ABB5EBF00ABB47B /* Wavetable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Wavetable.c; path = FxDSP/src/Wavetable.c; sourceTree = SOURCE_ROOT; };
 		37C030E01ABB5EBF00ABB47B /* WindowFunction.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = WindowFunction.c; path = FxDSP/src/WindowFunction.c; sourceTree = SOURCE_ROOT; };
 		37C0317A1ABB7E0200ABB47B /* libFxDSP.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFxDSP.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		37CDDD8C1AC9C82F001B96BA /* PanLaw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PanLaw.h; path = FxDSP/include/PanLaw.h; sourceTree = SOURCE_ROOT; };
@@ -450,7 +426,6 @@
 				37C0309A1ABB5EA800ABB47B /* BiquadFilter.h */,
 				3769A0EB1B1EA27B00FF9560 /* bs1770.h */,
 				37C0309B1ABB5EA800ABB47B /* CircularBuffer.h */,
-				37C0309C1ABB5EA800ABB47B /* Compressor.h */,
 				373B1C8D1B005D7500B0B40D /* Decimator.h */,
 				37C0309D1ABB5EA800ABB47B /* DiodeRectifier.h */,
 				3775E0961AD6072200930665 /* DiodeSaturator.h */,
@@ -474,8 +449,6 @@
 				37C030AD1ABB5EA800ABB47B /* Tape.h */,
 				37C030AE1ABB5EA800ABB47B /* Upsampler.h */,
 				37C030AF1ABB5EA800ABB47B /* Utilities.h */,
-				37C030B01ABB5EA800ABB47B /* Waveshaper.h */,
-				37C030B11ABB5EA800ABB47B /* Wavetable.h */,
 				37C030B21ABB5EA800ABB47B /* WindowFunction.h */,
 			);
 			path = include;
@@ -487,7 +460,6 @@
 				37C030CC1ABB5EBF00ABB47B /* BiquadFilter.c */,
 				3713FCCD1B16882D002C199A /* bs1770.c */,
 				37C030CD1ABB5EBF00ABB47B /* CircularBuffer.c */,
-				37C030CE1ABB5EBF00ABB47B /* Compressor.c */,
 				373B1C901B0060B900B0B40D /* Decimator.c */,
 				37C030CF1ABB5EBF00ABB47B /* DiodeRectifier.c */,
 				3775E0971AD6072C00930665 /* DiodeSaturator.c */,
@@ -509,8 +481,6 @@
 				37C030DB1ABB5EBF00ABB47B /* Tape.c */,
 				37C030DC1ABB5EBF00ABB47B /* Upsampler.c */,
 				37C030DD1ABB5EBF00ABB47B /* Utilities.c */,
-				37C030DE1ABB5EBF00ABB47B /* Waveshaper.c */,
-				37C030DF1ABB5EBF00ABB47B /* Wavetable.c */,
 				37C030E01ABB5EBF00ABB47B /* WindowFunction.c */,
 			);
 			path = src;
@@ -602,7 +572,6 @@
 			files = (
 				37C031941ABB7E4D00ABB47B /* BiquadFilter.h in Headers */,
 				37C031951ABB7E4D00ABB47B /* CircularBuffer.h in Headers */,
-				37C031961ABB7E4D00ABB47B /* Compressor.h in Headers */,
 				37C031971ABB7E4D00ABB47B /* DiodeRectifier.h in Headers */,
 				37C031981ABB7E4D00ABB47B /* Dsp.h in Headers */,
 				37C031991ABB7E4D00ABB47B /* Error.h in Headers */,
@@ -624,8 +593,6 @@
 				37C031A71ABB7E4D00ABB47B /* Tape.h in Headers */,
 				37C031A81ABB7E4D00ABB47B /* Upsampler.h in Headers */,
 				37C031A91ABB7E4D00ABB47B /* Utilities.h in Headers */,
-				37C031AA1ABB7E4D00ABB47B /* Waveshaper.h in Headers */,
-				37C031AB1ABB7E4D00ABB47B /* Wavetable.h in Headers */,
 				37BE91AC1ACADE270068DDD5 /* PanLaw.h in Headers */,
 				37C031AC1ABB7E4D00ABB47B /* WindowFunction.h in Headers */,
 				37DC0C501B0FF83800C20827 /* Metering.h in Headers */,
@@ -645,7 +612,6 @@
 				37C030B41ABB5EA800ABB47B /* CircularBuffer.h in Headers */,
 				37C030C41ABB5EA800ABB47B /* RBJFilter.h in Headers */,
 				3775E0831AD4EF3B00930665 /* TestFIRFilter.h in Headers */,
-				37C030C91ABB5EA800ABB47B /* Waveshaper.h in Headers */,
 				3769A0EC1B1EA27B00FF9560 /* bs1770.h in Headers */,
 				37C030BE1ABB5EA800ABB47B /* MidiUtils.h in Headers */,
 				37C030BD1ABB5EA800ABB47B /* LinkwitzRileyFilter.h in Headers */,
@@ -653,13 +619,11 @@
 				3775E0811AD4EF3B00930665 /* TestBiquadFilter.h in Headers */,
 				37C030C21ABB5EA800ABB47B /* PolyphaseCoeffs.h in Headers */,
 				37C030C31ABB5EA800ABB47B /* PolySaturator.h in Headers */,
-				37C030B51ABB5EA800ABB47B /* Compressor.h in Headers */,
 				37C030BC1ABB5EA800ABB47B /* LadderFilter.h in Headers */,
 				37C030BA1ABB5EA800ABB47B /* FilterTypes.h in Headers */,
 				373B1C8E1B005D7500B0B40D /* Decimator.h in Headers */,
 				37DC0C4F1B0FF83800C20827 /* Metering.h in Headers */,
 				3775E0881AD4EF3B00930665 /* TestWindowFunctions.h in Headers */,
-				37C030CA1ABB5EA800ABB47B /* Wavetable.h in Headers */,
 				37C030B61ABB5EA800ABB47B /* DiodeRectifier.h in Headers */,
 				3775E0801AD4EF3B00930665 /* Signals.h in Headers */,
 				37C030C01ABB5EA800ABB47B /* OnePole.h in Headers */,
@@ -784,7 +748,6 @@
 				3775E09B1AD6075600930665 /* PanLaw.c in Sources */,
 				37C0317E1ABB7E3500ABB47B /* BiquadFilter.c in Sources */,
 				37C0317F1ABB7E3500ABB47B /* CircularBuffer.c in Sources */,
-				37C031801ABB7E3500ABB47B /* Compressor.c in Sources */,
 				37C031811ABB7E3500ABB47B /* DiodeRectifier.c in Sources */,
 				37C031821ABB7E3500ABB47B /* Dsp.c in Sources */,
 				37C031831ABB7E3500ABB47B /* FFT.c in Sources */,
@@ -804,8 +767,6 @@
 				37C0318D1ABB7E3500ABB47B /* Tape.c in Sources */,
 				37C0318E1ABB7E3500ABB47B /* Upsampler.c in Sources */,
 				37C0318F1ABB7E3500ABB47B /* Utilities.c in Sources */,
-				37C031901ABB7E3500ABB47B /* Waveshaper.c in Sources */,
-				37C031911ABB7E3500ABB47B /* Wavetable.c in Sources */,
 				37C031921ABB7E3500ABB47B /* WindowFunction.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -850,15 +811,12 @@
 				37C030E81ABB5EBF00ABB47B /* LadderFilter.c in Sources */,
 				37C030E21ABB5EBF00ABB47B /* CircularBuffer.c in Sources */,
 				37C030E51ABB5EBF00ABB47B /* Dsp.c in Sources */,
-				37C030F31ABB5EBF00ABB47B /* Waveshaper.c in Sources */,
 				37C030EE1ABB5EBF00ABB47B /* RBJFilter.c in Sources */,
-				37C030F41ABB5EBF00ABB47B /* Wavetable.c in Sources */,
 				373B1C911B0060B900B0B40D /* Decimator.c in Sources */,
 				37C030F21ABB5EBF00ABB47B /* Utilities.c in Sources */,
 				37C030E11ABB5EBF00ABB47B /* BiquadFilter.c in Sources */,
 				37C030EB1ABB5EBF00ABB47B /* OnePole.c in Sources */,
 				37C030ED1ABB5EBF00ABB47B /* PolySaturator.c in Sources */,
-				37C030E31ABB5EBF00ABB47B /* Compressor.c in Sources */,
 				37DC0C4A1B0FF80000C20827 /* Metering.c in Sources */,
 				3713FCCF1B16882D002C199A /* bs1770.c in Sources */,
 				37C030E91ABB5EBF00ABB47B /* LinkwitzRileyFilter.c in Sources */,
