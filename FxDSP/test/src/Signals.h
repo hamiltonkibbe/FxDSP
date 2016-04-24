@@ -17,11 +17,16 @@ extern "C" {
 
 void
 sinewave(float* dest, unsigned n, float f, float phase, float amp, float Fs);
-  
+
 void
 sinewaveD(double* dest, unsigned n, double f, double phase, double amp, double Fs);
 
-// >> sin(linspace(0, 6*pi, 100))
+/* Test signal. 2 cycles of a sine wave.
+
+ Matlab source:
+
+     >> sin(linspace(0, 6*pi, 100))
+ */
 static const float MatlabSignal[100] =
 {
     0.0000000000f,
@@ -126,8 +131,13 @@ static const float MatlabSignal[100] =
     -0.0000000000f,
 };
 
- 
-// >> sin(linspace(0, 6*pi, 100))
+
+/* Test signal. 2 cycles of a sine wave.
+
+ Matlab source:
+
+     >> sin(linspace(0, 6*pi, 100))
+*/
 static const double MatlabSignalD[100] =
 {
     0.0000000000000000000,
@@ -233,22 +243,25 @@ static const double MatlabSignalD[100] =
 };
 
 
-
+/* Array of zeros */
 static const float zeros[10] =
 {
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
 };
 
+/* Array of zeros. Double precision */
 static const double zerosD[10] =
 {
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
 };
 
+/* Array of ones */
 static const float ones[10] =
 {
     1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0
 };
 
+/* Array of ones. Double precision */
 static const double onesD[10] =
 {
     1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0

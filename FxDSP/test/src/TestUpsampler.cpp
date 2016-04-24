@@ -69,6 +69,10 @@ TEST(UpsamplerSingle, TestUpsampler)
     {
         ASSERT_NEAR(residx[i], expected[i], 0.1);
     }
+
+    /* Test invalid argument handling */
+    us = UpsamplerInit((ResampleFactor_t)10000);
+    ASSERT_EQ((void*)us, (void*)NULL);
 }
 
 TEST(UpsamplerSingle, TestUpsamplerFlush)
@@ -154,6 +158,10 @@ TEST(UpsamplerDouble, TestUpsampler)
     {
         ASSERT_NEAR(residx[i], expected[i], 0.1);
     }
+
+    /* Test invalid argument handling */
+    us = UpsamplerInitD((ResampleFactor_t)10000);
+    ASSERT_EQ((void*)us, (void*)NULL);
 }
 
 

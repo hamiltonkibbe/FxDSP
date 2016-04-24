@@ -74,8 +74,6 @@ TEST(RMSEstimatorSingle, TestRMSEstimatorTick)
     }
 }
 
-
-
 TEST(RMSEstimatorDouble, TestRMSEstimator)
 {
     double sinewave[10000];
@@ -116,7 +114,6 @@ TEST(RMSEstimatorDouble, TestRMSEstimatorSetAvgTime)
     }
     
 }
-
 
 TEST(RMSEstimatorDouble, TestRMSEstimatorTick)
 {

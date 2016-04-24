@@ -47,7 +47,7 @@ UpsamplerInit(ResampleFactor_t factor)
             break;
         */
         default:
-            break;
+            return NULL;
     }
 
 	// Allocate memory for the upsampler
@@ -59,7 +59,7 @@ UpsamplerInit(ResampleFactor_t factor)
     if (upsampler && polyphase)
     {
         upsampler->polyphase = polyphase;
-        
+
         // Create polyphase filters
         unsigned idx;
         for(idx = 0; idx < n_filters; ++idx)
@@ -69,7 +69,7 @@ UpsamplerInit(ResampleFactor_t factor)
 
         // Add factor
         upsampler->factor = n_filters;
-        
+
         return upsampler;
     }
     else
@@ -107,29 +107,29 @@ UpsamplerInitD(ResampleFactor_t factor)
             break;
         */
         default:
-            break;
+            return NULL;
     }
-    
+
     // Allocate memory for the upsampler
     UpsamplerD* upsampler = (UpsamplerD*)malloc(sizeof(UpsamplerD));
-    
+
     // Allocate memory for the polyphase array
     FIRFilterD** polyphase = (FIRFilterD**)malloc(n_filters * sizeof(FIRFilterD*));
-    
+
     if (upsampler && polyphase)
     {
         upsampler->polyphase = polyphase;
-        
+
         // Create polyphase filters
         unsigned idx;
         for(idx = 0; idx < n_filters; ++idx)
         {
             upsampler->polyphase[idx] = FIRFilterInitD(PolyphaseCoeffsD[factor][idx], 64, DIRECT);
         }
-        
+
         // Add factor
         upsampler->factor = n_filters;
-        
+
         return upsampler;
     }
     else
@@ -223,7 +223,7 @@ UpsamplerProcess(Upsampler      *upsampler,
             FIRFilterProcess(upsampler->polyphase[filt], tempbuf, inBuffer, n_samples);
             CopyBufferStride(outBuffer+filt, upsampler->factor, tempbuf, 1, n_samples);
         }
-        
+
         VectorScalarMultiply(outBuffer, (const float*)outBuffer,
                              upsampler->factor, n_samples * upsampler->factor);
         return NOERR;
@@ -248,7 +248,7 @@ UpsamplerProcessD(UpsamplerD*   upsampler,
             FIRFilterProcessD(upsampler->polyphase[filt], tempbuf, inBuffer, n_samples);
             CopyBufferStrideD(outBuffer+filt, upsampler->factor, tempbuf, 1, n_samples);
         }
-        
+
         VectorScalarMultiplyD(outBuffer, (const double*)outBuffer,
                              upsampler->factor, n_samples * upsampler->factor);
         return NOERR;

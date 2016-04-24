@@ -25,7 +25,7 @@ struct CircularBuffer
     float*      buffer;
     unsigned    read_index;
     unsigned    write_index;
-    int         count;
+    unsigned    count;
 };
 
 
@@ -38,13 +38,13 @@ struct CircularBufferD
     double*     buffer;
     unsigned    read_index;
     unsigned    write_index;
-    int         count;
+    unsigned    count;
 };
 
 
 /*******************************************************************************
  CircularBufferInit */
-CircularBuffer* 
+CircularBuffer*
 CircularBufferInit(unsigned length)
 {
     CircularBuffer* cb = (CircularBuffer*)malloc(sizeof(CircularBuffer));
@@ -55,7 +55,7 @@ CircularBufferInit(unsigned length)
         float* buffer = (float*)malloc(length * sizeof(float));
 
         ClearBuffer(buffer, length);
-        
+
         cb->length = length;
         cb->wrap = length - 1;
         cb->buffer = buffer;
@@ -77,9 +77,9 @@ CircularBufferInitD(unsigned length)
         // use next power of two so we can do a bitwise wrap
         length = next_pow2(length);
         double* buffer = (double*)malloc(length * sizeof(double));
-        
+
         ClearBufferD(buffer, length);
-        
+
         cb->length = length;
         cb->wrap = length - 1;
         cb->buffer = buffer;
@@ -136,8 +136,8 @@ CircularBufferWrite(CircularBuffer* cb, const float* src, unsigned n_samples)
         cb->buffer[++cb->write_index & cb->wrap] = *src++;
     }
     cb->count += n_samples;
-    
-    if ((cb->count <= cb->length) && (cb->count >= 0))
+
+    if (cb->count <= cb->length)
     {
         return NOERR;
     }
@@ -155,8 +155,8 @@ CircularBufferWriteD(CircularBufferD* cb, const double* src, unsigned n_samples)
         cb->buffer[++cb->write_index & cb->wrap] = *src++;
     }
     cb->count += n_samples;
-    
-    if ((cb->count <= cb->length) && (cb->count >= 0))
+
+    if (cb->count <= cb->length)
     {
         return NOERR;
     }
@@ -177,8 +177,8 @@ CircularBufferRead(CircularBuffer* cb, float* dest, unsigned n_samples)
         *dest++ = cb->buffer[++cb->read_index & cb->wrap];
     }
     cb->count -= n_samples;
-    
-    if ((cb->count <= cb->length) && (cb->count >= 0))
+
+    if (cb->count <= cb->length)
     {
         return NOERR;
     }
@@ -197,8 +197,8 @@ CircularBufferReadD(CircularBufferD* cb, double* dest, unsigned n_samples)
         *dest++ = cb->buffer[++cb->read_index & cb->wrap];
     }
     cb->count -= n_samples;
-    
-    if ((cb->count <= cb->length) && (cb->count >= 0))
+
+    if (cb->count <= cb->length)
     {
         return NOERR;
     }
@@ -237,8 +237,8 @@ CircularBufferRewind(CircularBuffer* cb, unsigned samples)
 {
     cb->read_index = ((cb->read_index + cb->length) - samples) % cb->length;
     cb->count += samples;
-    
-    if ((cb->count <= cb->length) && (cb->count >= 0))
+
+    if (cb->count <= cb->length)
     {
         return NOERR;
     }
@@ -253,8 +253,8 @@ CircularBufferRewindD(CircularBufferD* cb, unsigned samples)
 {
     cb->read_index = ((cb->read_index + cb->length) - samples) % cb->length;
     cb->count += samples;
-    
-    if ((cb->count <= cb->length) && (cb->count >= 0))
+
+    if (cb->count <= cb->length)
     {
         return NOERR;
     }
@@ -266,13 +266,13 @@ CircularBufferRewindD(CircularBufferD* cb, unsigned samples)
 
 /*******************************************************************************
  CircularBufferCount */
-int
+unsigned
 CircularBufferCount(CircularBuffer* cb)
 {
     return cb->count;
 }
 
-int
+unsigned
 CircularBufferCountD(CircularBufferD* cb)
 {
     return cb->count;

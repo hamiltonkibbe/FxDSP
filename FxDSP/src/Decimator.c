@@ -47,7 +47,7 @@ DecimatorInit(ResampleFactor_t factor)
             n_filters = 16;
             break; */
         default:
-            break;
+            return NULL;
     }
     
     // Allocate memory for the upsampler
@@ -107,7 +107,7 @@ DecimatorInitD(ResampleFactor_t factor)
             break;
         */
         default:
-            break;
+            return NULL;
     }
     
     // Allocate memory for the upsampler

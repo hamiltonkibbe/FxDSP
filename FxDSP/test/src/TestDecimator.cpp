@@ -69,6 +69,9 @@ TEST(DecimatorSingle, TestDecimator)
         ASSERT_NEAR(residx[i], expected[i], 0.2);
     }
     
+    /* Test invalid argument handling */
+    ds = DecimatorInit((ResampleFactor_t)10000);
+    ASSERT_EQ((void*)ds, (void*)NULL);
 }
 
 
@@ -158,6 +161,10 @@ TEST(DecimatorDouble, TestDecimator)
     {
         ASSERT_NEAR(residx[i], expected[i], 0.2);
     }
+
+    /* Test invalid argument handling */
+    ds = DecimatorInitD((ResampleFactor_t)10000);
+    ASSERT_EQ((void*)ds, (void*)NULL);
 
 }
 

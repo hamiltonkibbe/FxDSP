@@ -35,6 +35,7 @@
 		373B1C981B006BAA00B0B40D /* PolyphaseCoeffs.c in Sources */ = {isa = PBXBuildFile; fileRef = 373B1C961B006BAA00B0B40D /* PolyphaseCoeffs.c */; };
 		373CBAAE1AF71F3F00B488E8 /* TestPanLaw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 373CBAAD1AF71F3F00B488E8 /* TestPanLaw.cpp */; };
 		373CBAB01AF722D600B488E8 /* TestUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 373CBAAF1AF722D600B488E8 /* TestUtilities.cpp */; };
+		376090921B6F1905009EF6E0 /* TestDiodeRectifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 376090911B6F1905009EF6E0 /* TestDiodeRectifier.cpp */; };
 		3769A0EC1B1EA27B00FF9560 /* bs1770.h in Headers */ = {isa = PBXBuildFile; fileRef = 3769A0EB1B1EA27B00FF9560 /* bs1770.h */; };
 		3769A0ED1B1EA27B00FF9560 /* bs1770.h in Headers */ = {isa = PBXBuildFile; fileRef = 3769A0EB1B1EA27B00FF9560 /* bs1770.h */; };
 		376CF3781ADB56BF001486B7 /* TestFFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 376CF3771ADB56BF001486B7 /* TestFFT.cpp */; };
@@ -196,6 +197,7 @@
 		37D3CBCF1AD4D82C001E598C /* libgtest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D3CBCE1AD4D82C001E598C /* libgtest.a */; };
 		37D3CBD21AD4D96E001E598C /* libFxDSP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C0317A1ABB7E0200ABB47B /* libFxDSP.a */; };
 		37D3CBD51AD4DCC2001E598C /* TestCircularBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37D3CBD31AD4DCC2001E598C /* TestCircularBuffer.cpp */; };
+		37D4B2EC1CCC27A800A5A0F7 /* TestOptocoupler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37D4B2EA1CCC27A800A5A0F7 /* TestOptocoupler.cpp */; };
 		37DC0C4A1B0FF80000C20827 /* Metering.c in Sources */ = {isa = PBXBuildFile; fileRef = 37DC0C481B0FF80000C20827 /* Metering.c */; };
 		37DC0C4B1B0FF80000C20827 /* Metering.c in Sources */ = {isa = PBXBuildFile; fileRef = 37DC0C481B0FF80000C20827 /* Metering.c */; };
 		37DC0C4F1B0FF83800C20827 /* Metering.h in Headers */ = {isa = PBXBuildFile; fileRef = 37DC0C4E1B0FF83700C20827 /* Metering.h */; };
@@ -308,6 +310,7 @@
 		373B1C961B006BAA00B0B40D /* PolyphaseCoeffs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = PolyphaseCoeffs.c; path = FxDSP/src/PolyphaseCoeffs.c; sourceTree = SOURCE_ROOT; };
 		373CBAAD1AF71F3F00B488E8 /* TestPanLaw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestPanLaw.cpp; path = FxDSP/test/src/TestPanLaw.cpp; sourceTree = SOURCE_ROOT; };
 		373CBAAF1AF722D600B488E8 /* TestUtilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestUtilities.cpp; path = FxDSP/test/src/TestUtilities.cpp; sourceTree = SOURCE_ROOT; };
+		376090911B6F1905009EF6E0 /* TestDiodeRectifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestDiodeRectifier.cpp; path = FxDSP/test/src/TestDiodeRectifier.cpp; sourceTree = SOURCE_ROOT; };
 		3769A0EB1B1EA27B00FF9560 /* bs1770.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bs1770.h; path = FxDSP/include/bs1770.h; sourceTree = SOURCE_ROOT; };
 		376CF3771ADB56BF001486B7 /* TestFFT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestFFT.cpp; path = FxDSP/test/src/TestFFT.cpp; sourceTree = SOURCE_ROOT; };
 		376CF3791ADB6849001486B7 /* TestMultibandFilterBank.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestMultibandFilterBank.cpp; path = FxDSP/test/src/TestMultibandFilterBank.cpp; sourceTree = SOURCE_ROOT; };
@@ -388,6 +391,7 @@
 		37D3CBCB1AD4D747001E598C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = FxDSP/test/src/main.cpp; sourceTree = SOURCE_ROOT; };
 		37D3CBCE1AD4D82C001E598C /* libgtest.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgtest.a; path = ../../../../../usr/local/lib/libgtest.a; sourceTree = "<group>"; };
 		37D3CBD31AD4DCC2001E598C /* TestCircularBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestCircularBuffer.cpp; path = FxDSP/test/src/TestCircularBuffer.cpp; sourceTree = SOURCE_ROOT; };
+		37D4B2EA1CCC27A800A5A0F7 /* TestOptocoupler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestOptocoupler.cpp; path = FxDSP/test/src/TestOptocoupler.cpp; sourceTree = SOURCE_ROOT; };
 		37DC0C481B0FF80000C20827 /* Metering.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Metering.c; path = FxDSP/src/Metering.c; sourceTree = SOURCE_ROOT; };
 		37DC0C4E1B0FF83700C20827 /* Metering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Metering.h; path = FxDSP/include/Metering.h; sourceTree = SOURCE_ROOT; };
 		37DC0C511B0FF8CA00C20827 /* TestMetering.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestMetering.cpp; path = FxDSP/test/src/TestMetering.cpp; sourceTree = SOURCE_ROOT; };
@@ -544,12 +548,14 @@
 				376CF3791ADB6849001486B7 /* TestMultibandFilterBank.cpp */,
 				376ED3CC1AF667B80054BA36 /* TestRMS.cpp */,
 				373CBAAD1AF71F3F00B488E8 /* TestPanLaw.cpp */,
+				37D4B2EA1CCC27A800A5A0F7 /* TestOptocoupler.cpp */,
 				373CBAAF1AF722D600B488E8 /* TestUtilities.cpp */,
 				37139B4B1AFB0D8000207A08 /* TestLinkwitzRileyFilter.cpp */,
 				37DC0C511B0FF8CA00C20827 /* TestMetering.cpp */,
 				37BD93041B139082009238D4 /* TestUpsampler.cpp */,
 				37BD93061B13A46C009238D4 /* TestDecimator.cpp */,
 				370223331B4F31B800750735 /* TestBS1770.cpp */,
+				376090911B6F1905009EF6E0 /* TestDiodeRectifier.cpp */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -733,7 +739,7 @@
 		37EAC0DF1818AE2F00736C52 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0620;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Hamilton Kibbe";
 				TargetAttributes = {
 					37B8EC811AC7315300EBD2E3 = {
@@ -812,6 +818,7 @@
 				37BD93051B139082009238D4 /* TestUpsampler.cpp in Sources */,
 				373CBAB01AF722D600B488E8 /* TestUtilities.cpp in Sources */,
 				370223341B4F31B800750735 /* TestBS1770.cpp in Sources */,
+				37D4B2EC1CCC27A800A5A0F7 /* TestOptocoupler.cpp in Sources */,
 				376ED3CE1AF6683E0054BA36 /* TestRMS.cpp in Sources */,
 				3775E0931AD501DE00930665 /* TestRBJFilter.cpp in Sources */,
 				3775E08B1AD4F1E500930665 /* TestOnePole.cpp in Sources */,
@@ -819,6 +826,7 @@
 				37D3CBCD1AD4D74D001E598C /* main.cpp in Sources */,
 				37BD93071B13A46C009238D4 /* TestDecimator.cpp in Sources */,
 				37D3CBD51AD4DCC2001E598C /* TestCircularBuffer.cpp in Sources */,
+				376090921B6F1905009EF6E0 /* TestDiodeRectifier.cpp in Sources */,
 				3775E0901AD4F8A500930665 /* TestFIRFilter.cpp in Sources */,
 				37D3CBCA1AD4D6DB001E598C /* TestBiquadFilter.cpp in Sources */,
 				3775E09F1AD60A5100930665 /* TestWindowFunctions.cpp in Sources */,
@@ -1028,6 +1036,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;

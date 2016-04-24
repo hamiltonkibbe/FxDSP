@@ -17,8 +17,6 @@
 extern "C" {
 #endif
 
-    
-    
 /** CircularBuffer type */
 typedef struct CircularBuffer CircularBuffer;
 typedef struct CircularBufferD CircularBufferD;
@@ -36,18 +34,18 @@ CircularBuffer*  CircularBufferInit(unsigned length);
 CircularBufferD*
 CircularBufferInitD(unsigned length);
 
-    
+
 /** Free Heap Memory associated with CircularBuffer
 *
 * @details Frees memory allocated by CircularBufferInit
 */
 Error_t
 CircularBufferFree(CircularBuffer* cb);
-    
+
 Error_t
 CircularBufferFreeD(CircularBufferD* cb);
 
-    
+
 /** Write samples to circular buffer
 */
 Error_t
@@ -58,16 +56,16 @@ CircularBufferWriteD(CircularBufferD*   cb,
                      const double*      src,
                      unsigned           n_samples);
 
-    
+
 /** Read samples from circular buffer
  */
 Error_t
 CircularBufferRead(CircularBuffer* cb, float* dest, unsigned n_samples);
-    
+
 Error_t
 CircularBufferReadD(CircularBufferD* cb, double* dest, unsigned n_samples);
 
-    
+
 /** Flush circular buffer
  */
 Error_t
@@ -76,25 +74,24 @@ CircularBufferFlush(CircularBuffer* cb);
 Error_t
 CircularBufferFlushD(CircularBufferD* cb);
 
-    
 /** Rewind the read head of the buffer by `n_samples` samples
  */
 Error_t
 CircularBufferRewind(CircularBuffer* cb, unsigned n_samples);
-    
+
 Error_t
 CircularBufferRewindD(CircularBufferD* cb, unsigned n_samples);
 
-    
-/** Return the number of unread samples in the buffer 
+
+/** Return the number of unread samples in the buffer
  */
-int
+unsigned
 CircularBufferCount(CircularBuffer* cb);
-    
-int
+
+unsigned
 CircularBufferCountD(CircularBufferD* cb);
-    
-    
+
+
 #ifdef __cplusplus
 }
 #endif
