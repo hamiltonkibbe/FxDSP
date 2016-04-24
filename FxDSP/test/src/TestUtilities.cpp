@@ -36,7 +36,6 @@ TEST(Utilities, TestClamp)
     
 }
 
-
 TEST(Utilities, TestFastPow2)
 {
     float in[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -165,4 +164,22 @@ TEST(Utilities, TestFastTanh)
         
         ASSERT_NEAR(tanhf(in[i]), f_tanh(in[i]), 0.0005);
     }
+}
+
+
+TEST(Utilities, TestInt16ToFloat)
+{
+    ASSERT_FLOAT_EQ(1.0, int16ToFloat(32767));
+}
+
+TEST(Utilities, TesFloatToInt16)
+{
+    ASSERT_EQ(32767, floatToInt16(1.0));
+}
+
+
+TEST(Utilities, TestDbAmpConversion)
+{
+    ASSERT_FLOAT_EQ(0.0, DbToAmp(-99.0));
+    ASSERT_FLOAT_EQ(1.0, DbToAmp(0.0));
 }
