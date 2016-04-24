@@ -183,3 +183,9 @@ TEST(Utilities, TestDbAmpConversion)
     ASSERT_FLOAT_EQ(0.0, DbToAmp(-99.0));
     ASSERT_FLOAT_EQ(1.0, DbToAmp(0.0));
 }
+
+TEST(Utilities, TestDbAmpConversionDouble)
+{
+    ASSERT_DOUBLE_EQ(0.0, DbToAmpD(-99.0));
+    ASSERT_DOUBLE_EQ(1.0, DbToAmpD(0.0));
+}
