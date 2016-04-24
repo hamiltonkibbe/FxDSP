@@ -1,4 +1,4 @@
-/** 
+/**
  * @file Utilities.h
  * @author Hamilton Kibbe
  * @copyright 2013 Hamilton Kibbe
@@ -9,15 +9,10 @@
 
 #include <math.h>
 
+/* Macro Constants */
 
 /* Scalar for converting int to float samples (1/32767.0) */
 #define INT16_TO_FLOAT_SCALAR (0.00003051850947599719f)
-
-/* Limit value v to the range (l, u) */
-#define LIMIT(v,l,u) ((v)<(l)?(l):((v)>(u)?(u):(v)))
-
-/* Linearly interpolate [ = a * (1 - f) + b * f] */
-#define LIN_INTERP(f,a,b) ((a) + (f) * ((b) - (a)))
 
 /* 1/ln(2) */
 #define INV_LN2 (1.442695040888963f)
@@ -31,12 +26,84 @@
 /* 1/(TWO_PI) */
 #define INVERSE_TWO_PI (0.159154943091895f)
 
-/* Convert from Hz to Rad */
-#define HZ_TO_RAD(f) (TWO_PI * f)
-#define RAD_TO_HZ(omega) (INVERSE_TWO_PI * omega)
+/* log(10.0) / 20.0 */
+#define AMPDB_EXP (0.11512925464970)
 
-/* Fast exponentiation function, y = e^x */
-#define f_exp(x) f_pow2(x * INV_LN2)
+/* Utility Function Macros */
+
+/* Limit value value to the range (l, u) */
+#define LIMIT(value,lower,upper) ((value) < (lower) ? (lower) : \
+                                 ((value) > (upper) ? (upper) : (value)))
+
+/* Linearly interpolate between y0 and y1
+
+  y(x) = (1 - x) * y(0) + x * y(1) | x in (0, 1)
+
+ Function-style signature:
+    float LIN_INTERP(float x, float y0, float y1)
+    double LIN_INTERP(double x, double y0, double y1)
+
+ Parameters:
+    x:  x-value at which to calculate y.
+    y0: y-value at x = 0.
+    y1: y-value at x = 1.
+
+ Returns:
+    Interpolated y-value at specified x.
+ */
+#define LIN_INTERP(x, y0, y1) ((y0) + (x) * ((y1) - (y0)))
+
+
+/* Convert frequency from Hz to Radians per second
+
+ Function-style signature:
+    float HZ_TO_RAD(float frequency)
+    double HZ_TO_RAD(double frequency)
+
+ Parameters:
+    frequency:  Frequency in Hz.
+
+ Returns:
+    Frequency in Radians per second.
+ */
+#define HZ_TO_RAD(f) (TWO_PI * (f))
+
+/* Convert frequency from Radians per second to Hz
+
+ Function-style signature:
+    float RAD_TO_HZ(float frequency)
+    double RAD_TO_HZ(double frequency)
+
+ Parameters:
+ frequency:  Frequency in Radians per second.
+
+ Returns:
+ Frequency in Hz.
+ */
+#define RAD_TO_HZ(omega) (INVERSE_TWO_PI * (omega))
+
+
+/* Fast exponentiation function
+
+ y = e^x
+
+ Function-style signature:
+    float F_EXP(float x)
+    double F_EXP(double x)
+
+ Parameters:
+    x:  Value to exponentiate.
+
+ Returns:
+    e^x.
+ */
+#define F_EXP(x) ((362880 + (x) * (362880 + (x) * (181440 + (x) * \
+                  (60480 + (x) * (15120 + (x) * (3024 + (x) * (504 + (x) * \
+                  (72 + (x) * (9 + (x) ))))))))) * 2.75573192e-6)
+
+/* Decibel to Amplitude Conversion */
+#define DB_TO_AMP(x) ((x) > -90.0f ? expf((x) * AMPDB_EXP) : 0.0f)
+#define DB_TO_AMPD(x) ((x) > -90.0 ? exp((x) * AMPDB_EXP) : 0.0)
 
 
 
@@ -49,10 +116,10 @@ extern "C" {
 #define _USE_FXDSP_LOG
 
 
-double 
+double
 log2(double n);
 
-float 
+float
 log2f(float n);
 
 #endif
@@ -73,7 +140,7 @@ next_pow2(int x);
  */
 float
 f_abs(float f);
-	
+
 /**  Max of two floats
  * @details branchless max() implementation
  * @param   x first value to compare,
@@ -101,7 +168,7 @@ f_min(float x, float b);
  * @param b upper bound
  * @return  val clamped to range (a, b)
  */
-float 
+float
 f_clamp(float x, float a, float b);
 
 
@@ -115,15 +182,6 @@ float
 f_pow2(float x);
 
 
-/** fast exp(x)
- * @details fast double-precision exp(x) approximation
- * @param x     value to exponentiate.
- * @return      e^x
- */
-double
-f_expD(double x);
-
-    
 /** Calculate tanh_x
 * @details fast tanh approximation
 * @param x     input
@@ -131,6 +189,7 @@ f_expD(double x);
 */
 float
 f_tanh(float x);
+
 
 /** Convert signed sample to float
  *
@@ -140,7 +199,7 @@ f_tanh(float x);
  * @param sample    The sample to convert.
  * @return          The sample as a float.
  */
-float 
+float
 int16ToFloat(signed short sample);
 
 
@@ -154,8 +213,8 @@ int16ToFloat(signed short sample);
  */
 signed short
 floatToInt16(float sample);
-    
-	
+
+
 /** Convert an amplitude to dB
  * @details     Convert a voltage amplitude to dB.
  * @param amp   The amplitude to convert.
@@ -166,8 +225,8 @@ AmpToDb(float ratio);
 
 double
 AmpToDbD(double ratio);
-    
-	
+
+
 /** Convert a value in dB to an amplitude
  * @details convert a dBFS value to a voltage amplitude
  * @param dB        The value in dB to convert.
@@ -178,20 +237,20 @@ DbToAmp(float dB);
 
 double
 DbToAmpD(double dB);
-    
-    
+
+
 void
 RectToPolar(float real, float imag, float* outMag, float* outPhase);
-    
+
 void
 RectToPolarD(double real, double imag, double* outMag, double* outPhase);
 
 void
 PolarToRect(float mag, float phase, float* outReal, float* outImag);
-    
+
 void
 PolarToRectD(double mag, double phase, double* outReal, double* outImag);
-    
+
 
 #ifdef __cplusplus
 }

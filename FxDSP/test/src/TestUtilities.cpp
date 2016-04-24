@@ -71,22 +71,28 @@ TEST(Utilities, TestMaxAndMin)
 
 TEST(Utilities, TestFastExp)
 {
-    float in[10] = {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
+    float in[21] = {
+        -1.0, -0.9, -0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1,
+        0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0
+    };
     
-    for (unsigned i = 0; i < 10; ++i)
+    for (unsigned i = 0; i < 21; ++i)
     {
-        ASSERT_NEAR(expf(in[i]), f_exp(in[i]), 0.001);
+        ASSERT_NEAR(expf(in[i]), F_EXP(in[i]), 0.000001);
     }
 }
 
 
 TEST(Utilities, TestFastExpD)
 {
-    double in[10] = {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
+    double in[21] = {
+        -1.0, -0.9, -0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1,
+        0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0
+    };
     
-    for (unsigned i = 0; i < 10; ++i)
+    for (unsigned i = 0; i < 21; ++i)
     {
-        ASSERT_NEAR(exp(in[i]), f_expD(in[i]), 0.000001);
+        ASSERT_NEAR(exp(in[i]), F_EXP(in[i]), 0.000001);
     }
 }
 

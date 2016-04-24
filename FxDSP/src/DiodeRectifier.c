@@ -7,9 +7,11 @@
 //
 
 #include "DiodeRectifier.h"
+#include "Dsp.h"
 #include "Utilities.h"
 #include <stdlib.h>
 #include <math.h>
+#include <float.h>
 
 
 /*******************************************************************************
@@ -20,6 +22,9 @@ struct DiodeRectifier
     float   threshold;
     float   vt;
     float   scale;
+    float   lb;
+    float   ub;
+    float*  scratch;
 };
 
 struct DiodeRectifierD
@@ -28,6 +33,9 @@ struct DiodeRectifierD
     double  threshold;
     double  vt;
     double  scale;
+    double  lb;
+    double  ub;
+    double* scratch;
 };
 
 
@@ -36,26 +44,77 @@ struct DiodeRectifierD
 DiodeRectifier*
 DiodeRectifierInit(bias_t bias, float threshold)
 {
-    // Create opto struct
+    /* Allocate memory for diode struct */
     DiodeRectifier* diode = (DiodeRectifier*)malloc(sizeof(DiodeRectifier));
-    
-    // Initialization
-    diode->bias = bias;
-    diode->threshold = threshold;
-    DiodeRectifierSetThreshold(diode, threshold);
+
+    if (NULL != diode)
+    {
+        /* Allocate scratch space */
+        float* scratch = (float*)malloc(4096 * sizeof(float));
+
+        if (NULL != scratch)
+        {
+            // Initialization
+            diode->bias = bias;
+            diode->threshold = threshold;
+            if (bias == FORWARD_BIAS)
+            {
+                diode->lb = FLT_EPSILON;
+                diode->ub = 1.0;
+            }
+            else
+            {
+                diode->lb = -1.0;
+                diode->ub = FLT_EPSILON;
+            }
+            diode->scratch = scratch;
+            DiodeRectifierSetThreshold(diode, threshold);
+        }
+        else
+        {
+            free(diode);
+            diode = NULL;
+        }
+    }
     return diode;
 }
 
 DiodeRectifierD*
 DiodeRectifierInitD(bias_t bias, double threshold)
 {
-    // Create opto struct
+    /* Allocate memory for diode struct */
     DiodeRectifierD* diode = (DiodeRectifierD*)malloc(sizeof(DiodeRectifierD));
-    
-    // Initialization
-    diode->bias = bias;
-    diode->threshold = threshold;
-    DiodeRectifierSetThresholdD(diode, threshold);
+
+    if (NULL != diode)
+    {
+        /* Allocate scratch space */
+        double* scratch = (double*)malloc(4096 * sizeof(double));
+
+        if (NULL != scratch)
+        {
+
+            // Initialization
+            diode->bias = bias;
+            diode->threshold = threshold;
+            if (bias == FORWARD_BIAS)
+            {
+                diode->lb = DBL_EPSILON;
+                diode->ub = 1.0;
+            }
+            else
+            {
+                diode->lb = -1.0;
+                diode->ub = DBL_EPSILON;
+            }
+            diode->scratch = scratch;
+            DiodeRectifierSetThresholdD(diode, threshold);
+        }
+        else
+        {
+            free(diode);
+            diode = NULL;
+        }
+    }
     return diode;
 }
 
@@ -65,8 +124,14 @@ DiodeRectifierInitD(bias_t bias, double threshold)
 Error_t
 DiodeRectifierFree(DiodeRectifier* diode)
 {
-    if(diode)
+    if (NULL != diode)
+    {
+        if (NULL != diode->scratch)
+        {
+            free(diode->scratch);
+        }
         free(diode);
+    }
     diode = NULL;
     return NOERR;
 }
@@ -74,8 +139,14 @@ DiodeRectifierFree(DiodeRectifier* diode)
 Error_t
 DiodeRectifierFreeD(DiodeRectifierD* diode)
 {
-    if(diode)
+    if (NULL != diode)
+    {
+        if (NULL != diode->scratch)
+        {
+            free(diode->scratch);
+        }
         free(diode);
+    }
     diode = NULL;
     return NOERR;
 }
@@ -87,12 +158,15 @@ Error_t
 DiodeRectifierSetThreshold(DiodeRectifier* diode, float threshold)
 {
     float scale = 1.0;
+    threshold = LIMIT(fabsf(threshold), 0.1, 0.9);
+    scale = (1.0 - threshold);
     if (diode->bias== REVERSE_BIAS)
     {
-        scale = -1.0;
+        scale *= -1.0;
+        threshold *= -1.0;
     }
     diode->threshold = threshold;
-    diode->vt = scale * -0.1738 * threshold + 0.1735;
+    diode->vt = -0.1738 * threshold + 0.1735;
     diode->scale = scale/(expf((1.0/diode->vt) - 1.));
     return NOERR;
 }
@@ -101,13 +175,16 @@ Error_t
 DiodeRectifierSetThresholdD(DiodeRectifierD* diode, double threshold)
 {
     double scale = 1.0;
+    threshold = LIMIT(fabs(threshold), 0.1, 0.9);
+    scale = (1.0 - threshold);
     if (diode->bias == REVERSE_BIAS)
     {
-        scale = -1.0;
+        scale *= -1.0;
+        threshold *= -1.0;
     }
     diode->threshold = threshold;
-    diode->vt = scale * -0.1738 * threshold + 0.1735;
-    diode->scale = scale/(expf((1.0/diode->vt) - 1.));
+    diode->vt = -0.1738 * threshold + 0.1735;
+    diode->scale = scale/(exp((1.0/diode->vt) - 1.));
     return NOERR;
 }
 
@@ -120,11 +197,13 @@ DiodeRectifierProcess(DiodeRectifier*   diode,
                       const float*      in_buffer,
                       unsigned          n_samples)
 {
-    float vt = diode->vt;
+    float inv_vt = 1.0 / diode->vt;
     float scale = diode->scale;
+    VectorScalarMultiply(diode->scratch, in_buffer, inv_vt, n_samples);
+    VectorScalarAdd(diode->scratch, diode->scratch, -1.0, n_samples);
     for (unsigned i = 0; i < n_samples; ++i)
     {
-        out_buffer[i] = f_exp((in_buffer[i]/vt)-1) * scale;
+        out_buffer[i] = expf(diode->scratch[i]) * scale;
     }
     return NOERR;
 }
@@ -135,11 +214,13 @@ DiodeRectifierProcessD(DiodeRectifierD* diode,
                        const double*    in_buffer,
                        unsigned         n_samples)
 {
-    double vt = diode->vt;
+    double inv_vt = 1.0 / diode->vt;
     double scale = diode->scale;
+    VectorScalarMultiplyD(diode->scratch, in_buffer, inv_vt, n_samples);
+    VectorScalarAddD(diode->scratch, diode->scratch, -1.0, n_samples);
     for (unsigned i = 0; i < n_samples; ++i)
     {
-        out_buffer[i] = exp((in_buffer[i]/vt)-1) * scale;
+        out_buffer[i] = exp(diode->scratch[i]) * scale;
     }
     return NOERR;
 }
@@ -149,7 +230,7 @@ DiodeRectifierProcessD(DiodeRectifierD* diode,
 float
 DiodeRectifierTick(DiodeRectifier* diode, float in_sample)
 {
-    return f_exp((in_sample/diode->vt)-1) * diode->scale;
+    return expf((in_sample/diode->vt)-1) * diode->scale;
 }
 
 double

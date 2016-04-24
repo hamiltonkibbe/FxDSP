@@ -12,13 +12,13 @@
 /* Define log2 and log2f for MSVC */
 #ifdef _USE_FXDSP_LOG
 
-double 
+double
 log2(double n)
 {
 	return log(n) / M_LN2;
 }
 
-float 
+float
 log2f(float n)
 {
 	return logf(n) / (float)M_LN2;
@@ -28,7 +28,7 @@ log2f(float n)
 
 
 /* 32 bit "pointer cast" union */
-typedef union 
+typedef union
 {
 	float f;
 	int i;
@@ -65,7 +65,7 @@ f_abs(float f)
 
 
 /* f_max **********************************************************************/
-inline float 
+inline float
 f_max(float x, float a)
 {
 	x -= a;
@@ -91,7 +91,7 @@ f_min(float x, float b)
 
 
 /* f_clamp ********************************************************************/
-inline float 
+inline float
 f_clamp(float x, float a, float b)
 {
 	const float x1 = fabs(x - a);
@@ -137,20 +137,20 @@ f_expD(double x)
 
 /* f_tanh *********************************************************************/
 inline float
-f_tanh(float x) 
-{ 
-	double xa = f_abs(x); 
-	double x2 = xa * xa; 
-	double x3 = xa * x2; 
-	double x4 = x2 * x2; 
-	double x7 = x3 * x4; 
-	double res = (1.0 - 1.0 / (1.0 + xa + x2 + 0.58576695 * x3 + 0.55442112 * x4 + 0.057481508 * x7)); 
-	return (x > 0 ? res : -res); 
+f_tanh(float x)
+{
+	double xa = f_abs(x);
+	double x2 = xa * xa;
+	double x3 = xa * x2;
+	double x4 = x2 * x2;
+	double x7 = x3 * x4;
+	double res = (1.0 - 1.0 / (1.0 + xa + x2 + 0.58576695 * x3 + 0.55442112 * x4 + 0.057481508 * x7));
+	return (x > 0 ? res : -res);
 }
 
 
 /* int16ToFloat ***************************************************************/
-inline float 
+inline float
 int16ToFloat(signed short sample)
 {
     return (float)(sample * INT16_TO_FLOAT_SCALAR);
@@ -181,13 +181,13 @@ AmpToDbD(double amplitude)
 inline float
 DbToAmp(float dB)
 {
-    return (dB > -90.0f ? powf(10.0, dB * 0.05f): 0.0f);
+    return (dB > -90.0f ? expf(dB * AMPDB_EXP): 0.0f);
 }
 
 inline double
 DbToAmpD(double dB)
 {
-    return (dB > -90.0 ? pow(10.0, dB * 0.05): 0.0);
+    return (dB > -90.0 ? exp(dB * AMPDB_EXP): 0.0);
 }
 
 void

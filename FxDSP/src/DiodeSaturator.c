@@ -104,7 +104,7 @@ DiodeSaturatorProcess(DiodeSaturator*   saturator,
 {
     for (unsigned i = 0; i < n_samples; ++i)
     {
-        out_buffer[i] = in_buffer[i] - (saturator->amount * (f_exp((in_buffer[i]/0.7) - 1.0) + E_INV));
+        out_buffer[i] = in_buffer[i] - (saturator->amount * (F_EXP((in_buffer[i]/0.7) - 1.0) + E_INV));
     }
     return NOERR;
 }
@@ -117,7 +117,7 @@ DiodeSaturatorProcessD(DiodeSaturatorD* saturator,
 {
     for (unsigned i = 0; i < n_samples; ++i)
     {
-        out_buffer[i] = in_buffer[i] - (saturator->amount * (f_expD((in_buffer[i]/0.7) - 1.0) + E_INV));
+        out_buffer[i] = in_buffer[i] - (saturator->amount * (F_EXP((in_buffer[i]/0.7) - 1.0) + E_INV));
     }
     return NOERR;
 }
@@ -128,12 +128,12 @@ DiodeSaturatorProcessD(DiodeSaturatorD* saturator,
 float
 DiodeSaturatorTick(DiodeSaturator* saturator, float in_sample)
 {
-    return in_sample - (saturator->amount * (f_exp((in_sample/0.7) - 1.0) + E_INV));
+    return in_sample - (saturator->amount * (F_EXP((in_sample/0.7) - 1.0) + E_INV));
 }
 
 double
 DiodeSaturatorTickD(DiodeSaturatorD* saturator, double in_sample)
 {
-    return in_sample - (saturator->amount * (f_expD((in_sample/0.7) - 1.0) + E_INV));
+    return in_sample - (saturator->amount * (F_EXP((in_sample/0.7) - 1.0) + E_INV));
 }
 
