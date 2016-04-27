@@ -13,14 +13,16 @@
 #define EPSILON (0.00001)
 
 
-TEST(Utilities, TestAmpDbConversion)
+TEST(Utilities, TestAmpDbConversionMacros)
 {
-    float amps[5] = {1.0, 0.5, 0.25, 0.125, 0.0625};
-    float dbs[5] = {0.0,-6.0206003,-12.041201,-18.061801,-24.082401};
-    for (unsigned i = 0; i < 5; ++i)
+    float amps[6] = {1.0, 0.5, 0.25, 0.125, 0.0625, 0.0};
+    float dbs[6] = {0.0,-6.0206003,-12.041201,-18.061801,-24.082401, -150.0};
+    for (unsigned i = 0; i < 6; ++i)
     {
-        ASSERT_NEAR(dbs[i], AmpToDb(amps[i]), EPSILON);
-        ASSERT_NEAR(amps[i], DbToAmp(dbs[i]), EPSILON);
+        ASSERT_NEAR(dbs[i], AMP_TO_DB(amps[i]), EPSILON);
+        ASSERT_NEAR(amps[i], DB_TO_AMP(dbs[i]), EPSILON);
+        ASSERT_NEAR(dbs[i], AMP_TO_DBD(amps[i]), EPSILON);
+        ASSERT_NEAR(amps[i], DB_TO_AMPD(dbs[i]), EPSILON);
     }
 }
 
@@ -186,12 +188,12 @@ TEST(Utilities, TesFloatToInt16)
 
 TEST(Utilities, TestDbAmpConversion)
 {
-    ASSERT_FLOAT_EQ(0.0, DbToAmp(-99.0));
+    ASSERT_FLOAT_EQ(0.0, DbToAmp(-150.0));
     ASSERT_FLOAT_EQ(1.0, DbToAmp(0.0));
 }
 
 TEST(Utilities, TestDbAmpConversionDouble)
 {
-    ASSERT_DOUBLE_EQ(0.0, DbToAmpD(-99.0));
+    ASSERT_DOUBLE_EQ(0.0, DbToAmpD(-150.0));
     ASSERT_DOUBLE_EQ(1.0, DbToAmpD(0.0));
 }
