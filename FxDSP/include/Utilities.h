@@ -9,7 +9,7 @@
 
 #include <math.h>
 
-/* Macro Constants */
+/* Macro Constants ************************************************************/
 
 /* Scalar for converting int to float samples (1/32767.0) */
 #define INT16_TO_FLOAT_SCALAR (0.00003051850947599719f)
@@ -26,14 +26,19 @@
 /* 1/(TWO_PI) */
 #define INVERSE_TWO_PI (0.159154943091895f)
 
-/* log(10.0) / 20.0 */
-#define AMPDB_EXP (0.11512925464970)
+/* ln(10.0)/20.0 */
+#define LOG_TEN_OVER_TWENTY (0.11512925464970228420089957273422)
 
-/* Utility Function Macros */
+/* 20.0/ln(10.0) */
+#define TWENTY_OVER_LOG_TEN (8.6858896380650365530225783783321)
+
+
+/* Utility Function Macros ****************************************************/
 
 /* Limit value value to the range (l, u) */
 #define LIMIT(value,lower,upper) ((value) < (lower) ? (lower) : \
                                  ((value) > (upper) ? (upper) : (value)))
+
 
 /* Linearly interpolate between y0 and y1
 
@@ -68,6 +73,7 @@
  */
 #define HZ_TO_RAD(f) (TWO_PI * (f))
 
+
 /* Convert frequency from Radians per second to Hz
 
  Function-style signature:
@@ -101,20 +107,30 @@
                   (60480 + (x) * (15120 + (x) * (3024 + (x) * (504 + (x) * \
                   (72 + (x) * (9 + (x) ))))))))) * 2.75573192e-6)
 
-/* Decibel to Amplitude Conversion */
-#define DB_TO_AMP(x) ((x) > -90.0f ? expf((x) * AMPDB_EXP) : 0.0f)
-#define DB_TO_AMPD(x) ((x) > -90.0 ? exp((x) * AMPDB_EXP) : 0.0)
 
+/* Decibel to Amplitude Conversion */
+#define DB_TO_AMP(x) ((x) > -150.0 ? expf((x) * LOG_TEN_OVER_TWENTY) : 0.0f)
+#define DB_TO_AMPD(x) ((x) > -150.0 ? exp((x) * LOG_TEN_OVER_TWENTY) : 0.0)
+
+/* Amplitude to Decibel Conversion */
+#define AMP_TO_DB(x) (((x) < 0.0000000298023223876953125) ? -150.0 : \
+                      (logf(x) * TWENTY_OVER_LOG_TEN))
+#define AMP_TO_DBD(x) (((x) < 0.0000000298023223876953125) ? -150.0 : \
+                       (log(x) * TWENTY_OVER_LOG_TEN))
+
+/* Smoothed Absolute Value */
+#define SMOOTH_ABS(x) (sqrt(((x) * (x)) + 0.025) - sqrt(0.025))
 
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+/* Function Declarations ******************************************************/
+
 /* Define log2 and log2f for MSVC */
 #if !defined(log2) || !defined(log2f)
 #define _USE_FXDSP_LOG
-
 
 double
 log2(double n);
@@ -125,13 +141,13 @@ log2f(float n);
 #endif
 
 
-
 /**  Find the nearest power of two
  * @param x     number to process
  * @return      Absolute value of f.
  */
 int
 next_pow2(int x);
+
 
 /**  Fast absolute value
  * @details     Fast fabs() implementation
@@ -140,6 +156,7 @@ next_pow2(int x);
  */
 float
 f_abs(float f);
+
 
 /**  Max of two floats
  * @details branchless max() implementation
@@ -170,7 +187,6 @@ f_min(float x, float b);
  */
 float
 f_clamp(float x, float a, float b);
-
 
 
 /** Calculate pow(2, x)
@@ -239,12 +255,25 @@ double
 DbToAmpD(double dB);
 
 
+/** Convert complex value to magnitude/phase
+ * @param real      Real part of input.
+ * @param imag      Imaginary part of input.
+ * @param outMag    Magnitude output.
+ * @param outPhase  Phase output.
+ */
 void
 RectToPolar(float real, float imag, float* outMag, float* outPhase);
 
 void
 RectToPolarD(double real, double imag, double* outMag, double* outPhase);
 
+
+/** Convert magnitude/phase to complex
+ * @param mag       Magnitude input.
+ * @param phase     Phase input.
+ * @param outReal   Real part output.
+ * @param outImag   Imaginary part output.
+ */
 void
 PolarToRect(float mag, float phase, float* outReal, float* outImag);
 
@@ -256,4 +285,4 @@ PolarToRectD(double mag, double phase, double* outReal, double* outImag);
 }
 #endif
 
-#endif /* UTILITIES_H_ */
+#endif /* UTILITIES_H */

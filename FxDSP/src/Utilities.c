@@ -126,15 +126,6 @@ f_pow2(float x)
 	return (*px).f;
 }
 
-/* f_expD *********************************************************************/
-inline double
-f_expD(double x)
-{
-    return (362880+x*(362880+x*(181440+x*(60480+x*(15120+x*(3024+x*(504+x*(72+x*(9+x)))))))))*2.75573192e-6;
-}
-
-
-
 /* f_tanh *********************************************************************/
 inline float
 f_tanh(float x)
@@ -181,13 +172,13 @@ AmpToDbD(double amplitude)
 inline float
 DbToAmp(float dB)
 {
-    return (dB > -90.0f ? expf(dB * AMPDB_EXP): 0.0f);
+    return (dB > -150.0f ? expf(dB * LOG_TEN_OVER_TWENTY): 0.0f);
 }
 
 inline double
 DbToAmpD(double dB)
 {
-    return (dB > -90.0 ? exp(dB * AMPDB_EXP): 0.0);
+    return (dB > -150.0 ? exp(dB * LOG_TEN_OVER_TWENTY): 0.0);
 }
 
 void
