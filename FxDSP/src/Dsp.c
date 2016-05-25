@@ -28,7 +28,7 @@ FloatBufferToInt16(signed short* dest, const float* src, unsigned length)
     float temp[length];
     vDSP_vsmul(src, 1, &scale, temp, 1, length);
     vDSP_vfix16(temp,1,dest,1,length);
-    
+
 #else
     // Otherwise do it manually
     unsigned i;
@@ -59,7 +59,7 @@ DoubleBufferToInt16(signed short* dest, const double* src, unsigned length)
     double temp[length];
     vDSP_vsmulD(src, 1, &scale, temp, 1, length);
     vDSP_vfix16D(temp,1,dest,1,length);
-    
+
 #else
     // Otherwise do it manually
     unsigned i;
@@ -90,7 +90,7 @@ Int16BufferToFloat(float* dest, const signed short* src, unsigned length)
     float scale = 1.0 / (float)INT16_MAX;
     vDSP_vflt16(src,1,temp,1,length);
     vDSP_vsmul(temp, 1, &scale, dest, 1, length);
-    
+
 #else
     // Otherwise do it manually
     unsigned i;
@@ -121,7 +121,7 @@ Int16BufferToDouble(double* dest, const signed short* src, unsigned length)
     double scale = 1.0 / (double)INT16_MAX;
     vDSP_vflt16D(src,1,temp,1,length);
     vDSP_vsmulD(temp, 1, &scale, dest, 1, length);
-    
+
 #else
     // Otherwise do it manually
     unsigned i;
@@ -168,6 +168,9 @@ DoubleToFloat(float* dest, const double* src, unsigned length)
     return NOERR;
 }
 
+
+/*******************************************************************************
+ Float To Double */
 Error_t
 FloatToDouble(double* dest, const float* src, unsigned length)
 {
@@ -201,7 +204,7 @@ FillBuffer(float *dest, unsigned length, float value)
 #ifdef __APPLE__
     // Use the Accelerate framework if we have it
     vDSP_vfill(&value, dest, 1, length);
-    
+
 #else
     // Otherwise do it manually
     unsigned i = 0;
@@ -229,7 +232,7 @@ FillBufferD(double *dest, unsigned length, double value)
 #ifdef __APPLE__
     // Use the Accelerate framework if we have it
     vDSP_vfillD(&value, dest, 1, length);
-    
+
 #else
     // Otherwise do it manually
     unsigned i = 0;
@@ -257,7 +260,7 @@ ClearBuffer(float *dest, unsigned length)
 #ifdef __APPLE__
     // Use the Accelerate framework if we have it
     vDSP_vclr(dest, 1, length);
-    
+
 #else
     // Otherwise do it manually. Yes this works for floats
     memset(dest, 0, length * sizeof(float));
@@ -273,7 +276,7 @@ ClearBufferD(double *dest, unsigned length)
 #ifdef __APPLE__
     // Use the Accelerate framework if we have it
     vDSP_vclrD(dest, 1, length);
-    
+
 #else
     // Otherwise do it manually. Yes this works for doubles
     memset(dest, 0, length * sizeof(double));
@@ -287,13 +290,17 @@ ClearBufferD(double *dest, unsigned length)
 Error_t
 CopyBuffer(float* dest, const float* src, unsigned length)
 {
+    if (src != dest)
+    {
 #if defined(__APPLE__) || defined(USE_BLAS)
-    // Use the Accelerate framework if we have it
-    cblas_scopy(length, src, 1, dest, 1);
+        // Use the Accelerate framework if we have it
+        cblas_scopy(length, src, 1, dest, 1);
 #else
-    // Do it the boring way
-    memcpy(dest, src, length * sizeof(float));
+        // Do it the boring way. Prefer memmove to memcpy in case src and dest
+        // overlap
+        memmove(dest, src, length * sizeof(float));
 #endif
+    }
     return NOERR;
 }
 
@@ -303,17 +310,23 @@ CopyBuffer(float* dest, const float* src, unsigned length)
 Error_t
 CopyBufferD(double* dest, const double* src, unsigned length)
 {
+    if (src != dest)
+    {
 #if defined(__APPLE__) || defined(USE_BLAS)
-    // Use the Accelerate framework if we have it
-    cblas_dcopy(length, src, 1, dest, 1);
+        // Use the Accelerate framework if we have it
+        cblas_dcopy(length, src, 1, dest, 1);
 #else
-    // Do it the boring way
-    memcpy(dest, src, length * sizeof(double));
+        // Do it the boring way. Prefer memmove to memcpy in case src and dest
+        // overlap
+        memmove(dest, src, length * sizeof(double));
 #endif
+    }
     return NOERR;
 }
 
 
+/*******************************************************************************
+ CopyBufferStride */
 Error_t
 CopyBufferStride(float*         dest,
                  unsigned       dest_stride,
@@ -334,6 +347,8 @@ CopyBufferStride(float*         dest,
 }
 
 
+/*******************************************************************************
+ CopyBufferStrideD */
 Error_t
 CopyBufferStrideD(double*       dest,
                   unsigned      dest_stride,
@@ -353,6 +368,170 @@ CopyBufferStrideD(double*       dest,
     return NOERR;
 }
 
+
+/*******************************************************************************
+ SplitToInterleaved */
+Error_t
+SplitToInterleaved(float* dest, const float* real, const float* imag, unsigned length)
+{
+#if defined(__APPLE__)
+    DSPSplitComplex in = {.realp = (float*)real, .imagp = (float*)imag};
+    vDSP_ztoc(&in, 1, (DSPComplex*)dest, 2, length);
+
+#elif defined(USE_BLAS)
+    cblas_scopy(length, real, 1, dest, 2);
+    cblas_scopy(length, imag, 1, dest + 1, 2);
+#else
+    unsigned i;
+    unsigned i2;
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
+    {
+        i2 = i * 2;
+        dest[i2] = real[i];
+        dest[i2 + 2] = real[i + 1];
+        dest[i2 + 4] = real[i + 2];
+        dest[i2 + 6] = real[i + 3];
+
+        dest[i2 + 1] = imag[i];
+        dest[i2 + 3] = imag[i + 1];
+        dest[i2 + 5] = imag[i + 2];
+        dest[i2 + 7] = imag[i + 3];
+    }
+    for (i = end; i < length; ++i)
+    {
+        i2 = i * 2;
+        dest[i2] = real[i];
+        dest[i2 + 1] = imag[i];
+    }
+#endif
+    return NOERR;
+}
+
+
+Error_t
+SplitToInterleavedD(double* dest, const double* real, const double* imag, unsigned length)
+{
+#if defined(__APPLE__)
+    DSPDoubleSplitComplex in = {.realp = (double*)real, .imagp = (double*)imag};
+    vDSP_ztocD(&in, 1, (DSPDoubleComplex*)dest, 2, length);
+
+#elif defined(USE_BLAS)
+    cblas_dcopy(length, real, 1, dest, 2);
+    cblas_dcopy(length, imag, 1, dest + 1, 2);
+#else
+    unsigned i;
+    unsigned i2;
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
+    {
+        i2 = i * 2;
+        dest[i2] = real[i];
+        dest[i2 + 2] = real[i + 1];
+        dest[i2 + 4] = real[i + 2];
+        dest[i2 + 6] = real[i + 3];
+
+        dest[i2 + 1] = imag[i];
+        dest[i2 + 3] = imag[i + 1];
+        dest[i2 + 5] = imag[i + 2];
+        dest[i2 + 7] = imag[i + 3];
+    }
+    for (i = end; i < length; ++i)
+    {
+        i2 = i * 2;
+        dest[i2] = real[i];
+        dest[i2 + 1] = imag[i];
+    }
+#endif
+    return NOERR;
+}
+
+
+/*******************************************************************************
+ InterleavedToSplit */
+Error_t
+InterleavedToSplit(float*       real,
+                   float*       imag,
+                   const float* input,
+                   unsigned     length)
+{
+#if defined(__APPLE__)
+    DSPSplitComplex out = {.realp = real, .imagp = imag};
+    vDSP_ctoz((const DSPComplex*)input, 2, &out, 1, length);
+
+#elif defined(USE_BLAS)
+    cblas_scopy(length, input, 2, real, 1);
+    cblas_scopy(length, input + 1, 2, imag, 1);
+#else
+    unsigned i;
+    unsigned i2;
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
+    {
+        i2 = i * 2;
+        real[i] = input[i2];
+        real[i + 1] = input[i2 + 2];
+        real[i + 2] = input[i2 + 4];
+        real[i + 3] = input[i2 + 6];
+
+        imag[i] = input[i2 + 1];
+        imag[i + 1] = input[i2 + 3];
+        imag[i + 2] = input[i2 + 5];
+        imag[i + 3] = input[i2 + 7];
+    }
+    for (i = end; i < length; ++i)
+    {
+        i2 = i * 2;
+        real[i] = input[i2];
+        imag[i] = input[i2 + 1];
+    }
+
+#endif
+    return NOERR;
+}
+
+
+Error_t
+InterleavedToSplitD(double*         real,
+                    double*         imag,
+                    const double*   input,
+                    unsigned        length)
+{
+#if defined(__APPLE__)
+    DSPDoubleSplitComplex out = {.realp = real, .imagp = imag};
+    vDSP_ctozD((const DSPDoubleComplex*)input, 2, &out, 1, length);
+
+#elif defined(USE_BLAS)
+    cblas_dcopy(length, input, 2, real, 1);
+    cblas_dcopy(length, input + 1, 2, imag, 1);
+#else
+
+    unsigned i;
+    unsigned i2;
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
+    {
+        i2 = i * 2;
+        real[i] = input[i2];
+        real[i + 1] = input[i2 + 2];
+        real[i + 2] = input[i2 + 4];
+        real[i + 3] = input[i2 + 6];
+
+        imag[i] = input[i2 + 1];
+        imag[i + 1] = input[i2 + 3];
+        imag[i + 2] = input[i2 + 5];
+        imag[i + 3] = input[i2 + 7];
+    }
+    for (i = end; i < length; ++i)
+    {
+        i2 = i * 2;
+        real[i] = input[i2];
+        imag[i] = input[i2 + 1];
+    }
+
+#endif
+    return NOERR;
+}
 
 
 /*******************************************************************************
@@ -374,13 +553,14 @@ VectorAbs(float *dest, const float *in, unsigned length)
         dest[i + 3] = fabsf(in[i + 3]);
     }
     for (unsigned i = end; i < length; ++i)
-        
+
     {
         dest[i] = fabsf(in[i]);
     }
 #endif
     return NOERR;
 }
+
 
 /*******************************************************************************
  VectorAbsD */
@@ -401,15 +581,13 @@ VectorAbsD(double *dest, const double *in, unsigned length)
         dest[i + 3] = fabs(in[i + 3]);
     }
     for (unsigned i = end; i < length; ++i)
-        
+
     {
         dest[i] = fabs(in[i]);
     }
 #endif
     return NOERR;
 }
-
-
 
 
 /*******************************************************************************
@@ -437,10 +615,11 @@ VectorNegate(float          *dest,
     {
         dest[i] = -in[i];
     }
-    
+
 #endif
     return NOERR;
 }
+
 
 /*******************************************************************************
  VectorNegateD */
@@ -452,7 +631,7 @@ VectorNegateD(double          *dest,
 #ifdef __APPLE__
     // Use the Accelerate framework if we have it
     vDSP_vnegD(in, 1, dest, 1, length);
-    
+
 #else
     // Otherwise do it manually
     unsigned i;
@@ -472,6 +651,7 @@ VectorNegateD(double          *dest,
     return NOERR;
 }
 
+
 /*******************************************************************************
  VectorSum */
 float
@@ -490,6 +670,8 @@ VectorSum(const float* src, unsigned length)
     return res;
 }
 
+/*******************************************************************************
+ VectorSumD */
 double
 VectorSumD(const double* src, unsigned length)
 {
@@ -528,6 +710,9 @@ VectorMax(const float* src, unsigned length)
     return res;
 }
 
+
+/*******************************************************************************
+ VectorMax */
 double
 VectorMaxD(const double* src, unsigned length)
 {
@@ -550,7 +735,6 @@ VectorMaxD(const double* src, unsigned length)
 
 /*******************************************************************************
  VectorMaxVI */
-
 Error_t
 VectorMaxVI(float* value, unsigned* index, const float* src, unsigned length)
 {
@@ -571,6 +755,9 @@ VectorMaxVI(float* value, unsigned* index, const float* src, unsigned length)
     return NOERR;
 }
 
+
+/*******************************************************************************
+ VectorMaxVID*/
 Error_t
 VectorMaxVID(double* value, unsigned* index, const double* src, unsigned length)
 {
@@ -590,7 +777,6 @@ VectorMaxVID(double* value, unsigned* index, const double* src, unsigned length)
 #endif
     return NOERR;
 }
-
 
 
 /*******************************************************************************
@@ -614,6 +800,9 @@ VectorMin(const float* src, unsigned length)
     return res;
 }
 
+
+/*******************************************************************************
+ VectorMinD */
 double
 VectorMinD(const double* src, unsigned length)
 {
@@ -636,11 +825,10 @@ VectorMinD(const double* src, unsigned length)
 
 /*******************************************************************************
  VectorMinVI */
-
 Error_t
 VectorMinVI(float* value, unsigned* index, const float* src, unsigned length)
 {
-    
+
 #ifdef __APPLE__
     // Use the Accelerate framework if we have it
     vDSP_minvi(src, 1, value, (unsigned long*)index, length);
@@ -658,10 +846,12 @@ VectorMinVI(float* value, unsigned* index, const float* src, unsigned length)
     return NOERR;
 }
 
+/*******************************************************************************
+ VectorMinVID */
 Error_t
 VectorMinVID(double* value, unsigned* index, const double* src, unsigned length)
 {
-    
+
 #ifdef __APPLE__
     // Use the Accelerate framework if we have it
     vDSP_minviD(src, 1, value, (unsigned long*)index, length);
@@ -690,7 +880,7 @@ VectorVectorAdd(float         *dest,
 #ifdef __APPLE__
     // Use the Accelerate framework if we have it
     vDSP_vadd(in1, 1, in2, 1, dest, 1, length);
-    
+
 #else
     // Otherwise do it manually
     unsigned i;
@@ -706,7 +896,7 @@ VectorVectorAdd(float         *dest,
     {
         dest[i] = in1[i] + in2[i];
     }
-    
+
 #endif
     return NOERR;
 }
@@ -722,7 +912,7 @@ VectorVectorAddD(double           *dest,
 #ifdef __APPLE__
     // Use the Accelerate framework if we have it
     vDSP_vaddD(in1, 1, in2, 1, dest, 1, length);
-    
+
 #else
     // Otherwise do it manually
     unsigned i;
@@ -738,7 +928,7 @@ VectorVectorAddD(double           *dest,
     {
         dest[i] = in1[i] + in2[i];
     }
-    
+
 #endif
     return NOERR;
 }
@@ -770,7 +960,7 @@ VectorScalarAdd(float           *dest,
     {
         dest[i] = in1[i] + scalar;
     }
-    
+
 #endif
     return NOERR;
 }
@@ -802,7 +992,7 @@ VectorScalarAddD(double         *dest,
     {
         dest[i] = in1[i] + scalar;
     }
-    
+
 #endif
     return NOERR;
 }
@@ -819,7 +1009,7 @@ VectorVectorMultiply(float          *dest,
 #ifdef __APPLE__
     // Use the Accelerate framework if we have it
     vDSP_vmul(in1, 1, in2, 1, dest, 1, length);
-    
+
 #else
     // Otherwise do it manually
     unsigned i;
@@ -835,7 +1025,7 @@ VectorVectorMultiply(float          *dest,
     {
         dest[i] = in1[i] * in2[i];
     }
-    
+
 #endif
     return NOERR;
 }
@@ -852,7 +1042,7 @@ VectorVectorMultiplyD(double        *dest,
 #ifdef __APPLE__
     // Use the Accelerate framework if we have it
     vDSP_vmulD(in1, 1, in2, 1, dest, 1, length);
-    
+
 #else
     // Otherwise do it manually
     unsigned i;
@@ -868,7 +1058,7 @@ VectorVectorMultiplyD(double        *dest,
     {
         dest[i] = in1[i] * in2[i];
     }
-    
+
 #endif
     return NOERR;
 }
@@ -885,7 +1075,7 @@ VectorScalarMultiply(float          *dest,
 #ifdef __APPLE__
     // Use the Accelerate framework if we have it
     vDSP_vsmul(in1, 1, &scalar,dest, 1, length);
-    
+
 #else
     // Otherwise do it manually
     unsigned i;
@@ -916,7 +1106,7 @@ VectorScalarMultiplyD(double        *dest,
 #ifdef __APPLE__
     // Use the Accelerate framework if we have it
     vDSP_vsmulD(in1, 1, &scalar,dest, 1, length);
-    
+
 #else
     // Otherwise do it manually
     unsigned i;
@@ -932,105 +1122,108 @@ VectorScalarMultiplyD(double        *dest,
     {
         dest[i] = in1[i] * scalar;
     }
-    
+
 #endif
     return NOERR;
 }
 
 
 /*******************************************************************************
- Convolve */
+ VectorVectorMix */
+
 Error_t
-Convolve(float       *in1,
-         unsigned    in1_length,
-         float       *in2,
-         unsigned    in2_length,
-         float       *dest)
+VectorVectorMix(float        *dest,
+                const float  *in1,
+                const float  *scalar1,
+                const float  *in2,
+                const float  *scalar2,
+                unsigned     length)
 {
-    
-    unsigned resultLength = in1_length + (in2_length - 1);
 #ifdef __APPLE__
-    //Use Native vectorized convolution function if available
-    float    *in2_end = in2 + (in2_length - 1);
-    unsigned signalLength = (in2_length + resultLength);
-    
-    float padded[signalLength];
-    
-    //float zero = 0.0;
-    ClearBuffer(padded, signalLength);
-    
-    // Pad the input signal with (filter_length - 1) zeros.
-    cblas_scopy(in1_length, in1, 1, (padded + (in2_length - 1)), 1);
-    vDSP_conv(padded, 1, in2_end, -1, dest, 1, resultLength, in2_length);
-    
+  // Use the Accelerate framework if we have it
+  vDSP_vsmsma(in1, 1, scalar1, in2, 1, scalar2, dest, 1, length);
 #else
-    // Use (boring, slow) canonical implementation
-    unsigned i;
-    for (i = 0; i <resultLength; ++i)
-    {
-        unsigned kmin, kmax, k;
-        dest[i] = 0;
-        
-        kmin = (i >= (in2_length - 1)) ? i - (in2_length - 1) : 0;
-        kmax = (i < in1_length - 1) ? i : in1_length - 1;
-        for (k = kmin; k <= kmax; k++)
-        {
-            dest[i] += in1[k] * in2[i - k];
-        }
-    }
-    
-    
+  unsigned i;
+  for (i = 0; i < length; ++i)
+  {
+    dest[i] = (in1[i] * (*scalar1)) + (in2[i] * (*scalar2));
+  }
 #endif
-    return NOERR;
+  return NOERR;
 }
 
 
+/*******************************************************************************
+ VectorVectorMixD */
+
 Error_t
-ConvolveD(double    *in1,
-          unsigned  in1_length,
-          double    *in2,
-          unsigned  in2_length,
-          double    *dest)
+VectorVectorMixD(double        *dest,
+                 const double  *in1,
+                 const double  *scalar1,
+                 const double  *in2,
+                 const double  *scalar2,
+                 unsigned     length)
 {
-    
-    unsigned resultLength = in1_length + (in2_length - 1);
-    
 #ifdef __APPLE__
-    //Use Native vectorized convolution function if available
-    double    *in2_end = in2 + (in2_length - 1);
-    double signalLength = (in2_length + resultLength);
-    
-    // So there's some hella weird requirement that the signal input to
-    //vDSP_conv has to be larger than (result_length + filter_length - 1),
-    // (the output vector length) and it has to be zero-padded. What. The. Fuck!
-    double padded[(unsigned)ceil(signalLength)];
-    
-    //float zero = 0.0;
-    FillBufferD(padded, signalLength, 0.0);
-    
-    // Pad the input signal with (filter_length - 1) zeros.
-    cblas_dcopy(in1_length, in1, 1, (padded + (in2_length - 1)), 1);
-    vDSP_convD(padded, 1, in2_end, -1, dest, 1, resultLength, in2_length);
-    
+  // Use the Accelerate framework if we have it
+  vDSP_vsmsmaD(in1, 1, scalar1, in2, 1, scalar2, dest, 1, length);
 #else
-    // Use (boring, slow) canonical implementation
-    unsigned i;
-    for (i = 0; i <resultLength; ++i)
-    {
-        unsigned kmin, kmax, k;
-        dest[i] = 0;
-        
-        kmin = (i >= (in2_length - 1)) ? i - (in2_length - 1) : 0;
-        kmax = (i < in1_length - 1) ? i : in1_length - 1;
-        for (k = kmin; k <= kmax; k++)
-        {
-            dest[i] += in1[k] * in2[i - k];
-        }
-    }
-    
-    
+  unsigned i;
+  for (i = 0; i < length; ++i)
+  {
+    dest[i] = (in1[i] * (*scalar1)) + (in2[i] * (*scalar2));
+  }
 #endif
-    return NOERR;
+  return NOERR;
+}
+
+
+/*******************************************************************************
+ VectorVectorSumScale */
+
+Error_t
+VectorVectorSumScale(float        *dest,
+                     const float  *in1,
+                     const float  *in2,
+                     const float  *scalar,
+                     unsigned     length)
+{
+#ifdef __APPLE__
+// Use the Accelerate framework if we have it
+vDSP_vasm(in1, 1, in2, 1, scalar, dest, 1, length);
+
+#else
+unsigned i;
+for (i = 0; i < length; ++i)
+{
+  dest[i] = (in1[i] + in2[i]) * (*scalar);
+}
+#endif
+return NOERR;
+}
+
+
+/*******************************************************************************
+ VectorVectorSumScaleD */
+Error_t
+VectorVectorSumScaleD(double        *dest,
+                      const double  *in1,
+                      const double  *in2,
+                      const double  *scalar,
+                      unsigned     length)
+{
+#ifdef __APPLE__
+  // Use the Accelerate framework if we have it
+  vDSP_vasmD(in1, 1, in2, 1, scalar, dest, 1, length);
+
+#else
+  unsigned i;
+  for (i = 0; i < length; ++i)
+  {
+    dest[i] = (in1[i] + in2[i]) * (*scalar);
+  }
+#endif
+  return NOERR;
 }
 
 
@@ -1081,7 +1274,6 @@ VectorPower(float* dest, const float* in, float power, unsigned length)
 }
 
 
-
 /*******************************************************************************
  VectorPowerD */
 Error_t
@@ -1124,54 +1316,149 @@ VectorPowerD(double* dest, const double* in, double power, unsigned length)
     }
 #endif
     return NOERR;
-    
+
 }
+
+
+/*******************************************************************************
+ Convolve */
+Error_t
+Convolve(float       *in1,
+         unsigned    in1_length,
+         float       *in2,
+         unsigned    in2_length,
+         float       *dest)
+{
+
+    unsigned resultLength = in1_length + (in2_length - 1);
+#ifdef __APPLE__
+    //Use Native vectorized convolution function if available
+    float    *in2_end = in2 + (in2_length - 1);
+    unsigned signalLength = (in2_length + resultLength);
+
+    float padded[signalLength];
+
+    //float zero = 0.0;
+    ClearBuffer(padded, signalLength);
+
+    // Pad the input signal with (filter_length - 1) zeros.
+    cblas_scopy(in1_length, in1, 1, (padded + (in2_length - 1)), 1);
+    vDSP_conv(padded, 1, in2_end, -1, dest, 1, resultLength, in2_length);
+
+#else
+    // Use (boring, slow) canonical implementation
+    unsigned i;
+    for (i = 0; i <resultLength; ++i)
+    {
+        unsigned kmin, kmax, k;
+        dest[i] = 0;
+
+        kmin = (i >= (in2_length - 1)) ? i - (in2_length - 1) : 0;
+        kmax = (i < in1_length - 1) ? i : in1_length - 1;
+        for (k = kmin; k <= kmax; k++)
+        {
+            dest[i] += in1[k] * in2[i - k];
+        }
+    }
+
+
+#endif
+    return NOERR;
+}
+
+
+/*******************************************************************************
+ ConvolveD */
+Error_t
+ConvolveD(double    *in1,
+          unsigned  in1_length,
+          double    *in2,
+          unsigned  in2_length,
+          double    *dest)
+{
+
+    unsigned resultLength = in1_length + (in2_length - 1);
+
+#ifdef __APPLE__
+    //Use Native vectorized convolution function if available
+    double    *in2_end = in2 + (in2_length - 1);
+    double signalLength = (in2_length + resultLength);
+
+    // So there's some hella weird requirement that the signal input to
+    //vDSP_conv has to be larger than (result_length + filter_length - 1),
+    // (the output vector length) and it has to be zero-padded. What. The. Fuck!
+    double padded[(unsigned)ceil(signalLength)];
+
+    //float zero = 0.0;
+    FillBufferD(padded, signalLength, 0.0);
+
+    // Pad the input signal with (filter_length - 1) zeros.
+    cblas_dcopy(in1_length, in1, 1, (padded + (in2_length - 1)), 1);
+    vDSP_convD(padded, 1, in2_end, -1, dest, 1, resultLength, in2_length);
+
+#else
+    // Use (boring, slow) canonical implementation
+    unsigned i;
+    for (i = 0; i <resultLength; ++i)
+    {
+        unsigned kmin, kmax, k;
+        dest[i] = 0;
+
+        kmin = (i >= (in2_length - 1)) ? i - (in2_length - 1) : 0;
+        kmax = (i < in1_length - 1) ? i : in1_length - 1;
+        for (k = kmin; k <= kmax; k++)
+        {
+            dest[i] += in1[k] * in2[i - k];
+        }
+    }
+
+
+#endif
+    return NOERR;
+}
+
 
 /*******************************************************************************
  VectorDbConvert */
 Error_t
 VectorDbConvert(float* dest,
                 const float* in,
-                unsigned amplitude_flag,
                 unsigned length)
 {
 #ifdef __APPLE__
     float one = 1.0;
-    vDSP_vdbcon(in, 1, &one, dest, 1, length, amplitude_flag);
+    vDSP_vdbcon(in, 1, &one, dest, 1, length, 1);
 #else
-    float scale = 10.0 + 10 * amplitude_flag;
     for (unsigned i = 0; i < length; ++i)
-        
     {
-        dest[i] = scale * log10f(in[i]);
+        dest[i] = AMP_TO_DB(in[i]);
     }
 #endif
     return NOERR;
 }
 
-
+/*******************************************************************************
+ VectorDbConvertD */
 Error_t
 VectorDbConvertD(double*        dest,
                  const double*  in,
-                 unsigned       amplitude_flag,
                  unsigned       length)
 {
 #ifdef __APPLE__
     double one = 1.0;
-    vDSP_vdbconD(in, 1, &one, dest, 1, length, amplitude_flag);
+    vDSP_vdbconD(in, 1, &one, dest, 1, length, 1);
 #else
-    double scale = 10.0 + 10 * amplitude_flag;
     for (unsigned i = 0; i < length; ++i)
-        
+
     {
-        dest[i] = scale * log10(in[i]);
+        dest[i] = AMP_TO_DBD(in[i]);
     }
 #endif
     return NOERR;
 }
 
-
-
+/*******************************************************************************
+ ComplexMultiply */
 Error_t
 ComplexMultiply(float*          re,
                 float*          im,
@@ -1187,7 +1474,7 @@ ComplexMultiply(float*          re,
     DSPSplitComplex out = {.realp = re, .imagp = im};
     vDSP_zvmul(&in1, 1, &in2, 1, &out, 1, length, 1);
 #else
-    
+
     for (unsigned i = 0; i < length; ++i)
     {
         float ire1 = re1[i];
@@ -1202,6 +1489,8 @@ ComplexMultiply(float*          re,
 }
 
 
+/*******************************************************************************
+ ComplexMultiplyD */
 Error_t
 ComplexMultiplyD(double*        re,
                  double*        im,
@@ -1232,169 +1521,7 @@ ComplexMultiplyD(double*        re,
 
 
 /*******************************************************************************
- SplitToInterleaved */
-Error_t
-SplitToInterleaved(float* dest, const float* real, const float* imag, unsigned length)
-{
-#if defined(__APPLE__)
-    DSPSplitComplex in = {.realp = (float*)real, .imagp = (float*)imag};
-    vDSP_ztoc(&in, 1, (DSPComplex*)dest, 2, length);
-    
-#elif defined(USE_BLAS)
-    cblas_scopy(length, real, 1, dest, 2);
-    cblas_scopy(length, imag, 1, dest + 1, 2);
-#else
-    unsigned i;
-    unsigned i2;
-    const unsigned end = 4 * (length / 4);
-    for (i = 0; i < end; i+=4)
-    {
-        i2 = i * 2;
-        dest[i2] = real[i];
-        dest[i2 + 2] = real[i + 1];
-        dest[i2 + 4] = real[i + 2];
-        dest[i2 + 6] = real[i + 3];
-        
-        dest[i2 + 1] = imag[i];
-        dest[i2 + 3] = imag[i + 1];
-        dest[i2 + 5] = imag[i + 2];
-        dest[i2 + 7] = imag[i + 3];
-    }
-    for (i = end; i < length; ++i)
-    {
-        i2 = i * 2;
-        dest[i2] = real[i];
-        dest[i2 + 1] = imag[i];
-    }
-#endif
-    return NOERR;
-}
-
-
-
-Error_t
-SplitToInterleavedD(double* dest, const double* real, const double* imag, unsigned length)
-{
-#if defined(__APPLE__)
-    DSPDoubleSplitComplex in = {.realp = (double*)real, .imagp = (double*)imag};
-    vDSP_ztocD(&in, 1, (DSPDoubleComplex*)dest, 2, length);
-    
-#elif defined(USE_BLAS)
-    cblas_dcopy(length, real, 1, dest, 2);
-    cblas_dcopy(length, imag, 1, dest + 1, 2);
-#else
-    unsigned i;
-    unsigned i2;
-    const unsigned end = 4 * (length / 4);
-    for (i = 0; i < end; i+=4)
-    {
-        i2 = i * 2;
-        dest[i2] = real[i];
-        dest[i2 + 2] = real[i + 1];
-        dest[i2 + 4] = real[i + 2];
-        dest[i2 + 6] = real[i + 3];
-        
-        dest[i2 + 1] = imag[i];
-        dest[i2 + 3] = imag[i + 1];
-        dest[i2 + 5] = imag[i + 2];
-        dest[i2 + 7] = imag[i + 3];
-    }
-    for (i = end; i < length; ++i)
-    {
-        i2 = i * 2;
-        dest[i2] = real[i];
-        dest[i2 + 1] = imag[i];
-    }
-#endif
-    return NOERR;
-}
-
-/*******************************************************************************
- InterleavedToSplit */
-Error_t
-InterleavedToSplit(float*       real,
-                   float*       imag,
-                   const float* input,
-                   unsigned     length)
-{
-#if defined(__APPLE__)
-    DSPSplitComplex out = {.realp = real, .imagp = imag};
-    vDSP_ctoz((const DSPComplex*)input, 2, &out, 1, length);
-    
-#elif defined(USE_BLAS)
-    cblas_scopy(length, input, 2, real, 1);
-    cblas_scopy(length, input + 1, 2, imag, 1);
-#else
-    unsigned i;
-    unsigned i2;
-    const unsigned end = 4 * (length / 4);
-    for (i = 0; i < end; i+=4)
-    {
-        i2 = i * 2;
-        real[i] = input[i2];
-        real[i + 1] = input[i2 + 2];
-        real[i + 2] = input[i2 + 4];
-        real[i + 3] = input[i2 + 6];
-        
-        imag[i] = input[i2 + 1];
-        imag[i + 1] = input[i2 + 3];
-        imag[i + 2] = input[i2 + 5];
-        imag[i + 3] = input[i2 + 7];
-    }
-    for (i = end; i < length; ++i)
-    {
-        i2 = i * 2;
-        real[i] = input[i2];
-        imag[i] = input[i2 + 1];
-    }
-    
-#endif
-    return NOERR;
-}
-
-Error_t
-InterleavedToSplitD(double*         real,
-                    double*         imag,
-                    const double*   input,
-                    unsigned        length)
-{
-#if defined(__APPLE__)
-    DSPDoubleSplitComplex out = {.realp = real, .imagp = imag};
-    vDSP_ctozD((const DSPDoubleComplex*)input, 2, &out, 1, length);
-    
-#elif defined(USE_BLAS)
-    cblas_dcopy(length, input, 2, real, 1);
-    cblas_dcopy(length, input + 1, 2, imag, 1);
-#else
-    
-    unsigned i;
-    unsigned i2;
-    const unsigned end = 4 * (length / 4);
-    for (i = 0; i < end; i+=4)
-    {
-        i2 = i * 2;
-        real[i] = input[i2];
-        real[i + 1] = input[i2 + 2];
-        real[i + 2] = input[i2 + 4];
-        real[i + 3] = input[i2 + 6];
-        
-        imag[i] = input[i2 + 1];
-        imag[i + 1] = input[i2 + 3];
-        imag[i + 2] = input[i2 + 5];
-        imag[i + 3] = input[i2 + 7];
-    }
-    for (i = end; i < length; ++i)
-    {
-        i2 = i * 2;
-        real[i] = input[i2];
-        imag[i] = input[i2 + 1];
-    }
-
-#endif
-    return NOERR;
-}
-
-
+ VectorRectToPolar */
 Error_t
 VectorRectToPolar(float*        magnitude,
                   float*        phase,
@@ -1425,6 +1552,9 @@ VectorRectToPolar(float*        magnitude,
     return NOERR;
 }
 
+
+/*******************************************************************************
+ VectorRectToPolarD */
 Error_t
 VectorRectToPolarD(double*          magnitude,
                    double*          phase,
@@ -1455,6 +1585,9 @@ VectorRectToPolarD(double*          magnitude,
     return NOERR;
 }
 
+
+/*******************************************************************************
+ MeanSquare */
 float
 MeanSquare(const float* data, unsigned length)
 {
@@ -1465,11 +1598,13 @@ MeanSquare(const float* data, unsigned length)
     float scratch[length];
     VectorPower(scratch, data, 2, length);
     result = VectorSum(scratch, length) / length;
-    
+
 #endif
     return result;
 }
 
+/*******************************************************************************
+ MeanSquareD */
 double
 MeanSquareD(const double* data, unsigned length)
 {

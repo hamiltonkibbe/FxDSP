@@ -22,8 +22,7 @@ struct DiodeRectifier
     float   threshold;
     float   vt;
     float   scale;
-    float   lb;
-    float   ub;
+    float   abs_coeff;
     float*  scratch;
 };
 
@@ -33,8 +32,7 @@ struct DiodeRectifierD
     double  threshold;
     double  vt;
     double  scale;
-    double  lb;
-    double  ub;
+    double abs_coeff;
     double* scratch;
 };
 
@@ -57,17 +55,8 @@ DiodeRectifierInit(bias_t bias, float threshold)
             // Initialization
             diode->bias = bias;
             diode->threshold = threshold;
-            if (bias == FORWARD_BIAS)
-            {
-                diode->lb = FLT_EPSILON;
-                diode->ub = 1.0;
-            }
-            else
-            {
-                diode->lb = -1.0;
-                diode->ub = FLT_EPSILON;
-            }
             diode->scratch = scratch;
+            diode->abs_coeff = (bias == FULL_WAVE) ? 1.0 : 0.0;
             DiodeRectifierSetThreshold(diode, threshold);
         }
         else
@@ -96,17 +85,8 @@ DiodeRectifierInitD(bias_t bias, double threshold)
             // Initialization
             diode->bias = bias;
             diode->threshold = threshold;
-            if (bias == FORWARD_BIAS)
-            {
-                diode->lb = DBL_EPSILON;
-                diode->ub = 1.0;
-            }
-            else
-            {
-                diode->lb = -1.0;
-                diode->ub = DBL_EPSILON;
-            }
             diode->scratch = scratch;
+            diode->abs_coeff = (bias == FULL_WAVE) ? 1.0 : 0.0;
             DiodeRectifierSetThresholdD(diode, threshold);
         }
         else
@@ -158,7 +138,7 @@ Error_t
 DiodeRectifierSetThreshold(DiodeRectifier* diode, float threshold)
 {
     float scale = 1.0;
-    threshold = LIMIT(fabsf(threshold), 0.1, 0.9);
+    threshold = LIMIT(fabsf(threshold), 0.01, 0.9);
     scale = (1.0 - threshold);
     if (diode->bias== REVERSE_BIAS)
     {
@@ -175,7 +155,7 @@ Error_t
 DiodeRectifierSetThresholdD(DiodeRectifierD* diode, double threshold)
 {
     double scale = 1.0;
-    threshold = LIMIT(fabs(threshold), 0.1, 0.9);
+    threshold = LIMIT(fabs(threshold), 0.01, 0.9);
     scale = (1.0 - threshold);
     if (diode->bias == REVERSE_BIAS)
     {
@@ -199,7 +179,15 @@ DiodeRectifierProcess(DiodeRectifier*   diode,
 {
     float inv_vt = 1.0 / diode->vt;
     float scale = diode->scale;
-    VectorScalarMultiply(diode->scratch, in_buffer, inv_vt, n_samples);
+    if (diode->bias == FULL_WAVE)
+    {
+        VectorAbs(diode->scratch, in_buffer, n_samples);
+        VectorScalarMultiply(diode->scratch, diode->scratch, inv_vt, n_samples);
+    }
+    else
+    {
+        VectorScalarMultiply(diode->scratch, in_buffer, inv_vt, n_samples);
+    }
     VectorScalarAdd(diode->scratch, diode->scratch, -1.0, n_samples);
     for (unsigned i = 0; i < n_samples; ++i)
     {
@@ -216,7 +204,15 @@ DiodeRectifierProcessD(DiodeRectifierD* diode,
 {
     double inv_vt = 1.0 / diode->vt;
     double scale = diode->scale;
-    VectorScalarMultiplyD(diode->scratch, in_buffer, inv_vt, n_samples);
+    if (diode->bias == FULL_WAVE)
+    {
+        VectorAbsD(diode->scratch, in_buffer, n_samples);
+        VectorScalarMultiplyD(diode->scratch, diode->scratch, inv_vt, n_samples);
+    }
+    else
+    {
+        VectorScalarMultiplyD(diode->scratch, in_buffer, inv_vt, n_samples);
+    }
     VectorScalarAddD(diode->scratch, diode->scratch, -1.0, n_samples);
     for (unsigned i = 0; i < n_samples; ++i)
     {

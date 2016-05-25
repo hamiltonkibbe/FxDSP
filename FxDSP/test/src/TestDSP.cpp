@@ -19,13 +19,13 @@ TEST(DSP, FloatDoubleConversion)
     float in[10] = {1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0};
     double out[10];
     float fout[10];
-    
+
     FloatToDouble(out, in, 10);
     for (unsigned i = 0; i < 10; ++i)
     {
         ASSERT_DOUBLE_EQ((double)in[i], out[i]);
     }
-    
+
     DoubleToFloat(fout, out, 10);
     for (unsigned i = 0; i < 10; ++i)
     {
@@ -37,9 +37,9 @@ TEST(DSPSingle, FloatIntConversion)
 {
     short out[10];
     float in[10] = {1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0};
-    
+
     FloatBufferToInt16(out, in, 10);
-    
+
     for (unsigned i = 0; i < 5; i+=2)
     {
         ASSERT_EQ(32767, out[i]);
@@ -51,9 +51,9 @@ TEST(DSPSingle, IntFloatConversion)
 {
     float out[10];
     short in[10] = {32767, -32767, 32767, -32767, 32767, -32767, 32767, -32767, 32767, -32767};
-    
+
     Int16BufferToFloat(out, in, 10);
-    
+
     for (unsigned i = 0; i < 5; i+=2)
     {
         ASSERT_FLOAT_EQ(1.0, out[i]);
@@ -105,14 +105,14 @@ TEST(DSPSingle, TestStrideCopy)
     float in2[10] = {1., 2., 3., 4., 5., 6., 7., 8., 9., 10.};
     float ex1[10] = {1., 0., 2., 0., 3., 0., 4., 0., 5., 0.};
     float ex2[5] = {1., 3., 5., 7., 9.};
-    
+
     ClearBuffer(out, 10);
     CopyBufferStride(out, 2, in1, 1, 5);
     for (unsigned i = 0; i < 10; ++i)
     {
         ASSERT_FLOAT_EQ(ex1[i], out[i]);
     }
-    
+
     ClearBuffer(out, 10);
     CopyBufferStride(out, 1, in2, 2, 5);
     for (unsigned i = 0; i < 5; ++i)
@@ -127,7 +127,7 @@ TEST(DSPSingle, TestSplitToInterleaved)
     float real[5] = {-1.0, -0.6, -0.2, 0.2, 0.6};
     float imag[5] = {-0.8, -0.4, 0.0, 0.4, 0.8};
     SplitToInterleaved(out, real, imag, 5);
-    
+
     for (unsigned i = 0; i < 10; ++i)
     {
         ASSERT_FLOAT_EQ(ramp[i], out[i]);
@@ -139,7 +139,7 @@ TEST(DSPSingle, TestInterleavedToSplit)
     float real[5];
     float imag[5];
     InterleavedToSplit(real, imag, ramp, 5);
-    
+
     for (unsigned i = 0; i < 5; ++i)
     {
         ASSERT_FLOAT_EQ(ramp[2*i], real[i]);
@@ -226,7 +226,7 @@ TEST(DSPSingle, TestVectorPower)
     {
         ASSERT_FLOAT_EQ(powf(ramp[i], 2.0), out[i]);
     }
-    
+
     VectorPower(out, ramp, 3.0, 10);
     for (unsigned i = 0; i < 10; ++i)
     {
@@ -243,18 +243,18 @@ TEST(DSPSingle, TestConvolve)
     {
         0.0, 0.5, 1.0, 0.5, 0.0
     };
-    
+
     float in2[6] =
     {
         0.5, 0.5, 0.5, 1.0, 1.0, 1.0
     };
-    
+
     // >> conv([0 0.5 1 0.5 0], [0.5 0.5 0.5 1.0 1.0 1.0])
     float res[10] =
     {
         0.0, 0.25, 0.75, 1.0, 1.25, 1.75, 2.0, 1.5, 0.5, 0.0
     };
-    
+
     Convolve(in1, 5, in2, 6, out);
     for (unsigned i = 0; i < 10; ++i)
     {
@@ -267,15 +267,11 @@ TEST(DSPSingle, TestDBConversion)
     float out[5];
     float in[5] = {1.0, 0.5, 0.25, 0.125, 0.0625};
     float expected[5] = {0.0, -6.0206003, -12.041201, -18.061801, -24.082401};
-    VectorDbConvert(out, in, 1, 5);
+    VectorDbConvert(out, in, 5);
     for (unsigned i = 0; i < 5; ++i)
     {
         ASSERT_FLOAT_EQ(expected[i], out[i]);
     }
-    VectorDbConvert(out, in, 0, 5);
-    ASSERT_FLOAT_EQ(expected[0], out[0]);
-    ASSERT_FLOAT_EQ(expected[1], out[2]);
-    ASSERT_FLOAT_EQ(expected[2], out[4]);
 }
 
 
@@ -295,7 +291,6 @@ TEST(DSPSingle, TestComplexMultiply)
         ASSERT_FLOAT_EQ(expected_re[i], result_re[i]);
         ASSERT_FLOAT_EQ(expected_im[i], result_im[i]);
     }
-    
 }
 
 TEST(DSPSingle, TestRectPolarConversion)
@@ -332,7 +327,7 @@ TEST(DSPSingle, TestVectorMax)
     float signal[10] = {0.0, -1.0, -0.5, -0.3, 0.0, 1.0, 0.5, 0.3, 0.2, 0.1};
     float max = VectorMax(signal, 10);
     ASSERT_FLOAT_EQ(1.0, max);
-    
+
     max = 0.0;
     unsigned index = 0;
     VectorMaxVI(&max, &index, signal, 10);
@@ -345,7 +340,7 @@ TEST(DSPSingle, TestVectorMin)
     float signal[10] = {0.0, -1.0, -0.5, -0.3, 0.0, 1.0, 0.5, 0.3, 0.2, 0.1};
     float min = VectorMin(signal, 10);
     ASSERT_FLOAT_EQ(-1.0, min);
-    
+
     min = 0.0;
     unsigned index = 0;
     VectorMinVI(&min, &index, signal, 10);
@@ -360,9 +355,9 @@ TEST(DSPDouble, DoubleIntConversion)
 {
     short out[10];
     double in[10] = {1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0};
-    
+
     DoubleBufferToInt16(out, in, 10);
-    
+
     for (unsigned i = 0; i < 5; i+=2)
     {
         ASSERT_EQ(32767, out[i]);
@@ -374,9 +369,9 @@ TEST(DSPDouble, IntDoubleConversion)
 {
     double out[10];
     short in[10] = {32767, -32767, 32767, -32767, 32767, -32767, 32767, -32767, 32767, -32767};
-    
+
     Int16BufferToDouble(out, in, 10);
-    
+
     for (unsigned i = 0; i < 5; i+=2)
     {
         ASSERT_DOUBLE_EQ(1.0, out[i]);
@@ -428,14 +423,14 @@ TEST(DSPDouble, TestStrideCopy)
     double in2[10] = {1., 2., 3., 4., 5., 6., 7., 8., 9., 10.};
     double ex1[10] = {1., 0., 2., 0., 3., 0., 4., 0., 5., 0.};
     double ex2[5] = {1., 3., 5., 7., 9.};
-    
+
     ClearBufferD(out, 10);
     CopyBufferStrideD(out, 2, in1, 1, 5);
     for (unsigned i = 0; i < 10; ++i)
     {
         ASSERT_DOUBLE_EQ(ex1[i], out[i]);
     }
-    
+
     ClearBufferD(out, 10);
     CopyBufferStrideD(out, 1, in2, 2, 5);
     for (unsigned i = 0; i < 5; ++i)
@@ -451,7 +446,7 @@ TEST(DSPDouble, TestSplitToInterleaved)
     double real[5] = {rampD[0], rampD[2], rampD[4], rampD[6], rampD[8]};
     double imag[5] = {rampD[1], rampD[3], rampD[5], rampD[7], rampD[9]};
     SplitToInterleavedD(out, real, imag, 5);
-    
+
     for (unsigned i = 0; i < 10; ++i)
     {
         ASSERT_DOUBLE_EQ(rampD[i], out[i]);
@@ -464,7 +459,7 @@ TEST(DSPDouble , TestInterleavedToSplit)
     double real[5];
     double imag[5];
     InterleavedToSplitD(real, imag, rampD, 5);
-    
+
     for (unsigned i = 0; i < 5; ++i)
     {
         ASSERT_FLOAT_EQ(rampD[2 * i], real[i]);
@@ -552,7 +547,7 @@ TEST(DSPDouble, TestVectorPower)
     {
         ASSERT_DOUBLE_EQ(pow(rampD[i], 2.0), out[i]);
     }
-    
+
     VectorPowerD(out, rampD, 3.0, 10);
     for (unsigned i = 0; i < 10; ++i)
     {
@@ -567,18 +562,18 @@ TEST(DSPDouble, TestConvolve)
     {
         0.0, 0.5, 1.0, 0.5, 0.0
     };
-    
+
     double in2[6] =
     {
         0.5, 0.5, 0.5, 1.0, 1.0, 1.0
     };
-    
+
     // >> conv([0 0.5 1 0.5 0], [0.5 0.5 0.5 1.0 1.0 1.0])
     double res[10] =
     {
         0.0, 0.25, 0.75, 1.0, 1.25, 1.75, 2.0, 1.5, 0.5, 0.0
     };
-    
+
     ConvolveD(in1, 5, in2, 6, out);
     for (unsigned i = 0; i < 10; ++i)
     {
@@ -591,15 +586,11 @@ TEST(DSPDouble, TestDBConversion)
     double out[5];
     double in[5] = {1.0, 0.5, 0.25, 0.125, 0.0625};
     double expected[5] = {0.0, -6.0206003, -12.041201, -18.061801, -24.082401};
-    VectorDbConvertD(out, in, 1, 5);
+    VectorDbConvertD(out, in, 5);
     for (unsigned i = 0; i < 5; ++i)
     {
         ASSERT_FLOAT_EQ(expected[i], out[i]);
     }
-    VectorDbConvertD(out, in, 0, 5);
-    ASSERT_FLOAT_EQ(expected[0], out[0]);
-    ASSERT_FLOAT_EQ(expected[1], out[2]);
-    ASSERT_FLOAT_EQ(expected[2], out[4]);
 }
 
 
@@ -620,9 +611,8 @@ TEST(DSPDouble, TestComplexMultiply)
         ASSERT_FLOAT_EQ(expected_re[i], result_re[i]);
         ASSERT_FLOAT_EQ(expected_im[i], result_im[i]);
     }
-    
-}
 
+}
 
 TEST(DSPDouble, TestRectPolarConversion)
 {
@@ -653,13 +643,12 @@ TEST(DSPDouble, TestMeanSquare)
 }
 
 
-
 TEST(DSPDouble, TestVectorMax)
 {
     double signal[10] = {0.0, -1.0, -0.5, -0.3, 0.0, 1.0, 0.5, 0.3, 0.2, 0.1};
     double max = VectorMaxD(signal, 10);
     ASSERT_DOUBLE_EQ(1.0, max);
-    
+
     max = 0.0;
     unsigned index = 0;
     VectorMaxVID(&max, &index, signal, 10);
@@ -672,7 +661,7 @@ TEST(DSPDouble, TestVectorMin)
     double signal[10] = {0.0, -1.0, -0.5, -0.3, 0.0, 1.0, 0.5, 0.3, 0.2, 0.1};
     double min = VectorMinD(signal, 10);
     ASSERT_DOUBLE_EQ(-1.0, min);
-    
+
     min = 0.0;
     unsigned index = 0;
     VectorMinVID(&min, &index, signal, 10);

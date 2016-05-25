@@ -1,4 +1,4 @@
-/** 
+/**
  * @file Error.h
  * @author Hamilton Kibbe
  * @copyright 2012 Hamilton Kibbe
@@ -19,10 +19,10 @@ typedef enum Error
 
 	/** Generic Error (1) */
 	ERROR,
-    
+
     /** Malloc failure... */
     NULL_PTR_ERROR,
-    
+
     /** invalid value... */
     VALUE_ERROR,
 
@@ -30,11 +30,7 @@ typedef enum Error
 	N_ERRORS
 }Error_t;
 
-    
-    
-    
-    
-    
+
 #ifdef __cplusplus
 }
 #endif

@@ -98,12 +98,10 @@ TEST(BS1770Double, BS1770Meter1k)
     /* Test multiple sample rates */
     for (unsigned i = 0; i < N_SAMPLE_RATES; ++i)
     {
-        
         sr = sample_ratesD[i];
         siglen = (unsigned)(sr / 2.4);
         double test_signal[siglen];
         double zero_signal[siglen];
-        
         
         /* Generate test signals */
         ClearBufferD(zero_signal, siglen);

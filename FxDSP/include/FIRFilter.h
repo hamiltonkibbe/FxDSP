@@ -1,4 +1,4 @@
-/** 
+/**
  * @file FIRFilter.h
  * @author Hamilton Kibbe
  * @copyright 2012 Hamilton Kibbe
@@ -24,16 +24,16 @@ typedef enum _ConvolutionMode
 {
     /** Choose the best algorithm based on filter size */
     BEST    = 0,
-    
+
     /** Use direct convolution */
     DIRECT  = 1,
-    
+
     /** Use FFT Convolution (Better for longer filter kernels */
     FFT     = 2
-    
+
 } ConvolutionMode_t;
-    
-    
+
+
 /** FIRFilter type */
 typedef struct FIRFilter FIRFilter;
 typedef struct FIRFilterD FIRFilterD;
@@ -51,7 +51,7 @@ typedef struct FIRFilterD FIRFilterD;
  * @param convolution_mode  Convolution algorithm. Either BEST, FFT, or DIRECT.
  * @return                  An initialized FIRFilter
  */
-FIRFilter* 
+FIRFilter*
 FIRFilterInit(const float*      filter_kernel,
               unsigned          length,
               ConvolutionMode_t convolution_mode);
@@ -62,38 +62,35 @@ FIRFilterInitD(const double*        filter_kernel,
 
 
 /** Free memory associated with a FIRFilter
- *  
+ *
  * @details release all memory allocated by FIRFilterInit for the
  *			supplied filter.
  *
  * @param filter	FIRFilter to free
  * @return			Error code, 0 on success
- */ 
-Error_t 
+ */
+Error_t
 FIRFilterFree(FIRFilter* filter);
 
 Error_t
 FIRFilterFreeD(FIRFilterD* filter);
 
-    
+
 /** Flush filter state buffer
- *  
+ *
  * @param filter	FIRFilter to flush
  * @return			Error code, 0 on success
  */
-Error_t  
+Error_t
 FIRFilterFlush(FIRFilter* filter);
 
 Error_t
 FIRFilterFlushD(FIRFilterD* filter);
 
-    
+
 /** Filter a buffer of samples
  *
- * @details Uses direct form convolution to filter the samples. This is not the
- *			best method to use for filters with kernels longer than oh, say, 
- *			128 coefficients or so
- * @TODO:	Add FFT convolution implementation for longer filters
+ * @details Uses either FFT or direct-form convolution to filter the samples.
  *
  * @param filter	The FIRFilter to use
  * @param outBuffer	The buffer to write the output to
@@ -101,7 +98,7 @@ FIRFilterFlushD(FIRFilterD* filter);
  * @param n_samples The number of samples to filter
  * @return			Error code, 0 on success
  */
-Error_t 
+Error_t
 FIRFilterProcess(FIRFilter*     filter,
                  float*         outBuffer,
                  const float*   inBuffer,
@@ -113,24 +110,24 @@ FIRFilterProcessD(FIRFilterD*   filter,
                   double*       outBuffer,
                   const double* inBuffer,
                   unsigned      n_samples);
-    
+
 
 /** Update the filter kernel for a given filter
- *  
+ *
  * @details New kernel must be the same length as the old one!
  *
  * @param filter		The FIRFilter to use
  * @param filter_kernel	The new filter kernel to use
  * @return			Error code, 0 on success
  */
-Error_t  
+Error_t
 FIRFilterUpdateKernel(FIRFilter*    filter,
 					  const float*  filter_kernel);
-    
+
 Error_t
 FIRFilterUpdateKernelD(FIRFilterD*    filter,
                        const double*  filter_kernel);
-									
+
 
 #ifdef __cplusplus
 }

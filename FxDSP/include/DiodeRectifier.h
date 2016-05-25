@@ -8,11 +8,11 @@
  * signal. The `bias` parameter sets the configuration of the diode, such that
  * a diode with `FORWARD_BIAS` will pass positive signals and clamp negative
  * signals to 0, wheras a diode with `REVERSE_BIAS` will pass negative signals
- * and clamp positive signals to ground. The threshold parameter sets the 
+ * and clamp positive signals to ground. The threshold parameter sets the
  * value at which the diode starts to pass the signal. The threshold value is
  * normalized to [0 1] and is independent of the `bias` setting.
  * e.g. for `threshold=0.5` and `FORWARD_BIAS` the output will be ~0.0 when the
- * input is less than 0.5 and ~input otherwise. For `threshold=0.5` and 
+ * input is less than 0.5 and ~input otherwise. For `threshold=0.5` and
  * `REVERSE_BIAS` the output will be ~0.0 when the input is greater than -0.5
  * and ~input otherwise.
  */
@@ -34,8 +34,14 @@ typedef struct DiodeRectifierD DiodeRectifierD;
 
 typedef enum _bias_t
 {
+    /** Pass positive signals, clamp netagive signals to 0 */
     FORWARD_BIAS,
-    REVERSE_BIAS
+
+    /** Pass negative signals, clamp positive signals to 0 */
+    REVERSE_BIAS,
+
+    /** Full-wave rectification. */
+    FULL_WAVE
 }bias_t;
 
 
@@ -108,7 +114,7 @@ DiodeRectifierProcessD(DiodeRectifierD* diode,
                        const double*    in_buffer,
                        unsigned         n_samples);
 
-    
+
 /** Process a single sample
  * @details Uses a diode rectifier model to process an input sample
  *
@@ -118,10 +124,10 @@ DiodeRectifierProcessD(DiodeRectifierD* diode,
  */
 float
 DiodeRectifierTick(DiodeRectifier* diode, float in_sample);
-    
+
 double
 DiodeRectifierTickD(DiodeRectifierD* diode, double in_sample);
-    
+
 #ifdef __cplusplus
 }
 #endif

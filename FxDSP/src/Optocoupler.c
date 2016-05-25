@@ -15,14 +15,14 @@
 
 /* Utility Functions **********************************************************/
 
-/* Scale a sample to the output curve given for the given optocoupler type 
+/* Scale a sample to the output curve given for the given optocoupler type
  */
 static inline double
 scale_sample(double sample, Opto_t opto_type)
 {
-    
+
     double out = 0.0;
-    
+
     switch (opto_type)
     {
         case OPTO_LDR:
@@ -39,27 +39,27 @@ scale_sample(double sample, Opto_t opto_type)
 }
 
 
-/* Calculate the turn-on times [in seconds] for the given optocoupler type with 
- the specified delay value 
+/* Calculate the turn-on times [in seconds] for the given optocoupler type with
+ the specified delay value
  */
 static inline double
 calculate_on_time(double delay, Opto_t opto_type)
 {
     /* Prevent Denormals */
     double time = DBL_MIN;
-    
+
     double delay_sq = delay*delay;
-    
+
     switch (opto_type)
     {
         case OPTO_LDR:
             time = 0.01595 * delay_sq + 0.02795 * delay + 1e-5;
             break;
-            
+
         case OPTO_PHOTOTRANSISTOR:
             time = 0.01595 * delay_sq + 0.02795 * delay + 1e-5;
             break;
-            
+
         default:
             break;
     }
@@ -68,20 +68,20 @@ calculate_on_time(double delay, Opto_t opto_type)
 
 
 /* Calculate the turn-off times [in seconds] for the given optocoupler type with
- the specified delay value 
+ the specified delay value
  */
 static inline double
 calculate_off_time(double delay, Opto_t opto_type)
 {
     /* Prevent Denormals */
     double time = DBL_MIN;
-    
+
     switch (opto_type)
     {
         case OPTO_LDR:
             time = 1.5*powf(delay+FLT_MIN,3.5);
             break;
- 
+
         case OPTO_PHOTOTRANSISTOR:
             time = 1.5*powf(delay+FLT_MIN,3.5);
             break;
@@ -259,11 +259,11 @@ OptoTick(Opto* opto, float in_sample)
 {
     float out;
     char prev_delta;
-    
+
     /* Check sign of dv/dt */
     prev_delta = opto->delta_sign;
     opto->delta_sign = (in_sample - opto->previous) >= 0 ? 1 : -1;
-    
+
     /* Update lopwass if sign changed */
     if (opto->delta_sign != prev_delta)
     {
@@ -276,12 +276,12 @@ OptoTick(Opto* opto, float in_sample)
             OnePoleSetCutoff(opto->lp, opto->off_cutoff);
         }
     }
-    
+
     /* Do Delay model */
     out = OnePoleTick(opto->lp, in_sample);
     opto->previous = out;
     out = (float)scale_sample((double)out, opto->type);
-    
+
     /* spit out sample */
     return out;
 }
@@ -292,11 +292,11 @@ OptoTickD(OptoD* opto, double in_sample)
 {
     double out;
     char prev_delta;
-    
+
     /* Check sign of dv/dt */
     prev_delta = opto->delta_sign;
     opto->delta_sign = (in_sample - opto->previous) >= 0 ? 1 : -1;
-    
+
     /* Update lopwass if sign changed */
     if (opto->delta_sign != prev_delta)
     {
@@ -309,12 +309,12 @@ OptoTickD(OptoD* opto, double in_sample)
             OnePoleSetCutoffD(opto->lp, opto->off_cutoff);
         }
     }
-    
+
     /* Do Delay model */
     out = OnePoleTickD(opto->lp, in_sample);
     opto->previous = out;
     out = scale_sample(out, opto->type);
-    
+
     /* spit out sample */
     return out;
 }

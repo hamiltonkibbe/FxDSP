@@ -38,7 +38,7 @@ RMSEstimatorInit(float avgTime, float sampleRate)
     rms->sampleRate = sampleRate;
     rms->RMS = 1;
     rms->avgCoeff = 0.5 * (1.0 - expf( -1.0 / (rms->sampleRate * rms->avgTime)));
-    
+
     return rms;
 }
 
@@ -51,7 +51,7 @@ RMSEstimatorInitD(double avgTime, double sampleRate)
     rms->sampleRate = sampleRate;
     rms->RMS = 1;
     rms->avgCoeff = 0.5 * (1.0 - expf( -1.0 / (rms->sampleRate * rms->avgTime)));
-    
+
     return rms;
 }
 
@@ -78,6 +78,32 @@ RMSEstimatorFreeD(RMSEstimatorD* rms)
     }
     return NOERR;
 }
+
+
+/*******************************************************************************
+ RMSEstimatorFlush */
+Error_t
+RMSEstimatorFlush(RMSEstimator* rms)
+{
+    if (rms)
+    {
+        rms->RMS = 1.0;
+        return NOERR;
+    }
+    return NULL_PTR_ERROR;
+}
+
+Error_t
+RMSEstimatorFlushD(RMSEstimatorD* rms)
+{
+    if (rms)
+    {
+        rms->RMS = 1.0;
+        return NOERR;
+    }
+    return NULL_PTR_ERROR;
+}
+
 
 /*******************************************************************************
  RMSEstimatorSetAvgTime */
