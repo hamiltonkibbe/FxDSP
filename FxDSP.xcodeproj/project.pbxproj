@@ -348,7 +348,7 @@
 		37C030A51ABB5EA800ABB47B /* MidiUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MidiUtils.h; path = FxDSP/include/MidiUtils.h; sourceTree = SOURCE_ROOT; };
 		37C030A61ABB5EA800ABB47B /* MultibandBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MultibandBank.h; path = FxDSP/include/MultibandBank.h; sourceTree = SOURCE_ROOT; };
 		37C030A71ABB5EA800ABB47B /* OnePole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnePole.h; path = FxDSP/include/OnePole.h; sourceTree = SOURCE_ROOT; };
-		37C030A81ABB5EA800ABB47B /* Optocoupler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Optocoupler.h; path = FxDSP/include/Optocoupler.h; sourceTree = SOURCE_ROOT; };
+		37C030A81ABB5EA800ABB47B /* Optocoupler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Optocoupler.h; path = FxDSP/include/Optocoupler.h; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.c; };
 		37C030A91ABB5EA800ABB47B /* PolyphaseCoeffs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PolyphaseCoeffs.h; path = FxDSP/include/PolyphaseCoeffs.h; sourceTree = SOURCE_ROOT; };
 		37C030AA1ABB5EA800ABB47B /* PolySaturator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PolySaturator.h; path = FxDSP/include/PolySaturator.h; sourceTree = SOURCE_ROOT; };
 		37C030AB1ABB5EA800ABB47B /* RBJFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBJFilter.h; path = FxDSP/include/RBJFilter.h; sourceTree = SOURCE_ROOT; };
