@@ -40,7 +40,7 @@ struct FIRFilterD
 };
 
 /* FIRFilterInit *******************************************************/
-FIRFilter* 
+FIRFilter*
 FIRFilterInit(const float*       filter_kernel,
                      unsigned           length,
                      ConvolutionMode_t  convolution_mode)
@@ -49,9 +49,9 @@ FIRFilterInit(const float*       filter_kernel,
     // Array lengths and sizes
     unsigned kernel_length = length;                    // IN SAMPLES!
     unsigned overlap_length = kernel_length - 1;        // IN SAMPLES!
-    
-    
-    
+
+
+
     // Allocate Memory
     FIRFilter* filter = (FIRFilter*)malloc(sizeof(FIRFilter));
     float* kernel = (float*)malloc(kernel_length * sizeof(float));
@@ -71,7 +71,7 @@ FIRFilterInit(const float*       filter_kernel,
         filter->fft_config = NULL;
         filter->fft_kernel.realp = NULL;
         filter->fft_kernel.imagp = NULL;
-        
+
         if (((convolution_mode == BEST) &&
              (kernel_length < USE_FFT_CONVOLUTION_LENGTH)) ||
             (convolution_mode == DIRECT))
@@ -83,10 +83,10 @@ FIRFilterInit(const float*       filter_kernel,
         {
             filter->conv_mode = FFT;
         }
-        
+
         return filter;
     }
-    
+
     else
     {
         free(filter);
@@ -102,13 +102,13 @@ FIRFilterInitD(const double*        filter_kernel,
                unsigned             length,
                ConvolutionMode_t    convolution_mode)
 {
-    
+
     // Array lengths and sizes
     unsigned kernel_length = length;                    // IN SAMPLES!
     unsigned overlap_length = kernel_length - 1;        // IN SAMPLES!
-    
-    
-    
+
+
+
     // Allocate Memory
     FIRFilterD* filter = (FIRFilterD*)malloc(sizeof(FIRFilterD));
     double* kernel = (double*)malloc(kernel_length * sizeof(double));
@@ -118,7 +118,7 @@ FIRFilterInitD(const double*        filter_kernel,
         // Initialize Buffers
         CopyBufferD(kernel, filter_kernel, kernel_length);
         ClearBufferD(overlap, overlap_length);
-        
+
         // Set up the struct
         filter->kernel = kernel;
         filter->kernel_end = filter_kernel + (kernel_length); //- 1);
@@ -128,22 +128,22 @@ FIRFilterInitD(const double*        filter_kernel,
         filter->fft_config = NULL;
         filter->fft_kernel.realp = NULL;
         filter->fft_kernel.imagp = NULL;
-        
+
         if (((convolution_mode == BEST) &&
              (kernel_length < USE_FFT_CONVOLUTION_LENGTH)) ||
             (convolution_mode == DIRECT))
         {
             filter->conv_mode = DIRECT;
         }
-        
+
         else
         {
             filter->conv_mode = FFT;
         }
-        
+
         return filter;
     }
-    
+
     else
     {
         free(filter);
@@ -154,7 +154,7 @@ FIRFilterInitD(const double*        filter_kernel,
 }
 
 /* FIRFilterFree *******************************************************/
-Error_t 
+Error_t
 FIRFilterFree(FIRFilter * filter)
 {
     if (filter)
@@ -226,7 +226,7 @@ FIRFilterFreeD(FIRFilterD * filter)
 Error_t
 FIRFilterFlush(FIRFilter* filter)
 {
-    // The only stateful part of this is the overlap buffer, so this just 
+    // The only stateful part of this is the overlap buffer, so this just
     //zeros it out
     ClearBuffer(filter->overlap, filter->overlap_length);
     return NOERR;
@@ -258,21 +258,21 @@ FIRFilterProcess(FIRFilter*     filter,
             unsigned resultLength = n_samples + (filter->kernel_length - 1);
             // Temporary buffer to store full result of filtering..
             float buffer[resultLength];
-        
-            Convolve((float*)inBuffer, n_samples, 
+
+            Convolve((float*)inBuffer, n_samples,
                             filter->kernel, filter->kernel_length, buffer);
-            
+
             // Add in the overlap from the last block
             VectorVectorAdd(buffer, filter->overlap, buffer, filter->overlap_length);
             CopyBuffer(filter->overlap, buffer + n_samples, filter->overlap_length);
             CopyBuffer(outBuffer, buffer, n_samples);
         }
-    
+
         // Otherwise do FFT Convolution
         else
         {
             // Configure the FFT on the first run, that way we can figure out how
-            // long the input blocks are going to be. This makes the filter more 
+            // long the input blocks are going to be. This makes the filter more
             // complicated internally in order to make the convolution transparent.
             // Calculate length of FFT
             if(filter->fft_config == 0)
@@ -280,25 +280,25 @@ FIRFilterProcess(FIRFilter*     filter,
                 // Calculate FFT Length
                 filter->fft_length = next_pow2(n_samples + filter->kernel_length - 1);
                 filter->fft_config = FFTInit(filter->fft_length);
-            
+
                 // fft kernel buffers
                 float padded_kernel[filter->fft_length];
-            
+
                 // Allocate memory for filter kernel
                 filter->fft_kernel.realp = (float*) malloc(filter->fft_length * sizeof(float));
                 filter->fft_kernel.imagp = filter->fft_kernel.realp +(filter->fft_length / 2);
-            
+
                 // Write zero padded kernel to buffer
                 CopyBuffer(padded_kernel, filter->kernel, filter->kernel_length);
                 ClearBuffer((padded_kernel + filter->kernel_length), (filter->fft_length - filter->kernel_length));
-                
+
                 // Calculate FFT of filter kernel
                 FFT_IR_R2C(filter->fft_config, padded_kernel, filter->fft_kernel);
             }
-            
+
             // Buffer for transformed input
             float buffer[filter->fft_length];
-            
+
             // Convolve
             FFTFilterConvolve(filter->fft_config, (float*)inBuffer, n_samples, filter->fft_kernel, buffer);
 
@@ -306,11 +306,11 @@ FIRFilterProcess(FIRFilter*     filter,
             VectorVectorAdd(buffer, filter->overlap, buffer, filter->overlap_length);
             CopyBuffer(filter->overlap, buffer + n_samples, filter->overlap_length);
             CopyBuffer(outBuffer, buffer, n_samples);
-            
+
         }
         return NOERR;
     }
-    
+
     else
     {
         return ERROR;
@@ -324,7 +324,7 @@ FIRFilterProcessD(FIRFilterD*   filter,
                  const double*  inBuffer,
                  unsigned       n_samples)
 {
-    
+
     if (filter)
     {
 
@@ -332,10 +332,10 @@ FIRFilterProcessD(FIRFilterD*   filter,
         if (filter->conv_mode == DIRECT)
         {
             unsigned resultLength = n_samples + (filter->kernel_length - 1);
-            
+
             // Temporary buffer to store full result of filtering..
             double buffer[resultLength];
-            
+
             ConvolveD((double*)inBuffer, n_samples,
                      filter->kernel, filter->kernel_length, buffer);
             // Add in the overlap from the last block
@@ -356,37 +356,37 @@ FIRFilterProcessD(FIRFilterD*   filter,
                 // Calculate FFT Length
                 filter->fft_length = next_pow2(n_samples + filter->kernel_length - 1); //2 * next_pow2(n_samples + filter->kernel_length - 1);
                 filter->fft_config = FFTInitD(filter->fft_length);
-                
+
                 // fft kernel buffers
                 double padded_kernel[filter->fft_length];
-                
+
                 // Allocate memory for filter kernel
                 filter->fft_kernel.realp = (double*) malloc(filter->fft_length * sizeof(double));
                 filter->fft_kernel.imagp = filter->fft_kernel.realp +(filter->fft_length / 2);
-                
+
                 // Write zero padded kernel to buffer
                 CopyBufferD(padded_kernel, filter->kernel, filter->kernel_length);
                 ClearBufferD((padded_kernel + filter->kernel_length), (filter->fft_length - filter->kernel_length));
-                
+
                 // Calculate FFT of filter kernel
                 FFT_IR_R2CD(filter->fft_config, padded_kernel, filter->fft_kernel);
             }
-            
+
             // Buffer for transformed input
             double buffer[filter->fft_length];
-            
+
             // Convolve
             FFTFilterConvolveD(filter->fft_config, (double*)inBuffer, n_samples, filter->fft_kernel, buffer);
-            
+
             // Add in the overlap from the last block
             VectorVectorAddD(buffer, filter->overlap, buffer, filter->overlap_length);
             CopyBufferD(filter->overlap, buffer + n_samples, filter->overlap_length);
             CopyBufferD(outBuffer, buffer, n_samples);
-            
+
         }
         return NOERR;
     }
-    
+
     else
     {
         return ERROR;

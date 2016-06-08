@@ -76,12 +76,12 @@ BS1770MeterProcessD(BS1770MeterD*   meter,
 
 Error_t
 BS1770MeterFree(BS1770Meter* meter);
-    
+
 Error_t
 BS1770MeterFreeD(BS1770MeterD* meter);
-    
+
 #ifdef __cplusplus
 }
 #endif
-    
+
 #endif /* defined(BS1770_H_) */

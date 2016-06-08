@@ -14,11 +14,11 @@ extern "C" {
 /** Error codes */
 typedef enum Error
 {
-	/** No Error (0) */
-	NOERR,
+    /** No Error (0) */
+    NOERR,
 
-	/** Generic Error (1) */
-	ERROR,
+    /** Generic Error (1) */
+    ERROR,
 
     /** Malloc failure... */
     NULL_PTR_ERROR,
@@ -26,8 +26,8 @@ typedef enum Error
     /** invalid value... */
     VALUE_ERROR,
 
-	/** Number of defined error codes */
-	N_ERRORS
+    /** Number of defined error codes */
+    N_ERRORS
 }Error_t;
 
 

@@ -16,7 +16,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-    
+
 /** Opaque Decimator object */
 typedef struct Decimator Decimator;
 typedef struct DecimatorD DecimatorD;
@@ -60,7 +60,7 @@ DecimatorFlush(Decimator* decimator);
 
 Error_t
 DecimatorFlushD(DecimatorD* decimator);
-    
+
 /** Decimate a buffer of samples
  *
  * @details Decimates given buffer using a polyphase decimator
@@ -76,13 +76,13 @@ DecimatorProcess(Decimator*     decimator,
                  float*         outBuffer,
                  const float*   inBuffer,
                  unsigned       n_samples);
-    
+
 Error_t
 DecimatorProcessD(DecimatorD*   decimator,
                  double*        outBuffer,
                  const double*  inBuffer,
                  unsigned       n_samples);
-    
+
 #ifdef __cplusplus
 }
 #endif

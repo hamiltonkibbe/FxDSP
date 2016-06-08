@@ -22,7 +22,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-    
+
 // Prefer Accelerate
 #if defined(__APPLE__)
 #define USE_APPLE_FFT
@@ -63,29 +63,29 @@ extern "C" {
 typedef struct FFTConfig FFTConfig;
 typedef struct FFTConfigD FFTConfigD;
 
-    
+
 /** Create a new FFTConfig
  *
  * @details Allocates memory and returns an initialized FFTConfig,
- *			which is used to store the FFT Configuration. Play nice and call 
+ *      which is used to store the FFT Configuration. Play nice and call
  *          FFTFree on it when you're done.
  *
  * @param length        length of the FFT. should be a power of 2.
- * @return 				An initialized FFTConfig.
+ * @return        An initialized FFTConfig.
  */
 FFTConfig*
 FFTInit(unsigned length);
 
 FFTConfigD*
 FFTInitD(unsigned length);
-    
+
 /** Free memory associated with a FFTConfig
  *
  * @details release all memory allocated by FFTInit for the supplied
- *			fft configuration.
+ *      fft configuration.
  *
  * @param fft       pointer to the FFTConfig to free.
- * @return			Error code, 0 on success
+ * @return      Error code, 0 on success
  */
 Error_t
 FFTFree(FFTConfig* fft);
@@ -93,7 +93,7 @@ FFTFree(FFTConfig* fft);
 Error_t
 FFTFreeD(FFTConfigD* fft);
 
-    
+
 /** Calculate Real to Real Forward FFT
  *
  * @details Calculates the magnitude of the real forward FFT of the data in
@@ -123,13 +123,13 @@ Error_t
 FFT_IR_R2C(FFTConfig*       fft,
            const float*     inBuffer,
            FFTSplitComplex  out);
-    
+
 Error_t
 FFT_IR_R2CD(FFTConfigD*         fft,
             const double*       inBuffer,
             FFTSplitComplexD    out);
-    
-    
+
+
 /** Calculate Complex to Real Inverse FFT
  *
  * @details Calculates the inverse FFT of the data in inBuffer.
@@ -152,15 +152,15 @@ IFFT_C2RD(FFTConfigD*   fft,
           const double* inreal,
           const double* inImag,
           double*       out);
-    
-    
+
+
 /** Perform Convolution using FFT*
  * @details convolve in1 with in2 and write results to dest
  * @param in1           First input to convolve.
  * @param in1_length    Length [samples] of in1.
  * @param in2           Second input to convolve.
  * @param in2_length    Length[samples] of second input.
- * @param dest          Output buffer. needs to be of length 
+ * @param dest          Output buffer. needs to be of length
  *                      in1_length + in2_length - 1
  * @return              Error code.
  */
@@ -171,7 +171,7 @@ FFTConvolve(FFTConfig* fft,
             float       *in2,
             unsigned    in2_length,
             float       *dest);
-    
+
 Error_t
 FFTConvolveD(FFTConfigD*    fft,
              const double*  in1,
@@ -180,7 +180,7 @@ FFTConvolveD(FFTConfigD*    fft,
              unsigned       in2_length,
              double*        dest);
 
-                   
+
 /** Perform Convolution using FFT*
  * @details Convolve in1 with IFFT(fft_ir) and write results to dest.
  *          This takes an already transformed kernel as the second argument, to
@@ -189,7 +189,7 @@ FFTConvolveD(FFTConfigD*    fft,
  * @param in1           First input to convolve.
  * @param in1_length    Length [samples] of in1.
  * @param fft_ir        Second input to convolve (Already FFT'ed).
- * @param dest          Output buffer. needs to be of length 
+ * @param dest          Output buffer. needs to be of length
  *                      in1_length + in2_length - 1
  * @return              Error code.
  */
@@ -206,7 +206,7 @@ FFTFilterConvolveD(FFTConfigD*      fft,
                    unsigned         in_length,
                    FFTSplitComplexD fft_ir,
                    double*          dest);
-    
+
 /** Just prints the complex output
  *
  */
@@ -214,7 +214,7 @@ Error_t
 FFTdemo(FFTConfig* fft, float* buffer);
 
 
-    
+
 #ifdef __cplusplus
 }
 #endif

@@ -49,27 +49,27 @@ DecimatorInit(ResampleFactor_t factor)
         default:
             return NULL;
     }
-    
+
     // Allocate memory for the upsampler
     Decimator* decimator = (Decimator*)malloc(sizeof(Decimator));
-    
+
     // Allocate memory for the polyphase array
     FIRFilter** polyphase = (FIRFilter**)malloc(n_filters * sizeof(FIRFilter*));
-    
+
     if (decimator && polyphase)
     {
         decimator->polyphase = polyphase;
-        
+
         // Create polyphase filters
         unsigned idx;
         for(idx = 0; idx < n_filters; ++idx)
         {
             decimator->polyphase[idx] = FIRFilterInit(PolyphaseCoeffs[factor][idx], 64, DIRECT);
         }
-        
+
         // Add factor
         decimator->factor = n_filters;
-        
+
         return decimator;
     }
     else
@@ -109,27 +109,27 @@ DecimatorInitD(ResampleFactor_t factor)
         default:
             return NULL;
     }
-    
+
     // Allocate memory for the upsampler
     DecimatorD* decimator = (DecimatorD*)malloc(sizeof(DecimatorD));
-    
+
     // Allocate memory for the polyphase array
     FIRFilterD** polyphase = (FIRFilterD**)malloc(n_filters * sizeof(FIRFilterD*));
-    
+
     if (decimator && polyphase)
     {
         decimator->polyphase = polyphase;
-        
+
         // Create polyphase filters
         unsigned idx;
         for(idx = 0; idx < n_filters; ++idx)
         {
             decimator->polyphase[idx] = FIRFilterInitD(PolyphaseCoeffsD[factor][idx], 64, DIRECT);
         }
-        
+
         // Add factor
         decimator->factor = n_filters;
-        
+
         return decimator;
     }
     else
@@ -223,7 +223,7 @@ DecimatorProcess(Decimator      *decimator,
         unsigned declen = n_samples / decimator->factor;
         float temp_buf[declen];
         ClearBuffer(outBuffer, declen);
-        
+
         for (unsigned filt = 0; filt < decimator->factor; ++filt)
         {
             CopyBufferStride(temp_buf, 1, inBuffer, decimator->factor, declen);
@@ -250,7 +250,7 @@ DecimatorProcessD(DecimatorD*   decimator,
         unsigned declen = n_samples / decimator->factor;
         double temp_buf[declen];
         ClearBufferD(outBuffer, declen);
-        
+
         for (unsigned filt = 0; filt < decimator->factor; ++filt)
         {
             CopyBufferStrideD(temp_buf, 1, inBuffer, decimator->factor, declen);
@@ -264,8 +264,3 @@ DecimatorProcessD(DecimatorD*   decimator,
         return NULL_PTR_ERROR;
     }
 }
-
-
-
-
-

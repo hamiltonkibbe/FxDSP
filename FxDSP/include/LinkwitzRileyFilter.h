@@ -19,8 +19,8 @@
 extern "C" {
 #endif
 
-    
-    
+
+
 /** Linkwitz-Riley filter type */
 typedef struct LRFilter LRFilter;
 typedef struct LRFilterD LRFilterD;
@@ -43,7 +43,7 @@ LRFilterInit(Filter_t   type,
              float 		cutoff,
              float      Q,
              float      sampleRate);
-    
+
 LRFilterD*
 LRFilterInitD(Filter_t  type,
               double 	cutoff,
@@ -59,13 +59,13 @@ LRFilterInitD(Filter_t  type,
  * @param filter	LRFilter to free
  * @return			Error code, 0 on success
  */
-Error_t 
+Error_t
 LRFilterFree(LRFilter* filter);
 
 Error_t
 LRFilterFreeD(LRFilterD* filter);
 
-    
+
 /** Flush filter state buffers
  *
  * @param filter    LRFilter to flush.
@@ -73,11 +73,11 @@ LRFilterFreeD(LRFilterD* filter);
  */
 Error_t
 LRFilterFlush(LRFilter* filter);
-   
+
 Error_t
 LRFilterFlushD(LRFilterD* filter);
-    
-    
+
+
 /** Update LRFilter Parameters
  *
  * @details Update the filter Q and recalculate filter coefficients.
@@ -93,7 +93,7 @@ LRFilterSetParams(LRFilter* filter,
                       Filter_t  type,
                       float     cutoff,
                       float     Q);
-    
+
 Error_t
 LRFilterSetParamsD(LRFilterD*   filter,
                    Filter_t      type,
@@ -121,10 +121,10 @@ LRFilterProcessD(LRFilterD*     filter,
                  double*        outBuffer,
                  const double*  inBuffer,
                  unsigned 		n_samples);
-    
-    
+
+
 #ifdef __cplusplus
 }
 #endif
-    
+
 #endif

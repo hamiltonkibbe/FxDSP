@@ -34,7 +34,7 @@ typedef enum _bias_t
  *
  * @param amount    Clipping amount
  * @param bias      Diode bias, FORWARD_BIAS or REVERSE_BIAS
- *                  Forward-bias will clip positive signals and leave negative 
+ *                  Forward-bias will clip positive signals and leave negative
  *                  signals untouched.
  * @return          An initialized DiodeSaturator
  */
@@ -96,7 +96,7 @@ DiodeSaturatorProcessD(DiodeSaturatorD* saturator,
                        const double*    in_buffer,
                        unsigned         n_samples);
 
-    
+
 /** Process a single sample
  * @details Uses a diode saturator model to process an input sample
  *
@@ -106,10 +106,10 @@ DiodeSaturatorProcessD(DiodeSaturatorD* saturator,
  */
 float
 DiodeSaturatorTick(DiodeSaturator* saturator, float in_sample);
-    
+
 double
 DiodeSaturatorTickD(DiodeSaturatorD* saturator, double in_sample);
-    
+
 #ifdef __cplusplus
 }
 #endif

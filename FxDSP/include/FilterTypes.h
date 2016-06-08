@@ -17,35 +17,35 @@ extern "C" {
 /** Filter types */
 typedef enum Filter_t
 {
-	/** Lowpass */
-	LOWPASS,
-    
-	/** Highpass */
-	HIGHPASS,
-    
-	/** Bandpass */
-	BANDPASS,
-    
-	/** Allpass */
-	ALLPASS,
-    
-	/** Notch */
-	NOTCH,
-    
-	/** Peaking */
-	PEAK,
-    
-	/** Low Shelf */
-	LOW_SHELF,
-    
-	/** High Shelf */
-	HIGH_SHELF,
-    
-	/** Number of Filter types */
-	N_FILTER_TYPES
+    /** Lowpass */
+    LOWPASS,
+
+    /** Highpass */
+    HIGHPASS,
+
+    /** Bandpass */
+    BANDPASS,
+
+    /** Allpass */
+    ALLPASS,
+
+    /** Notch */
+    NOTCH,
+
+    /** Peaking */
+    PEAK,
+
+    /** Low Shelf */
+    LOW_SHELF,
+
+    /** High Shelf */
+    HIGH_SHELF,
+
+    /** Number of Filter types */
+    N_FILTER_TYPES
 }Filter_t;
 
-    
+
 #ifdef __cplusplus
 }
 #endif

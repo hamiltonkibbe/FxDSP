@@ -21,7 +21,7 @@ struct OnePole
     float cutoff;
     float sampleRate;
     Filter_t type;
-    
+
 };
 
 struct OnePoleD
@@ -48,7 +48,7 @@ OnePoleInit(float cutoff, float sampleRate, Filter_t type)
         filter->sampleRate = sampleRate;
         OnePoleSetCutoff(filter, cutoff);
     }
-    
+
     return filter;
 }
 
@@ -65,9 +65,41 @@ OnePoleInitD(double cutoff, double sampleRate, Filter_t type)
         filter->sampleRate = sampleRate;
         OnePoleSetCutoffD(filter, cutoff);
     }
-    
+
     return filter;
 }
+
+
+OnePole*
+OnePoleRawInit(float beta, float alpha)
+{
+  OnePole *filter = (OnePole*)malloc(sizeof(OnePole));
+  if (filter)
+  {
+    filter->a0 = alpha;
+    filter->b1 = beta;
+    filter->y1 = 0.0;
+    filter->type = LOWPASS;
+    filter->sampleRate = 0;
+  }
+  return filter;
+}
+
+OnePoleD*
+OnePoleRawInitD(double beta, double alpha)
+{
+  OnePoleD *filter = (OnePoleD*)malloc(sizeof(OnePoleD));
+  if (filter)
+  {
+    filter->a0 = alpha;
+    filter->b1 = beta;
+    filter->y1 = 0;
+    filter->type = LOWPASS;
+    filter->sampleRate = 0;
+  }
+  return filter;
+}
+
 
 
 Error_t
@@ -163,6 +195,26 @@ OnePoleSetSampleRateD(OnePoleD* filter, double sampleRate)
     return NOERR;
 }
 
+Error_t
+OnePoleSetCoefficients(OnePole* filter, float* beta, float* alpha)
+{
+  filter->b1 = *beta;
+  filter->a0 = *alpha;
+  return NOERR;
+}
+
+Error_t
+OnePoleSetCoefficientsD(OnePoleD* filter, double* beta, double* alpha)
+{
+  filter->b1 = *beta;
+  filter->a0 = *alpha;
+  return NOERR;
+}
+
+
+
+
+
 /* OnePoleFilterFree ***************************************************/
 Error_t
 OnePoleFree(OnePole *filter)
@@ -185,6 +237,27 @@ OnePoleFreeD(OnePoleD *filter)
         filter = NULL;
     }
     return NOERR;
+}
+
+
+Error_t
+OnePoleFlush(OnePole *filter)
+{
+  if (filter)
+  {
+    filter->y1 = 0.0;
+  }
+  return NOERR;
+}
+
+Error_t
+OnePoleFlushD(OnePoleD *filter)
+{
+  if (filter)
+  {
+    filter->y1 = 0.0;
+  }
+  return NOERR;
 }
 
 /* OnePoleFilterProcess ************************************************/

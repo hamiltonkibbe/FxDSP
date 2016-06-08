@@ -26,14 +26,24 @@ OnePoleInit(float cutoff, float sampleRate, Filter_t type);
 OnePoleD*
 OnePoleInitD(double cutoff, double sampleRate, Filter_t type);
     
-    
+OnePole*
+OnePoleRawInit(float beta, float alpha);
+
+OnePoleD*
+OnePoleRawInitD(double beta, double alpha);
+
 Error_t
 OnePoleFree(OnePole *filter);
     
 Error_t
 OnePoleFreeD(OnePoleD *filter);
 
-    
+Error_t
+OnePoleFlush(OnePole *filter);
+
+Error_t
+OnePoleFlushD(OnePoleD *filter);
+
 Error_t
 OnePoleSetType(OnePole* filter, Filter_t type);
 
@@ -54,9 +64,14 @@ OnePoleSetSampleRate(OnePole* filter, float sampleRate);
 Error_t
 OnePoleSetSampleRateD(OnePoleD* filter, double sampleRate);
     
-    
 Error_t
-OnePoleProcess(OnePole*     filter,
+OnePoleSetCoefficients(OnePole* filter, float* beta, float* alpha);
+
+Error_t
+OnePoleSetCoefficientsD(OnePoleD* filter, double* beta, double* alpha);
+  
+  Error_t
+OnePoleProcess(OnePole*         filter,
                  float*         outBuffer,
                  const float*   inBuffer,
                  unsigned       n_samples);

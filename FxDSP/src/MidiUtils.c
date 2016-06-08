@@ -12,9 +12,6 @@
 #include <math.h>
 
 
-
-
-
 float
 midiNoteToFrequency(unsigned note)
 {

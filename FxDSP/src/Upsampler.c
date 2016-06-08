@@ -14,8 +14,8 @@
 /* Upsampler **********************************************************/
 struct Upsampler
 {
-	unsigned factor;
-	FIRFilter** polyphase;
+    unsigned factor;
+    FIRFilter** polyphase;
 };
 
 struct UpsamplerD
@@ -50,11 +50,11 @@ UpsamplerInit(ResampleFactor_t factor)
             return NULL;
     }
 
-	// Allocate memory for the upsampler
-	Upsampler* upsampler = (Upsampler*)malloc(sizeof(Upsampler));
+    // Allocate memory for the upsampler
+    Upsampler* upsampler = (Upsampler*)malloc(sizeof(Upsampler));
 
-	// Allocate memory for the polyphase array
-	FIRFilter** polyphase = (FIRFilter**)malloc(n_filters * sizeof(FIRFilter*));
+    // Allocate memory for the polyphase array
+    FIRFilter** polyphase = (FIRFilter**)malloc(n_filters * sizeof(FIRFilter*));
 
     if (upsampler && polyphase)
     {
@@ -162,7 +162,7 @@ UpsamplerFree(Upsampler* upsampler)
         }
         free(upsampler);
     }
-	return NOERR;
+    return NOERR;
 }
 
 Error_t
@@ -188,12 +188,12 @@ UpsamplerFreeD(UpsamplerD* upsampler)
 Error_t
 UpsamplerFlush(Upsampler* upsampler)
 {
-	unsigned idx;
-	for (idx = 0; idx < upsampler->factor; ++idx)
-	{
-		FIRFilterFlush(upsampler->polyphase[idx]);
-	}
-	return NOERR;
+    unsigned idx;
+    for (idx = 0; idx < upsampler->factor; ++idx)
+    {
+        FIRFilterFlush(upsampler->polyphase[idx]);
+    }
+    return NOERR;
 }
 
 Error_t
@@ -212,8 +212,8 @@ UpsamplerFlushD(UpsamplerD* upsampler)
 Error_t
 UpsamplerProcess(Upsampler      *upsampler,
                  float          *outBuffer,
-				 const float    *inBuffer,
-				 unsigned       n_samples)
+                 const float    *inBuffer,
+                 unsigned       n_samples)
 {
     float tempbuf[n_samples];
     if (upsampler && outBuffer)

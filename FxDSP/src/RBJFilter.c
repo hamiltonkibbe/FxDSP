@@ -16,18 +16,18 @@
 /* RBJFilter ***********************************************************/
 struct RBJFilter
 {
-	BiquadFilter* biquad;
-	Filter_t type;
-	float omega;
-	float Q;
-	float cosOmega;
-	float sinOmega;
-	float alpha;
-	float A;
-	float dbGain;
-	float b[3];
-	float a[3];
-	float sampleRate;
+    BiquadFilter* biquad;
+    Filter_t type;
+    float omega;
+    float Q;
+    float cosOmega;
+    float sinOmega;
+    float alpha;
+    float A;
+    float dbGain;
+    float b[3];
+    float a[3];
+    float sampleRate;
 };
 
 struct RBJFilterD
@@ -53,74 +53,74 @@ static Error_t
 RBJFilterUpdate(RBJFilter* filter)
 {
     filter->cosOmega = cos(filter->omega);
-	filter->sinOmega = sin(filter->omega);
-    
-	switch (filter->type)
-	{
-	case LOWPASS:
-        filter->alpha = filter->sinOmega / (2.0 * filter->Q);
-		filter->b[0] = (1 - filter->cosOmega) / 2;
-		filter->b[1] = 1 - filter->cosOmega;
-		filter->b[2] = filter->b[0];
-		filter->a[0] = 1 + filter->alpha;
-		filter->a[1] = -2 * filter->cosOmega;
-		filter->a[2] = 1 - filter->alpha;
-		break;
+    filter->sinOmega = sin(filter->omega);
 
-	case HIGHPASS:
+    switch (filter->type)
+    {
+    case LOWPASS:
         filter->alpha = filter->sinOmega / (2.0 * filter->Q);
-		filter->b[0] = (1 + filter->cosOmega) / 2;
-		filter->b[1] = -(1 + filter->cosOmega);
-		filter->b[2] = filter->b[0];
-		filter->a[0] = 1 + filter->alpha;
-		filter->a[1] = -2 * filter->cosOmega;
-		filter->a[2] = 1 - filter->alpha;
-		break;
+        filter->b[0] = (1 - filter->cosOmega) / 2;
+        filter->b[1] = 1 - filter->cosOmega;
+        filter->b[2] = filter->b[0];
+        filter->a[0] = 1 + filter->alpha;
+        filter->a[1] = -2 * filter->cosOmega;
+        filter->a[2] = 1 - filter->alpha;
+        break;
 
-	case BANDPASS:
+    case HIGHPASS:
+        filter->alpha = filter->sinOmega / (2.0 * filter->Q);
+        filter->b[0] = (1 + filter->cosOmega) / 2;
+        filter->b[1] = -(1 + filter->cosOmega);
+        filter->b[2] = filter->b[0];
+        filter->a[0] = 1 + filter->alpha;
+        filter->a[1] = -2 * filter->cosOmega;
+        filter->a[2] = 1 - filter->alpha;
+        break;
+
+    case BANDPASS:
         filter->alpha = filter->sinOmega * sinhf(logf(2.0) / 2.0 * \
             filter->Q * filter->omega/filter->sinOmega);
-		filter->b[0] = filter->sinOmega / 2;
-		filter->b[1] = 0;
-		filter->b[2] = -filter->b[0];
-		filter->a[0] = 1 + filter->alpha;
-		filter->a[1] = -2 * filter->cosOmega;
-		filter->a[2] = 1 - filter->alpha;
-		break;
+        filter->b[0] = filter->sinOmega / 2;
+        filter->b[1] = 0;
+        filter->b[2] = -filter->b[0];
+        filter->a[0] = 1 + filter->alpha;
+        filter->a[1] = -2 * filter->cosOmega;
+        filter->a[2] = 1 - filter->alpha;
+        break;
 
-	case ALLPASS:
+    case ALLPASS:
         filter->alpha = filter->sinOmega / (2.0 * filter->Q);
-		filter->b[0] = 1 - filter->alpha;
-		filter->b[1] = -2 * filter->cosOmega;
-		filter->b[2] = 1 + filter->alpha;
-		filter->a[0] = filter->b[2];
-		filter->a[1] = filter->b[1];
-		filter->a[2] = filter->b[0];
-		break;
+        filter->b[0] = 1 - filter->alpha;
+        filter->b[1] = -2 * filter->cosOmega;
+        filter->b[2] = 1 + filter->alpha;
+        filter->a[0] = filter->b[2];
+        filter->a[1] = filter->b[1];
+        filter->a[2] = filter->b[0];
+        break;
 
-	case NOTCH:
+    case NOTCH:
         filter->alpha = filter->sinOmega * sinhf(logf(2.0) / 2.0 * \
             filter->Q * filter->omega/filter->sinOmega);
-		filter->b[0] = 1;
-		filter->b[1] = -2 * filter->cosOmega;
-		filter->b[2] = 1;
-		filter->a[0] = 1 + filter->alpha;
-		filter->a[1] = filter->b[1];
-		filter->a[2] = 1 - filter->alpha;
-		break;
+        filter->b[0] = 1;
+        filter->b[1] = -2 * filter->cosOmega;
+        filter->b[2] = 1;
+        filter->a[0] = 1 + filter->alpha;
+        filter->a[1] = filter->b[1];
+        filter->a[2] = 1 - filter->alpha;
+        break;
 
-	case PEAK:
+    case PEAK:
         filter->alpha = filter->sinOmega * sinhf(logf(2.0) / 2.0 * \
             filter->Q * filter->omega/filter->sinOmega);
-		filter->b[0] = 1 + (filter->alpha * filter->A);
-		filter->b[1] = -2 * filter->cosOmega;
-		filter->b[2] = 1 - (filter->alpha * filter->A);
-		filter->a[0] = 1 + (filter->alpha / filter->A);
-		filter->a[1] = filter->b[1];
-		filter->a[2] = 1 - (filter->alpha / filter->A);
-		break;
+        filter->b[0] = 1 + (filter->alpha * filter->A);
+        filter->b[1] = -2 * filter->cosOmega;
+        filter->b[2] = 1 - (filter->alpha * filter->A);
+        filter->a[0] = 1 + (filter->alpha / filter->A);
+        filter->a[1] = filter->b[1];
+        filter->a[2] = 1 - (filter->alpha / filter->A);
+        break;
 
-	case LOW_SHELF:
+    case LOW_SHELF:
         filter->alpha = filter->sinOmega / 2.0 * sqrt( (filter->A + 1.0 / \
             filter->A) * (1.0 / filter->Q - 1.0) + 2.0);
         filter->b[0] = filter->A * ((filter->A + 1) - ((filter->A - 1) *       \
@@ -135,9 +135,9 @@ RBJFilterUpdate(RBJFilter* filter)
             filter->cosOmega));
         filter->a[2] = ((filter->A + 1) + ((filter->A - 1) *                   \
             filter->cosOmega) - (2 * sqrtf(filter->A) * filter->alpha));
-		break;
+        break;
 
-	case HIGH_SHELF:
+    case HIGH_SHELF:
         filter->alpha = filter->sinOmega / 2.0 * sqrt( (filter->A + 1.0 / \
             filter->A) * (1.0 / filter->Q - 1.0) + 2.0);
         filter->b[0] = filter->A * ((filter->A + 1) + ((filter->A - 1) *       \
@@ -152,13 +152,13 @@ RBJFilterUpdate(RBJFilter* filter)
             filter->cosOmega));
         filter->a[2] = ((filter->A + 1) - ((filter->A - 1) *                   \
             filter->cosOmega) - (2 * sqrtf(filter->A) * filter->alpha));
-		break;
+        break;
 
-	default:
-		return ERROR;
-		break;
-	}
-    
+    default:
+        return ERROR;
+        break;
+    }
+
     // Normalize filter coefficients
     float factor = 1.0 / filter->a[0];
     float norm_a[2];
@@ -166,7 +166,7 @@ RBJFilterUpdate(RBJFilter* filter)
     VectorScalarMultiply(norm_a, &filter->a[1], factor, 2);
     VectorScalarMultiply(norm_b, filter->b, factor, 3);
     BiquadFilterUpdateKernel(filter->biquad, norm_b, norm_a);
-	return NOERR;
+    return NOERR;
 }
 
 
@@ -175,7 +175,7 @@ RBJFilterUpdateD(RBJFilterD* filter)
 {
     filter->cosOmega = cos(filter->omega);
     filter->sinOmega = sin(filter->omega);
-    
+
     switch (filter->type)
     {
         case LOWPASS:
@@ -187,7 +187,7 @@ RBJFilterUpdateD(RBJFilterD* filter)
             filter->a[1] = -2 * filter->cosOmega;
             filter->a[2] = 1 - filter->alpha;
             break;
-            
+
         case HIGHPASS:
             filter->alpha = filter->sinOmega / (2.0 * filter->Q);
             filter->b[0] = (1 + filter->cosOmega) / 2;
@@ -197,7 +197,7 @@ RBJFilterUpdateD(RBJFilterD* filter)
             filter->a[1] = -2 * filter->cosOmega;
             filter->a[2] = 1 - filter->alpha;
             break;
-            
+
         case BANDPASS:
             filter->alpha = filter->sinOmega * sinh(logf(2.0) / 2.0 * \
                                                      filter->Q * filter->omega/filter->sinOmega);
@@ -208,7 +208,7 @@ RBJFilterUpdateD(RBJFilterD* filter)
             filter->a[1] = -2 * filter->cosOmega;
             filter->a[2] = 1 - filter->alpha;
             break;
-            
+
         case ALLPASS:
             filter->alpha = filter->sinOmega / (2.0 * filter->Q);
             filter->b[0] = 1 - filter->alpha;
@@ -218,7 +218,7 @@ RBJFilterUpdateD(RBJFilterD* filter)
             filter->a[1] = filter->b[1];
             filter->a[2] = filter->b[0];
             break;
-            
+
         case NOTCH:
             filter->alpha = filter->sinOmega * sinh(logf(2.0) / 2.0 * \
                                                      filter->Q * filter->omega/filter->sinOmega);
@@ -229,7 +229,7 @@ RBJFilterUpdateD(RBJFilterD* filter)
             filter->a[1] = filter->b[1];
             filter->a[2] = 1 - filter->alpha;
             break;
-            
+
         case PEAK:
             filter->alpha = filter->sinOmega * sinh(logf(2.0) / 2.0 * \
                                                      filter->Q * filter->omega/filter->sinOmega);
@@ -240,7 +240,7 @@ RBJFilterUpdateD(RBJFilterD* filter)
             filter->a[1] = filter->b[1];
             filter->a[2] = 1 - (filter->alpha / filter->A);
             break;
-            
+
         case LOW_SHELF:
             filter->alpha = filter->sinOmega / 2.0 * sqrt( (filter->A + 1.0 / \
                                                             filter->A) * (1.0 / filter->Q - 1.0) + 2.0);
@@ -257,7 +257,7 @@ RBJFilterUpdateD(RBJFilterD* filter)
             filter->a[2] = ((filter->A + 1) + ((filter->A - 1) *                   \
                                                filter->cosOmega) - (2 * sqrtf(filter->A) * filter->alpha));
             break;
-            
+
         case HIGH_SHELF:
             filter->alpha = filter->sinOmega / 2.0 * sqrt( (filter->A + 1.0 / \
                                                             filter->A) * (1.0 / filter->Q - 1.0) + 2.0);
@@ -274,12 +274,12 @@ RBJFilterUpdateD(RBJFilterD* filter)
             filter->a[2] = ((filter->A + 1) - ((filter->A - 1) *                   \
                                                filter->cosOmega) - (2 * sqrtf(filter->A) * filter->alpha));
             break;
-            
+
         default:
             return ERROR;
             break;
     }
-    
+
     // Normalize filter coefficients
     double factor = 1.0 / filter->a[0];
     double norm_a[2];
@@ -292,11 +292,11 @@ RBJFilterUpdateD(RBJFilterD* filter)
 
 
 /* RBJFilterInit **********************************************************/
-RBJFilter* 
+RBJFilter*
 RBJFilterInit(Filter_t type, float cutoff, float sampleRate)
-{	
-	// Create the filter
-	RBJFilter* filter = (RBJFilter*)malloc(sizeof(RBJFilter));
+{
+    // Create the filter
+    RBJFilter* filter = (RBJFilter*)malloc(sizeof(RBJFilter));
 
     if (filter)
     {
@@ -308,17 +308,17 @@ RBJFilterInit(Filter_t type, float cutoff, float sampleRate)
         filter->dbGain = 0;
         filter->sampleRate = sampleRate;
 
-        
+
         // Initialize biquad
         float b[3] = {0, 0, 0};
         float a[2] = {0, 0};
         filter->biquad = BiquadFilterInit(b,a);
-        
+
         // Calculate coefficients
         RBJFilterUpdate(filter);
     }
-    
-	return filter;
+
+    return filter;
 }
 
 RBJFilterD*
@@ -326,7 +326,7 @@ RBJFilterInitD(Filter_t type, double cutoff, double sampleRate)
 {
     // Create the filter
     RBJFilterD* filter = (RBJFilterD*)malloc(sizeof(RBJFilterD));
-    
+
     if (filter)
     {
         // Initialization
@@ -336,32 +336,32 @@ RBJFilterInitD(Filter_t type, double cutoff, double sampleRate)
         filter->A = 1;
         filter->dbGain = 0;
         filter->sampleRate = sampleRate;
-        
-        
+
+
         // Initialize biquad
         double b[3] = {0, 0, 0};
         double a[2] = {0, 0};
         filter->biquad = BiquadFilterInitD(b, a);
-        
+
         // Calculate coefficients
         RBJFilterUpdateD(filter);
     }
-    
+
     return filter;
 }
 
 
 /* RBJFilterFree *******************************************************/
-Error_t 
+Error_t
 RBJFilterFree(RBJFilter* filter)
 {
-	BiquadFilterFree(filter->biquad);
+    BiquadFilterFree(filter->biquad);
     if (filter)
     {
         free(filter);
         filter = NULL;
     }
-	return NOERR;
+    return NOERR;
 }
 
 Error_t
@@ -377,12 +377,12 @@ RBJFilterFreeD(RBJFilterD* filter)
 }
 
 /* RBJFilterSetType ****************************************************/
-Error_t 
-RBJFilterSetType(RBJFilter*	filter, Filter_t type)
+Error_t
+RBJFilterSetType(RBJFilter* filter, Filter_t type)
 {
-	filter->type = type;
-	RBJFilterUpdate(filter);
-	return NOERR;
+    filter->type = type;
+    RBJFilterUpdate(filter);
+    return NOERR;
 }
 
 
@@ -395,12 +395,12 @@ RBJFilterSetTypeD(RBJFilterD* filter, Filter_t type)
 }
 
 /* RBJFilterSetCutoff **************************************************/
-Error_t 
+Error_t
 RBJFilterSetCutoff(RBJFilter* filter, float cutoff)
 {
-	filter->omega = HZ_TO_RAD(cutoff) / filter->sampleRate;
-	RBJFilterUpdate(filter);
-	return NOERR;
+    filter->omega = HZ_TO_RAD(cutoff) / filter->sampleRate;
+    RBJFilterUpdate(filter);
+    return NOERR;
 }
 
 
@@ -414,12 +414,12 @@ RBJFilterSetCutoffD(RBJFilterD* filter, double cutoff)
 
 
 /* RBJFilterSetQ *******************************************************/
-Error_t 
+Error_t
 RBJFilterSetQ(RBJFilter* filter, float Q)
 {
-	filter->Q = Q;
-	RBJFilterUpdate(filter);
-	return NOERR;
+    filter->Q = Q;
+    RBJFilterUpdate(filter);
+    return NOERR;
 }
 
 Error_t
@@ -459,20 +459,20 @@ RBJFilterSetParamsD(RBJFilterD* filter,
 
 /* RBJFilterProcess ****************************************************/
 Error_t
-RBJFilterProcess(RBJFilter* 	filter,
-						float* 				outBuffer,
-						const float* 		inBuffer, 
-						unsigned 			n_samples)
+RBJFilterProcess(RBJFilter*     filter,
+                        float*              outBuffer,
+                        const float*        inBuffer,
+                        unsigned            n_samples)
 {
-	BiquadFilterProcess(filter->biquad,outBuffer,inBuffer,n_samples);
-	return NOERR;
+    BiquadFilterProcess(filter->biquad,outBuffer,inBuffer,n_samples);
+    return NOERR;
 }
 
 Error_t
 RBJFilterProcessD(RBJFilterD*   filter,
                   double*       outBuffer,
                   const double* inBuffer,
-                  unsigned 		n_samples)
+                  unsigned      n_samples)
 {
     BiquadFilterProcessD(filter->biquad,outBuffer,inBuffer,n_samples);
     return NOERR;

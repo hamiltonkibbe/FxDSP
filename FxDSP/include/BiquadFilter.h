@@ -26,22 +26,22 @@ typedef struct BiquadFilterD BiquadFilterD;
 /** Create a new BiquadFilter
  *
  * @details Allocates memory and returns an initialized BiquadFilter.
- *          Play nice and call BiquadFilterFree on the filter when 
+ *          Play nice and call BiquadFilterFree on the filter when
  *          you're done with it.
  *
  * @param bCoeff    Numerator coefficients [b0, b1, b2]
  * @param aCoeff    Denominator coefficients [a1, a2]
  * @return          An initialized BiquadFilter
  */
-BiquadFilter* 
+BiquadFilter*
 BiquadFilterInit(const float* bCoeff, const float* aCoeff);
 
 BiquadFilterD*
 BiquadFilterInitD(const double *bCoeff, const double *aCoeff);
 
-    
+
 /** Free memory associated with a BiquadFilter
- *  
+ *
  * @details release all memory allocated by BiquadFilterInit for the
  *          supplied filter.
  * @param filter    BiquadFilter to free.
@@ -53,9 +53,9 @@ BiquadFilterFree(BiquadFilter* filter);
 Error_t
 BiquadFilterFreeD(BiquadFilterD* filter);
 
-    
+
 /** Flush filter state buffers
- *  
+ *
  * @param filter    BiquadFilter to flush.
  * @return          Error code, 0 on success
  */
@@ -65,7 +65,7 @@ BiquadFilterFlush(BiquadFilter* filter);
 Error_t
 BiquadFilterFlushD(BiquadFilterD* filter);
 
-    
+
 /** Filter a buffer of samples
  * @details Uses a DF-II biquad implementation to filter input samples
  *
@@ -96,7 +96,7 @@ BiquadFilterProcessD(BiquadFilterD  *filter,
  */
 float
 BiquadFilterTick(BiquadFilter* filter, float in_sample);
-    
+
 double
 BiquadFilterTickD(BiquadFilterD* filter, double in_sample);
 

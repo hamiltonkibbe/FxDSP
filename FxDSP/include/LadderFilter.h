@@ -4,8 +4,8 @@
  * @copyright   2014 Hamilton Kibbe. All rights reserved.
  * @brief       VA Moog VCF
  *
- * A Virtual Analog implementation of the Moog Ladder Filter. Based on 
- * "Non-Linear Digital Implementation of the Moog Ladder Filter" by Antti 
+ * A Virtual Analog implementation of the Moog Ladder Filter. Based on
+ * "Non-Linear Digital Implementation of the Moog Ladder Filter" by Antti
  * Huovilainen
  *
  */
@@ -30,21 +30,21 @@ static const float Q = 1.609e-19;
 typedef struct LadderFilter LadderFilter;
 
 
-/** Initialize a Ladder Filter 
+/** Initialize a Ladder Filter
  *
- *  @details allocates memory on the heap for the filter. Make sure to call 
+ *  @details allocates memory on the heap for the filter. Make sure to call
  *  LadderFilterFree when you're finished.
  *
  */
-LadderFilter* 
+LadderFilter*
 LadderFilterInit(float _sample_rate);
 
 
-Error_t 
-LadderFilterFree(LadderFilter* filter);   
+Error_t
+LadderFilterFree(LadderFilter* filter);
 
 
-Error_t  
+Error_t
 LadderFilterFlush(LadderFilter* filter);
 
 
@@ -60,12 +60,12 @@ LadderFilterSetCutoff(LadderFilter *filter, float _cutoff);
 
 
 Error_t
-LadderFilterSetResonance(LadderFilter *filter, 
+LadderFilterSetResonance(LadderFilter *filter,
                                 float               _resonance);
 
 
 Error_t
-LadderFilterSetTemperature(LadderFilter   *filter, 
+LadderFilterSetTemperature(LadderFilter   *filter,
                                   float                 tempC);
 
 

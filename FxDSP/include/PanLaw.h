@@ -17,7 +17,7 @@ extern "C" {
 
 /** Calculate linear pan channel gains
  *
- * Use a linear curve to mix between two sources. Results in a peak at the 
+ * Use a linear curve to mix between two sources. Results in a peak at the
  * center.
  *
  * @param control   Pan amount. Must be between 0 (hard left) and 1 (hard right)
@@ -47,7 +47,7 @@ equal_power_3dB_pan(float control, float *l_gain, float *r_gain);
 Error_t
 equal_power_3dB_panD(double control, double *l_gain, double *r_gain);
 
-    
+
 /** Calculate 6dB Equal-Power pan channel gains
  *
  * Use an equal-power curve to mix between two sources. Results in both
@@ -63,8 +63,8 @@ equal_power_6dB_pan(float control, float *l_gain, float *r_gain);
 
 Error_t
 equal_power_6dB_panD(double control, double *l_gain, double *r_gain);
-    
-    
+
+
 #ifdef __cplusplus
 }
 #endif

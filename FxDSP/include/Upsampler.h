@@ -1,4 +1,4 @@
-/** 
+/**
  * @file Upsampler.h
  * @author Hamilton Kibbe
  * @copyright 2012 Hamilton Kibbe
@@ -34,9 +34,9 @@ UpsamplerInit(ResampleFactor_t factor);
 UpsamplerD*
 UpsamplerInitD(ResampleFactor_t factor);
 
-    
+
 /** Free memory associated with a Upsampler
- *  
+ *
  * @details release all memory allocated by Upsampler for the
  *          supplied filter.
  * @param upsampler Upsampler to free.
@@ -47,10 +47,10 @@ UpsamplerFree(Upsampler* upsampler);
 
 Error_t
 UpsamplerFreeD(UpsamplerD* upsampler);
-    
-    
+
+
 /** Flush upsampler state buffers
- *  
+ *
  * @param upsampler Upsampler to flush.
  * @return          Error code, 0 on success
  */
@@ -59,7 +59,7 @@ UpsamplerFlush(Upsampler* upsampler);
 
 Error_t
 UpsamplerFlushD(UpsamplerD* upsampler);
-    
+
 
 /** Upsample a buffer of samples
  *
@@ -76,15 +76,15 @@ UpsamplerProcess(Upsampler*     upsampler,
                  float*         outBuffer,
                  const float*   inBuffer,
                  unsigned       n_samples);
-    
+
 Error_t
 UpsamplerProcessD(UpsamplerD*   upsampler,
                  double*        outBuffer,
                  const double*  inBuffer,
                  unsigned       n_samples);
-    
-    
-    
+
+
+
 #ifdef __cplusplus
 }
 #endif

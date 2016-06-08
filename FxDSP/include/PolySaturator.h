@@ -48,10 +48,10 @@ PolySaturatorProcess(PolySaturator* saturator,
                      unsigned       n_samples);
 
 Error_t
-PolySaturatorProcessD(PolySaturatorD*   saturator,
-                      double*           out_buffer,
-                      const double*     in_buffer,
-                      unsigned          n_samples);
+PolySaturatorProcessD(PolySaturatorD* saturator,
+                      double*         out_buffer,
+                      const double*   in_buffer,
+                      unsigned        n_samples);
 
 
 float

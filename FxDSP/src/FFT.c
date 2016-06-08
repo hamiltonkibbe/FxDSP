@@ -145,19 +145,19 @@ FFTInit(unsigned length)
     FFTConfig* fft = (FFTConfig*)malloc(sizeof(FFTConfig));
     float* split_realp = (float*)malloc(length * sizeof(float));
     float* split2_realp = (float*)malloc(length * sizeof(float));
-    
+
     if (fft && split_realp && split2_realp)
     {
         fft->length = length;
         fft->scale = 1.0 / (fft->length);
         fft->log2n = log2f(fft->length);
-        
+
         // Store these consecutively in memory
         fft->split.realp = split_realp;
         fft->split2.realp = split2_realp;
         fft->split.imagp = fft->split.realp + (fft->length / 2);
         fft->split2.imagp = fft->split2.realp + (fft->length / 2);
-        
+
 #ifdef USE_FFTW_FFT
         fftwf_complex* c = (fftwf_complex*) fftwf_malloc(sizeof(fftwf_complex) * length);
         float* r = (float*) fftwf_malloc(sizeof(float) * length);
@@ -180,16 +180,16 @@ FFTInit(unsigned length)
         ClearBufferD(fft->setup.w, wlen);
         ClearBufferD(fft->setup.buffer, fft->length + 1);
         ClearBuffer(fft->setup.fbuffer, fft->length + 1);
-        
+
 #elif defined(USE_APPLE_FFT)
         fft->setup = vDSP_create_fftsetup(fft->log2n, FFT_RADIX2);
 #endif
         ClearBuffer(split_realp, fft->length);
         ClearBuffer(split2_realp, fft->length);
-        
+
         return fft;
     }
-    
+
     else
     {
         // Cleanup
@@ -211,19 +211,19 @@ FFTInitD(unsigned length)
     FFTConfigD* fft = (FFTConfigD*)malloc(sizeof(FFTConfigD));
     double* split_realp = (double*)malloc(length * sizeof(double));
     double* split2_realp = (double*)malloc(length * sizeof(double));
-    
+
     if (fft && split_realp && split2_realp)
     {
         fft->length = length;
         fft->scale = 1.0 / (fft->length);
         fft->log2n = log2f(fft->length);
-        
+
         // Store these consecutively in memory
         fft->split.realp = split_realp;
         fft->split2.realp = split2_realp;
         fft->split.imagp = fft->split.realp + (fft->length / 2);
         fft->split2.imagp = fft->split2.realp + (fft->length / 2);
-        
+
 #ifdef USE_FFTW_FFT
         fftw_complex* c = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * length);
         double* r = (double*) fftw_malloc(sizeof(double) * length);
@@ -243,16 +243,16 @@ FFTInitD(unsigned length)
         fft->setup.ip[0] = fft->setup.ip[1] = 0;
         ClearBufferD(fft->setup.w, wlen);
         ClearBufferD(fft->setup.buffer, fft->length);
-        
+
 #elif defined(USE_APPLE_FFT)
         fft->setup = vDSP_create_fftsetupD(fft->log2n, FFT_RADIX2);
 #endif
         ClearBufferD(split_realp, fft->length);
         ClearBufferD(split2_realp, fft->length);
-        
+
         return fft;
     }
-    
+
     else
     {
         // Cleanup
@@ -355,16 +355,16 @@ FFT_R2C(FFTConfig*      fft,
     fftwf_execute_dft_r2c(fft->setup.forward_plan, (float*)inBuffer, temp);
     split_complex(real, imag, (const float*)temp, fft->length);
 #elif defined(USE_OOURA_FFT)
-    
+
     float* buf = fft->setup.fbuffer;
     float* end = fft->setup.fbuffer + fft->length;
     float* re = real;
     float* im = imag;
-    
+
     FloatToDouble(fft->setup.buffer, inBuffer, fft->length);
     rdft(fft->length, 1, fft->setup.buffer, fft->setup.ip, fft->setup.w);
     DoubleToFloat(fft->setup.fbuffer, fft->setup.buffer, fft->length);
-    
+
     while (buf < end)
     {
         *re++ = *buf++;
@@ -374,17 +374,17 @@ FFT_R2C(FFTConfig*      fft,
     imag[0] = 0.0;
 #elif defined(USE_APPLE_FFT)
     FFTSplitComplex out = {.realp = real, .imagp = imag};
-    
+
     // convert real input to split complex
     vDSP_ctoz((FFTComplex*)inBuffer, 2, &out, 1, (fft->length/2));
-    
+
     // Calculate FFT of the two signals
     vDSP_fft_zrip(fft->setup, &out, 1, fft->log2n, FFT_FORWARD);
     out.realp[fft->length / 2 - 1] = out.imagp[0];
     out.imagp[0] = 0.0;
     VectorScalarMultiply(real, real, 0.5, fft->length/2);
     VectorScalarMultiply(imag, imag, 0.5, fft->length/2);
-    
+
 #endif
     return NOERR;
 }
@@ -417,17 +417,17 @@ FFT_R2CD(FFTConfigD*    fft,
     imag[0] = 0.0;
 #elif defined(USE_APPLE_FFT)
     FFTSplitComplexD out = {.realp = real, .imagp = imag};
-    
+
     // convert real input to split complex
     vDSP_ctozD((FFTComplexD*)inBuffer, 2, &out, 1, (fft->length/2));
-    
+
     // Calculate FFT of the two signals
     vDSP_fft_zripD(fft->setup, &out, 1, fft->log2n, FFT_FORWARD);
     out.realp[fft->length / 2 - 1] = out.imagp[0];
     out.imagp[0] = 0.0;
     VectorScalarMultiplyD(real, real, 0.5, fft->length/2);
     VectorScalarMultiplyD(imag, imag, 0.5, fft->length/2);
-    
+
 #endif
     return NOERR;
 }
@@ -444,31 +444,31 @@ FFT_IR_R2C(FFTConfig*       fft,
     split_complex(out.realp, out.imagp, (const float*)temp, fft->length);
     out.imagp[0] = ((float*)temp)[fft->length];
 #elif defined(USE_OOURA_FFT)
-    
+
     float* buf = fft->setup.fbuffer;
     float* end = fft->setup.fbuffer + fft->length;
     float* re = out.realp;
     float* im = out.imagp;
-    
+
     FloatToDouble(fft->setup.buffer, inBuffer, fft->length);
     rdft(fft->length, 1, fft->setup.buffer, fft->setup.ip, fft->setup.w);
     DoubleToFloat(fft->setup.fbuffer, fft->setup.buffer, fft->length);
-    
+
     while (buf < end)
     {
         *re++ = *buf++;
         *im++ = -(*buf++);
     }
 #elif defined(USE_APPLE_FFT)
-    
+
     // convert real input to split complex
     vDSP_ctoz((FFTComplex*)inBuffer, 2, &out, 1, (fft->length/2));
-    
+
     // Calculate FFT of the two signals
     vDSP_fft_zrip(fft->setup, &out, 1, fft->log2n, FFT_FORWARD);
     VectorScalarMultiply(out.realp, out.realp, 0.5, fft->length/2);
     VectorScalarMultiply(out.imagp, out.imagp, 0.5, fft->length/2);
-    
+
 #endif
     return NOERR;
 }
@@ -479,7 +479,7 @@ FFT_IR_R2CD(FFTConfigD*         fft,
             const double*       inBuffer,
             FFTSplitComplexD    out)
 {
-    
+
 #ifdef USE_FFTW_FFT
     FFTComplexD temp[fft->length];
     fftw_execute_dft_r2c(fft->setup.forward_plan, (double*)inBuffer, temp);
@@ -498,15 +498,15 @@ FFT_IR_R2CD(FFTConfigD*         fft,
         *im++ = -(*buf++);
     }
 #elif defined(USE_APPLE_FFT)
-    
+
     // convert real input to split complex
     vDSP_ctozD((FFTComplexD*)inBuffer, 2, &out, 1, (fft->length/2));
-    
+
     // Calculate FFT of the two signals
     vDSP_fft_zripD(fft->setup, &out, 1, fft->log2n, FFT_FORWARD);
     VectorScalarMultiplyD(out.realp, out.realp, 0.5, fft->length/2);
     VectorScalarMultiplyD(out.imagp, out.imagp, 0.5, fft->length/2);
-    
+
 #endif
     return NOERR;
 }
@@ -532,13 +532,13 @@ IFFT_C2R(FFTConfig*    fft,
     float* im = (float*)inImag;
     float* buf = fft->setup.fbuffer;
     float* end = fft->setup.fbuffer + fft->length;
-    
+
     while (buf != end)
     {
      *buf++ = *re++;
      *buf++ = -(*im++);
     }
-    
+
     FloatToDouble(fft->setup.buffer, fft->setup.fbuffer, fft->length);
     fft->setup.buffer[1] = (double)inReal[fft->length / 2 - 1];
     rdft(fft->length, -1, fft->setup.buffer, fft->setup.ip, fft->setup.w);
@@ -576,7 +576,7 @@ IFFT_C2RD(FFTConfigD*   fft,
 #elif defined(USE_OOURA_FFT)
     double* re = (double*)inReal;
     double* im = (double*)inImag;
-    
+
     double* buf = fft->setup.buffer;
     double* end = fft->setup.buffer + fft->length;
     while (buf != end)
@@ -588,13 +588,13 @@ IFFT_C2RD(FFTConfigD*   fft,
     rdft(fft->length, -1, fft->setup.buffer, fft->setup.ip, fft->setup.w);
     VectorScalarMultiplyD(out, fft->setup.buffer, fft->scale, fft->length);
 
-    
+
 #elif defined(USE_APPLE_FFT)
     // Convert input to split complex format
     CopyBufferD(fft->split.realp, inReal, fft->length/2.);
     CopyBufferD(fft->split.imagp, inImag, fft->length/2.);
     fft->split.imagp[0] = inReal[fft->length/2-1];
-    
+
     // Inverse Real FFT
     vDSP_fft_zripD(fft->setup, &fft->split, 1, fft->log2n, FFT_INVERSE);
     vDSP_ztocD(&fft->split, 1, (FFTComplexD*)out, 2, fft->length/2);
@@ -614,11 +614,11 @@ FFTConvolve(FFTConfig*  fft,
             unsigned    in2_length,
             float       *dest)
 {
-    
+
 #if defined(USE_FFTW_FFT)
-    
+
     FFTComplex temp[fft->length];
-    
+
     // Padded input buffers
     float in1_padded[fft->length];
     float in2_padded[fft->length];
@@ -626,20 +626,20 @@ FFTConvolve(FFTConfig*  fft,
     ClearBuffer(in2_padded, fft->length);
     ClearBuffer(fft->split.realp, fft->length);
     ClearBuffer(fft->split2.realp, fft->length);
-    
+
     // Zero pad the input buffers to FFT length
     CopyBuffer(in1_padded, in1, in1_length);
     CopyBuffer(in2_padded, in2, in2_length);
-    
+
     fftwf_execute_dft_r2c(fft->setup.forward_plan, (float*)in1_padded, temp);
     float nyquist1 = ((float*)temp)[fft->length];
     split_complex(fft->split.realp, fft->split.imagp, (const float*)temp, fft->length);
-    
+
     fftwf_execute_dft_r2c(fft->setup.forward_plan, (float*)in2_padded, temp);
     float nyquist2 = ((float*)temp)[fft->length];
     split_complex(fft->split2.realp, fft->split2.imagp, (const float*)temp, fft->length);
-    
-    
+
+
     float nyquist_out = nyquist1 * nyquist2;
     ComplexMultiply(fft->split.realp, fft->split.imagp, fft->split.realp,
                     fft->split.imagp, fft->split2.realp, fft->split2.imagp,
@@ -648,22 +648,22 @@ FFTConvolve(FFTConfig*  fft,
     ((float*)temp)[fft->length] = nyquist_out;
     fftwf_execute_dft_c2r(fft->setup.inverse_plan, temp, dest);
     VectorScalarMultiply(dest, dest, fft->scale, fft->length);
-    
-    
+
+
 #elif defined(USE_OOURA_FFT)
-    
+
     float* buf = fft->setup.fbuffer;
     float* end = fft->setup.fbuffer + fft->length;
     float* re = fft->split.realp;
     float* im = fft->split.imagp;
     float* re2 = fft->split2.realp;
     float* im2 = fft->split2.imagp;
-    
+
     ClearBufferD(fft->setup.buffer, fft->length);
     FloatToDouble(fft->setup.buffer, in1, in1_length);
     rdft(fft->length, 1, fft->setup.buffer, fft->setup.ip, fft->setup.w);
     DoubleToFloat(fft->setup.fbuffer, fft->setup.buffer, fft->length);
-    
+
     while (buf < end)
     {
         *re++ = *buf++;
@@ -671,18 +671,18 @@ FFTConvolve(FFTConfig*  fft,
     }
 
     buf = fft->setup.fbuffer;
-    
+
     ClearBufferD(fft->setup.buffer, fft->length);
     FloatToDouble(fft->setup.buffer, in2, in2_length);
     rdft(fft->length, 1, fft->setup.buffer, fft->setup.ip, fft->setup.w);
     DoubleToFloat(fft->setup.fbuffer, fft->setup.buffer, fft->length);
-    
+
     while (buf < end)
     {
         *re2++ = *buf++;
         *im2++ = -(*buf++);
     }
-    
+
     float nyquist_out = fft->split.imagp[0] * fft->split2.imagp[0];
     fft->split.imagp[0] = 0.0;
     fft->split2.imagp[0] = 0.0;
@@ -690,26 +690,26 @@ FFTConvolve(FFTConfig*  fft,
                     fft->split.imagp, fft->split2.realp, fft->split2.imagp,
                     fft->length/2);
     fft->split.imagp[0] = -nyquist_out;
-    
-    
+
+
     re = fft->split.realp;
     im = fft->split.imagp;
     buf = fft->setup.fbuffer;
-    
+
     while (buf != end)
     {
         *buf++ = *re++;
         *buf++ = -(*im++);
     }
-    
+
     FloatToDouble(fft->setup.buffer, fft->setup.fbuffer, fft->length);
     rdft(fft->length, -1, fft->setup.buffer, fft->setup.ip, fft->setup.w);
     DoubleToFloat(fft->setup.fbuffer, fft->setup.buffer, fft->length);
     VectorScalarMultiply(dest, fft->setup.fbuffer, fft->scale, fft->length);
-    
-    
+
+
 #elif defined(USE_APPLE_FFT)
-    
+
     // Padded input buffers
     float in1_padded[fft->length];
     float in2_padded[fft->length];
@@ -717,31 +717,31 @@ FFTConvolve(FFTConfig*  fft,
     ClearBuffer(in2_padded, fft->length);
     ClearBuffer(fft->split.realp, fft->length);
     ClearBuffer(fft->split2.realp, fft->length);
-    
+
     // Zero pad the input buffers to FFT length
     CopyBuffer(in1_padded, in1, in1_length);
     CopyBuffer(in2_padded, in2, in2_length);
-    
+
     // convert real input to split complex
     vDSP_ctoz((FFTComplex*)in1_padded, 2, &fft->split, 1, (fft->length/2));
     vDSP_ctoz((FFTComplex*)in2_padded, 2, &fft->split2, 1, (fft->length/2));
-    
+
     // Calculate FFT of the two signals
     vDSP_fft_zrip(fft->setup, &fft->split, 1, fft->log2n, FFT_FORWARD);
     vDSP_fft_zrip(fft->setup, &fft->split2, 1, fft->log2n, FFT_FORWARD);
-    
+
     // Scale FFT
     VectorScalarMultiply(fft->split.realp, fft->split.realp, 0.5, fft->length);
     VectorScalarMultiply(fft->split2.realp, fft->split2.realp, 0.5, fft->length);
-    
-    
+
+
     // Unpack nyquist, multiply, and re-pack for ifft
     float nyquist_out = fft->split.imagp[0] * fft->split2.imagp[0];
     fft->split.imagp[0] = 0.0;
     fft->split2.imagp[0] = 0.0;
     vDSP_zvmul(&fft->split, 1, &fft->split2, 1, &fft->split, 1, fft->length/2, 1);
     fft->split.imagp[0] = nyquist_out;
-    
+
     // IFFT
     vDSP_fft_zrip(fft->setup, &fft->split, 1, fft->log2n, FFT_INVERSE);
     vDSP_ztoc(&fft->split, 1, (FFTComplex*)dest, 2, fft->length/2);
@@ -764,9 +764,9 @@ FFTConvolveD(FFTConfigD*    fft,
 {
 
 #if defined(USE_FFTW_FFT)
-    
+
     FFTComplexD temp[fft->length];
-    
+
     // Padded input buffers
     double in1_padded[fft->length];
     double in2_padded[fft->length];
@@ -774,31 +774,31 @@ FFTConvolveD(FFTConfigD*    fft,
     ClearBufferD(in2_padded, fft->length);
     ClearBufferD(fft->split.realp, fft->length);
     ClearBufferD(fft->split2.realp, fft->length);
-    
+
     // Zero pad the input buffers to FFT length
     CopyBufferD(in1_padded, in1, in1_length);
     CopyBufferD(in2_padded, in2, in2_length);
-    
+
     fftw_execute_dft_r2c(fft->setup.forward_plan, (double*)in1_padded, temp);
     double nyquist1 = ((double*)temp)[fft->length];
     split_complexD(fft->split.realp, fft->split.imagp, (const double*)temp, fft->length);
-    
+
     fftw_execute_dft_r2c(fft->setup.forward_plan, (double*)in2_padded, temp);
     double nyquist2 = ((double*)temp)[fft->length];
     split_complexD(fft->split2.realp, fft->split2.imagp, (const double*)temp, fft->length);
 
-    
+
     double nyquist_out = nyquist1 * nyquist2;
     ComplexMultiplyD(fft->split.realp, fft->split.imagp, fft->split.realp,
                      fft->split.imagp, fft->split2.realp, fft->split2.imagp,
                      fft->length / 2);
-    
-    
+
+
     interleave_complexD((double*)temp, fft->split.realp, fft->split.imagp, fft->length);
     ((double*)temp)[fft->length] = nyquist_out;
     fftw_execute_dft_c2r(fft->setup.inverse_plan, temp, dest);
     VectorScalarMultiplyD(dest, dest, fft->scale, fft->length);
-    
+
 #elif defined(USE_OOURA_FFT)
     double* buf = fft->setup.buffer;
     double* end = fft->setup.buffer + fft->length;
@@ -806,29 +806,29 @@ FFTConvolveD(FFTConfigD*    fft,
     double* im = fft->split.imagp;
     double* re2 = fft->split2.realp;
     double* im2 = fft->split2.imagp;
-    
+
     ClearBufferD(fft->setup.buffer, fft->length);
     CopyBufferD(fft->setup.buffer, (const double*)in1, in1_length);
     rdft(fft->length, 1, fft->setup.buffer, fft->setup.ip, fft->setup.w);
-    
+
     while (buf < end)
     {
         *re++ = *buf++;
         *im++ = -(*buf++);
     }
-    
+
     buf = fft->setup.buffer;
     ClearBufferD(fft->setup.buffer, fft->length);
     CopyBufferD(fft->setup.buffer, (const double*)in2, in2_length);
     rdft(fft->length, 1, fft->setup.buffer, fft->setup.ip, fft->setup.w);
-    
+
     while (buf < end)
     {
         *re2++ = *buf++;
         *im2++ = -(*buf++);
     }
-    
-    
+
+
     double nyquist_out = fft->split.imagp[0] * fft->split2.imagp[0];
     fft->split.imagp[0] = 0.0;
     fft->split2.imagp[0] = 0.0;
@@ -837,7 +837,7 @@ FFTConvolveD(FFTConfigD*    fft,
                      fft->length / 2);
     fft->split.imagp[0] = -nyquist_out;
 
-    
+
     re = fft->split.realp;
     im = fft->split.imagp;
     buf = fft->setup.buffer;
@@ -850,8 +850,8 @@ FFTConvolveD(FFTConfigD*    fft,
 
     rdft(fft->length, -1, fft->setup.buffer, fft->setup.ip, fft->setup.w);
     VectorScalarMultiplyD(dest, fft->setup.buffer, fft->scale, fft->length);
-    
-    
+
+
 #elif defined(USE_APPLE_FFT)
     // Padded input buffers
     double in1_padded[fft->length];
@@ -860,31 +860,31 @@ FFTConvolveD(FFTConfigD*    fft,
     ClearBufferD(in2_padded, fft->length);
     ClearBufferD(fft->split.realp, fft->length);
     ClearBufferD(fft->split2.realp, fft->length);
-    
+
     // Zero pad the input buffers to FFT length
     CopyBufferD(in1_padded, in1, in1_length);
     CopyBufferD(in2_padded, in2, in2_length);
-    
+
     // convert real input to split complex
     vDSP_ctozD((FFTComplexD*)in1_padded, 2, &fft->split, 1, (fft->length/2));
     vDSP_ctozD((FFTComplexD*)in2_padded, 2, &fft->split2, 1, (fft->length/2));
-    
+
     // Calculate FFT of the two signals
     vDSP_fft_zripD(fft->setup, &fft->split, 1, fft->log2n, FFT_FORWARD);
     vDSP_fft_zripD(fft->setup, &fft->split2, 1, fft->log2n, FFT_FORWARD);
-    
+
     // Scale FFT
     VectorScalarMultiplyD(fft->split.realp, fft->split.realp, 0.5, fft->length);
     VectorScalarMultiplyD(fft->split2.realp, fft->split2.realp, 0.5, fft->length);
-    
-    
+
+
     // Unpack nyquist, multiply, and re-pack for ifft
     double nyquist_out = fft->split.imagp[0] * fft->split2.imagp[0];
     fft->split.imagp[0] = 0.0;
     fft->split2.imagp[0] = 0.0;
     vDSP_zvmulD(&fft->split, 1, &fft->split2, 1, &fft->split, 1, fft->length/2, 1);
     fft->split.imagp[0] = nyquist_out;
-    
+
     // IFFT
     vDSP_fft_zripD(fft->setup, &fft->split, 1, fft->log2n, FFT_INVERSE);
     vDSP_ztocD(&fft->split, 1, (FFTComplexD*)dest, 2, fft->length/2);
@@ -907,94 +907,94 @@ FFTFilterConvolve(FFTConfig*        fft,
 
 
 #ifdef USE_FFTW_FFT
-    
+
     FFTComplex temp[fft->length];
-    
+
     // Padded input buffers
     float in_padded[fft->length];
 
     ClearBuffer(in_padded, fft->length);
     ClearBuffer(fft->split.realp, fft->length);
     CopyBuffer(in_padded, in, in_length);
-    
+
     fftwf_execute_dft_r2c(fft->setup.forward_plan, (float*)in_padded, temp);
     float nyquist = ((float*)temp)[fft->length];
     split_complex(fft->split.realp, fft->split.imagp, (const float*)temp, fft->length);
-    
-    
+
+
     float nyquist_out = nyquist * fft_ir.imagp[0];
     ComplexMultiply(fft->split.realp, fft->split.imagp, fft->split.realp,
                     fft->split.imagp, fft_ir.realp, fft_ir.imagp,
                     fft->length/2);
-    
+
     interleave_complex((float*)temp, fft->split.realp, fft->split.imagp, fft->length);
     ((float*)temp)[fft->length] = nyquist_out;
     fftwf_execute_dft_c2r(fft->setup.inverse_plan, temp, dest);
     VectorScalarMultiply(dest, dest, fft->scale, fft->length);
-    
+
 
 #elif defined(USE_OOURA_FFT)
-    
+
     float* buf = fft->setup.fbuffer;
     float* end = fft->setup.fbuffer + fft->length;
     float* re = fft->split.realp;
     float* im = fft->split.imagp;
-    
+
     ClearBufferD(fft->setup.buffer, fft->length);
     FloatToDouble(fft->setup.buffer, in, in_length);
     rdft(fft->length, 1, fft->setup.buffer, fft->setup.ip, fft->setup.w);
     DoubleToFloat(fft->setup.fbuffer, fft->setup.buffer, fft->length);
-    
+
     while (buf < end)
     {
         *re++ = *buf++;
         *im++ = -(*buf++);
     }
-    
+
     float nyquist_out = fft->split.imagp[0] * fft_ir.imagp[0];
     fft->split.imagp[0] = 0.0;
     ComplexMultiply(fft->split.realp, fft->split.imagp, fft->split.realp, fft->split.imagp, fft_ir.realp, fft_ir.imagp, fft->length/2);
     fft->split.imagp[0] = -nyquist_out;
-    
-    
+
+
     re = fft->split.realp;
     im = fft->split.imagp;
     buf = fft->setup.fbuffer;
-    
+
     while (buf != end)
     {
         *buf++ = *re++;
         *buf++ = -(*im++);
     }
-    
+
     FloatToDouble(fft->setup.buffer, fft->setup.fbuffer, fft->length);
     rdft(fft->length, -1, fft->setup.buffer, fft->setup.ip, fft->setup.w);
     DoubleToFloat(fft->setup.fbuffer, fft->setup.buffer, fft->length);
     VectorScalarMultiply(dest, fft->setup.fbuffer, fft->scale, fft->length);
 #elif defined(USE_APPLE_FFT)
-    
+
     // Padded buffer
     float in_padded[fft->length];
-    
+
     // Zero pad the input to FFT length
     ClearBuffer(in_padded, fft->length);
     CopyBuffer(in_padded, in, in_length);
-    
+
     // convert real input to split complex
     vDSP_ctoz((FFTComplex*)in_padded, 2, &fft->split, 1, (fft->length/2));
-    
+
     // Calculate FFT of the two signals
     vDSP_fft_zrip(fft->setup, &fft->split, 1, fft->log2n, FFT_FORWARD);
-    
+
     // Scale FFT
     VectorScalarMultiply(fft->split.realp, fft->split.realp, 0.5, fft->length);
-    
+
     // Unpack nyquist, multiply, and re-pack for ifft
     float nyquist_out = fft->split.imagp[0] * fft_ir.imagp[0];
     fft->split.imagp[0] = 0.0;
     vDSP_zvmul(&fft->split, 1, &fft_ir, 1, &fft->split, 1, fft->length/2, 1);
     fft->split.imagp[0] = nyquist_out;
-    
+
     // IFFT
     vDSP_fft_zrip(fft->setup, &fft->split, 1, fft->log2n, FFT_INVERSE);
     vDSP_ztoc(&fft->split, 1, (FFTComplex*)dest, 2, fft->length/2);
@@ -1002,7 +1002,7 @@ FFTFilterConvolve(FFTConfig*        fft,
 #endif
     return NOERR;
 }
-    
+
 
 Error_t
 FFTFilterConvolveD(FFTConfigD*      fft,
@@ -1012,27 +1012,27 @@ FFTFilterConvolveD(FFTConfigD*      fft,
                    double*          dest)
 {
 
-    
+
 #if defined(USE_FFTW_FFT)
     FFTComplexD temp[fft->length];
-    
+
     // Padded input buffers
     double in_padded[fft->length];
     ClearBufferD(in_padded, fft->length);
     ClearBufferD(fft->split.realp, fft->length);
     CopyBufferD(in_padded, in, in_length);
-    
+
     fftw_execute_dft_r2c(fft->setup.forward_plan, (double*)in_padded, temp);
     double nyquist = ((double*)temp)[fft->length];
     split_complexD(fft->split.realp, fft->split.imagp, (const double*)temp, fft->length);
-    
-    
+
+
     double nyquist_out = nyquist * fft_ir.imagp[0];
     ComplexMultiplyD(fft->split.realp, fft->split.imagp, fft->split.realp,
                      fft->split.imagp, fft_ir.realp, fft_ir.imagp,
                      fft->length / 2);
-    
-    
+
+
     interleave_complexD((double*)temp, fft->split.realp, fft->split.imagp, fft->length);
     ((double*)temp)[fft->length] = nyquist_out;
     fftw_execute_dft_c2r(fft->setup.inverse_plan, temp, dest);
@@ -1048,14 +1048,14 @@ FFTFilterConvolveD(FFTConfigD*      fft,
     ClearBufferD(fft->setup.buffer, fft->length);
     CopyBufferD(fft->setup.buffer, in, in_length);
     rdft(fft->length, 1, fft->setup.buffer, fft->setup.ip, fft->setup.w);
-    
+
     while (buf < end)
     {
         *re++ = *buf++;
         *im++ = -(*buf++);
     }
-    
-    
+
+
     double nyquist_out = fft->split.imagp[0] * fft_ir.imagp[0];
     fft->split.imagp[0] = 0.0;
 
@@ -1063,44 +1063,44 @@ FFTFilterConvolveD(FFTConfigD*      fft,
                      fft->split.imagp, fft_ir.realp, fft_ir.imagp,
                      fft->length/2);
     fft->split.imagp[0] = -nyquist_out;
-    
-    
+
+
     re = fft->split.realp;
     im = fft->split.imagp;
     buf = fft->setup.buffer;
-    
+
     while (buf != end)
     {
         *buf++ = *re++;
         *buf++ = -(*im++);
     }
-    
+
     rdft(fft->length, -1, fft->setup.buffer, fft->setup.ip, fft->setup.w);
     VectorScalarMultiplyD(dest, fft->setup.buffer, fft->scale, fft->length);
 #elif defined(USE_APPLE_FFT)
-    
+
     // Padded buffer
     double in_padded[fft->length];
-    
+
     // Zero pad the input to FFT length
     ClearBufferD(in_padded, fft->length);
     CopyBufferD(in_padded, in, in_length);
-    
+
     // convert real input to split complex
     vDSP_ctozD((FFTComplexD*)in_padded, 2, &fft->split, 1, (fft->length/2));
-    
+
     // Calculate FFT of the two signals
     vDSP_fft_zripD(fft->setup, &fft->split, 1, fft->log2n, FFT_FORWARD);
-    
+
     // Scale FFT
     VectorScalarMultiplyD(fft->split.realp, fft->split.realp, 0.5, fft->length);
-    
+
     // Unpack nyquist, multiply, and re-pack for ifft
     double nyquist_out = fft->split.imagp[0] * fft_ir.imagp[0];
     fft->split.imagp[0] = 0.0;
     vDSP_zvmulD(&fft->split, 1, &fft_ir, 1, &fft->split, 1, fft->length/2, 1);
     fft->split.imagp[0] = nyquist_out;
-    
+
     // IFFT
     vDSP_fft_zripD(fft->setup, &fft->split, 1, fft->log2n, FFT_INVERSE);
     vDSP_ztocD(&fft->split, 1, (FFTComplexD*)dest, 2, fft->length/2);
@@ -1221,7 +1221,7 @@ rdft(int n, int isgn, double *a, int *ip, double *w)
     void rftbsub(int n, double *a, int nc, double *c);
     int nw, nc;
     double xi;
-    
+
     nw = ip[0];
     if (n > (nw << 2)) {
         nw = n >> 2;
@@ -1261,7 +1261,7 @@ makewt(int nw, int *ip, double *w)
     void bitrv2(int n, int *ip, double *a);
     int j, nwh;
     double delta, x, y;
-    
+
     ip[0] = nw;
     ip[1] = 1;
     if (nw > 2) {
@@ -1291,7 +1291,7 @@ makect(int nc, int *ip, double *c)
 {
     int j, nch;
     double delta;
-    
+
     ip[1] = nc;
     if (nc > 1) {
         nch = nc >> 1;
@@ -1314,7 +1314,7 @@ bitrv2(int n, int *ip, double *a)
 {
     int j, j1, k, k1, l, m, m2;
     double xr, xi, yr, yi;
-    
+
     ip[0] = 0;
     l = n;
     m = 1;
@@ -1417,7 +1417,7 @@ cftfsub(int n, double *a, double *w)
     void cftmdl(int n, int l, double *a, double *w);
     int j, j1, j2, j3, l;
     double x0r, x0i, x1r, x1i, x2r, x2i, x3r, x3i;
-    
+
     l = 2;
     if (n > 8) {
         cft1st(n, a, w);
@@ -1470,7 +1470,7 @@ cftbsub(int n, double *a, double *w)
     void cftmdl(int n, int l, double *a, double *w);
     int j, j1, j2, j3, l;
     double x0r, x0i, x1r, x1i, x2r, x2i, x3r, x3i;
-    
+
     l = 2;
     if (n > 8) {
         cft1st(n, a, w);
@@ -1522,7 +1522,7 @@ cft1st(int n, double *a, double *w)
     int j, k1, k2;
     double wk1r, wk1i, wk2r, wk2i, wk3r, wk3i;
     double x0r, x0i, x1r, x1i, x2r, x2i, x3r, x3i;
-    
+
     x0r = a[0] + a[2];
     x0i = a[1] + a[3];
     x1r = a[0] - a[2];
@@ -1628,7 +1628,7 @@ cftmdl(int n, int l, double *a, double *w)
     int j, j1, j2, j3, k, k1, k2, m, m2;
     double wk1r, wk1i, wk2r, wk2i, wk3r, wk3i;
     double x0r, x0i, x1r, x1i, x2r, x2i, x3r, x3i;
-    
+
     m = l << 2;
     for (j = 0; j < l; j += 2) {
         j1 = j + l;
@@ -1755,7 +1755,7 @@ rftfsub(int n, double *a, int nc, double *c)
 {
     int j, k, kk, ks, m;
     double wkr, wki, xr, xi, yr, yi;
-    
+
     m = n >> 1;
     ks = 2 * nc / m;
     kk = 0;
@@ -1781,7 +1781,7 @@ rftbsub(int n, double *a, int nc, double *c)
 {
     int j, k, kk, ks, m;
     double wkr, wki, xr, xi, yr, yi;
-    
+
     a[1] = -a[1];
     m = n >> 1;
     ks = 2 * nc / m;
@@ -1804,5 +1804,3 @@ rftbsub(int n, double *a, int nc, double *c)
 }
 
 #endif
-
-

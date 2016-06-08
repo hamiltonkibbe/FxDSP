@@ -26,7 +26,7 @@ struct MultibandFilter
     RBJFilter*  APF;
     float       lowCutoff;
     float       highCutoff;
-	float       sampleRate;
+    float       sampleRate;
 };
 
 struct MultibandFilterD
@@ -99,7 +99,7 @@ MultibandFilterFree(MultibandFilter* filter)
         free(filter);
         filter = NULL;
     }
-    
+
     return NOERR;
 }
 
@@ -116,7 +116,7 @@ MultibandFilterFreeD(MultibandFilterD* filter)
         free(filter);
         filter = NULL;
     }
-    
+
     return NOERR;
 }
 
@@ -132,7 +132,7 @@ MultibandFilterFlush(MultibandFilter* filter)
     LRFilterFlush(filter->HPA);
     LRFilterFlush(filter->HPB);
     RBJFilterFlush(filter->APF);
-    
+
     return NOERR;
 }
 
@@ -144,7 +144,7 @@ MultibandFilterFlushD(MultibandFilterD* filter)
     LRFilterFlushD(filter->HPA);
     LRFilterFlushD(filter->HPB);
     RBJFilterFlushD(filter->APF);
-    
+
     return NOERR;
 }
 
@@ -239,14 +239,14 @@ MultibandFilterProcess(MultibandFilter* filter,
 {
     float tempLow[n_samples];
     float tempHi[n_samples];
-    
+
     LRFilterProcess(filter->LPA, tempLow, inBuffer, n_samples);
     LRFilterProcess(filter->HPA, tempHi, inBuffer, n_samples);
-    
+
     RBJFilterProcess(filter->APF, lowOut, tempLow, n_samples);
     LRFilterProcess(filter->LPB, midOut, tempHi, n_samples);
     LRFilterProcess(filter->HPB, highOut, tempHi, n_samples);
-    
+
     return NOERR;
 }
 
@@ -261,13 +261,13 @@ MultibandFilterProcessD(MultibandFilterD*   filter,
 {
     double tempLow[n_samples];
     double tempHi[n_samples];
-    
+
     LRFilterProcessD(filter->LPA, tempLow, inBuffer, n_samples);
     LRFilterProcessD(filter->HPA, tempHi, inBuffer, n_samples);
-    
+
     RBJFilterProcessD(filter->APF, lowOut, tempLow, n_samples);
     LRFilterProcessD(filter->LPB, midOut, tempHi, n_samples);
     LRFilterProcessD(filter->HPB, highOut, tempHi, n_samples);
-    
+
     return NOERR;
 }

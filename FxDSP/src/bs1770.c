@@ -106,9 +106,9 @@ KWeightingFilterInit(float sample_rate)
 {
     float b[3] = {0.};
     float a[2] = {0.};
-    
+
     KWeightingFilter* filter = (KWeightingFilter*)malloc(sizeof(KWeightingFilter));
-    
+
     if (filter)
     {
         calc_prefilter(b, a, sample_rate);
@@ -116,7 +116,7 @@ KWeightingFilterInit(float sample_rate)
         calc_rlbfilter(b, a, sample_rate);
         filter->rlb_filter = BiquadFilterInit(b, a);
     }
-    
+
     return filter;
 }
 
@@ -125,9 +125,9 @@ KWeightingFilterInitD(double sample_rate)
 {
     double b[3] = {0.};
     double a[2] = {0.};
-    
+
     KWeightingFilterD* filter = (KWeightingFilterD*)malloc(sizeof(KWeightingFilterD));
-    
+
     if (filter)
     {
         calc_prefilterD(b, a, sample_rate);
@@ -135,7 +135,7 @@ KWeightingFilterInitD(double sample_rate)
         calc_rlbfilterD(b, a, sample_rate);
         filter->rlb_filter = BiquadFilterInitD(b, a);
     }
-    
+
     return filter;
 }
 
@@ -232,7 +232,7 @@ BS1770MeterInit(unsigned n_channels, float sample_rate)
             upsamplers[i] = UpsamplerInit(X4);
             buffers[i] = CircularBufferInit((unsigned)(2 * GATE_LENGTH_S * sample_rate));
         }
-        
+
         meter->sample_count = 0;
         meter->n_channels = n_channels;
         meter->gate_len = (unsigned)(GATE_LENGTH_S * sample_rate);
@@ -247,12 +247,12 @@ BS1770MeterInit(unsigned n_channels, float sample_rate)
         {
             free(meter);
         }
-        
+
         if (filters)
         {
             free(filters);
         }
-        
+
         if (upsamplers)
         {
             free(upsamplers);
@@ -273,7 +273,7 @@ BS1770MeterInitD(unsigned n_channels, double sample_rate)
     KWeightingFilterD** filters = (KWeightingFilterD**)malloc(n_channels * sizeof(KWeightingFilterD*));
     UpsamplerD** upsamplers = (UpsamplerD**)malloc(n_channels * sizeof(UpsamplerD*));
     CircularBufferD** buffers = (CircularBufferD**)malloc(n_channels * sizeof(CircularBufferD*));
-    
+
     if (meter && filters && upsamplers && buffers)
     {
         for (unsigned i = 0; i < n_channels; ++i)
@@ -298,12 +298,12 @@ BS1770MeterInitD(unsigned n_channels, double sample_rate)
         {
             free(meter);
         }
-        
+
         if (filters)
         {
             free(filters);
         }
-        
+
         if (upsamplers)
         {
             free(upsamplers);
@@ -331,21 +331,21 @@ BS1770MeterProcess(BS1770Meter*     meter,
     float os_sig[os_length];
     float gate[meter->gate_len];
     float sum = 0.0;
-    
+
     if (meter)
     {
         *loudness = 0.0;
-        
+
         for (unsigned i = 0; i < meter->n_channels; ++i)
         {
             // Calculate peak for each channel
             UpsamplerProcess(meter->upsamplers[i], os_sig, samples[i], n_samples);
             VectorAbs(os_sig, (const float*)os_sig, os_length);
             *peaks[i] = AmpToDb(VectorMax(os_sig, os_length));
-        
+
             KWeightingFilterProcess(meter->filters[i], filtered, samples[i], n_samples);
             CircularBufferWrite(meter->buffers[i], (const float*)filtered, n_samples);
-            
+
             if (CircularBufferCount(meter->buffers[i]) >= meter->gate_len)
             {
                 CircularBufferRead(meter->buffers[i], gate, meter->gate_len);
@@ -372,21 +372,21 @@ BS1770MeterProcessD(BS1770MeterD*   meter,
     double os_sig[os_length];
     double gate[meter->gate_len];
     double sum = 0.0;
-    
+
     if (meter)
     {
         *loudness = 0.0;
-        
+
         for (unsigned i = 0; i < meter->n_channels; ++i)
         {
             // Calculate peak for each channel
             UpsamplerProcessD(meter->upsamplers[i], os_sig, samples[i], n_samples);
             VectorAbsD(os_sig, (const double*)os_sig, os_length);
             *peaks[i] = AmpToDbD(VectorMaxD(os_sig, os_length));
-            
+
             KWeightingFilterProcessD(meter->filters[i], filtered, samples[i], n_samples);
             CircularBufferWriteD(meter->buffers[i], (const double*)filtered, n_samples);
-            
+
             if (CircularBufferCountD(meter->buffers[i]) >= meter->gate_len)
             {
                 CircularBufferReadD(meter->buffers[i], gate, meter->gate_len);
@@ -394,7 +394,7 @@ BS1770MeterProcessD(BS1770MeterD*   meter,
                 sum += CHANNEL_GAIN[i] * MeanSquareD(gate, meter->gate_len);
             }
         }
-        
+
         *loudness = -0.691 + 10 * log10(sum);
         return NOERR;
     }
@@ -465,11 +465,11 @@ calc_prefilter(float* b, float* a, float sample_rate)
         b[0] = 1.53512485958697;
         b[1] = -2.69169618940638;
         b[2] = 1.19839281085285;
-        
+
         a[0] = -1.69065929318241;
         a[1] = 0.73248077421585;
     }
-    
+
     else
     {
 
@@ -483,10 +483,10 @@ calc_prefilter(float* b, float* a, float sample_rate)
         float wS = sinf(wc);
         float wC = cosf(wc);
         float beta = sqrtf(A) / PREFILTER_Q;
-        
+
         // Normalize filter by a[0]
         float norm = (A+1) - ((A - 1) * wC) + (beta * wS);
-        
+
         a[0] = (2 * ((A - 1) - ((A + 1) * wC))) / norm;
         a[1] = ((A+1) - ((A - 1) * wC) - (beta * wS)) / norm;
         b[0] = (A * ((A + 1) + ((A - 1) * wC) + (beta * wS))) / norm;
@@ -506,11 +506,11 @@ calc_prefilterD(double* b, double* a, double sample_rate)
         b[0] = 1.53512485958697;
         b[1] = -2.69169618940638;
         b[2] = 1.19839281085285;
-        
+
         a[0] = -1.69065929318241;
         a[1] = 0.73248077421585;
     }
-    
+
     else
     {
         // Calculate prefilter as a high shelf using RBJ formula with the
@@ -523,10 +523,10 @@ calc_prefilterD(double* b, double* a, double sample_rate)
         double wS = sin(wc);
         double wC = cos(wc);
         double beta = sqrt(A) / PREFILTER_Q;
-        
+
         // Normalize filter by a[0]
         double norm = (A+1) - ((A - 1) * wC) + (beta * wS);
-        
+
         a[0] = (2 * ((A - 1) - ((A + 1) * wC))) / norm;
         a[1] = ((A+1) - ((A - 1) * wC) - (beta * wS)) / norm;
         b[0] = (A * ((A + 1) + ((A - 1) * wC) + (beta * wS))) / norm;
@@ -545,11 +545,11 @@ calc_rlbfilter(float* b, float* a, float sample_rate)
         b[0] = 1.0;
         b[1] = -2.0;
         b[2] = 1.0;
-        
+
         a[0] = -1.99004745483398;
         a[1] = 0.99007225036621;
     }
-    
+
     else
     {
 
@@ -558,13 +558,13 @@ calc_rlbfilter(float* b, float* a, float sample_rate)
         float wS = sinf(wc);
         float wC = cosf(wc);
         float alpha = wS / (2.0 * RLBFILTER_Q);
-        
+
         float norm = 1 + alpha;
-        
+
         b[0] = ((1 + wC) / 2.0) / norm;
         b[1] = (-(1 + wC)) / norm;
         b[2] = ((1 + wC) / 2.0) / norm;
-        
+
         a[0] = (-2 * wC) / norm;
         a[1] = (1 - alpha) / norm;
 
@@ -581,11 +581,11 @@ calc_rlbfilterD(double* b, double* a, double sample_rate)
         b[0] = 1.0;
         b[1] = -2.0;
         b[2] = 1.0;
-        
+
         a[0] = -1.99004745483398;
         a[1] = 0.99007225036621;
     }
-    
+
     else
     {
         // Calculate as highpass using RLB formula
@@ -593,13 +593,13 @@ calc_rlbfilterD(double* b, double* a, double sample_rate)
         double wS = sin(wc);
         double wC = cos(wc);
         double alpha = wS / (2.0 * RLBFILTER_Q);
-        
+
         double norm = 1 + alpha;
-        
+
         b[0] = ((1 + wC) / 2.0) / norm;
         b[1] = (-(1 + wC)) / norm;
         b[2] = ((1 + wC) / 2.0) / norm;
-        
+
         a[0] = (-2 * wC) / norm;
         a[1] = (1 - alpha) / norm;
     }

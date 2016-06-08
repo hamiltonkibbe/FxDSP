@@ -20,8 +20,8 @@ typedef enum
     K_14,
     K_20
 } MeterScale;
-    
-    
+
+
 float
 phase_correlation(float* left, float* right, unsigned n_samples);
 
@@ -37,11 +37,11 @@ balanceD(double* left, double* right, unsigned n_samples);
 
 float
 vu_peak(float* signal, unsigned n_samples, MeterScale scale);
-    
+
 double
 vu_peakD(double* signal, unsigned n_samples, MeterScale scale);
 
-    
+
 #ifdef __cplusplus
 }
 #endif

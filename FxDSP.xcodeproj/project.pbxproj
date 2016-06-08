@@ -42,6 +42,11 @@
 		373CBAAE1AF71F3F00B488E8 /* TestPanLaw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 373CBAAD1AF71F3F00B488E8 /* TestPanLaw.cpp */; };
 		373CBAB01AF722D600B488E8 /* TestUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 373CBAAF1AF722D600B488E8 /* TestUtilities.cpp */; };
 		376090921B6F1905009EF6E0 /* TestDiodeRectifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 376090911B6F1905009EF6E0 /* TestDiodeRectifier.cpp */; };
+		37691F9D1CFCA53B0031CF02 /* Vactrol.h in Headers */ = {isa = PBXBuildFile; fileRef = 37691F9C1CFCA53B0031CF02 /* Vactrol.h */; };
+		37691F9E1CFCA53B0031CF02 /* Vactrol.h in Headers */ = {isa = PBXBuildFile; fileRef = 37691F9C1CFCA53B0031CF02 /* Vactrol.h */; };
+		37691FA01CFCA56A0031CF02 /* Vactrol.c in Sources */ = {isa = PBXBuildFile; fileRef = 37691F9F1CFCA56A0031CF02 /* Vactrol.c */; };
+		37691FA11CFCA56A0031CF02 /* Vactrol.c in Sources */ = {isa = PBXBuildFile; fileRef = 37691F9F1CFCA56A0031CF02 /* Vactrol.c */; };
+		37691FA21CFCA56A0031CF02 /* Vactrol.c in Sources */ = {isa = PBXBuildFile; fileRef = 37691F9F1CFCA56A0031CF02 /* Vactrol.c */; };
 		3769A0EC1B1EA27B00FF9560 /* bs1770.h in Headers */ = {isa = PBXBuildFile; fileRef = 3769A0EB1B1EA27B00FF9560 /* bs1770.h */; };
 		3769A0ED1B1EA27B00FF9560 /* bs1770.h in Headers */ = {isa = PBXBuildFile; fileRef = 3769A0EB1B1EA27B00FF9560 /* bs1770.h */; };
 		376CF3781ADB56BF001486B7 /* TestFFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 376CF3771ADB56BF001486B7 /* TestFFT.cpp */; };
@@ -302,6 +307,8 @@
 		373CBAAD1AF71F3F00B488E8 /* TestPanLaw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestPanLaw.cpp; path = FxDSP/test/src/TestPanLaw.cpp; sourceTree = SOURCE_ROOT; };
 		373CBAAF1AF722D600B488E8 /* TestUtilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestUtilities.cpp; path = FxDSP/test/src/TestUtilities.cpp; sourceTree = SOURCE_ROOT; };
 		376090911B6F1905009EF6E0 /* TestDiodeRectifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestDiodeRectifier.cpp; path = FxDSP/test/src/TestDiodeRectifier.cpp; sourceTree = SOURCE_ROOT; };
+		37691F9C1CFCA53B0031CF02 /* Vactrol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vactrol.h; path = FxDSP/include/Vactrol.h; sourceTree = SOURCE_ROOT; };
+		37691F9F1CFCA56A0031CF02 /* Vactrol.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Vactrol.c; path = FxDSP/src/Vactrol.c; sourceTree = SOURCE_ROOT; };
 		3769A0EB1B1EA27B00FF9560 /* bs1770.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bs1770.h; path = FxDSP/include/bs1770.h; sourceTree = SOURCE_ROOT; };
 		376CF3771ADB56BF001486B7 /* TestFFT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestFFT.cpp; path = FxDSP/test/src/TestFFT.cpp; sourceTree = SOURCE_ROOT; };
 		376CF3791ADB6849001486B7 /* TestMultibandFilterBank.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestMultibandFilterBank.cpp; path = FxDSP/test/src/TestMultibandFilterBank.cpp; sourceTree = SOURCE_ROOT; };
@@ -460,6 +467,7 @@
 				37C030AE1ABB5EA800ABB47B /* Upsampler.h */,
 				37C030AF1ABB5EA800ABB47B /* Utilities.h */,
 				37C030B21ABB5EA800ABB47B /* WindowFunction.h */,
+				37691F9C1CFCA53B0031CF02 /* Vactrol.h */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -493,6 +501,7 @@
 				37C030DD1ABB5EBF00ABB47B /* Utilities.c */,
 				37C030E01ABB5EBF00ABB47B /* WindowFunction.c */,
 				3726641B1CF5621A00E11FE7 /* Stereo.c */,
+				37691F9F1CFCA56A0031CF02 /* Vactrol.c */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -591,6 +600,7 @@
 				37C0319C1ABB7E4D00ABB47B /* FIRFilter.h in Headers */,
 				37C0319D1ABB7E4D00ABB47B /* LadderFilter.h in Headers */,
 				37C0319E1ABB7E4D00ABB47B /* LinkwitzRileyFilter.h in Headers */,
+				37691F9E1CFCA53B0031CF02 /* Vactrol.h in Headers */,
 				37C0319F1ABB7E4D00ABB47B /* MidiUtils.h in Headers */,
 				3769A0ED1B1EA27B00FF9560 /* bs1770.h in Headers */,
 				37C031A01ABB7E4D00ABB47B /* MultibandBank.h in Headers */,
@@ -625,6 +635,7 @@
 				37C030C41ABB5EA800ABB47B /* RBJFilter.h in Headers */,
 				3775E0831AD4EF3B00930665 /* TestFIRFilter.h in Headers */,
 				3769A0EC1B1EA27B00FF9560 /* bs1770.h in Headers */,
+				37691F9D1CFCA53B0031CF02 /* Vactrol.h in Headers */,
 				37C030BE1ABB5EA800ABB47B /* MidiUtils.h in Headers */,
 				37C030BD1ABB5EA800ABB47B /* LinkwitzRileyFilter.h in Headers */,
 				37C030C51ABB5EA800ABB47B /* RMSEstimator.h in Headers */,
@@ -758,6 +769,7 @@
 			files = (
 				376ED3CB1AF6672E0054BA36 /* MidiUtils.c in Sources */,
 				3775E09A1AD6075600930665 /* DiodeSaturator.c in Sources */,
+				37691FA11CFCA56A0031CF02 /* Vactrol.c in Sources */,
 				3775E09B1AD6075600930665 /* PanLaw.c in Sources */,
 				37C0317E1ABB7E3500ABB47B /* BiquadFilter.c in Sources */,
 				37C0317F1ABB7E3500ABB47B /* CircularBuffer.c in Sources */,
@@ -794,6 +806,7 @@
 				373CBAB01AF722D600B488E8 /* TestUtilities.cpp in Sources */,
 				370223341B4F31B800750735 /* TestBS1770.cpp in Sources */,
 				37D4B2EC1CCC27A800A5A0F7 /* TestOptocoupler.cpp in Sources */,
+				37691FA21CFCA56A0031CF02 /* Vactrol.c in Sources */,
 				376ED3CE1AF6683E0054BA36 /* TestRMS.cpp in Sources */,
 				3775E0931AD501DE00930665 /* TestRBJFilter.cpp in Sources */,
 				3775E08B1AD4F1E500930665 /* TestOnePole.cpp in Sources */,
@@ -821,6 +834,7 @@
 			files = (
 				376ED3CA1AF666980054BA36 /* MidiUtils.c in Sources */,
 				3775E0991AD6074B00930665 /* DiodeSaturator.c in Sources */,
+				37691FA01CFCA56A0031CF02 /* Vactrol.c in Sources */,
 				37C030E61ABB5EBF00ABB47B /* FFT.c in Sources */,
 				37C030F01ABB5EBF00ABB47B /* Tape.c in Sources */,
 				37C030E81ABB5EBF00ABB47B /* LadderFilter.c in Sources */,
