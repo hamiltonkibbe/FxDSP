@@ -50,19 +50,19 @@ TapeSetSpeed(Tape* tape, TapeSpeed speed);
 
 Error_t
 TapeSetSaturation(Tape* tape, float saturation);
-    
+
 Error_t
 TapeSetHysteresis(Tape* tape, float hysteresis);
-    
+
 Error_t
 TapeSetFlutter(Tape* tape, float flutter);
-    
+
 float
 TapeGetSaturation(Tape* tape);
 
 float
 TapeGetHysteresis(Tape* tape);
-    
+
 Error_t
 TapeProcess(Tape*           tape,
             float*          out_buffer,
@@ -70,7 +70,7 @@ TapeProcess(Tape*           tape,
             unsigned        n_samples);
 
 
-    
+
 /** Process a single sample
  * @details Uses a Tape model to process an input sample
  *
@@ -81,7 +81,7 @@ TapeProcess(Tape*           tape,
 float
 TapeTick(Tape* tape, float in_sample);
 
-    
+
 #ifdef __cplusplus
 }
 #endif

@@ -60,7 +60,7 @@ PolySaturatorTick(PolySaturator* saturator, float in_sample);
 double
 PolySaturatorTickD(PolySaturatorD* saturator, double in_sample);
 
-    
+
 #ifdef __cplusplus
 }
 #endif

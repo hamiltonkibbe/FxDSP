@@ -16,7 +16,7 @@ ADD_DEFINITIONS(-D_USE_MATH_DEFINES)
 
 # Find and use Accelerate Framework on OSX
 IF (APPLE AND ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    
+
     # Find Accelerate framework
     FIND_PATH (ACCELERATE_INCLUDE_DIR Accelerate/Accelerate.h /usr/include /usr/local/include
                /System/Library/Frameworks/vecLib.framework/Versions/A/Headers/ )
@@ -27,7 +27,7 @@ IF (APPLE AND ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     INCLUDE_DIRECTORIES (${ACCELERATE_INCLUDE_DIR})
     SET (ACCELERATE_LIB "${ACCELERATE_FRAMEWORK}")
     SET (CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -framework Accelerate" )
-    
+
 ENDIF (APPLE AND ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 # Find FFTW3 for FFT
@@ -47,7 +47,7 @@ MESSAGE ("-- Using Ooura fallback for FFT")
 ADD_DEFINITIONS(-DUSE_OOURA_FFT)
 ENDIF ((USE_OOURA_FFT) OR ($ENV{USE_OOURA_FFT}))
 
-# Find CBLAS 
+# Find CBLAS
 IF ((NO_CBLAS) OR ($ENV{NO_CBLAS}))
 REMOVE_DEFINITIONS(-DUSE_BLAS)
 ELSE ((NO_CBLAS) OR ($ENV{NO_CBLAS}))
@@ -80,25 +80,25 @@ TARGET_LINK_LIBRARIES (FxDSPStatic ${ACCELERATE_LIB} ${FFTW3_LIB} ${FFTW3F_LIB} 
 
 # Install libraries
 INSTALL (TARGETS FxDSP FxDSPStatic DESTINATION lib)
-INSTALL (DIRECTORY "${PROJECT_SOURCE_DIR}/include/" 
-         DESTINATION "include/${PROJECT_NAME}/" 
+INSTALL (DIRECTORY "${PROJECT_SOURCE_DIR}/include/"
+         DESTINATION "include/${PROJECT_NAME}/"
          FILES_MATCHING PATTERN "*.h")
 
 ADD_CUSTOM_TARGET (test-coverage
-COMMAND make test
-COMMAND [ -d coverage ] && rm -rf coverage/ || echo "No folder"
-COMMAND mkdir coverage
-COMMAND cp CMakeFiles/FxDSP.dir/src/*.gcno coverage/
-COMMAND cp CMakeFiles/FxDSP.dir/src/*.o coverage/
-COMMAND mv CMakeFiles/FxDSP.dir/src/*.gcda coverage
-DEPENDS testFxDSP FxDSP FxDSPStatic
+    COMMAND make test
+    COMMAND [ -d coverage ] && rm -rf coverage/ || echo "No folder"
+    COMMAND mkdir coverage
+    COMMAND cp CMakeFiles/FxDSP.dir/src/*.gcno coverage/
+    COMMAND cp CMakeFiles/FxDSP.dir/src/*.o coverage/
+    COMMAND mv CMakeFiles/FxDSP.dir/src/*.gcda coverage
+    DEPENDS testFxDSP FxDSP FxDSPStatic
 )
 
 ADD_CUSTOM_TARGET(coverage-report
-COMMAND make test-coverage
-COMMAND lcov --capture --directory coverage --output-file coverage/coverage.info
-COMMAND genhtml coverage/coverage.info --output-directory coverage/html
-DEPENDS test-coverage
+    COMMAND make test-coverage
+    COMMAND lcov --capture --directory coverage --output-file coverage/coverage.info
+    COMMAND genhtml coverage/coverage.info --output-directory coverage/html
+    DEPENDS test-coverage
 )
 
 ADD_CUSTOM_TARGET(doc-html

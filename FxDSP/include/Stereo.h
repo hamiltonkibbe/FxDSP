@@ -9,6 +9,9 @@
 #ifndef Stereo_h
 #define Stereo_h
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 void
 StereoToMono(float*        dest,
@@ -33,5 +36,9 @@ MonoToStereoD(double*       left,
               double*       right,
               const double* mono,
               unsigned      length);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* Stereo_h */

@@ -36,6 +36,15 @@ extern "C" {
 Error_t
 FloatBufferToInt16(signed short* dest, const float* src, unsigned length);
 
+/** Convert an array of double samples to 16-bit signed
+ * @details Converts array of double-precision samples in [-1, 1] to signed 16-
+ * bit samples
+ *
+ * @param dest       Signed samples array
+ * @param src        double-precision samples to convert
+ * @param length     Number of samples.
+ * @return           Error code.
+ */
 Error_t
 DoubleBufferToInt16(signed short* dest, const double* src, unsigned length);
 
@@ -51,6 +60,14 @@ DoubleBufferToInt16(signed short* dest, const double* src, unsigned length);
 Error_t
 Int16BufferToFloat(float* dest, const signed short* src, unsigned length);
 
+/** Convert an array of 16-bit signed samples to double
+ * @details Converts array of 16-bit integer samples to double samples in [-1,1]
+ *
+ * @param dest       double-precisionsamples array
+ * @param src        integer samples to convert
+ * @param length     Number of samples.
+ * @return           Error code.
+ */
 Error_t
 Int16BufferToDouble(double* dest, const signed short* src, unsigned length);
 
