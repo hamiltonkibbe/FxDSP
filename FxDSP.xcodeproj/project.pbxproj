@@ -74,7 +74,6 @@
 		3775E09A1AD6075600930665 /* DiodeSaturator.c in Sources */ = {isa = PBXBuildFile; fileRef = 3775E0971AD6072C00930665 /* DiodeSaturator.c */; };
 		3775E09B1AD6075600930665 /* PanLaw.c in Sources */ = {isa = PBXBuildFile; fileRef = 37CDDD8E1AC9C83C001B96BA /* PanLaw.c */; };
 		3775E09F1AD60A5100930665 /* TestWindowFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3775E09E1AD60A5100930665 /* TestWindowFunctions.cpp */; };
-		3784AE251D07DAE600E8EF0E /* TestStereo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3784AE241D07DAE600E8EF0E /* TestStereo.cpp */; };
 		37BC9E071AC71F0A008718DC /* libFxDSP.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C0317A1ABB7E0200ABB47B /* libFxDSP.a */; };
 		37BC9E221AC71FD7008718DC /* BiquadFilter.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C0309A1ABB5EA800ABB47B /* BiquadFilter.h */; };
 		37BC9E231AC71FD7008718DC /* CircularBuffer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37C0309B1ABB5EA800ABB47B /* CircularBuffer.h */; };
@@ -334,7 +333,6 @@
 		3775E0961AD6072200930665 /* DiodeSaturator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DiodeSaturator.h; path = FxDSP/include/DiodeSaturator.h; sourceTree = SOURCE_ROOT; };
 		3775E0971AD6072C00930665 /* DiodeSaturator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DiodeSaturator.c; path = FxDSP/src/DiodeSaturator.c; sourceTree = SOURCE_ROOT; };
 		3775E09E1AD60A5100930665 /* TestWindowFunctions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestWindowFunctions.cpp; path = FxDSP/test/src/TestWindowFunctions.cpp; sourceTree = SOURCE_ROOT; };
-		3784AE241D07DAE600E8EF0E /* TestStereo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestStereo.cpp; path = FxDSP/test/src/TestStereo.cpp; sourceTree = SOURCE_ROOT; };
 		37BD93041B139082009238D4 /* TestUpsampler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestUpsampler.cpp; path = FxDSP/test/src/TestUpsampler.cpp; sourceTree = SOURCE_ROOT; };
 		37BD93061B13A46C009238D4 /* TestDecimator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestDecimator.cpp; path = FxDSP/test/src/TestDecimator.cpp; sourceTree = SOURCE_ROOT; };
 		37C0309A1ABB5EA800ABB47B /* BiquadFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BiquadFilter.h; path = FxDSP/include/BiquadFilter.h; sourceTree = SOURCE_ROOT; };
@@ -548,7 +546,6 @@
 				37BD93061B13A46C009238D4 /* TestDecimator.cpp */,
 				370223331B4F31B800750735 /* TestBS1770.cpp */,
 				376090911B6F1905009EF6E0 /* TestDiodeRectifier.cpp */,
-				3784AE241D07DAE600E8EF0E /* TestStereo.cpp */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -826,7 +823,6 @@
 				37DC0C521B0FF8CA00C20827 /* TestMetering.cpp in Sources */,
 				376CF3781ADB56BF001486B7 /* TestFFT.cpp in Sources */,
 				370223321B4F0E5E00750735 /* Signals.cpp in Sources */,
-				3784AE251D07DAE600E8EF0E /* TestStereo.cpp in Sources */,
 				3775E08E1AD4F4EE00930665 /* TestDSP.cpp in Sources */,
 				376CF37A1ADB6849001486B7 /* TestMultibandFilterBank.cpp in Sources */,
 			);
