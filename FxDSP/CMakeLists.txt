@@ -101,3 +101,9 @@ COMMAND genhtml coverage/coverage.info --output-directory coverage/html
 DEPENDS test-coverage
 )
 
+ADD_CUSTOM_TARGET(doc-html
+    WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}/../doc"
+    COMMAND doxygen Doxyfile
+    COMMAND make html
+)
+

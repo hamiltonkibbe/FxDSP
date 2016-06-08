@@ -16,8 +16,8 @@ panned center.
 
 .. doxygenfunction:: linear_pan
     :project: FxDSP
-    
-    
+
+
 3dB Equal Power Pan
 ^^^^^^^^^^^^^^^^^^^
 A circular pan law with each channel at -3dB when panned center.
@@ -27,8 +27,8 @@ A circular pan law with each channel at -3dB when panned center.
 
 .. doxygenfunction:: equal_power_3dB_pan
     :project: FxDSP
-    
-    
+
+
 6dB Equal Power Pan
 ^^^^^^^^^^^^^^^^^^^
 A circular pan law with each channel at -6dB when panned center.
