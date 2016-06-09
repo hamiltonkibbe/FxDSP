@@ -15,15 +15,15 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-    
+
 /** FFTConfig type */
 typedef struct SpectrumAnalyzer SpectrumAnalyzer;
 typedef struct SpectrumAnalyzerD SpectrumAnalyzerD;
-    
+
 
 SpectrumAnalyzer*
 SpectrumAnalyzerInit(unsigned fft_length, float sample_rate);
-    
+
 SpectrumAnalyzerD*
 SpectrumAnalyzerInitD(unsigned fft_length, double sample_rate);
 
@@ -39,11 +39,26 @@ SpectralCentroid(SpectrumAnalyzer* analyzer);
 double
 SpectralCentroidD(SpectrumAnalyzerD* analyzer);
 
+float
+SpectralSpread(SpectrumAnalyzer* analyzer);
 
+double
+SpectralSpreadD(SpectrumAnalyzerD* analyzer);
 
+float
+SpectralSkewness(SpectrumAnalyzer* analyzer);
+
+double
+SpectralSkewnessD(SpectrumAnalyzerD* analyzer);
+
+float
+SpectralKurtosis(SpectrumAnalyzer* analyzer);
+
+double
+SpectralKurtosisD(SpectrumAnalyzerD* analyzer);
 
 #ifdef __cplusplus
 }
 #endif
-        
+
 #endif /* Spectrum_h */

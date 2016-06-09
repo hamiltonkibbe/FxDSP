@@ -32,11 +32,13 @@ struct SpectrumAnalyzer
     unsigned        fft_length;
     unsigned        bins;
     float           sample_rate;
+    float           mag_sum;
     float*          frequencies;
     float*          real;
     float*          imag;
     float*          mag;
     float*          phase;
+    float*          root_moment;
     FFTConfig*      fft;
     Window_t        window_type;
     WindowFunction* window;
@@ -47,11 +49,13 @@ struct SpectrumAnalyzerD
     unsigned            fft_length;
     unsigned            bins;
     double              sample_rate;
+    double              mag_sum;
     double*             frequencies;
     double*             real;
     double*             imag;
     double*             mag;
     double*             phase;
+    double*             root_moment;
     FFTConfigD*         fft;
     Window_t            window_type;
     WindowFunctionD*    window;
@@ -70,25 +74,34 @@ SpectrumAnalyzerInit(unsigned fft_length, float sample_rate)
         float* imag = (float*)malloc((fft_length / 2) * sizeof(float));
         float* mag = (float*)malloc((fft_length / 2) * sizeof(float));
         float* phase = (float*)malloc((fft_length / 2) * sizeof(float));
-        if ((NULL != window) && (NULL != fft) && (NULL != frequencies) && (NULL != real) && (NULL != imag) && (NULL != mag) && (NULL != phase))
+        float* root_moment = (float*)malloc((fft_length / 2) * sizeof(float));
+        if ((NULL != window) && (NULL != fft) && (NULL != frequencies) && (NULL != real) \
+            && (NULL != imag) && (NULL != mag) && (NULL != phase) && (NULL != root_moment))
         {
             inst->fft_length = fft_length;
             inst->bins = fft_length / 2;
             inst->sample_rate = sample_rate;
+            inst->mag_sum = 0.0;
             inst->frequencies = frequencies;
             inst->real = real;
             inst->imag = imag;
             inst->mag = mag;
             inst->phase = phase;
+            inst->root_moment = root_moment;
             inst->fft = fft;
             inst->window = window;
             inst->window_type = BLACKMAN;
             calculate_bin_frequencies(inst->frequencies, fft_length, sample_rate);
+            *(inst->root_moment) = 0.0;
         }
         else
         {
             WindowFunctionFree(window);
             FFTFree(fft);
+            if (NULL != root_moment)
+            {
+                free(root_moment);
+            }
             if (NULL != phase)
             {
                 free(phase);
@@ -128,25 +141,34 @@ SpectrumAnalyzerInitD(unsigned fft_length, double sample_rate)
         double* imag = (double*)malloc((fft_length / 2) * sizeof(double));
         double* mag = (double*)malloc((fft_length / 2) * sizeof(double));
         double* phase = (double*)malloc((fft_length / 2) * sizeof(double));
-        if ((NULL != frequencies) && (NULL != real) && (NULL != imag) && (NULL != mag) && (NULL != phase))
+        double* root_moment = (double*)malloc((fft_length / 2) * sizeof(double));
+        if ((NULL != window) && (NULL != fft) && (NULL != frequencies) && (NULL != real) \
+            && (NULL != imag) && (NULL != mag) && (NULL != phase) && (NULL != root_moment))
         {
             inst->fft_length = fft_length;
             inst->bins = fft_length/2;
             inst->sample_rate = sample_rate;
+            inst->mag_sum = 0.0;
             inst->frequencies = frequencies;
             inst->real = real;
             inst->imag = imag;
             inst->mag = mag;
             inst->phase = phase;
+            inst->root_moment = root_moment;
             inst->fft = fft;
             inst->window = window;
             inst->window_type = BLACKMAN;
             calculate_bin_frequenciesD(inst->frequencies, fft_length, sample_rate);
+            *(inst->root_moment) = 0.0;
         }
         else
         {
             WindowFunctionFreeD(window);
             FFTFreeD(fft);
+            if (NULL != root_moment)
+            {
+                free(root_moment);
+            }
             if (NULL != phase)
             {
                 free(phase);
@@ -182,6 +204,8 @@ SpectrumAnalyzerAnalyze(SpectrumAnalyzer* analyzer, float* signal)
     WindowFunctionProcess(analyzer->window, scratch, signal, analyzer->fft_length);
     FFT_R2C(analyzer->fft, scratch, analyzer->real, analyzer->imag);
     VectorRectToPolar(analyzer->mag, analyzer->phase, analyzer->real, analyzer->imag, analyzer->bins);
+    analyzer->mag_sum = VectorSum(analyzer->mag, analyzer->bins);
+    analyzer->root_moment[0] = 0.0;
 }
 
 void
@@ -191,27 +215,103 @@ SpectrumAnalyzerAnalyzeD(SpectrumAnalyzerD* analyzer, double* signal)
     WindowFunctionProcessD(analyzer->window, scratch, signal, analyzer->fft_length);
     FFT_R2CD(analyzer->fft, scratch, analyzer->real, analyzer->imag);
     VectorRectToPolarD(analyzer->mag, analyzer->phase, analyzer->real, analyzer->imag, analyzer->bins);
+    analyzer->mag_sum = VectorSumD(analyzer->mag, analyzer->bins);
+    analyzer->root_moment[0] = 0.0;
 }
 
 float
 SpectralCentroid(SpectrumAnalyzer* analyzer)
 {
     float num[analyzer->bins];
-    float denom = VectorSum(analyzer->mag, analyzer->bins);
     VectorVectorMultiply(num, analyzer->mag, analyzer->frequencies, analyzer->bins);
-    return VectorSum(num, analyzer->bins) / denom;
+    return VectorSum(num, analyzer->bins) / analyzer->mag_sum;
 }
 
 double
 SpectralCentroidD(SpectrumAnalyzerD* analyzer)
 {
     double num[analyzer->bins];
-    double denom = VectorSumD(analyzer->mag, analyzer->bins);
     VectorVectorMultiplyD(num, analyzer->mag, analyzer->frequencies, analyzer->bins);
-    return VectorSumD(num, analyzer->bins) / denom;
+    return VectorSumD(num, analyzer->bins) / analyzer->mag_sum;
 }
 
+float
+SpectralSpread(SpectrumAnalyzer* analyzer)
+{
+    float mu = SpectralCentroid(analyzer);
+    float num[analyzer->bins];
+    if (analyzer->root_moment[0] == 0.0)
+    {
+        VectorScalarAdd(analyzer->root_moment, analyzer->frequencies, -mu, analyzer->bins);
+    }
+    VectorPower(num, analyzer->root_moment, 2, analyzer->bins);
+    return VectorSum(num, analyzer->bins) / analyzer->mag_sum;
+}
 
+double
+SpectralSpreadD(SpectrumAnalyzerD* analyzer)
+{
+    double mu = SpectralCentroidD(analyzer);
+    double num[analyzer->bins];
+    if (analyzer->root_moment[0] == 0.0)
+    {
+        VectorScalarAddD(analyzer->root_moment, analyzer->frequencies, -mu, analyzer->bins);
+    }
+    VectorPowerD(num, analyzer->root_moment, 2, analyzer->bins);
+    return VectorSumD(num, analyzer->bins) / analyzer->mag_sum;
+}
+
+float
+SpectralSkewness(SpectrumAnalyzer* analyzer)
+{
+    float mu = SpectralCentroid(analyzer);
+    float num[analyzer->bins];
+    if (analyzer->root_moment[0] == 0.0)
+    {
+        VectorScalarAdd(analyzer->root_moment, analyzer->frequencies, -mu, analyzer->bins);
+    }
+    VectorPower(num, analyzer->root_moment, 3, analyzer->bins);
+    return VectorSum(num, analyzer->bins) / analyzer->mag_sum;
+}
+
+double
+SpectralSkewnessD(SpectrumAnalyzerD* analyzer)
+{
+    double mu = SpectralCentroidD(analyzer);
+    double num[analyzer->bins];
+    if (analyzer->root_moment[0] == 0.0)
+    {
+        VectorScalarAddD(analyzer->root_moment, analyzer->frequencies, -mu, analyzer->bins);
+    }
+    VectorPowerD(num, analyzer->root_moment, 3, analyzer->bins);
+    return VectorSumD(num, analyzer->bins) / analyzer->mag_sum;
+}
+
+float
+SpectralKurtosis(SpectrumAnalyzer* analyzer)
+{
+    float mu = SpectralCentroid(analyzer);
+    float num[analyzer->bins];
+    if (analyzer->root_moment[0] == 0.0)
+    {
+        VectorScalarAdd(analyzer->root_moment, analyzer->frequencies, -mu, analyzer->bins);
+    }
+    VectorPower(num, analyzer->root_moment, 4, analyzer->bins);
+    return VectorSum(num, analyzer->bins) / analyzer->mag_sum;
+}
+
+double
+SpectralKurtosisD(SpectrumAnalyzerD* analyzer)
+{
+    double mu = SpectralCentroidD(analyzer);
+    double num[analyzer->bins];
+    if (analyzer->root_moment[0] == 0.0)
+    {
+        VectorScalarAddD(analyzer->root_moment, analyzer->frequencies, -mu, analyzer->bins);
+    }
+    VectorPowerD(num, analyzer->root_moment, 4, analyzer->bins);
+    return VectorSumD(num, analyzer->bins) / analyzer->mag_sum;
+}
 
 
 /*******************************************************************************
