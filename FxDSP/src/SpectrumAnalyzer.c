@@ -13,8 +13,6 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-#include <stdio.h>
-
 
 /*******************************************************************************
  Static Function Prototypes */
@@ -221,14 +219,11 @@ SpectralCentroidD(SpectrumAnalyzerD* analyzer)
 static void
 calculate_bin_frequencies(float* dest, unsigned fft_length, float sample_rate)
 {
-    printf("\n\n\n\n\nFrequencies = [\n");
     float freq_step = sample_rate / fft_length;
     for(unsigned bin = 0; bin < fft_length / 2; ++bin)
     {
         dest[bin] = bin * freq_step;
-        printf("    %1.20f,\n", dest[bin]);
     }
-    printf("]\n\n\n\n\n\n\n");
 }
 
 static void
