@@ -369,6 +369,32 @@ VectorVectorAddD(double         *dest,
                  const double   *in2,
                  unsigned       length);
 
+#pragma mark - Vector Subtraction
+/** Subtract two buffers
+ * @details Subtract values in in1 from values in in2 element-by-element and write
+ * results to dest:
+ * @code
+ *      dest[i] = in2[i] - in1[i] | i = [0, length)
+ * @endcode
+ *
+ * @param dest          Output array to write
+ * @param in1           First input buffer
+ * @param in2           Second input buffer
+ * @param length        Number of samples to add
+ * @return              Error code.
+ */
+Error_t
+VectorVectorSub(float         *dest,
+                const float   *in1,
+                const float   *in2,
+                unsigned      length);
+
+
+Error_t
+VectorVectorSubD(double         *dest,
+                 const double   *in1,
+                 const double   *in2,
+                 unsigned       length);
 
 #pragma mark - Vector Scalar Addition
 /** Add scalar to a vector

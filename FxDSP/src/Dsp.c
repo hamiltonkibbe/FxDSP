@@ -933,6 +933,70 @@ VectorVectorAddD(double           *dest,
     return NOERR;
 }
 
+/*******************************************************************************
+ VectorVectorSub */
+Error_t
+VectorVectorSub(float         *dest,
+                const float   *in1,
+                const float   *in2,
+                unsigned      length)
+{
+#ifdef __APPLE__
+    // Use the Accelerate framework if we have it
+    vDSP_vsub(in1, 1, in2, 1, dest, 1, length);
+
+#else
+    // Otherwise do it manually
+    unsigned i;
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
+    {
+        dest[i] = in2[i] - in1[i];
+        dest[i + 1] = in2[i + 1] - in1[i + 1];
+        dest[i + 2] = in2[i + 2] - in1[i + 2];
+        dest[i + 3] = in2[i + 3] - in1[i + 3];
+    }
+    for (i = end; i < length; ++i)
+    {
+        dest[i] = in2[i] - in1[i];
+    }
+
+#endif
+    return NOERR;
+}
+
+/*******************************************************************************
+ VectorVectorSubD */
+Error_t
+VectorVectorSubD(double           *dest,
+                 const double     *in1,
+                 const double     *in2,
+                 unsigned         length)
+{
+#ifdef __APPLE__
+    // Use the Accelerate framework if we have it
+    vDSP_vsubD(in1, 1, in2, 1, dest, 1, length);
+
+#else
+    // Otherwise do it manually
+    unsigned i;
+    const unsigned end = 4 * (length / 4);
+    for (i = 0; i < end; i+=4)
+    {
+        dest[i] = in2[i] - in1[i];
+        dest[i + 1] = in2[i + 1] - in1[i + 1];
+        dest[i + 2] = in2[i + 2] - in1[i + 2];
+        dest[i + 3] = in2[i + 3] - in1[i + 3];
+    }
+    for (i = end; i < length; ++i)
+    {
+        dest[i] = in2[i] - in1[i];
+    }
+
+#endif
+    return NOERR;
+}
+
 
 /*******************************************************************************
  VectorScalarAdd */
@@ -996,6 +1060,8 @@ VectorScalarAddD(double         *dest,
 #endif
     return NOERR;
 }
+
+
 
 
 /*******************************************************************************
