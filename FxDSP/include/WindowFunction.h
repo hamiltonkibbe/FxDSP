@@ -19,7 +19,7 @@ typedef struct WindowFunction WindowFunction;
 typedef struct WindowFunctionD WindowFunctionD;
 
 /** Window function type */
-typedef enum _FtWindow_t
+typedef enum _Window_t
 {
     /** Rectangular window */
     BOXCAR,
@@ -71,7 +71,7 @@ typedef enum _FtWindow_t
 
     /** The number of window types */
     N_WINDOWTYPES
-} FtWindow_t;
+} Window_t;
 
 
 /** Generate a Boxcar window of length n
@@ -383,10 +383,10 @@ chebyshevD(unsigned n, double A, double* dest);
  * @return          Error code, 0 on success
  */
 WindowFunction*
-WindowFunctionInit(unsigned n, FtWindow_t type);
+WindowFunctionInit(unsigned n, Window_t type);
 
 WindowFunctionD*
-WindowFunctionInitD(unsigned n, FtWindow_t type);
+WindowFunctionInitD(unsigned n, Window_t type);
 
 
 /** Free memory associated with a WindowFunction

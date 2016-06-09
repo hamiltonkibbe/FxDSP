@@ -33,6 +33,12 @@
 		3726641D1CF5621A00E11FE7 /* Stereo.c in Sources */ = {isa = PBXBuildFile; fileRef = 3726641B1CF5621A00E11FE7 /* Stereo.c */; };
 		3726641E1CF5621A00E11FE7 /* Stereo.c in Sources */ = {isa = PBXBuildFile; fileRef = 3726641B1CF5621A00E11FE7 /* Stereo.c */; };
 		3726641F1CF5649A00E11FE7 /* Stereo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 372664181CF5620000E11FE7 /* Stereo.h */; };
+		37291C6E1D08F4F900387A90 /* SpectrumAnalyzer.h in Headers */ = {isa = PBXBuildFile; fileRef = 37291C6D1D08F4F900387A90 /* SpectrumAnalyzer.h */; };
+		37291C6F1D08F4F900387A90 /* SpectrumAnalyzer.h in Headers */ = {isa = PBXBuildFile; fileRef = 37291C6D1D08F4F900387A90 /* SpectrumAnalyzer.h */; };
+		37291C711D08F67E00387A90 /* SpectrumAnalyzer.c in Sources */ = {isa = PBXBuildFile; fileRef = 37291C701D08F67E00387A90 /* SpectrumAnalyzer.c */; };
+		37291C721D08F67E00387A90 /* SpectrumAnalyzer.c in Sources */ = {isa = PBXBuildFile; fileRef = 37291C701D08F67E00387A90 /* SpectrumAnalyzer.c */; };
+		37291C731D08F67E00387A90 /* SpectrumAnalyzer.c in Sources */ = {isa = PBXBuildFile; fileRef = 37291C701D08F67E00387A90 /* SpectrumAnalyzer.c */; };
+		37291C751D0907D300387A90 /* TestSpectrumAnalyzer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37291C741D0907D300387A90 /* TestSpectrumAnalyzer.cpp */; };
 		373B1C8E1B005D7500B0B40D /* Decimator.h in Headers */ = {isa = PBXBuildFile; fileRef = 373B1C8D1B005D7500B0B40D /* Decimator.h */; };
 		373B1C8F1B005D7500B0B40D /* Decimator.h in Headers */ = {isa = PBXBuildFile; fileRef = 373B1C8D1B005D7500B0B40D /* Decimator.h */; };
 		373B1C911B0060B900B0B40D /* Decimator.c in Sources */ = {isa = PBXBuildFile; fileRef = 373B1C901B0060B900B0B40D /* Decimator.c */; };
@@ -42,11 +48,6 @@
 		373CBAAE1AF71F3F00B488E8 /* TestPanLaw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 373CBAAD1AF71F3F00B488E8 /* TestPanLaw.cpp */; };
 		373CBAB01AF722D600B488E8 /* TestUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 373CBAAF1AF722D600B488E8 /* TestUtilities.cpp */; };
 		376090921B6F1905009EF6E0 /* TestDiodeRectifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 376090911B6F1905009EF6E0 /* TestDiodeRectifier.cpp */; };
-		37691F9D1CFCA53B0031CF02 /* Vactrol.h in Headers */ = {isa = PBXBuildFile; fileRef = 37691F9C1CFCA53B0031CF02 /* Vactrol.h */; };
-		37691F9E1CFCA53B0031CF02 /* Vactrol.h in Headers */ = {isa = PBXBuildFile; fileRef = 37691F9C1CFCA53B0031CF02 /* Vactrol.h */; };
-		37691FA01CFCA56A0031CF02 /* Vactrol.c in Sources */ = {isa = PBXBuildFile; fileRef = 37691F9F1CFCA56A0031CF02 /* Vactrol.c */; };
-		37691FA11CFCA56A0031CF02 /* Vactrol.c in Sources */ = {isa = PBXBuildFile; fileRef = 37691F9F1CFCA56A0031CF02 /* Vactrol.c */; };
-		37691FA21CFCA56A0031CF02 /* Vactrol.c in Sources */ = {isa = PBXBuildFile; fileRef = 37691F9F1CFCA56A0031CF02 /* Vactrol.c */; };
 		3769A0EC1B1EA27B00FF9560 /* bs1770.h in Headers */ = {isa = PBXBuildFile; fileRef = 3769A0EB1B1EA27B00FF9560 /* bs1770.h */; };
 		3769A0ED1B1EA27B00FF9560 /* bs1770.h in Headers */ = {isa = PBXBuildFile; fileRef = 3769A0EB1B1EA27B00FF9560 /* bs1770.h */; };
 		376CF3781ADB56BF001486B7 /* TestFFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 376CF3771ADB56BF001486B7 /* TestFFT.cpp */; };
@@ -301,14 +302,15 @@
 		3713FCCD1B16882D002C199A /* bs1770.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = bs1770.c; path = FxDSP/src/bs1770.c; sourceTree = SOURCE_ROOT; };
 		372664181CF5620000E11FE7 /* Stereo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stereo.h; path = FxDSP/include/Stereo.h; sourceTree = SOURCE_ROOT; };
 		3726641B1CF5621A00E11FE7 /* Stereo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Stereo.c; path = FxDSP/src/Stereo.c; sourceTree = SOURCE_ROOT; };
+		37291C6D1D08F4F900387A90 /* SpectrumAnalyzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpectrumAnalyzer.h; path = FxDSP/include/SpectrumAnalyzer.h; sourceTree = SOURCE_ROOT; };
+		37291C701D08F67E00387A90 /* SpectrumAnalyzer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = SpectrumAnalyzer.c; path = FxDSP/src/SpectrumAnalyzer.c; sourceTree = SOURCE_ROOT; };
+		37291C741D0907D300387A90 /* TestSpectrumAnalyzer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestSpectrumAnalyzer.cpp; path = FxDSP/test/src/TestSpectrumAnalyzer.cpp; sourceTree = SOURCE_ROOT; };
 		373B1C8D1B005D7500B0B40D /* Decimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Decimator.h; path = FxDSP/include/Decimator.h; sourceTree = SOURCE_ROOT; };
 		373B1C901B0060B900B0B40D /* Decimator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Decimator.c; path = FxDSP/src/Decimator.c; sourceTree = SOURCE_ROOT; };
 		373B1C961B006BAA00B0B40D /* PolyphaseCoeffs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = PolyphaseCoeffs.c; path = FxDSP/src/PolyphaseCoeffs.c; sourceTree = SOURCE_ROOT; };
 		373CBAAD1AF71F3F00B488E8 /* TestPanLaw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestPanLaw.cpp; path = FxDSP/test/src/TestPanLaw.cpp; sourceTree = SOURCE_ROOT; };
 		373CBAAF1AF722D600B488E8 /* TestUtilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestUtilities.cpp; path = FxDSP/test/src/TestUtilities.cpp; sourceTree = SOURCE_ROOT; };
 		376090911B6F1905009EF6E0 /* TestDiodeRectifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestDiodeRectifier.cpp; path = FxDSP/test/src/TestDiodeRectifier.cpp; sourceTree = SOURCE_ROOT; };
-		37691F9C1CFCA53B0031CF02 /* Vactrol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vactrol.h; path = FxDSP/include/Vactrol.h; sourceTree = SOURCE_ROOT; };
-		37691F9F1CFCA56A0031CF02 /* Vactrol.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Vactrol.c; path = FxDSP/src/Vactrol.c; sourceTree = SOURCE_ROOT; };
 		3769A0EB1B1EA27B00FF9560 /* bs1770.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bs1770.h; path = FxDSP/include/bs1770.h; sourceTree = SOURCE_ROOT; };
 		376CF3771ADB56BF001486B7 /* TestFFT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestFFT.cpp; path = FxDSP/test/src/TestFFT.cpp; sourceTree = SOURCE_ROOT; };
 		376CF3791ADB6849001486B7 /* TestMultibandFilterBank.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestMultibandFilterBank.cpp; path = FxDSP/test/src/TestMultibandFilterBank.cpp; sourceTree = SOURCE_ROOT; };
@@ -467,7 +469,7 @@
 				37C030AE1ABB5EA800ABB47B /* Upsampler.h */,
 				37C030AF1ABB5EA800ABB47B /* Utilities.h */,
 				37C030B21ABB5EA800ABB47B /* WindowFunction.h */,
-				37691F9C1CFCA53B0031CF02 /* Vactrol.h */,
+				37291C6D1D08F4F900387A90 /* SpectrumAnalyzer.h */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -501,7 +503,7 @@
 				37C030DD1ABB5EBF00ABB47B /* Utilities.c */,
 				37C030E01ABB5EBF00ABB47B /* WindowFunction.c */,
 				3726641B1CF5621A00E11FE7 /* Stereo.c */,
-				37691F9F1CFCA56A0031CF02 /* Vactrol.c */,
+				37291C701D08F67E00387A90 /* SpectrumAnalyzer.c */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -546,6 +548,7 @@
 				37BD93061B13A46C009238D4 /* TestDecimator.cpp */,
 				370223331B4F31B800750735 /* TestBS1770.cpp */,
 				376090911B6F1905009EF6E0 /* TestDiodeRectifier.cpp */,
+				37291C741D0907D300387A90 /* TestSpectrumAnalyzer.cpp */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -593,6 +596,7 @@
 				37C031941ABB7E4D00ABB47B /* BiquadFilter.h in Headers */,
 				37C031951ABB7E4D00ABB47B /* CircularBuffer.h in Headers */,
 				37C031971ABB7E4D00ABB47B /* DiodeRectifier.h in Headers */,
+				37291C6F1D08F4F900387A90 /* SpectrumAnalyzer.h in Headers */,
 				37C031981ABB7E4D00ABB47B /* Dsp.h in Headers */,
 				37C031991ABB7E4D00ABB47B /* Error.h in Headers */,
 				37C0319A1ABB7E4D00ABB47B /* FFT.h in Headers */,
@@ -600,7 +604,6 @@
 				37C0319C1ABB7E4D00ABB47B /* FIRFilter.h in Headers */,
 				37C0319D1ABB7E4D00ABB47B /* LadderFilter.h in Headers */,
 				37C0319E1ABB7E4D00ABB47B /* LinkwitzRileyFilter.h in Headers */,
-				37691F9E1CFCA53B0031CF02 /* Vactrol.h in Headers */,
 				37C0319F1ABB7E4D00ABB47B /* MidiUtils.h in Headers */,
 				3769A0ED1B1EA27B00FF9560 /* bs1770.h in Headers */,
 				37C031A01ABB7E4D00ABB47B /* MultibandBank.h in Headers */,
@@ -628,6 +631,7 @@
 				37C030B71ABB5EA800ABB47B /* Dsp.h in Headers */,
 				37C030B31ABB5EA800ABB47B /* BiquadFilter.h in Headers */,
 				37C030B91ABB5EA800ABB47B /* FFT.h in Headers */,
+				37291C6E1D08F4F900387A90 /* SpectrumAnalyzer.h in Headers */,
 				37C030BB1ABB5EA800ABB47B /* FIRFilter.h in Headers */,
 				37C030BF1ABB5EA800ABB47B /* MultibandBank.h in Headers */,
 				37C030CB1ABB5EA800ABB47B /* WindowFunction.h in Headers */,
@@ -635,7 +639,6 @@
 				37C030C41ABB5EA800ABB47B /* RBJFilter.h in Headers */,
 				3775E0831AD4EF3B00930665 /* TestFIRFilter.h in Headers */,
 				3769A0EC1B1EA27B00FF9560 /* bs1770.h in Headers */,
-				37691F9D1CFCA53B0031CF02 /* Vactrol.h in Headers */,
 				37C030BE1ABB5EA800ABB47B /* MidiUtils.h in Headers */,
 				37C030BD1ABB5EA800ABB47B /* LinkwitzRileyFilter.h in Headers */,
 				37C030C51ABB5EA800ABB47B /* RMSEstimator.h in Headers */,
@@ -769,7 +772,6 @@
 			files = (
 				376ED3CB1AF6672E0054BA36 /* MidiUtils.c in Sources */,
 				3775E09A1AD6075600930665 /* DiodeSaturator.c in Sources */,
-				37691FA11CFCA56A0031CF02 /* Vactrol.c in Sources */,
 				3775E09B1AD6075600930665 /* PanLaw.c in Sources */,
 				37C0317E1ABB7E3500ABB47B /* BiquadFilter.c in Sources */,
 				37C0317F1ABB7E3500ABB47B /* CircularBuffer.c in Sources */,
@@ -787,6 +789,7 @@
 				37DC0C4B1B0FF80000C20827 /* Metering.c in Sources */,
 				3713FCD01B16882D002C199A /* bs1770.c in Sources */,
 				37C0318A1ABB7E3500ABB47B /* PolySaturator.c in Sources */,
+				37291C721D08F67E00387A90 /* SpectrumAnalyzer.c in Sources */,
 				373B1C981B006BAA00B0B40D /* PolyphaseCoeffs.c in Sources */,
 				37C0318B1ABB7E3500ABB47B /* RBJFilter.c in Sources */,
 				37C0318C1ABB7E3500ABB47B /* RMSEstimator.c in Sources */,
@@ -802,11 +805,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				37139B4D1AFB269E00207A08 /* TestLinkwitzRileyFilter.cpp in Sources */,
+				37291C751D0907D300387A90 /* TestSpectrumAnalyzer.cpp in Sources */,
 				37BD93051B139082009238D4 /* TestUpsampler.cpp in Sources */,
 				373CBAB01AF722D600B488E8 /* TestUtilities.cpp in Sources */,
 				370223341B4F31B800750735 /* TestBS1770.cpp in Sources */,
 				37D4B2EC1CCC27A800A5A0F7 /* TestOptocoupler.cpp in Sources */,
-				37691FA21CFCA56A0031CF02 /* Vactrol.c in Sources */,
 				376ED3CE1AF6683E0054BA36 /* TestRMS.cpp in Sources */,
 				3775E0931AD501DE00930665 /* TestRBJFilter.cpp in Sources */,
 				3775E08B1AD4F1E500930665 /* TestOnePole.cpp in Sources */,
@@ -824,6 +827,7 @@
 				376CF3781ADB56BF001486B7 /* TestFFT.cpp in Sources */,
 				370223321B4F0E5E00750735 /* Signals.cpp in Sources */,
 				3775E08E1AD4F4EE00930665 /* TestDSP.cpp in Sources */,
+				37291C731D08F67E00387A90 /* SpectrumAnalyzer.c in Sources */,
 				376CF37A1ADB6849001486B7 /* TestMultibandFilterBank.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -834,7 +838,6 @@
 			files = (
 				376ED3CA1AF666980054BA36 /* MidiUtils.c in Sources */,
 				3775E0991AD6074B00930665 /* DiodeSaturator.c in Sources */,
-				37691FA01CFCA56A0031CF02 /* Vactrol.c in Sources */,
 				37C030E61ABB5EBF00ABB47B /* FFT.c in Sources */,
 				37C030F01ABB5EBF00ABB47B /* Tape.c in Sources */,
 				37C030E81ABB5EBF00ABB47B /* LadderFilter.c in Sources */,
@@ -852,6 +855,7 @@
 				37C030E91ABB5EBF00ABB47B /* LinkwitzRileyFilter.c in Sources */,
 				373B1C971B006BAA00B0B40D /* PolyphaseCoeffs.c in Sources */,
 				37CDDD8F1AC9C83C001B96BA /* PanLaw.c in Sources */,
+				37291C711D08F67E00387A90 /* SpectrumAnalyzer.c in Sources */,
 				37C030EF1ABB5EBF00ABB47B /* RMSEstimator.c in Sources */,
 				37C030E41ABB5EBF00ABB47B /* DiodeRectifier.c in Sources */,
 				37C030F11ABB5EBF00ABB47B /* Upsampler.c in Sources */,

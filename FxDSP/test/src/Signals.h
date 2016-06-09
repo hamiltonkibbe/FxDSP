@@ -16,10 +16,10 @@ extern "C" {
 
 
 void
-sinewave(float* dest, unsigned n, float f, float phase, float amp, float Fs);
+sinewave(float* dest, unsigned samples, float frequency, float phase, float amp, float Fs);
 
 void
-sinewaveD(double* dest, unsigned n, double f, double phase, double amp, double Fs);
+sinewaveD(double* dest, unsigned samples, double frequency, double phase, double amp, double Fs);
 
 /* Test signal. 2 cycles of a sine wave.
 

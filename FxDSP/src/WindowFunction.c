@@ -39,14 +39,14 @@ struct WindowFunction
 {
     float*      window;
     unsigned    length;
-    FtWindow_t  type;
+    Window_t    type;
 };
 
 struct WindowFunctionD
 {
     double*     window;
     unsigned    length;
-    FtWindow_t  type;
+    Window_t    type;
 };
 
 /*******************************************************************************
@@ -753,7 +753,7 @@ chebyshev_polyD(int n, double x)
 /*******************************************************************************
  WindowFunctionInit */
 WindowFunction*
-WindowFunctionInit(unsigned n, FtWindow_t type)
+WindowFunctionInit(unsigned n, Window_t type)
 {
     WindowFunction* window = (WindowFunction*)malloc(sizeof(WindowFunction));
     
@@ -820,7 +820,7 @@ WindowFunctionInit(unsigned n, FtWindow_t type)
 }
 
 WindowFunctionD*
-WindowFunctionInitD(unsigned n, FtWindow_t type)
+WindowFunctionInitD(unsigned n, Window_t type)
 {
     WindowFunctionD* window = (WindowFunctionD*)malloc(sizeof(WindowFunctionD));
     

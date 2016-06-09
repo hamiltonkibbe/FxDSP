@@ -94,7 +94,7 @@ Error_t
 FFTFreeD(FFTConfigD* fft);
 
 
-/** Calculate Real to Real Forward FFT
+/** Calculate Real to Complex Forward FFT
  *
  * @details Calculates the magnitude of the real forward FFT of the data in
  *          inBuffer.
